@@ -1,12 +1,13 @@
 baseurl = "http://replace-this-with-your-hugo-site.com/"
 languageCode = "en-us"
-title = "Benoît Paris"
+title = "Explainable Machine Learning"
 theme = "hyde"
 
 
 [params]
     github = "https://github.com/benoitparis"
+    copyright = "Benoît Paris Consulting"
+    copyright_link = "http://benoit.paris"
 
 [Author]
     name = "Benoît Paris"
-
