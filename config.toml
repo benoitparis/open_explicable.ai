@@ -1,3 +1,12 @@
 baseurl = "http://replace-this-with-your-hugo-site.com/"
 languageCode = "en-us"
-title = "My New Hugo Site"
+title = "Benoît Paris"
+theme = "hyde"
+
+
+[params]
+    github = "https://github.com/benoitparis"
+
+[Author]
+    name = "Benoît Paris"
+
