@@ -11,11 +11,11 @@
   <title> Explainable machine learning &middot; Explainable Machine Learning </title>
 
   
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/poole.css">
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/syntax.css">
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/hyde.css">
+  <link rel="stylesheet" href="http://explicable.ml/css/poole.css">
+  <link rel="stylesheet" href="http://explicable.ml/css/syntax.css">
+  <link rel="stylesheet" href="http://explicable.ml/css/hyde.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Sans:400,400italic,700|Abril+Fatface">
-  <link rel="stylesheet" href="http://replace-this-with-your-hugo-site.com/css/custom.css">
+  <link rel="stylesheet" href="http://explicable.ml/css/custom.css">
   
   
   <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
@@ -29,20 +29,19 @@
 		<div class="sidebar">
   <div class="container sidebar-sticky">
     <div class="sidebar-about">
-      <a href="http://replace-this-with-your-hugo-site.com/"><h1>Explainable Machine Learning</h1></a>
+      <a href="http://explicable.ml/"><h1>Explainable Machine Learning</h1></a>
       <p class="lead">
       Explorations of model parameters to provide humans an understanding of decisions made
       </p>
     </div>
 
     <ul class="sidebar-nav">
-      <li><a href="/">Home</a> </li>
       
         <li><a href="/post/explainable-machine-learning/"> Explainable machine learning </a></li>
       
     </ul>
 
-    <p>&copy; Benoît Paris Consulting 2017. All rights reserved. </p>
+    <p>&copy; <a href="http://benoit.paris">Benoît Paris Consulting</a> 2017. All rights reserved. </p>
   </div>
 </div>
 
@@ -51,11 +50,33 @@
 			<div class="post">
 			 	<h1>Explainable machine learning</h1>
 			  <span class="post-date">Wed, Nov 1, 2017</span>
-			      <p>While achieving great predictive power, machine learning models can be really opaque for their users; Be it a data science team, a marketing executive, a salesperson, or even the end user.</p>
+			      <p>While achieving great predictive power, machine learning models can be really opaque for their users; be it a data science team, a marketing executive, a salesperson, or the end user. For example in classification we are often left with a probability distribution, and absolutely no intuition of the relations inside the dataset at hand.</p>
 
-<p><a href="https://www.darpa.mil/">DARPA</a> has recently launched a program aimed just at that: <a href="https://www.darpa.mil/program/explainable-artificial-intelligence">Explainable Artificial Intelligence (XAI)</a>. While DARPA&rsquo;s approach is in specifically targeting black-box models, there is plenty of insights in inspecting the internals of the model at hand.</p>
+<p><a href="https://www.darpa.mil/">DARPA</a> has recently launched a program aimed just at that: <a href="https://www.darpa.mil/program/explainable-artificial-intelligence">Explainable Artificial Intelligence (XAI)</a>. We believe this will be an indispensible part of Machine Learning in the future, and has great potential in being applied to marketing data.</p>
 
-<p>The aim of this project is to build support for explorations of model parameters, to provide humans an understanding of decisions taken.</p>
+<p>The aim of this project is to build support around explorations of these model parameters, to provide humans an understanding of decisions taken.</p>
+
+<p>Some models do provide feature importances; but these are global indicators and only provide cursory understanding of the dataset. An explainable model should provide indicators for each entity, and insightful visualizations of these indicators as well. These indicators should also be queryable for analysis, and aggregatable in high level visualizations. For example in a marketing dataset, user segmentation -as defined by the data- should emerge naturally in such a visualization.</p>
+
+<p>Using this approach should yield the following benefits:</p>
+
+<ul>
+<li><p>Better debugability: Data scientists can know exactly and precisely how having one feature at a specific value for one entity is affecting the probability distribution of its classes. If a dataset suffers from time pollution, it should be immediately obvious; even if few entities are affected.</p></li>
+
+<li><p>Data-driven understanding of a dataset: Organizations often make a lot of assumptions as to how their users behave, and how each information is supposedly indicative of their users&rsquo; behavior. With the benefit of an explanation of a model, a marketing executive should be able gain precise and detailed insights that are data-supported; and be able to deliver different messages for the different ways their users value their service, in an automated fashion.</p></li>
+
+<li><p>Fine-grained message tuning: Based on profile data, salespersons should be able to know what the customer is bound to value when presented a product, or what are the buying patterns.</p></li>
+
+<li><p>Ethical: Recipients of a marketing campaign could also benefit in knowing why they were part of a promotion, and how each part of their profile influenced the decision.</p></li>
+</ul>
+
+<hr />
+
+<p>An example of an explained prediction, with the explanation in colored cells:</p>
+
+<p><img src="http://explicable.ml/img/example-UI.png" alt="example UI" /></p>
+
+<p>This example displays different clients who buy for different reasons. A classic Machine Learning pipeline would only result in the probabilities -which would be the same-; but in this case an executive can know why products are being bought, and a salesperson would be able to tune a message to close the sale. Notice there is one French butter buyer, and that the display shows this is why he is buying (the example is set in the great butter crisis of 2017). Global feature importance for &ldquo;Region&rdquo; and &ldquo;Most bought category&rdquo; would show little importance, and this niche market would go undetected.</p>
 
 			</div>
 

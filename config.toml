@@ -1,4 +1,4 @@
-baseurl = "http://replace-this-with-your-hugo-site.com/"
+baseurl = "http://explicable.ml/"
 languageCode = "en-us"
 title = "Explainable Machine Learning"
 theme = "hyde"

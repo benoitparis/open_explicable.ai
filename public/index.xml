@@ -2,24 +2,46 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Explainable Machine Learning</title>
-    <link>http://replace-this-with-your-hugo-site.com/</link>
+    <link>http://explicable.ml/</link>
     <description>Recent content on Explainable Machine Learning</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 01 Nov 2017 12:28:54 +0100</lastBuildDate>
-    <atom:link href="http://replace-this-with-your-hugo-site.com/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://explicable.ml/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
       <title>Explainable machine learning</title>
-      <link>http://replace-this-with-your-hugo-site.com/post/explainable-machine-learning/</link>
+      <link>http://explicable.ml/post/explainable-machine-learning/</link>
       <pubDate>Wed, 01 Nov 2017 12:28:54 +0100</pubDate>
       
-      <guid>http://replace-this-with-your-hugo-site.com/post/explainable-machine-learning/</guid>
-      <description>&lt;p&gt;While achieving great predictive power, machine learning models can be really opaque for their users; Be it a data science team, a marketing executive, a salesperson, or even the end user.&lt;/p&gt;
+      <guid>http://explicable.ml/post/explainable-machine-learning/</guid>
+      <description>&lt;p&gt;While achieving great predictive power, machine learning models can be really opaque for their users; be it a data science team, a marketing executive, a salesperson, or the end user. For example in classification we are often left with a probability distribution, and absolutely no intuition of the relations inside the dataset at hand.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://www.darpa.mil/&#34;&gt;DARPA&lt;/a&gt; has recently launched a program aimed just at that: &lt;a href=&#34;https://www.darpa.mil/program/explainable-artificial-intelligence&#34;&gt;Explainable Artificial Intelligence (XAI)&lt;/a&gt;. While DARPA&amp;rsquo;s approach is in specifically targeting black-box models, there is plenty of insights in inspecting the internals of the model at hand.&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://www.darpa.mil/&#34;&gt;DARPA&lt;/a&gt; has recently launched a program aimed just at that: &lt;a href=&#34;https://www.darpa.mil/program/explainable-artificial-intelligence&#34;&gt;Explainable Artificial Intelligence (XAI)&lt;/a&gt;. We believe this will be an indispensible part of Machine Learning in the future, and has great potential in being applied to marketing data.&lt;/p&gt;
 
-&lt;p&gt;The aim of this project is to build support for explorations of model parameters, to provide humans an understanding of decisions taken.&lt;/p&gt;
+&lt;p&gt;The aim of this project is to build support around explorations of these model parameters, to provide humans an understanding of decisions taken.&lt;/p&gt;
+
+&lt;p&gt;Some models do provide feature importances; but these are global indicators and only provide cursory understanding of the dataset. An explainable model should provide indicators for each entity, and insightful visualizations of these indicators as well. These indicators should also be queryable for analysis, and aggregatable in high level visualizations. For example in a marketing dataset, user segmentation -as defined by the data- should emerge naturally in such a visualization.&lt;/p&gt;
+
+&lt;p&gt;Using this approach should yield the following benefits:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Better debugability: Data scientists can know exactly and precisely how having one feature at a specific value for one entity is affecting the probability distribution of its classes. If a dataset suffers from time pollution, it should be immediately obvious; even if few entities are affected.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Data-driven understanding of a dataset: Organizations often make a lot of assumptions as to how their users behave, and how each information is supposedly indicative of their users&amp;rsquo; behavior. With the benefit of an explanation of a model, a marketing executive should be able gain precise and detailed insights that are data-supported; and be able to deliver different messages for the different ways their users value their service, in an automated fashion.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Fine-grained message tuning: Based on profile data, salespersons should be able to know what the customer is bound to value when presented a product, or what are the buying patterns.&lt;/p&gt;&lt;/li&gt;
+
+&lt;li&gt;&lt;p&gt;Ethical: Recipients of a marketing campaign could also benefit in knowing why they were part of a promotion, and how each part of their profile influenced the decision.&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;An example of an explained prediction, with the explanation in colored cells:&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&#34;http://explicable.ml/img/example-UI.png&#34; alt=&#34;example UI&#34; /&gt;&lt;/p&gt;
+
+&lt;p&gt;This example displays different clients who buy for different reasons. A classic Machine Learning pipeline would only result in the probabilities -which would be the same-; but in this case an executive can know why products are being bought, and a salesperson would be able to tune a message to close the sale. Notice there is one French butter buyer, and that the display shows this is why he is buying (the example is set in the great butter crisis of 2017). Global feature importance for &amp;ldquo;Region&amp;rdquo; and &amp;ldquo;Most bought category&amp;rdquo; would show little importance, and this niche market would go undetected.&lt;/p&gt;
 </description>
     </item>
     

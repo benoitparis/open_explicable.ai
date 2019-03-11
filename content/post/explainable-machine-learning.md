@@ -28,7 +28,7 @@ Using this approach should yield the following benefits:
 
 An example of an explained prediction, with the explanation in colored cells:
 
-![example UI](/img/example-UI.png)
+![example UI](http://explicable.ml/img/example-UI.png)
 
 This example displays different clients who buy for different reasons. A classic Machine Learning pipeline would only result in the probabilities -which would be the same-; but in this case an executive can know why products are being bought, and a salesperson would be able to tune a message to close the sale. Notice there is one French butter buyer, and that the display shows this is why he is buying (the example is set in the great butter crisis of 2017). Global feature importance for "Region" and "Most bought category" would show little importance, and this niche market would go undetected.
 
