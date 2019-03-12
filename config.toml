@@ -14,7 +14,7 @@ theme = "hugo-assembly"
 # banner section (from here on is for assembly theme)
 [params.banner]
   title = "Welcome to your data"
-  byline = "Explore its topology. Find subtle yet invaluable signals."
+  byline = "Rediscover it. Explore its topology. Find subtle yet invaluable signals."
   
 [params.actions] # CTAs
   enable = true
