@@ -1,6 +1,6 @@
 baseurl = "http://explicable.ml/"
 languageCode = "en-US"
-title = "Explicable.ml"
+title = "Explicable.ML"
 theme = "hugo-assembly"
 
 # Metadata
@@ -81,7 +81,7 @@ theme = "hugo-assembly"
 #   email_placeholder = "Your email"
 #   email_disclaimer = "We'll never share your email with anyone else."
 #   message_placeholder = "Please enter a message."
-#   button_text = "Submit"
+  button_text = "Submit"
 
 # Footer section
 [params.footer]
