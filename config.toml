@@ -69,7 +69,7 @@ theme = "hugo-assembly"
   enable = true
   title = "Explicable Machine Learning"
   subtitle = "Explore the hidden signals in your data"
-  description = "Gain invaluable insights from your existing databases that you would have otherwise missed. Use state-of-the-art predictive algorithms that we make open and inspectable. Discover implicit structures and how they relate to events like customers buying your product."
+  description = "Gain invaluable insights from your existing databases that you would have otherwise missed with regular machine learning. Use state-of-the-art predictive algorithms that we make open and inspectable to you. Discover implicit structures and how they relate to events like customers buying your product."
   button_text = "Contact Us Now"
 
 # Contact section
