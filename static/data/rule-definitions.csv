@@ -1,321 +1,336 @@
 ,Rule
-0,ExternalRiskEstimate > 70.5
-1,NetFractionRevolvingBurden <= 60.5 & ExternalRiskEstimate <= 76.5
-2,ExternalRiskEstimate <= 76.5 & PercentInstallTrades > 26.5
-3,MSinceMostRecentInqexcl7days > -7.5 & MSinceOldestTradeOpen > 4.5 & MSinceOldestTradeOpen > 151.5 & MSinceMostRecentInqexcl7days <= 0.5 & ExternalRiskEstimate <= 80.5
-4,ExternalRiskEstimate > 72.5
-5,ExternalRiskEstimate <= 67.5 & PercentTradesWBalance <= 48.0
-6,ExternalRiskEstimate > 78.5
-7,MSinceMostRecentInqexcl7days > -7.5 & MSinceOldestTradeOpen <= 4.5 & MSinceMostRecentInqexcl7days <= 0.5 & ExternalRiskEstimate <= 80.5
-8,NumSatisfactoryTrades > 7.5 & ExternalRiskEstimate > 68.5
-9,AverageMInFile > 64.5
-10,ExternalRiskEstimate > 80.5
-11,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate > 80.5
-12,MSinceMostRecentInqexcl7days > -7.5 & MSinceMostRecentInqexcl7days <= 0.5
-13,ExternalRiskEstimate > 70.5 & AverageMInFile > 84.5
-14,ExternalRiskEstimate > 66.5 & MSinceMostRecentInqexcl7days <= 0.5
-15,AverageMInFile > 64.5 & ExternalRiskEstimate > 72.5
-16,MSinceMostRecentInqexcl7days > -7.5 & PercentTradesNeverDelq <= 92.5 & ExternalRiskEstimate <= 71.5 & MSinceMostRecentInqexcl7days > 0.5
-17,ExternalRiskEstimate > 67.5 & AverageMInFile > 51.5
-18,NetFractionRevolvingBurden <= 12.5 & ExternalRiskEstimate <= 69.5
-19,NumInqLast6M <= 1.5 & NetFractionRevolvingBurden <= 43.5
-20,PercentTradesWBalance > 83.5 & ExternalRiskEstimate <= 78.5
-21,PercentInstallTrades <= 9.5 & ExternalRiskEstimate > 74.5
-22,NumTotalTrades > 21.5 & ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden <= 57.5 & ExternalRiskEstimate > 64.5
-23,ExternalRiskEstimate <= 75.5 & AverageMInFile > 62.5 & NumBank2NatlTradesWHighUtilization > 1.5
-24,NetFractionRevolvingBurden <= 55.5 & AverageMInFile <= 74.5 & PercentInstallTrades <= 45.5
-25,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 76.5 & NumSatisfactoryTrades <= 24.5
-26,MSinceMostRecentInqexcl7days > 1.5 & ExternalRiskEstimate <= 77.5
-27,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate <= 84.5 & PercentTradesWBalance <= 42.5
-28,ExternalRiskEstimate > 68.5 & AverageMInFile > 59.5
-29,ExternalRiskEstimate > 79.5
-30,ExternalRiskEstimate <= 67.5 & PercentTradesWBalance > 48.0
-31,ExternalRiskEstimate > 81.5
-32,MSinceMostRecentInqexcl7days > -7.5 & AverageMInFile <= 64.5 & ExternalRiskEstimate <= 80.5
-33,NetFractionRevolvingBurden <= 43.5 & AverageMInFile > 68.5 & PercentTradesNeverDelq <= 87.5
-34,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 80.5
-35,ExternalRiskEstimate <= 80.5
-36,NumSatisfactoryTrades > 29.5 & ExternalRiskEstimate <= 78.5 & NetFractionRevolvingBurden <= 57.5 & NumInqLast6M > 0.5
-37,MSinceMostRecentInqexcl7days <= -7.5 & MSinceMostRecentInqexcl7days <= 0.5
-38,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate <= 84.5 & PercentTradesWBalance > 42.5 & MSinceMostRecentTradeOpen <= 34.0
-39,ExternalRiskEstimate <= 73.5 & MSinceOldestTradeOpen <= 289.5 & NetFractionRevolvingBurden <= 47.5
-40,ExternalRiskEstimate <= 67.5 & ExternalRiskEstimate <= 78.5
-41,AverageMInFile > 70.5 & PercentTradesNeverDelq <= 95.5
-42,ExternalRiskEstimate <= 73.5 & NumTotalTrades <= 21.5 & MSinceMostRecentInqexcl7days <= -3.5 & NetFractionRevolvingBurden <= 57.5
-43,PercentInstallTrades > 9.5 & ExternalRiskEstimate > 74.5 & NetFractionRevolvingBurden <= 53.0
-44,NetFractionRevolvingBurden > 54.5
-45,ExternalRiskEstimate <= 76.5 & PercentTradesWBalance > 87.5
-46,ExternalRiskEstimate > 68.5
-47,PercentTradesNeverDelq > 94.5 & NetFractionRevolvingBurden <= 41.5
-48,NumSatisfactoryTrades > 27.5 & NetFractionRevolvingBurden <= 40.5
-49,ExternalRiskEstimate > 70.5 & AverageMInFile > 60.0 & ExternalRiskEstimate <= 84.5 & MSinceMostRecentInqexcl7days <= 0.5 & MSinceMostRecentTradeOpen > 10.5
-50,MSinceMostRecentInqexcl7days <= -7.5 & ExternalRiskEstimate <= 70.5
-51,ExternalRiskEstimate <= 67.5 & PercentInstallTrades > 10.5
-52,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate > 84.5
-53,ExternalRiskEstimate > 84.5
-54,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance <= 48.5
-55,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades > 6.5
-56,AverageMInFile > 70.5 & PercentTradesNeverDelq > 95.5
-57,AverageMInFile > 77.5 & NetFractionRevolvingBurden <= 53.5
-58,MSinceMostRecentInqexcl7days <= -7.5 & AverageMInFile <= 64.5 & ExternalRiskEstimate <= 80.5
-59,ExternalRiskEstimate <= 70.5 & ExternalRiskEstimate <= 76.5
-60,ExternalRiskEstimate > 67.5 & AverageMInFile <= 61.5 & MSinceMostRecentInqexcl7days <= 0.5
-61,PercentTradesWBalance > 79.5
-62,ExternalRiskEstimate <= 78.5 & NumSatisfactoryTrades <= 26.5 & PercentTradesNeverDelq > 93.0 & MSinceMostRecentDelq > 17.5 & ExternalRiskEstimate > 69.5
-63,NumTotalTrades > 11.5 & MSinceMostRecentInqexcl7days > 17.5 & PercentTradesNeverDelq > 87.5 & NetFractionRevolvingBurden <= 37.5 & ExternalRiskEstimate > 62.5 & AverageMInFile <= 80.5
-64,AverageMInFile > 57.5 & ExternalRiskEstimate > 62.5
-65,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance > 90.5
-66,ExternalRiskEstimate <= 77.5
-67,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days > -7.5
-68,NetFractionRevolvingBurden <= 80.5 & MSinceMostRecentInqexcl7days > 1.5 & ExternalRiskEstimate <= 84.5 & PercentTradesNeverDelq > 89.5
-69,MSinceMostRecentInqexcl7days <= -7.5 & MSinceMostRecentInqexcl7days <= 0.5 & ExternalRiskEstimate <= 80.5
-70,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate <= 84.5 & PercentTradesWBalance > 42.5 & MSinceMostRecentTradeOpen > 34.0
-71,ExternalRiskEstimate <= 69.5
-72,ExternalRiskEstimate <= 68.5
-73,ExternalRiskEstimate <= 78.5 & ExternalRiskEstimate > 67.5 & AverageMInFile > 42.5
-74,PercentTradesWBalance > 51.0 & ExternalRiskEstimate <= 70.5
-75,ExternalRiskEstimate > 65.5 & NumSatisfactoryTrades > 10.5
-76,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades <= 6.5
-77,NetFractionRevolvingBurden > 65.5 & ExternalRiskEstimate <= 74.5
-78,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance > 48.5
-79,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance > 70.5
-80,MSinceMostRecentInqexcl7days <= 1.5 & PercentTradesWBalance > 35.5 & ExternalRiskEstimate <= 77.5
-81,NetFractionRevolvingBurden > 51.5 & NetFractionRevolvingBurden <= 54.5 & AverageMInFile > 71.5
-82,NetFractionRevolvingBurden <= 45.5
-83,ExternalRiskEstimate <= 67.5 & PercentInstallTrades <= 10.5
-84,PercentTradesWBalance > 43.5 & ExternalRiskEstimate <= 73.5
-85,AverageMInFile <= 61.5 & NetFractionRevolvingBurden > 40.5
-86,ExternalRiskEstimate <= 63.5
-87,ExternalRiskEstimate > 70.5 & NetFractionRevolvingBurden > 65.5 & AverageMInFile <= 84.5
-88,ExternalRiskEstimate > 59.5 & AverageMInFile > 60.5 & ExternalRiskEstimate <= 69.5 & PercentTradesWBalance > 48.5
-89,ExternalRiskEstimate <= 75.5 & PercentTradesWBalance <= 97.0
-90,AverageMInFile <= 70.5
-91,NetFractionRevolvingBurden <= 51.5 & NetFractionRevolvingBurden <= 54.5 & PercentTradesNeverDelq > 92.5 & MSinceOldestTradeOpen <= 443.5 & AverageMInFile > 71.5
-92,MSinceMostRecentInqexcl7days > 1.5 & ExternalRiskEstimate <= 84.5 & NetFractionRevolvingBurden > 80.5 & PercentTradesNeverDelq > 89.5
-93,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days <= -7.5
-94,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 67.5 & ExternalRiskEstimate > 87.5
-95,NumTotalTrades > 11.5 & MSinceMostRecentInqexcl7days <= 17.5 & PercentTradesNeverDelq > 87.5 & NetFractionRevolvingBurden <= 37.5 & ExternalRiskEstimate > 62.5 & AverageMInFile <= 80.5
-96,ExternalRiskEstimate <= 71.5
-97,ExternalRiskEstimate > 78.5 & PercentTradesWBalance > 77.5 & MSinceMostRecentInqexcl7days <= 1.5
-98,NetFractionRevolvingBurden > 38.5 & ExternalRiskEstimate <= 69.5
-99,ExternalRiskEstimate <= 78.5 & ExternalRiskEstimate > 67.5 & AverageMInFile <= 42.5
-100,ExternalRiskEstimate > 62.5 & NumTotalTrades <= 11.5 & AverageMInFile <= 80.5 & PercentTradesNeverDelq > 87.5 & NetFractionRevolvingBurden <= 37.5
-101,MSinceMostRecentInqexcl7days > -7.5 & ExternalRiskEstimate <= 71.5 & MSinceMostRecentInqexcl7days <= 0.5
-102,NetFractionRevolvingBurden > 37.5
-103,ExternalRiskEstimate <= 73.5
-104,ExternalRiskEstimate > 62.5 & NumTotalTrades > 3.5 & NetFractionRevolvingBurden > 37.5
-105,ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days > 1.5
-106,AverageMInFile <= 68.5 & ExternalRiskEstimate > 73.5
-107,NumTotalTrades > 18.5 & NetFractionRevolvingBurden > 34.5 & ExternalRiskEstimate <= 74.5
-108,ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden > 57.5
-109,NetFractionRevolvingBurden > 52.0 & ExternalRiskEstimate > 71.5
-110,NetFractionInstallBurden > 80.5 & AverageMInFile <= 109.5 & ExternalRiskEstimate <= 77.5
-111,NetFractionRevolvingBurden <= 38.5 & ExternalRiskEstimate <= 69.5
-112,MSinceMostRecentInqexcl7days <= 1.5 & PercentTradesWBalance <= 35.5 & ExternalRiskEstimate <= 77.5
-113,ExternalRiskEstimate <= 64.5
-114,ExternalRiskEstimate <= 70.5 & NetFractionRevolvingBurden <= 55.5 & NetFractionInstallBurden <= 40.0
-115,MSinceOldestTradeOpen <= 110.5 & ExternalRiskEstimate <= 78.5 & PercentTradesWBalance > 44.5
-116,PercentTradesNeverDelq <= 94.5
-117,MSinceMostRecentInqexcl7days > -7.5 & PercentTradesNeverDelq > 92.5 & ExternalRiskEstimate <= 71.5 & MSinceMostRecentInqexcl7days > 0.5
-118,ExternalRiskEstimate <= 76.5
-119,AverageMInFile > 68.5 & ExternalRiskEstimate > 73.5
-120,ExternalRiskEstimate <= 62.5
-121,ExternalRiskEstimate <= 70.5 & NetFractionRevolvingBurden <= 55.5 & NetFractionInstallBurden > 40.0
-122,ExternalRiskEstimate > 64.5 & ExternalRiskEstimate <= 72.5
-123,ExternalRiskEstimate > 67.5 & MSinceMostRecentInqexcl7days > 0.5
-124,ExternalRiskEstimate <= 81.5 & ExternalRiskEstimate > 73.5
-125,NumSatisfactoryTrades > 26.5 & ExternalRiskEstimate > 73.5 & ExternalRiskEstimate <= 79.5
-126,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate > 63.5
-127,NetFractionRevolvingBurden <= 22.5 & ExternalRiskEstimate > 64.5
-128,PercentInstallTrades <= 43.5
-129,MSinceOldestTradeOpen <= 169.5 & ExternalRiskEstimate <= 76.5
-130,NetFractionRevolvingBurden <= 54.5 & PercentTradesWBalance <= 42.0 & AverageMInFile <= 71.5
-131,ExternalRiskEstimate <= 75.5
-132,ExternalRiskEstimate <= 70.5 & MSinceMostRecentInqexcl7days > -7.5 & MSinceOldestTradeOpen <= 208.0
-133,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades > 11.5
-134,PercentInstallTrades > 9.5 & NumBank2NatlTradesWHighUtilization <= 0.5 & ExternalRiskEstimate > 74.5 & NetFractionRevolvingBurden > 53.0
-135,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 90.5
-136,NumSatisfactoryTrades <= 26.5 & ExternalRiskEstimate <= 74.5
-137,PercentTradesNeverDelq <= 94.5 & PercentTradesWBalance <= 66.0
-138,NumSatisfactoryTrades <= 12.5 & ExternalRiskEstimate > 71.5
-139,ExternalRiskEstimate <= 75.5 & AverageMInFile <= 62.5
-140,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 67.5 & NetFractionRevolvingBurden <= 33.5 & AverageMInFile > 69.5 & PercentTradesNeverDelq > 87.5
-141,ExternalRiskEstimate > 70.5 & PercentTradesNeverDelq > 81.0 & NetFractionRevolvingBurden <= 48.0
-142,ExternalRiskEstimate <= 75.5 & MSinceOldestTradeOpen <= 260.5 & MSinceMostRecentInqexcl7days > 0.5
-143,AverageMInFile > 77.5 & NetFractionRevolvingBurden > 53.5
-144,AverageMInFile <= 77.5
-145,NetFractionRevolvingBurden > 14.5
-146,MSinceMostRecentDelq <= 25.5 & AverageMInFile <= 109.5 & ExternalRiskEstimate <= 77.5 & NetFractionInstallBurden <= 80.5
-147,AverageMInFile <= 57.5
-148,NumInqLast6M <= 1.5 & NetFractionRevolvingBurden > 43.5
-149,ExternalRiskEstimate <= 73.5 & NumSatisfactoryTrades > 22.5
-150,ExternalRiskEstimate <= 78.5
-151,ExternalRiskEstimate > 73.5
-152,NetFractionRevolvingBurden <= 14.5
-153,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 67.5 & ExternalRiskEstimate <= 87.5
-154,NetFractionRevolvingBurden > 12.5 & ExternalRiskEstimate <= 69.5
-155,MSinceMostRecentTradeOpen <= 18.5 & NetFractionRevolvingBurden > 55.5 & AverageMInFile <= 74.5
-156,ExternalRiskEstimate <= 75.5 & MSinceOldestTradeOpen > 260.5
-157,ExternalRiskEstimate <= 78.5 & NetFractionRevolvingBurden > 57.5
-158,ExternalRiskEstimate <= 72.5
-159,PercentInstallTrades > 43.5
-160,NetFractionRevolvingBurden > 43.5
-161,AverageMInFile <= 64.5 & NetFractionRevolvingBurden <= 37.5
-162,NumSatisfactoryTrades > 8.5 & ExternalRiskEstimate > 68.5
-163,AverageMInFile <= 85.5 & PercentTradesWBalance <= 79.5
-164,NumSatisfactoryTrades <= 26.5 & ExternalRiskEstimate > 73.5 & ExternalRiskEstimate <= 79.5 & NumInqLast6Mexcl7days <= 0.5
-165,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 67.5 & NetFractionRevolvingBurden > 33.5 & AverageMInFile > 69.5 & PercentTradesNeverDelq > 87.5
-166,NumSatisfactoryTrades <= 27.5 & NetFractionRevolvingBurden <= 40.5
-167,NetFractionRevolvingBurden <= 24.5 & ExternalRiskEstimate > 69.5
-168,NumTotalTrades > 21.5 & ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden <= 57.5 & ExternalRiskEstimate <= 64.5
-169,ExternalRiskEstimate > 70.5 & PercentTradesNeverDelq > 81.0 & NetFractionRevolvingBurden > 48.0
-170,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades <= 11.5
-171,NetFractionRevolvingBurden > 24.5 & ExternalRiskEstimate > 69.5
-172,MSinceOldestTradeOpen > 169.5 & ExternalRiskEstimate <= 76.5
-173,AverageMInFile <= 84.5 & ExternalRiskEstimate > 49.5 & ExternalRiskEstimate <= 68.5
-174,ExternalRiskEstimate > 70.5 & PercentInstallTrades <= 59.5 & PercentTradesNeverDelq <= 95.5
-175,ExternalRiskEstimate > 70.5 & MSinceOldestTradeOpen <= 139.5
-176,NumSatisfactoryTrades <= 10.5 & ExternalRiskEstimate > 65.5
-177,ExternalRiskEstimate <= 75.5 & MSinceOldestTradeOpen <= 260.5 & MSinceMostRecentInqexcl7days <= 0.5
-178,ExternalRiskEstimate <= 67.5
-179,ExternalRiskEstimate > 73.5 & ExternalRiskEstimate > 79.5
-180,ExternalRiskEstimate <= 75.5 & ExternalRiskEstimate > 68.5
-181,ExternalRiskEstimate <= 75.5 & PercentTradesWBalance > 97.0
-182,ExternalRiskEstimate > 81.5 & ExternalRiskEstimate > 73.5
-183,AverageMInFile <= 60.5 & ExternalRiskEstimate > 59.5 & ExternalRiskEstimate <= 69.5 & PercentTradesWBalance > 48.5
-184,ExternalRiskEstimate > 70.5 & MSinceOldestTradeOpen > 139.5 & PercentTradesNeverDelq <= 85.5
-185,PercentTradesWBalance > 66.0
-186,ExternalRiskEstimate > 67.5 & AverageMInFile > 61.5 & MSinceMostRecentInqexcl7days <= 0.5
-187,PercentTradesWBalance <= 48.5 & ExternalRiskEstimate <= 69.5
-188,PercentTradesNeverDelq <= 94.5 & NetFractionRevolvingBurden <= 41.5
-189,ExternalRiskEstimate > 70.5 & PercentInstallTrades <= 59.5 & PercentTradesNeverDelq > 95.5
-190,NetFractionRevolvingBurden > 40.5
-191,NumSatisfactoryTrades <= 26.5 & ExternalRiskEstimate > 73.5 & ExternalRiskEstimate <= 79.5 & NumInqLast6Mexcl7days > 0.5
-192,NetFractionRevolvingBurden <= 55.5 & AverageMInFile <= 74.5 & PercentInstallTrades > 45.5
-193,ExternalRiskEstimate > 70.5 & MSinceOldestTradeOpen > 139.5 & PercentTradesNeverDelq > 85.5
-194,ExternalRiskEstimate <= 78.5 & NumSatisfactoryTrades > 26.5 & ExternalRiskEstimate > 69.5
-195,ExternalRiskEstimate <= 75.5 & NetFractionRevolvingBurden > 63.5
-196,AverageMInFile > 57.5 & ExternalRiskEstimate <= 62.5
-197,NumSatisfactoryTrades <= 8.5 & ExternalRiskEstimate > 68.5
-198,ExternalRiskEstimate <= 78.5 & NetFractionRevolvingBurden <= 57.5 & MSinceMostRecentDelq > 16.0 & NumInqLast6M <= 0.5
-199,ExternalRiskEstimate > 67.5 & MSinceMostRecentInqexcl7days > 1.5
-200,ExternalRiskEstimate <= 74.5
-201,MSinceMostRecentTradeOpen <= 4.5 & ExternalRiskEstimate <= 70.5 & ExternalRiskEstimate <= 79.5
-202,PercentTradesWBalance <= 70.5 & ExternalRiskEstimate <= 70.5
-203,ExternalRiskEstimate <= 76.5 & PercentInstallTrades <= 26.5
-204,ExternalRiskEstimate > 70.5 & NumSatisfactoryTrades > 24.5 & ExternalRiskEstimate <= 76.5
-205,NetFractionRevolvingBurden > 60.5 & ExternalRiskEstimate <= 76.5
-206,MSinceMostRecentInqexcl7days > 1.5 & PercentTradesNeverDelq <= 89.5 & ExternalRiskEstimate <= 84.5
-207,ExternalRiskEstimate > 62.5 & NumTotalTrades <= 3.5 & NetFractionRevolvingBurden > 37.5
-208,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance <= 51.0
-209,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 44.5
-210,PercentTradesWBalance > 73.5
-211,ExternalRiskEstimate > 68.5 & AverageMInFile <= 59.5 & MSinceMostRecentInqexcl7days <= 3.5
-212,MSinceMostRecentDelq > 25.5 & AverageMInFile <= 109.5 & ExternalRiskEstimate <= 77.5 & NetFractionInstallBurden <= 80.5
-213,NetFractionRevolvingBurden <= 40.5
-214,ExternalRiskEstimate <= 75.5 & ExternalRiskEstimate <= 68.5
-215,MSinceMostRecentInqexcl7days <= -7.5 & ExternalRiskEstimate <= 71.5
-216,ExternalRiskEstimate <= 59.5 & ExternalRiskEstimate <= 69.5 & PercentTradesWBalance > 48.5
-217,ExternalRiskEstimate <= 49.5 & ExternalRiskEstimate <= 68.5
-218,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 84.5 & MSinceMostRecentInqexcl7days > 0.5
-219,ExternalRiskEstimate > 70.5 & AverageMInFile > 60.0 & ExternalRiskEstimate <= 84.5 & MSinceMostRecentInqexcl7days <= 0.5 & MSinceMostRecentTradeOpen <= 10.5
-220,ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden <= 47.5 & MSinceOldestTradeOpen > 289.5
-221,ExternalRiskEstimate > 76.5
-222,ExternalRiskEstimate > 67.5 & MSinceMostRecentInqexcl7days > 1.5 & AverageMInFile > 69.5 & PercentTradesNeverDelq > 87.5
-223,NumSatisfactoryTrades <= 26.5 & PercentTradesNeverDelq <= 93.0 & ExternalRiskEstimate <= 78.5 & MSinceMostRecentDelq > 17.5 & ExternalRiskEstimate > 69.5 & NumSatisfactoryTrades > 6.5
-224,NumTotalTrades <= 18.5 & NetFractionRevolvingBurden > 34.5 & ExternalRiskEstimate <= 74.5
-225,AverageMInFile <= 64.5 & ExternalRiskEstimate > 72.5
-226,AverageMInFile > 61.5 & NetFractionRevolvingBurden > 40.5
-227,AverageMInFile <= 64.5
-228,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate <= 80.5
-229,MSinceMostRecentInqexcl7days > -3.5 & ExternalRiskEstimate <= 73.5 & NumTotalTrades <= 21.5 & NetFractionRevolvingBurden <= 57.5
-230,NetFractionRevolvingBurden <= 51.5 & NetFractionRevolvingBurden <= 54.5 & MSinceOldestTradeOpen > 443.5 & AverageMInFile > 71.5
-231,ExternalRiskEstimate > 76.5 & NumBank2NatlTradesWHighUtilization <= -4.0
-232,ExternalRiskEstimate > 78.5 & PercentTradesNeverDelq <= 89.0
-233,ExternalRiskEstimate <= 79.5
-234,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 79.5
-235,MSinceMostRecentInqexcl7days > -7.5 & MSinceOldestTradeOpen <= 151.5 & MSinceOldestTradeOpen > 4.5 & MSinceMostRecentInqexcl7days <= 0.5 & ExternalRiskEstimate <= 80.5
-236,AverageMInFile > 109.5 & ExternalRiskEstimate <= 77.5
-237,NetFractionRevolvingBurden <= 54.5 & PercentTradesWBalance > 42.0 & AverageMInFile <= 71.5
-238,ExternalRiskEstimate > 78.5 & MSinceMostRecentInqexcl7days > 1.5 & PercentTradesWBalance > 77.5
-239,ExternalRiskEstimate > 76.5 & NumBank2NatlTradesWHighUtilization > -4.0
-240,ExternalRiskEstimate <= 70.5
-241,MSinceMostRecentInqexcl7days > -7.5 & PercentTradesWBalance <= 97.5 & ExternalRiskEstimate <= 74.5
-242,ExternalRiskEstimate > 77.5
-243,NumSatisfactoryTrades <= 26.5 & PercentTradesNeverDelq <= 93.0 & NumSatisfactoryTrades <= 6.5 & ExternalRiskEstimate <= 78.5 & MSinceMostRecentDelq > 17.5 & ExternalRiskEstimate > 69.5
-244,ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days > -7.5
-245,ExternalRiskEstimate > 67.5
-246,PercentTradesWBalance > 97.5 & ExternalRiskEstimate <= 74.5
-247,ExternalRiskEstimate <= 66.5
-248,NumSatisfactoryTrades > 12.5 & ExternalRiskEstimate > 71.5
-249,ExternalRiskEstimate > 63.5
-250,PercentTradesWBalance <= 43.5 & ExternalRiskEstimate <= 73.5
-251,NumSatisfactoryTrades > 26.5 & ExternalRiskEstimate <= 74.5
-252,ExternalRiskEstimate > 71.5
-253,NetFractionRevolvingBurden <= 39.5 & PercentTradesNeverDelq <= 95.5 & PercentTradesWBalance > 63.5
-254,ExternalRiskEstimate <= 78.5 & NumSatisfactoryTrades <= 26.5 & MSinceMostRecentDelq <= 17.5 & ExternalRiskEstimate > 69.5
-255,ExternalRiskEstimate > 70.5 & MSinceMostRecentInqexcl7days > -7.5 & MSinceMostRecentInqexcl7days <= 1.5 & AverageMInFile > 64.5 & ExternalRiskEstimate <= 80.5
-256,ExternalRiskEstimate > 70.5 & PercentInstallTrades > 59.5
-257,ExternalRiskEstimate <= 75.5 & AverageMInFile > 62.5 & NumBank2NatlTradesWHighUtilization <= 1.5
-258,AverageMInFile > 85.5 & PercentTradesWBalance <= 79.5
-259,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate <= 77.5
-260,NetFractionRevolvingBurden <= 43.5 & AverageMInFile > 68.5 & PercentTradesNeverDelq > 87.5
-261,NumSatisfactoryTrades <= 29.5 & ExternalRiskEstimate <= 78.5 & NetFractionRevolvingBurden <= 57.5 & NumInqLast6M > 0.5
-262,ExternalRiskEstimate <= 78.5 & NetFractionRevolvingBurden <= 57.5 & MSinceMostRecentDelq <= 16.0 & NumInqLast6M <= 0.5
-263,ExternalRiskEstimate > 78.5 & PercentTradesWBalance <= 77.5
-264,ExternalRiskEstimate > 74.5
-265,ExternalRiskEstimate > 68.5 & NumSatisfactoryTrades <= 7.5
-266,MSinceMostRecentInqexcl7days <= -7.5 & PercentTradesWBalance <= 97.5 & ExternalRiskEstimate <= 74.5
-267,ExternalRiskEstimate <= 70.5 & MSinceMostRecentInqexcl7days > -7.5 & MSinceOldestTradeOpen > 208.0
-268,NetFractionRevolvingBurden <= 52.0 & ExternalRiskEstimate > 71.5
-269,AverageMInFile > 64.5 & NetFractionRevolvingBurden <= 37.5
-270,PercentTradesNeverDelq > 94.5
-271,MSinceMostRecentInqexcl7days <= -7.5 & ExternalRiskEstimate <= 78.5
-272,ExternalRiskEstimate <= 74.5 & NetFractionRevolvingBurden <= 34.5
-273,ExternalRiskEstimate > 67.5 & PercentTradesNeverDelq > 87.5 & AverageMInFile <= 69.5
-274,ExternalRiskEstimate > 67.5 & AverageMInFile <= 51.5
-275,PercentInstallTrades > 9.5 & NumBank2NatlTradesWHighUtilization > 0.5 & ExternalRiskEstimate > 74.5 & NetFractionRevolvingBurden > 53.0
-276,ExternalRiskEstimate <= 73.5 & NumSatisfactoryTrades <= 22.5
-277,NetFractionRevolvingBurden <= 43.5 & AverageMInFile <= 68.5
-278,ExternalRiskEstimate <= 81.5
-279,NetFractionRevolvingBurden <= 39.5 & PercentTradesNeverDelq > 95.5
-280,ExternalRiskEstimate <= 75.5 & NetFractionRevolvingBurden <= 63.5
-281,ExternalRiskEstimate <= 70.5 & AverageMInFile > 64.5 & ExternalRiskEstimate <= 80.5
-282,PercentTradesWBalance <= 73.5
-283,PercentTradesNeverDelq <= 83.5 & AverageMInFile > 74.5
-284,ExternalRiskEstimate <= 63.5 & MSinceMostRecentInqexcl7days > 0.5
-285,NumInqLast6M > 1.5
-286,ExternalRiskEstimate > 62.5 & AverageMInFile > 80.5 & PercentTradesNeverDelq > 87.5 & NetFractionRevolvingBurden <= 37.5
-287,AverageMInFile > 84.5 & ExternalRiskEstimate > 49.5 & ExternalRiskEstimate <= 68.5
-288,ExternalRiskEstimate > 66.5 & MSinceMostRecentInqexcl7days > 0.5
-289,ExternalRiskEstimate > 67.5 & PercentTradesNeverDelq <= 87.5
-290,NetFractionRevolvingBurden > 39.5
-291,NetFractionRevolvingBurden <= 65.5 & ExternalRiskEstimate <= 74.5
-292,NetFractionRevolvingBurden > 45.5
-293,ExternalRiskEstimate > 75.5
-294,ExternalRiskEstimate <= 70.5 & MSinceMostRecentTradeOpen > 4.5 & ExternalRiskEstimate <= 79.5
-295,ExternalRiskEstimate > 70.5 & MSinceMostRecentInqexcl7days <= 1.5 & AverageMInFile > 64.5 & MSinceMostRecentInqexcl7days <= -7.5 & ExternalRiskEstimate <= 80.5
-296,ExternalRiskEstimate > 70.5 & PercentTradesNeverDelq <= 81.0
-297,ExternalRiskEstimate <= 76.5 & PercentTradesWBalance <= 87.5
-298,ExternalRiskEstimate <= 64.5 & ExternalRiskEstimate <= 72.5
-299,ExternalRiskEstimate <= 65.5
-300,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 84.5 & AverageMInFile <= 60.0 & MSinceMostRecentInqexcl7days <= 0.5
-301,ExternalRiskEstimate > 68.5 & AverageMInFile <= 59.5 & MSinceMostRecentInqexcl7days > 3.5
-302,NetFractionRevolvingBurden > 55.5 & AverageMInFile <= 74.5 & MSinceMostRecentTradeOpen > 18.5
-303,MSinceMostRecentInqexcl7days <= 0.5 & ExternalRiskEstimate <= 77.5
-304,NetFractionRevolvingBurden <= 51.5 & NetFractionRevolvingBurden <= 54.5 & PercentTradesNeverDelq <= 92.5 & MSinceOldestTradeOpen <= 443.5 & AverageMInFile > 71.5
-305,NetFractionRevolvingBurden > 22.5 & ExternalRiskEstimate > 64.5
-306,ExternalRiskEstimate > 70.5 & NetFractionRevolvingBurden <= 65.5 & AverageMInFile <= 84.5
-307,ExternalRiskEstimate > 69.5
-308,PercentTradesWBalance <= 63.5 & NetFractionRevolvingBurden <= 39.5 & PercentTradesNeverDelq <= 95.5
-309,ExternalRiskEstimate > 62.5 & PercentTradesNeverDelq <= 87.5 & NetFractionRevolvingBurden <= 37.5
-310,ExternalRiskEstimate > 78.5 & PercentTradesNeverDelq > 89.0
-311,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance > 44.5 & MSinceOldestTradeOpen > 110.5
-312,ExternalRiskEstimate > 78.5 & ExternalRiskEstimate > 69.5
-313,PercentTradesNeverDelq > 83.5 & AverageMInFile > 74.5
-314,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 83.5
-315,NetFractionRevolvingBurden > 41.5
-316,PercentTradesNeverDelq > 94.5 & PercentTradesWBalance <= 66.0
-317,ExternalRiskEstimate > 70.5 & MSinceMostRecentInqexcl7days > 1.5 & AverageMInFile > 64.5 & ExternalRiskEstimate <= 80.5
-318,ExternalRiskEstimate <= 70.5 & NetFractionRevolvingBurden > 55.5
-319,ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden > 47.5
+0,NumSatisfactoryTrades <= 8.5 & ExternalRiskEstimate > 68.5
+1,ExternalRiskEstimate <= 75.5 & MSinceOldestTradeOpen > 252.5 & PercentTradesNeverDelq > 96.5
+2,AverageMInFile <= 109.5 & NetFractionRevolvingBurden > 24.5 & ExternalRiskEstimate > 69.5
+3,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 90.5 & NumInqLast6M <= 1.5 & PercentTradesNeverDelq <= 96.5
+4,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance > 51.0
+5,AverageMInFile <= 59.5 & ExternalRiskEstimate > 68.5
+6,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance <= 70.5
+7,NetFractionRevolvingBurden <= 46.5 & PercentTradesNeverDelq <= 93.5
+8,NumSatisfactoryTrades > 10.5 & ExternalRiskEstimate > 73.5
+9,ExternalRiskEstimate > 74.5 & PercentTradesNeverDelq <= 91.5
+10,NetFractionInstallBurden > 84.0 & ExternalRiskEstimate > 67.5
+11,AverageMInFile > 59.5 & PercentTradesNeverDelq > 96.5 & ExternalRiskEstimate > 70.5 & NetFractionRevolvingBurden > 56.0
+12,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate <= 71.5 & ExternalRiskEstimate <= 65.5
+13,NumSatisfactoryTrades <= 10.5 & ExternalRiskEstimate > 73.5
+14,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate <= 74.5
+15,NumSatisfactoryTrades <= 13.5 & MSinceMostRecentInqexcl7days > 0.5 & NumSatisfactoryTrades <= 37.5 & ExternalRiskEstimate <= 77.5
+16,MSinceOldestTradeOpen <= 137.5 & ExternalRiskEstimate > 76.5
+17,MSinceMostRecentInqexcl7days > 1.5 & NumSatisfactoryTrades > 8.5 & ExternalRiskEstimate > 68.5
+18,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 90.5 & NumInqLast6M > 1.5
+19,ExternalRiskEstimate > 78.5
+20,NumInstallTradesWBalance <= 5.5 & ExternalRiskEstimate > 75.5 & MSinceMostRecentDelq <= -7.5
+21,NumSatisfactoryTrades <= 27.5 & ExternalRiskEstimate <= 76.5 & PercentTradesWBalance > 87.5
+22,ExternalRiskEstimate > 70.5 & AverageMInFile > 64.5 & ExternalRiskEstimate <= 80.5
+23,ExternalRiskEstimate <= 67.5 & PercentTradesWBalance > 48.0
+24,ExternalRiskEstimate <= 75.5
+25,ExternalRiskEstimate <= 70.5 & NetFractionInstallBurden <= 40.0 & NetFractionRevolvingBurden <= 55.5
+26,ExternalRiskEstimate <= 69.5
+27,PercentTradesNeverDelq <= 94.5 & ExternalRiskEstimate <= 76.5 & MSinceOldestTradeOpen > 173.5 & PercentTradesWBalance > 42.5
+28,ExternalRiskEstimate <= 75.5 & MSinceOldestTradeOpen <= 260.5 & MSinceMostRecentInqexcl7days <= 0.5
+29,ExternalRiskEstimate > 81.5
+30,AverageMInFile <= 70.5
+31,NetFractionRevolvingBurden <= 3.5 & ExternalRiskEstimate <= 74.5
+32,ExternalRiskEstimate <= 74.5 & ExternalRiskEstimate > 68.5 & MSinceMostRecentInqexcl7days <= 0.5
+33,NumInqLast6M > 1.5
+34,AverageMInFile > 109.5 & ExternalRiskEstimate <= 77.5
+35,ExternalRiskEstimate <= 70.5 & ExternalRiskEstimate <= 76.5 & NumTotalTrades <= 0.5
+36,PercentTradesWBalance <= 87.5 & ExternalRiskEstimate <= 76.5 & NetFractionRevolvingBurden > 32.5 & MSinceOldestTradeOpen > 251.0
+37,ExternalRiskEstimate <= 81.5 & ExternalRiskEstimate > 73.5
+38,NumSatisfactoryTrades <= 20.5 & NumInqLast6M <= 0.5 & NetFractionRevolvingBurden <= 40.5
+39,PercentTradesWBalance <= 42.5 & ExternalRiskEstimate <= 84.5 & MSinceMostRecentInqexcl7days <= 1.5
+40,AverageMInFile <= 69.5 & ExternalRiskEstimate > 71.5
+41,NetFractionRevolvingBurden > 95.5 & NetFractionRevolvingBurden > 40.5 & AverageMInFile > 51.5 & NumInqLast6Mexcl7days > 5.5
+42,NetFractionRevolvingBurden > 43.5 & NumInqLast6M <= 1.5
+43,NumInqLast6Mexcl7days <= 5.5 & NetFractionRevolvingBurden > 40.5 & AverageMInFile > 51.5
+44,ExternalRiskEstimate <= 68.5
+45,NetFractionInstallBurden > 93.5 & PercentTradesNeverDelq > 83.5 & AverageMInFile > 74.5
+46,ExternalRiskEstimate > 63.5 & ExternalRiskEstimate <= 76.5 & NumSatisfactoryTrades > 25.5
+47,ExternalRiskEstimate > 72.5 & MSinceMostRecentInqexcl7days > 1.5
+48,ExternalRiskEstimate > 74.5 & NumBank2NatlTradesWHighUtilization > -4.0 & PercentTradesNeverDelq > 91.5
+49,ExternalRiskEstimate > 72.5
+50,PercentInstallTrades <= 45.5 & AverageMInFile <= 74.5 & NetFractionRevolvingBurden <= 55.5
+51,PercentTradesNeverDelq > 82.5 & NetFractionRevolvingBurden <= 34.5 & AverageMInFile > 64.5 & NumSatisfactoryTrades > 4.5 & MSinceMostRecentInqexcl7days <= 0.5
+52,MaxDelq2PublicRecLast12M <= 2.5 & ExternalRiskEstimate <= 71.5 & MSinceMostRecentInqexcl7days <= 0.5
+53,PercentInstallTrades > 59.5 & ExternalRiskEstimate > 70.5
+54,NetFractionRevolvingBurden > 34.5 & NumTotalTrades > 18.5 & ExternalRiskEstimate <= 74.5
+55,ExternalRiskEstimate <= 74.5 & NetFractionRevolvingBurden > 65.5
+56,ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days <= -7.5
+57,PercentTradesNeverDelq > 96.5 & AverageMInFile > 77.5 & NetFractionRevolvingBurden <= 45.5
+58,NumSatisfactoryTrades <= 6.5 & ExternalRiskEstimate > 76.5
+59,AverageMInFile > 59.5 & ExternalRiskEstimate > 70.5 & PercentTradesNeverDelq <= 96.5
+60,ExternalRiskEstimate <= 75.5 & MSinceOldestTradeOpen > 260.5
+61,ExternalRiskEstimate <= 75.5 & ExternalRiskEstimate <= 68.5
+62,ExternalRiskEstimate > 74.5 & PercentTradesNeverDelq > 96.5
+63,ExternalRiskEstimate <= 75.5 & PercentTradesNeverDelq > 96.5 & NumSatisfactoryTrades > 27.5 & NumRevolvingTradesWBalance > 10.5 & NetFractionRevolvingBurden <= 47.5 & MSinceOldestTradeOpen <= 252.5
+64,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance > 90.5
+65,NumSatisfactoryTrades > 8.5 & MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 68.5
+66,ExternalRiskEstimate <= 75.5 & MSinceMostRecentInqexcl7days > 0.5 & MSinceOldestTradeOpen <= 260.5 & NumTotalTrades > 29.5
+67,PercentTradesWBalance <= 87.5 & ExternalRiskEstimate <= 76.5 & NetFractionRevolvingBurden <= 32.5 & ExternalRiskEstimate > 65.5
+68,ExternalRiskEstimate <= 71.5 & MaxDelq2PublicRecLast12M > 2.5 & MSinceMostRecentInqexcl7days <= 0.5
+69,MSinceOldestTradeOpen > 137.5 & ExternalRiskEstimate > 76.5
+70,ExternalRiskEstimate <= 75.5 & PercentInstallTrades > 45.5
+71,ExternalRiskEstimate <= 70.5 & ExternalRiskEstimate <= 79.5
+72,ExternalRiskEstimate > 76.5
+73,ExternalRiskEstimate <= 76.5 & MSinceOldestTradeOpen <= 169.5
+74,MSinceMostRecentDelq > 33.5 & NumSatisfactoryTrades <= 20.5 & MSinceMostRecentTradeOpen <= 35.0 & NetFractionRevolvingBurden <= 40.5 & NumInqLast6M > 0.5
+75,ExternalRiskEstimate <= 76.5 & NetFractionRevolvingBurden > 57.5
+76,NetFractionRevolvingBurden <= 54.5 & NetFractionRevolvingBurden <= 51.5 & MSinceOldestTradeOpen > 443.5 & AverageMInFile > 71.5
+77,ExternalRiskEstimate <= 73.5
+78,MSinceOldestTradeOpen <= 134.0 & PercentTradesNeverDelq > 83.5 & AverageMInFile > 64.5 & NetFractionRevolvingBurden <= 37.5
+79,MSinceMostRecentInqexcl7days > 0.5
+80,NumSatisfactoryTrades > 7.5 & NetFractionRevolvingBurden > 28.5 & ExternalRiskEstimate > 68.5 & AverageMInFile <= 102.5
+81,PercentTradesNeverDelq <= 82.5 & AverageMInFile > 64.5
+82,ExternalRiskEstimate <= 70.5 & PercentInstallTrades <= 14.5
+83,ExternalRiskEstimate <= 70.5 & NetFractionRevolvingBurden > 55.5
+84,PercentTradesNeverDelq <= 96.5 & NetFractionRevolvingBurden <= 45.5
+85,ExternalRiskEstimate <= 75.5 & NetFractionRevolvingBurden <= 47.5 & PercentTradesNeverDelq > 96.5 & NumSatisfactoryTrades <= 27.5 & MSinceOldestTradeOpen <= 252.5
+86,ExternalRiskEstimate > 79.5 & ExternalRiskEstimate > 73.5
+87,PercentTradesNeverDelq <= 83.5 & AverageMInFile > 64.5 & NetFractionRevolvingBurden <= 37.5
+88,ExternalRiskEstimate > 80.5 & ExternalRiskEstimate > 70.5
+89,MSinceMostRecentInqexcl7days <= -7.5 & ExternalRiskEstimate <= 74.5
+90,NumSatisfactoryTrades > 13.5 & MSinceMostRecentInqexcl7days > 0.5 & NumSatisfactoryTrades <= 37.5 & ExternalRiskEstimate <= 77.5
+91,ExternalRiskEstimate > 68.5 & MSinceMostRecentInqexcl7days <= 0.5
+92,NetFractionRevolvingBurden > 53.5 & AverageMInFile > 77.5
+93,MSinceMostRecentInqexcl7days > 1.5 & ExternalRiskEstimate > 70.5 & AverageMInFile <= 59.5
+94,NetFractionRevolvingBurden > 45.5
+95,ExternalRiskEstimate > 72.5 & MSinceMostRecentInqexcl7days <= 1.5
+96,NumSatisfactoryTrades > 20.5 & PercentTradesNeverDelq <= 69.0 & NetFractionRevolvingBurden <= 40.5
+97,MSinceMostRecentInqexcl7days <= 0.5 & MSinceMostRecentInqexcl7days > -7.5 & ExternalRiskEstimate <= 77.5
+98,PercentTradesNeverDelq <= 86.5 & ExternalRiskEstimate <= 74.5 & MSinceMostRecentInqexcl7days > -7.5
+99,ExternalRiskEstimate <= 73.5 & NumSatisfactoryTrades <= 23.5
+100,NetFractionRevolvingBurden <= 54.5 & PercentTradesWBalance <= 42.0 & AverageMInFile <= 71.5
+101,ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days <= -7.5 & MSinceMostRecentInqexcl7days <= 1.5
+102,AverageMInFile > 76.5 & ExternalRiskEstimate > 78.5
+103,NetFractionRevolvingBurden <= 65.5 & ExternalRiskEstimate > 70.5 & AverageMInFile <= 84.5
+104,ExternalRiskEstimate > 77.5 & MSinceMostRecentDelq > -3.0
+105,ExternalRiskEstimate <= 79.5 & ExternalRiskEstimate > 73.5
+106,ExternalRiskEstimate > 71.5 & AverageMInFile > 58.5
+107,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades <= 12.5
+108,ExternalRiskEstimate <= 67.5 & PercentTradesWBalance > 37.0
+109,NumRevolvingTradesWBalance <= 0.5 & NumSatisfactoryTrades > 7.5 & NetFractionRevolvingBurden <= 28.5 & ExternalRiskEstimate > 68.5 & AverageMInFile <= 102.5
+110,NetFractionRevolvingBurden > 55.5 & MSinceMostRecentTradeOpen <= 18.5 & AverageMInFile <= 74.5 & NumInqLast6Mexcl7days <= 6.5
+111,PercentTradesWBalance <= 87.5 & ExternalRiskEstimate <= 76.5 & ExternalRiskEstimate <= 65.5 & NetFractionRevolvingBurden <= 32.5
+112,NetFractionRevolvingBurden <= 14.5
+113,ExternalRiskEstimate > 64.5
+114,ExternalRiskEstimate > 70.5 & PercentInstallTrades <= 59.5
+115,PercentTradesWBalance > 97.5 & ExternalRiskEstimate <= 74.5
+116,NetFractionRevolvingBurden > 14.5 & ExternalRiskEstimate > 67.5
+117,ExternalRiskEstimate <= 84.5 & PercentTradesNeverDelq <= 89.5 & MSinceMostRecentInqexcl7days > 1.5
+118,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 79.5
+119,PercentTradesWBalance > 91.5 & ExternalRiskEstimate <= 81.5
+120,NetFractionRevolvingBurden > 14.5 & ExternalRiskEstimate > 71.5 & ExternalRiskEstimate > 77.5 & AverageMInFile > 69.5
+121,ExternalRiskEstimate <= 76.5 & PercentTradesWBalance > 87.5 & NumSatisfactoryTrades > 27.5
+122,ExternalRiskEstimate <= 81.5 & PercentInstallTrades <= 43.5
+123,AverageMInFile <= 64.5 & ExternalRiskEstimate <= 80.5
+124,ExternalRiskEstimate <= 67.5 & PercentTradesWBalance <= 48.0
+125,MSinceMostRecentInqexcl7days <= 12.5 & PercentInstallTrades <= 39.5 & ExternalRiskEstimate <= 69.5
+126,NetFractionRevolvingBurden > 40.5
+127,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 70.5 & AverageMInFile <= 59.5
+128,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance > 35.5 & MSinceOldestTradeOpen <= 201.0
+129,PercentTradesWBalance <= 61.0 & ExternalRiskEstimate > 76.5
+130,ExternalRiskEstimate <= 74.5 & PercentTradesNeverDelq > 86.5 & MSinceMostRecentInqexcl7days > -7.5
+131,AverageMInFile > 59.5 & ExternalRiskEstimate > 68.5
+132,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance > 70.5
+133,ExternalRiskEstimate > 74.5 & PercentTradesNeverDelq > 93.5
+134,NumSatisfactoryTrades <= 7.5 & ExternalRiskEstimate > 68.5
+135,NetFractionInstallBurden <= 84.0 & ExternalRiskEstimate > 67.5
+136,ExternalRiskEstimate <= 78.5 & ExternalRiskEstimate > 67.5
+137,ExternalRiskEstimate > 68.5
+138,AverageMInFile > 59.5 & PercentTradesNeverDelq > 96.5 & ExternalRiskEstimate > 70.5 & NetFractionRevolvingBurden <= 56.0
+139,NumSatisfactoryTrades > 37.5 & MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate <= 77.5
+140,PercentTradesNeverDelq > 87.5 & AverageMInFile > 69.5 & ExternalRiskEstimate > 67.5
+141,ExternalRiskEstimate <= 70.5 & PercentInstallTrades <= 26.5
+142,ExternalRiskEstimate <= 68.5 & PercentTradesWBalance > 48.5
+143,ExternalRiskEstimate <= 75.5 & PercentInstallTrades <= 45.5 & MSinceMostRecentInqexcl7days > 1.5 & NumInqLast6M > 0.5
+144,ExternalRiskEstimate <= 71.5
+145,ExternalRiskEstimate <= 65.5
+146,NetFractionRevolvingBurden <= 60.5 & ExternalRiskEstimate <= 76.5
+147,ExternalRiskEstimate <= 74.5 & NetFractionRevolvingBurden <= 34.5
+148,ExternalRiskEstimate > 71.5 & AverageMInFile <= 58.5
+149,AverageMInFile > 77.5 & NetFractionRevolvingBurden <= 53.5
+150,NetFractionRevolvingBurden <= 43.5 & NumInqLast6M <= 1.5
+151,ExternalRiskEstimate > 74.5 & NumBank2NatlTradesWHighUtilization <= -4.0 & PercentTradesNeverDelq > 91.5
+152,NetFractionRevolvingBurden <= 46.5 & PercentTradesNeverDelq > 93.5
+153,ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades > 8.5 & PercentTradesNeverDelq <= 96.5 & AverageMInFile <= 65.5 & MSinceMostRecentInqexcl7days <= 0.5
+154,NetFractionRevolvingBurden <= 40.5
+155,AverageMInFile <= 64.5 & NetFractionRevolvingBurden <= 37.5
+156,ExternalRiskEstimate <= 68.5 & NumTotalTrades > 21.5
+157,ExternalRiskEstimate <= 71.5 & PercentTradesWBalance > 88.5
+158,AverageMInFile <= 109.5 & ExternalRiskEstimate <= 77.5
+159,ExternalRiskEstimate <= 75.5 & ExternalRiskEstimate > 68.5
+160,ExternalRiskEstimate <= 67.5 & NetFractionRevolvingBurden > 14.5
+161,ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden <= 57.5
+162,ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades <= 8.5
+163,ExternalRiskEstimate <= 70.5
+164,ExternalRiskEstimate <= 76.5 & NetFractionRevolvingBurden > 60.5
+165,NetFractionRevolvingBurden > 55.5 & MSinceMostRecentTradeOpen <= 18.5 & AverageMInFile <= 74.5 & NumInqLast6Mexcl7days > 6.5
+166,PercentInstallTrades > 43.5
+167,AverageMInFile <= 64.5
+168,AverageMInFile > 65.5 & ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades > 8.5 & PercentTradesNeverDelq <= 96.5 & MSinceMostRecentInqexcl7days <= 0.5
+169,NetFractionRevolvingBurden <= 65.5 & ExternalRiskEstimate <= 74.5
+170,ExternalRiskEstimate > 67.5 & MSinceMostRecentInqexcl7days <= 0.5
+171,ExternalRiskEstimate <= 77.5
+172,NetFractionRevolvingBurden <= 50.5 & NumSatisfactoryTrades > 16.5 & ExternalRiskEstimate > 70.5
+173,ExternalRiskEstimate <= 72.5
+174,ExternalRiskEstimate <= 67.5 & PercentTradesWBalance <= 37.0
+175,NetFractionRevolvingBurden <= 14.5 & ExternalRiskEstimate > 71.5 & AverageMInFile > 69.5 & MSinceMostRecentTradeOpen > 23.5
+176,ExternalRiskEstimate <= 76.5 & ExternalRiskEstimate <= 63.5 & NumSatisfactoryTrades > 25.5
+177,NumSatisfactoryTrades <= 20.5 & MSinceMostRecentTradeOpen <= 35.0 & MSinceMostRecentDelq <= 33.5 & NetFractionRevolvingBurden <= 40.5 & NumInqLast6M > 0.5
+178,PercentInstallTrades > 28.5 & ExternalRiskEstimate <= 75.5 & PercentTradesNeverDelq <= 96.5
+179,ExternalRiskEstimate > 69.5
+180,MSinceOldestTradeOpen > 169.5 & ExternalRiskEstimate <= 76.5 & ExternalRiskEstimate <= 64.5
+181,PercentTradesNeverDelq > 82.5 & NumSatisfactoryTrades <= 4.5 & AverageMInFile > 64.5
+182,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades <= 11.5
+183,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades > 11.5
+184,ExternalRiskEstimate <= 78.5 & NumSatisfactoryTrades > 23.5 & ExternalRiskEstimate <= 70.5 & MSinceMostRecentInqexcl7days > -7.5
+185,ExternalRiskEstimate <= 78.5 & ExternalRiskEstimate <= 67.5
+186,ExternalRiskEstimate <= 76.5
+187,ExternalRiskEstimate > 70.5 & ExternalRiskEstimate <= 80.5
+188,ExternalRiskEstimate > 74.5 & PercentTradesNeverDelq <= 96.5
+189,ExternalRiskEstimate <= 66.5
+190,ExternalRiskEstimate > 74.5 & PercentTradesNeverDelq <= 93.5
+191,ExternalRiskEstimate <= 78.5 & NumSatisfactoryTrades <= 23.5 & MSinceMostRecentInqexcl7days > -7.5
+192,ExternalRiskEstimate <= 75.5 & MSinceMostRecentInqexcl7days <= 1.5 & PercentInstallTrades <= 45.5
+193,NumSatisfactoryTrades > 20.5 & PercentTradesNeverDelq > 69.0 & NetFractionRevolvingBurden <= 40.5
+194,NetFractionRevolvingBurden > 37.5 & NetFractionRevolvingBurden > 70.5
+195,ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades <= 12.5
+196,ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades > 8.5 & PercentTradesNeverDelq > 96.5 & MSinceMostRecentInqexcl7days <= 0.5
+197,PercentTradesNeverDelq <= 89.0 & ExternalRiskEstimate > 78.5
+198,NumSatisfactoryTrades > 23.5 & ExternalRiskEstimate <= 73.5
+199,MSinceMostRecentDelq > 25.5 & ExternalRiskEstimate <= 80.5
+200,MSinceMostRecentInqexcl7days > 1.5 & ExternalRiskEstimate > 73.5
+201,ExternalRiskEstimate <= 76.5 & NumSatisfactoryTrades <= 25.5
+202,ExternalRiskEstimate > 73.5
+203,NumSatisfactoryTrades <= 20.5 & MSinceMostRecentTradeOpen > 35.0 & NetFractionRevolvingBurden <= 40.5 & NumInqLast6M > 0.5
+204,NetFractionRevolvingBurden > 40.5 & AverageMInFile <= 51.5
+205,ExternalRiskEstimate > 70.5 & NumSatisfactoryTrades > 12.5
+206,NetFractionRevolvingBurden <= 54.5 & NetFractionRevolvingBurden <= 51.5 & PercentTradesNeverDelq > 92.5 & AverageMInFile > 71.5 & MSinceOldestTradeOpen <= 443.5
+207,NetFractionRevolvingBurden > 54.5
+208,AverageMInFile > 84.5 & ExternalRiskEstimate > 70.5
+209,MSinceOldestTradeOpen <= 131.5 & ExternalRiskEstimate > 69.5 & NetFractionRevolvingBurden <= 24.5
+210,ExternalRiskEstimate <= 68.5 & NumTotalTrades <= 21.5
+211,PercentTradesNeverDelq <= 83.5 & AverageMInFile > 74.5
+212,NetFractionRevolvingBurden > 55.5 & AverageMInFile <= 74.5 & MSinceMostRecentTradeOpen > 18.5
+213,ExternalRiskEstimate <= 84.5 & PercentTradesWBalance > 42.5 & MSinceMostRecentInqexcl7days <= 1.5
+214,NetFractionRevolvingBurden > 34.5 & PercentTradesNeverDelq > 82.5 & AverageMInFile > 64.5 & NumSatisfactoryTrades > 4.5 & MSinceMostRecentInqexcl7days <= 0.5
+215,ExternalRiskEstimate <= 76.5 & ExternalRiskEstimate > 70.5 & NumSatisfactoryTrades <= 24.5
+216,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate > 68.5
+217,ExternalRiskEstimate > 80.5
+218,ExternalRiskEstimate <= 75.5 & PercentInstallTrades <= 45.5 & MSinceMostRecentInqexcl7days > 1.5 & NumInqLast6M <= 0.5
+219,NumSatisfactoryTrades > 7.5 & AverageMInFile > 102.5 & ExternalRiskEstimate > 68.5
+220,PercentTradesWBalance > 47.5 & ExternalRiskEstimate <= 71.5
+221,NetFractionRevolvingBurden > 50.5 & NumSatisfactoryTrades > 16.5 & ExternalRiskEstimate > 70.5
+222,NetFractionRevolvingBurden > 43.5
+223,ExternalRiskEstimate > 74.5 & NumBank2NatlTradesWHighUtilization > -4.0
+224,ExternalRiskEstimate <= 74.5 & NetFractionRevolvingBurden > 3.5
+225,NetFractionRevolvingBurden <= 54.5 & NetFractionRevolvingBurden > 51.5 & AverageMInFile > 71.5
+226,ExternalRiskEstimate > 70.5
+227,ExternalRiskEstimate <= 75.5 & PercentInstallTrades <= 28.5 & PercentTradesNeverDelq <= 96.5
+228,ExternalRiskEstimate > 81.5 & ExternalRiskEstimate > 73.5
+229,NetFractionRevolvingBurden > 24.5 & ExternalRiskEstimate > 69.5 & AverageMInFile > 109.5
+230,ExternalRiskEstimate > 67.5
+231,ExternalRiskEstimate <= 64.5
+232,ExternalRiskEstimate <= 81.5 & PercentTradesWBalance <= 91.5 & NumInqLast6M > 0.5
+233,NetFractionRevolvingBurden > 34.5 & ExternalRiskEstimate <= 74.5 & NumTotalTrades <= 18.5
+234,ExternalRiskEstimate > 79.5
+235,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 90.5 & PercentTradesNeverDelq > 96.5 & NumInqLast6M <= 1.5
+236,PercentTradesWBalance <= 42.5 & ExternalRiskEstimate <= 76.5
+237,ExternalRiskEstimate <= 64.5 & ExternalRiskEstimate <= 72.5
+238,MSinceOldestTradeOpen > 169.5 & ExternalRiskEstimate > 64.5 & ExternalRiskEstimate <= 76.5
+239,MSinceOldestTradeOpen > 134.0 & PercentTradesNeverDelq > 83.5 & AverageMInFile > 64.5 & NetFractionRevolvingBurden <= 37.5
+240,AverageMInFile <= 77.5
+241,ExternalRiskEstimate > 78.5 & AverageMInFile <= 76.5
+242,NetFractionRevolvingBurden <= 70.5 & NetFractionRevolvingBurden > 37.5
+243,ExternalRiskEstimate > 84.5
+244,ExternalRiskEstimate <= 78.5 & NumSatisfactoryTrades > 23.5 & ExternalRiskEstimate > 70.5 & MSinceMostRecentInqexcl7days > -7.5
+245,ExternalRiskEstimate > 66.5
+246,NetFractionRevolvingBurden <= 54.5 & NetFractionRevolvingBurden <= 51.5 & PercentTradesNeverDelq <= 92.5 & AverageMInFile > 71.5 & MSinceOldestTradeOpen <= 443.5
+247,MSinceMostRecentInqexcl7days <= 1.5 & ExternalRiskEstimate > 73.5
+248,AverageMInFile > 70.5
+249,ExternalRiskEstimate <= 68.5 & PercentTradesWBalance <= 48.5
+250,ExternalRiskEstimate <= 79.5
+251,MSinceMostRecentInqexcl7days <= 0.5 & MSinceMostRecentInqexcl7days <= -7.5 & ExternalRiskEstimate <= 77.5
+252,ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades > 8.5 & MSinceMostRecentInqexcl7days > 0.5
+253,ExternalRiskEstimate <= 70.5 & PercentInstallTrades > 26.5
+254,NumInstallTradesWBalance > 5.5 & ExternalRiskEstimate > 75.5
+255,AverageMInFile <= 77.5 & PercentTradesNeverDelq > 96.5 & NumSatisfactoryTrades <= 5.0 & NetFractionRevolvingBurden <= 45.5
+256,MSinceOldestTradeOpen <= 173.5 & ExternalRiskEstimate <= 76.5 & PercentTradesWBalance > 42.5
+257,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance > 83.5
+258,MSinceOldestTradeOpen > 131.5 & ExternalRiskEstimate > 69.5 & NetFractionRevolvingBurden <= 24.5
+259,PercentTradesWBalance <= 87.5 & ExternalRiskEstimate <= 76.5 & NetFractionRevolvingBurden > 32.5 & MSinceOldestTradeOpen <= 251.0
+260,ExternalRiskEstimate <= 84.5 & PercentTradesNeverDelq > 89.5 & MSinceMostRecentInqexcl7days > 1.5
+261,AverageMInFile <= 64.5 & ExternalRiskEstimate > 65.5
+262,ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days > 1.5
+263,NetFractionRevolvingBurden > 40.5 & AverageMInFile > 51.5 & NumInqLast6Mexcl7days > 5.5 & NetFractionRevolvingBurden <= 95.5
+264,ExternalRiskEstimate <= 78.5
+265,ExternalRiskEstimate <= 67.5
+266,ExternalRiskEstimate <= 75.5 & MSinceMostRecentInqexcl7days > 0.5 & NumTotalTrades <= 29.5 & MSinceOldestTradeOpen <= 260.5
+267,PercentTradesNeverDelq > 87.5 & AverageMInFile <= 69.5 & ExternalRiskEstimate > 67.5
+268,ExternalRiskEstimate <= 76.5 & NetFractionRevolvingBurden <= 57.5
+269,AverageMInFile > 64.5 & ExternalRiskEstimate > 65.5
+270,NetFractionRevolvingBurden > 53.5 & ExternalRiskEstimate <= 74.5
+271,ExternalRiskEstimate <= 68.5 & ExternalRiskEstimate <= 74.5 & MSinceMostRecentInqexcl7days <= 0.5
+272,NumSatisfactoryTrades > 6.5 & ExternalRiskEstimate > 76.5
+273,NetFractionRevolvingBurden <= 54.5 & AverageMInFile <= 71.5 & PercentTradesWBalance > 42.0
+274,PercentTradesWBalance <= 88.5 & ExternalRiskEstimate <= 71.5
+275,ExternalRiskEstimate <= 75.5 & PercentTradesNeverDelq > 96.5 & NumSatisfactoryTrades > 27.5 & NumRevolvingTradesWBalance <= 10.5 & NetFractionRevolvingBurden <= 47.5 & MSinceOldestTradeOpen <= 252.5
+276,ExternalRiskEstimate > 71.5 & NumSatisfactoryTrades > 12.5
+277,ExternalRiskEstimate > 64.5 & ExternalRiskEstimate <= 72.5
+278,ExternalRiskEstimate <= 68.5 & NetFractionRevolvingBurden > 8.5
+279,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance <= 51.0
+280,ExternalRiskEstimate <= 73.5 & MSinceOldestTradeOpen <= 289.5
+281,PercentTradesWBalance <= 47.5 & ExternalRiskEstimate <= 71.5
+282,NetFractionRevolvingBurden <= 39.5
+283,ExternalRiskEstimate <= 70.5 & MSinceOldestTradeOpen > 201.0
+284,ExternalRiskEstimate <= 74.5 & PercentTradesWBalance <= 97.5
+285,ExternalRiskEstimate <= 74.5
+286,MSinceMostRecentInqexcl7days <= 0.5
+287,ExternalRiskEstimate <= 78.5 & MSinceMostRecentInqexcl7days <= 1.5 & MSinceMostRecentInqexcl7days > -7.5
+288,ExternalRiskEstimate <= 81.5 & PercentTradesWBalance <= 91.5 & NumInqLast6M <= 0.5
+289,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate > 67.5
+290,ExternalRiskEstimate > 71.5
+291,PercentTradesWBalance > 61.0 & ExternalRiskEstimate > 76.5
+292,ExternalRiskEstimate <= 68.5 & NetFractionRevolvingBurden <= 8.5
+293,ExternalRiskEstimate <= 70.5 & PercentTradesWBalance <= 35.5 & MSinceOldestTradeOpen <= 201.0
+294,PercentInstallTrades > 39.5 & MSinceMostRecentInqexcl7days <= 12.5 & ExternalRiskEstimate <= 69.5
+295,ExternalRiskEstimate <= 73.5 & NetFractionRevolvingBurden > 57.5
+296,NetFractionRevolvingBurden > 46.5
+297,PercentInstallTrades > 45.5 & AverageMInFile <= 74.5 & NetFractionRevolvingBurden <= 55.5
+298,ExternalRiskEstimate <= 70.5 & ExternalRiskEstimate <= 76.5 & NumTotalTrades > 0.5
+299,NetFractionRevolvingBurden > 14.5 & ExternalRiskEstimate > 71.5 & AverageMInFile > 69.5 & ExternalRiskEstimate <= 77.5
+300,ExternalRiskEstimate <= 70.5 & AverageMInFile > 64.5 & ExternalRiskEstimate <= 80.5
+301,PercentTradesNeverDelq <= 87.5 & ExternalRiskEstimate > 67.5
+302,MSinceMostRecentInqexcl7days > 0.5 & ExternalRiskEstimate <= 71.5 & ExternalRiskEstimate > 65.5
+303,ExternalRiskEstimate <= 80.5
+304,NetFractionRevolvingBurden > 39.5
+305,ExternalRiskEstimate > 81.5 & PercentInstallTrades <= 43.5
+306,ExternalRiskEstimate <= 70.5 & PercentInstallTrades > 14.5
+307,NumSatisfactoryTrades > 7.5 & NetFractionRevolvingBurden <= 28.5 & NumRevolvingTradesWBalance > 0.5 & ExternalRiskEstimate > 68.5 & AverageMInFile <= 102.5
+308,AverageMInFile <= 77.5 & PercentTradesNeverDelq > 96.5 & NumSatisfactoryTrades > 5.0 & NetFractionRevolvingBurden <= 45.5
+309,ExternalRiskEstimate > 74.5 & NumBank2NatlTradesWHighUtilization <= -4.0
+310,ExternalRiskEstimate <= 73.5 & PercentTradesWBalance > 66.0
+311,PercentTradesNeverDelq > 82.5 & MSinceMostRecentInqexcl7days > 0.5 & AverageMInFile > 64.5 & NumSatisfactoryTrades > 4.5
+312,MSinceMostRecentDelq > -7.5 & NumInstallTradesWBalance <= 5.5 & ExternalRiskEstimate > 75.5
+313,ExternalRiskEstimate > 77.5
+314,NetFractionRevolvingBurden <= 14.5 & ExternalRiskEstimate > 71.5 & MSinceMostRecentTradeOpen <= 23.5 & AverageMInFile > 69.5
+315,ExternalRiskEstimate > 75.5
+316,ExternalRiskEstimate <= 70.5 & NetFractionInstallBurden > 40.0 & NetFractionRevolvingBurden <= 55.5
+317,ExternalRiskEstimate > 74.5 & NumSatisfactoryTrades > 12.5
+318,PercentTradesNeverDelq > 94.5 & ExternalRiskEstimate <= 76.5 & MSinceOldestTradeOpen > 173.5 & PercentTradesWBalance > 42.5
+319,MSinceMostRecentDelq <= 25.5 & ExternalRiskEstimate <= 80.5
+320,ExternalRiskEstimate > 70.5 & NumSatisfactoryTrades <= 16.5
+321,NumSatisfactoryTrades <= 12.5 & ExternalRiskEstimate > 70.5
+322,ExternalRiskEstimate > 70.5 & AverageMInFile <= 84.5 & NetFractionRevolvingBurden > 65.5
+323,NetFractionRevolvingBurden <= 43.5
+324,MSinceOldestTradeOpen > 289.5 & ExternalRiskEstimate <= 73.5
+325,ExternalRiskEstimate <= 74.5 & NetFractionRevolvingBurden <= 53.5
+326,NumSatisfactoryTrades > 24.5 & ExternalRiskEstimate <= 76.5 & ExternalRiskEstimate > 70.5
+327,ExternalRiskEstimate > 78.5 & PercentTradesNeverDelq > 89.0
+328,PercentTradesWBalance <= 66.0 & ExternalRiskEstimate <= 73.5
+329,NetFractionInstallBurden <= 93.5 & PercentTradesNeverDelq > 83.5 & AverageMInFile > 74.5
+330,ExternalRiskEstimate > 74.5
+331,MSinceMostRecentInqexcl7days > 12.5 & ExternalRiskEstimate <= 69.5
+332,MSinceMostRecentDelq <= -3.0 & ExternalRiskEstimate > 77.5
+333,ExternalRiskEstimate <= 78.5 & PercentTradesWBalance <= 83.5
+334,ExternalRiskEstimate <= 75.5 & PercentTradesNeverDelq > 96.5 & MSinceOldestTradeOpen <= 252.5 & NetFractionRevolvingBurden > 47.5
