@@ -5,9 +5,10 @@
 
 <html>
   <head>
-	<meta name="generator" content="Hugo 0.16" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title> Explicable.ML</title>
+	<meta name="generator" content="Hugo 0.101.0" />
+    <meta charset="UTF-8"/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title> Explicable.AI</title>
 <meta name="author" content="Benoît Paris">
 <meta name="description" content="Explicable Machine Learning">
 <meta http-equiv="content-language" content="en-US" />
@@ -34,7 +35,7 @@
 	  <div id="header" class="container">
     <div id="logo" style="position:initial;"/>
       <img src="img/logo.png"/>
-      <h1><a href="#">Explicable.ML</a></h1>
+      <h1><a href="#">Explicable.AI</a></h1>
     </div>
     <img src="img/thumbnail.png"  style="display: none"/>
     <div id="menu">
@@ -132,18 +133,18 @@
       <span class="byline">Explore the hidden signals in your data</span>
     </div>
     <p>Gain invaluable insights from your existing databases that you would have otherwise missed with regular machine learning. Use state-of-the-art predictive algorithms that we make open and inspectable to you. Discover implicit structures and how they relate to events like customers buying your product.</p>
-    <div id="contact-box">
+    <div id="contact-box" style="width: 50%;">
     
       <form class="gform" method="POST" data-email="example@email.net"
         action="https://script.google.com/macros/s/AKfycbxt_y_BnwlT0JXULHUCXkgoqhpswtYWqQrCzYkNbEiii171wQR_/exec">
                 
         <ul class="actions">
           <li>Let's talk about how we can help you</li>
-          <li><input type="text" name="name" placeholder="Name (required)"></li>
-          <li><input type="text" name="email" placeholder="Email (required)"></li>
+          <li style="display: flex"><input type="text" name="name" placeholder="Name (required)" style="width: 100%;font-family: 'Didact Gothic', sans-serif;"></li>
+          <li style="display: flex"><input type="text" name="email" placeholder="Email (required)" style="width: 100%;font-family: 'Didact Gothic', sans-serif;"></li>
           <span class="email-invalid" style="display:none">Must be a valid email address</span>
-          <li><textarea type="text" name="message" placeholder="Message / Business sector / Interest"></textarea></li>
-          <li><button class="button">Contact Us</button></li>
+          <li style="display: flex"><textarea type="text" name="message" placeholder="Message / Business sector / Interest" style="width: 100%;font-family: 'Didact Gothic', sans-serif;"></textarea></li>
+          <li><button class="button" style="font-family: 'Didact Gothic', sans-serif;">Contact Us</button></li>
           <li><span class="thankyou_message" style="display:none">
               <em>Thanks</em> for contacting us! <br>
                 We will get back to you soon!</span>
@@ -160,7 +161,7 @@
 	
 	
 <div id="copyright" class="container">
-  <p>2017-2019 &copy; <a href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved</p>
+  <p>2017-2019 © <a href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved</p>
 </div>
 
 
@@ -171,32 +172,6 @@
   <script src="js/stats.min.js"></script>
   <script src="js/OrbitControls.js"></script>
   <script src="js/FastBitSet.js"></script>
-  
-  <script type="x-shader/x-vertex" id="vertexshader">
-    attribute float size;
-    attribute vec3 customColor;
-    varying vec3 vColor;
-    
-    void main() {
-      vColor = customColor;
-      vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
-      gl_PointSize = size * ( 300.0 / -mvPosition.z );
-      gl_Position = projectionMatrix * mvPosition;
-    }
-  </script>
-
-  <script type="x-shader/x-fragment" id="fragmentshader">
-    uniform vec3 color;
-    uniform sampler2D texture;
-    varying vec3 vColor;
-    
-    void main() {
-      gl_FragColor = vec4( color * vColor, 1.0 );
-      gl_FragColor = gl_FragColor * texture2D( texture, gl_PointCoord );
-      if ( gl_FragColor.a < ALPHATEST ) discard;
-    }
-  </script>
-
   <script src="js/separation-space-explorer.js"></script>
   
   <script data-cfasync="false">

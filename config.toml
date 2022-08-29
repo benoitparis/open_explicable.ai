@@ -1,6 +1,6 @@
-baseurl = "http://explicable.ml/"
+baseurl = "http://explicable.ai/"
 languageCode = "en-US"
-title = "Explicable.ML"
+title = "Explicable.AI"
 theme = "hugo-assembly"
 
 # Metadata
