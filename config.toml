@@ -86,7 +86,7 @@ theme = "hugo-assembly"
 # Footer section
 [params.footer]
   enable = true
-  copy = "2017-2019 &copy; [Benoît Paris Consulting](http://benoit.paris) | All rights reserved"
+  copy = "2017-2022 &copy; [Benoît Paris Consulting](http://benoit.paris) | All rights reserved"
   twitter = ""
   facebook = ""
   instagram = ""
