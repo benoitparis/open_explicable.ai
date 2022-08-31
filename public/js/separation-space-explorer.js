@@ -205,10 +205,11 @@ function loadParticles() {
         var point = new THREE.Vector3(x, y, z);
         var color = new THREE.Color();
         var particleSize = 0;
-        
+
+        var scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
         
         if (1 === size) {
-          color.setRGB(prediction, 0.2, 1 - prediction);
+          color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
           particleSize = PARTICLE_SIZE * 0.5;
         } else {
           color.setRGB(0.3, 0.3, 0.3);
