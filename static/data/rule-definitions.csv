@@ -1,327 +1,312 @@
 ,Rule
-0,Overall Qual <= 7.5 & Gr Liv Area > 1396.0 & 2nd Flr SF <= 1028.5
-1,Overall Qual > 6.5 & Overall Qual <= 8.5 & BsmtFin SF 1 <= 762.0
-2,Fireplaces > 0.5 & 2nd Flr SF > 1745.5
-3,Total Bsmt SF > 1397.0 & Gr Liv Area <= 2223.0
-4,Gr Liv Area <= 2303.0 & Year Built > 1985.0
-5,Overall Qual <= 7.5 & Gr Liv Area <= 1420.5 & Overall Qual > 5.5
-6,Year Built > 1976.5 & Gr Liv Area <= 1970.0
-7,Overall Qual <= 7.5 & Garage Cars <= 1.5
-8,Mas Vnr Area > 687.0 & Overall Qual > 7.5 & Lot Area > 13601.0
-9,Kitchen Qual > 2.5
-10,Year Built > 1976.5 & Bsmt Qual > 0.5
-11,Kitchen Qual <= 0.5 & Gr Liv Area <= 3320.0
-12,Overall Qual <= 8.5 & Overall Qual > 7.5 & Lot Area > 8820.0
-13,Total Bsmt SF > 2498.0 & Overall Qual > 7.5 & 1st Flr SF > 1704.0
-14,Overall Qual > 4.5 & Garage Area <= 658.0 & Fireplaces <= 1.5 & Year Built <= 1976.5
-15,Overall Qual > 7.5 & Gr Liv Area > 2167.0
-16,Mas Vnr Area <= 392.5 & Garage Cars > 2.5
-17,Overall Qual <= 7.5 & Garage Type <= 3.5
-18,Overall Qual <= 7.5 & Overall Qual > 5.5
-19,Gr Liv Area <= 1742.5
-20,Gr Liv Area > 1949.0 & Bsmt Qual > 0.5 & Overall Qual > 5.5
-21,Gr Liv Area <= 1973.0 & Garage Area > 658.0 & Fireplaces <= 0.5
-22,Overall Qual > 6.5 & 1st Flr SF > 1713.5
-23,Gr Liv Area > 1970.0 & Gr Liv Area <= 4148.0
-24,Gr Liv Area > 2138.0
-25,Lot Area <= 13601.0 & Overall Qual > 7.5 & Gr Liv Area <= 2455.5
-26,Overall Qual <= 7.5 & Gr Liv Area > 1245.5
-27,Year Built > 1976.5 & Total Bsmt SF > 1198.0 & Gr Liv Area > 1526.5 & Garage Area <= 658.0
-28,Bsmt Qual <= 0.5 & Gr Liv Area > 2612.5
-29,BsmtFin SF 1 > 2035.0 & Overall Qual > 6.5 & Bedroom AbvGr <= 3.5 & Total Bsmt SF > 1837.0
-30,Gr Liv Area <= 1872.0 & Overall Qual > 6.5
-31,Overall Qual > 7.5 & 1st Flr SF <= 1704.0
-32,Gr Liv Area <= 2045.0 & Overall Qual > 6.5 & Total Bsmt SF > 1723.5
-33,Overall Qual > 7.5 & Pool QC <= 1.5
-34,Gr Liv Area > 1304.0 & Kitchen Qual > 0.5
-35,Total Bsmt SF <= 1226.5 & 2nd Flr SF > 774.5
-36,Overall Qual > 6.5 & 1st Flr SF <= 1677.0
-37,Overall Qual <= 6.5
-38,Overall Qual <= 9.5 & Overall Qual > 7.5 & Lot Area > 13601.0 & Mas Vnr Area <= 687.0
-39,Central Air > 0.5 & Gr Liv Area <= 1252.5 & Overall Qual <= 6.5
-40,Total Bsmt SF > 1448.5 & Total Bsmt SF <= 2529.5
-41,Year Remod/Add <= 1992.5 & Open Porch SF <= 41.5 & Overall Qual <= 6.5 & Gr Liv Area > 1252.5
-42,Overall Qual > 7.5 & Bsmt Unf SF > 510.0 & Overall Qual > 8.5
-43,Overall Qual <= 7.5 & Garage Type > 3.5 & Overall Qual > 4.5
-44,Gr Liv Area > 1949.5
-45,Total Bsmt SF <= 1656.5 & Gr Liv Area > 1951.0
-46,Gr Liv Area <= 1949.0 & Bsmt Qual > 0.5 & Total Bsmt SF > 1252.0 & Overall Qual > 5.5
-47,Kitchen Qual <= 1.0 & Gr Liv Area > 1778.0
-48,Bsmt Qual <= 0.5 & Total Bsmt SF > 1226.5
-49,1st Flr SF > 1465.5 & Total Bsmt SF > 2394.0
-50,Gr Liv Area <= 2231.5 & Garage Cars <= 1.5
-51,Total Bsmt SF > 1469.5 & Overall Qual > 6.5 & Gr Liv Area <= 1969.5
-52,Year Built > 1991.5 & Gr Liv Area > 1651.5
-53,PID > 528430112.0 & Overall Qual > 7.5
-54,Overall Qual > 6.5 & Overall Qual > 8.5
-55,Total Bsmt SF <= 1383.5 & Overall Qual > 6.5
-56,Garage Type > 3.5 & Overall Qual <= 6.5
-57,Garage Area <= 636.0 & Overall Qual > 6.5
-58,Lot Area > 23761.0 & Overall Qual > 7.5 & PID > 528406528.0 & Pool QC > 1.5
-59,Gr Liv Area <= 1778.0 & Total Bsmt SF > 1195.0
-60,Overall Qual <= 7.5 & Gr Liv Area <= 1383.0
-61,Overall Qual > 6.5 & Bsmt Qual > 0.5
-62,Gr Liv Area > 1492.0
-63,Gr Liv Area <= 1396.0 & Overall Qual <= 7.5
-64,Overall Qual > 8.5
-65,Year Built > 1985.5 & BsmtFin SF 1 > 941.0
-66,Garage Area > 536.0 & 1st Flr SF <= 1412.0 & Overall Qual > 6.5 & Gr Liv Area <= 2154.5 & Overall Qual <= 8.5
-67,Gr Liv Area <= 1491.5
-68,Overall Qual <= 8.5 & Garage Cars > 2.5
-69,Overall Qual <= 7.5 & Overall Qual <= 5.5 & Total Bsmt SF > 695.5
+0,Overall Qual <= 8.5 & Gr Liv Area <= 1963.0 & Overall Qual > 6.5
+1,Gr Liv Area <= 1524.0
+2,Total Bsmt SF <= 1424.0
+3,Gr Liv Area > 1807.0
+4,Total Bsmt SF > 1272.5 & Gr Liv Area <= 1709.5
+5,Total Bsmt SF > 1282.0 & Gr Liv Area <= 1999.0
+6,Gr Liv Area <= 1642.5
+7,Garage Type <= 4.5 & Overall Qual <= 6.5 & Gr Liv Area > 1408.0
+8,1st Flr SF > 1286.5
+9,BsmtFin SF 1 <= 598.0 & Gr Liv Area > 1420.5 & 2nd Flr SF <= 1054.5 & Overall Qual > 5.5 & Overall Qual <= 7.5
+10,Bsmt Qual <= 0.5 & Gr Liv Area > 1482.5
+11,1st Flr SF > 2397.0 & Garage Cars > 2.5
+12,Overall Qual <= 7.5 & Gr Liv Area > 1969.5 & Overall Qual > 6.5
+13,Gr Liv Area > 1491.5 & BsmtFin SF 1 <= 789.5
+14,Gr Liv Area > 2244.5
+15,Year Built <= 1978.5
+16,Lot Area > 26902.0 & Overall Qual > 7.5
+17,Overall Qual > 7.5
+18,Total Bsmt SF > 2498.0 & 1st Flr SF > 1704.0 & Overall Qual > 7.5
+19,PID > 528430112.0 & Overall Qual > 7.5
+20,Overall Qual > 6.5 & 1st Flr SF > 1619.0
+21,Year Built > 1985.5
+22,Kitchen Qual > 0.5 & Gr Liv Area > 1304.0
+23,Gr Liv Area <= 2808.5 & Overall Qual > 7.5
+24,Total Bsmt SF > 1397.0 & Gr Liv Area > 2223.0
+25,Gr Liv Area <= 1949.5 & Year Built > 1976.5
+26,BsmtFin SF 1 <= 1089.0
+27,BsmtFin SF 1 > 1089.0 & BsmtFin SF 1 <= 2030.5
+28,Gr Liv Area > 1642.5 & Screen Porch > 198.0 & Garage Cars > 2.5
+29,Overall Qual > 8.5 & Lot Frontage > 103.0
+30,2nd Flr SF <= 774.5 & Total Bsmt SF <= 1226.5
+31,Overall Qual <= 5.5 & Overall Qual <= 7.5 & Total Bsmt SF > 695.5
+32,Year Built > 1988.5
+33,1st Flr SF > 1969.0 & Overall Qual > 7.5
+34,BsmtFin SF 1 <= 1312.0 & Overall Qual > 7.5
+35,Gr Liv Area > 1742.5
+36,Year Built <= 1986.5 & Gr Liv Area <= 2029.0
+37,Year Built > 1985.5 & Gr Liv Area > 2017.0
+38,Overall Qual > 6.5 & 1st Flr SF > 1743.0
+39,Gr Liv Area > 2029.0 & Exter Qual > 0.5
+40,Gr Liv Area <= 2303.0 & Year Built <= 1985.0
+41,Gr Liv Area <= 1778.0 & Total Bsmt SF > 1195.0
+42,Gr Liv Area > 1312.0 & Overall Qual <= 7.5 & Gr Liv Area <= 1930.0
+43,Gr Liv Area <= 1492.0 & 1st Flr SF > 1153.0
+44,BsmtFin SF 1 <= 1091.5 & Gr Liv Area <= 1198.0
+45,BsmtFin SF 1 <= 955.0 & Garage Type > 3.5
+46,Bsmt Qual > 0.5 & Overall Qual > 5.5 & Gr Liv Area <= 1949.0
+47,Total Bsmt SF <= 1843.0 & Garage Cars > 2.5
+48,Gr Liv Area > 1658.0 & Year Remod/Add > 1992.5
+49,Year Built > 1984.5
+50,PID <= 528392608.0 & Overall Qual > 8.5
+51,Overall Qual > 8.5 & Garage Cars > 2.5
+52,Gr Liv Area > 1949.5
+53,Gr Liv Area <= 1362.5 & Overall Qual <= 7.5
+54,Gr Liv Area <= 2055.0 & BsmtFin SF 1 <= 955.0 & Garage Type <= 3.5
+55,Overall Qual <= 6.5 & Fireplaces <= 0.5
+56,Total Bsmt SF > 1226.5 & Bsmt Qual <= 0.5 & Lot Frontage <= 122.5
+57,Year Built > 1986.5 & Gr Liv Area <= 2029.0 & BsmtFin SF 1 <= 1007.0
+58,1st Flr SF <= 1817.5
+59,Year Built <= 1973.5 & Gr Liv Area <= 1993.0
+60,Full Bath > 1.5 & Overall Qual <= 7.5
+61,1st Flr SF <= 1718.5 & Overall Qual > 6.5
+62,Overall Qual > 7.5 & 2nd Flr SF <= 1791.5
+63,Total Bsmt SF <= 1914.5 & Overall Qual > 6.5
+64,Garage Area > 636.0 & Overall Qual > 6.5
+65,Total Bsmt SF <= 1198.5 & Gr Liv Area > 1492.0
+66,Year Built > 1982.5
+67,Overall Qual <= 5.5
+68,Garage Cars > 2.5 & Gr Liv Area <= 3048.0
+69,2nd Flr SF <= 1331.0 & 1st Flr SF <= 1704.0 & Heating QC <= 3.0 & Overall Qual > 7.5
 70,Fireplaces <= 0.5
-71,Overall Qual <= 7.5 & Gr Liv Area <= 1492.5 & Garage Type <= 3.5
-72,Overall Qual <= 7.5 & Overall Qual <= 5.5 & Gr Liv Area > 1492.5 & Garage Type <= 3.5
-73,Gr Liv Area <= 1949.5 & Year Built > 1976.5
-74,Overall Qual > 6.5 & 1st Flr SF > 1718.5
-75,Bsmt Qual > 0.5
-76,Gr Liv Area <= 1312.0 & Total Bsmt SF <= 1621.0
-77,Gr Liv Area <= 1867.5
-78,Overall Qual <= 7.5 & Gr Liv Area <= 1417.5
-79,Bsmt Qual <= 0.5 & TotRms AbvGrd > 9.0
-80,Overall Qual <= 8.5 & Overall Qual > 7.5
-81,Fireplaces <= 0.5 & Overall Qual <= 8.5 & Year Built <= 1987.5
-82,Total Bsmt SF > 1565.5 & Gr Liv Area <= 2167.0 & Overall Qual > 7.5
-83,Gr Liv Area <= 2808.5 & Overall Qual > 7.5
-84,Overall Qual > 6.5 & 1st Flr SF <= 1573.0 & Gr Liv Area <= 1940.0
-85,Overall Qual <= 7.5 & Gr Liv Area <= 1245.5
-86,Total Bsmt SF > 1621.0 & BsmtFin SF 1 > 1912.0
-87,House Style <= 4.5 & Garage Area > 658.0 & Gr Liv Area > 2163.0 & Gr Liv Area > 1973.0
-88,Overall Qual <= 9.5 & Overall Qual > 7.5
-89,Garage Cars <= 2.5 & Garage Cars > 1.5
-90,Overall Qual <= 4.5 & Bsmt Qual > 0.5 & Year Built <= 1976.5
-91,Gr Liv Area > 1658.0
-92,Gr Liv Area <= 2497.5 & Overall Qual > 6.5 & Total Bsmt SF <= 1837.0 & BsmtFin SF 1 > 1066.5
-93,Kitchen Qual > 1.0 & Overall Qual > 7.5 & Full Bath <= 2.5
-94,PID <= 528406528.0 & Overall Qual > 7.5 & BsmtFin SF 1 <= 1921.0 & Pool QC > 1.5
-95,Kitchen Qual <= 2.5 & Total Bsmt SF > 1907.5
-96,Screen Porch > 61.5 & Overall Qual > 7.5 & Overall Qual > 8.5
-97,Total Bsmt SF <= 1226.5 & 2nd Flr SF <= 774.5
-98,Gr Liv Area > 2231.5 & Neighborhood > 18.5
-99,Full Bath > 2.5 & Overall Qual > 7.5 & 1st Flr SF > 1685.5
-100,Overall Qual > 7.5 & Full Bath <= 2.5 & Land Contour <= 1.5 & Pool QC > 1.5 & 1st Flr SF > 1685.5
-101,Kitchen Qual > 1.0 & Overall Qual > 6.5
-102,Garage Cars <= 2.5 & Overall Qual <= 5.5
-103,Overall Qual <= 7.5 & Gr Liv Area <= 1684.5 & Overall Qual > 5.5
-104,BsmtFin SF 1 > 1091.5
-105,2nd Flr SF <= 1745.5 & Fireplaces > 0.5
-106,Overall Qual <= 8.5 & Overall Qual > 7.5 & Lot Area <= 8820.0
-107,Overall Qual > 7.5 & Total Bsmt SF <= 2498.0 & 1st Flr SF > 1704.0
-108,Garage Cars > 1.5 & Gr Liv Area <= 2231.5 & BsmtFin SF 1 <= 1111.0
-109,Bsmt Unf SF <= 510.0 & Overall Qual > 7.5 & Overall Qual > 8.5
-110,Overall Qual > 7.5 & 1st Flr SF > 1969.0
-111,Total Bsmt SF > 1282.0 & Gr Liv Area > 1957.0 & Year Built > 2004.0 & 2nd Flr SF <= 1792.0
-112,Overall Qual <= 7.5 & Gr Liv Area > 1319.5
-113,Overall Qual > 6.5 & Gr Liv Area <= 1969.5 & Total Bsmt SF <= 1469.5
-114,Overall Qual <= 7.5 & Garage Cars > 1.5
-115,Garage Cars <= 2.5 & Gr Liv Area > 1387.5
-116,Overall Qual > 7.5 & PID <= 528430112.0
-117,Overall Qual <= 7.5 & Gr Liv Area > 1684.5 & Overall Qual > 5.5
-118,Overall Qual <= 4.5 & Garage Area <= 658.0 & Fireplaces <= 1.5 & Year Built <= 1976.5
-119,Overall Qual <= 6.5 & Garage Type <= 3.5
-120,Overall Qual > 7.5 & 1st Flr SF > 1685.5 & Pool QC <= 1.5 & Full Bath <= 2.5
-121,Overall Qual <= 7.5 & Overall Qual <= 5.5
-122,Garage Cars <= 2.5 & Garage Area <= 352.5 & Overall Qual <= 6.5
-123,Bsmt Qual <= 0.5 & Overall Qual > 6.5
-124,1st Flr SF > 1722.5 & Overall Qual > 7.5
-125,Overall Qual <= 7.5 & Garage Cars > 1.5 & Garage Type > 3.5
-126,Gr Liv Area <= 2138.0
-127,Garage Cars > 2.5 & Total Bsmt SF > 1843.0
-128,Garage Area <= 536.0 & 1st Flr SF <= 1412.0 & Overall Qual > 6.5 & Gr Liv Area <= 2154.5 & Overall Qual <= 8.5
-129,Gr Liv Area <= 3048.0 & Garage Cars > 2.5
-130,Overall Qual > 4.5 & Overall Qual <= 6.5
-131,Bsmt Qual <= 0.5 & Gr Liv Area <= 2612.5
-132,Gr Liv Area > 1147.0 & Overall Qual <= 6.5
-133,Year Built > 1976.5 & Gr Liv Area > 1526.5 & Garage Area <= 658.0 & Total Bsmt SF <= 1198.0
-134,BsmtFin SF 1 <= 2035.0 & Overall Qual > 6.5 & Bedroom AbvGr <= 3.5 & Total Bsmt SF > 1837.0
-135,Bsmt Qual <= 0.5
-136,Overall Qual > 6.5 & Overall Qual <= 8.5 & Gr Liv Area > 2064.0
-137,Total Bsmt SF > 1392.5
-138,Gr Liv Area <= 1304.0 & Kitchen Qual > 0.5
-139,Overall Qual > 6.5 & Overall Qual <= 8.5 & Gr Liv Area > 2154.5
-140,Overall Qual > 6.5 & Gr Liv Area > 2045.0
-141,Gr Liv Area <= 2045.0 & Overall Qual > 6.5 & Total Bsmt SF <= 1723.5
-142,Lot Area <= 23761.0 & Lot Area > 19588.0 & Overall Qual > 7.5 & PID > 528406528.0 & Pool QC > 1.5
-143,Gr Liv Area <= 2167.0 & Overall Qual > 7.5 & Total Bsmt SF <= 1565.5
-144,Central Air <= 0.5 & Gr Liv Area <= 1252.5 & Overall Qual <= 6.5
-145,Total Bsmt SF > 1282.0 & Gr Liv Area > 1957.0 & 2nd Flr SF > 1792.0
-146,Fireplaces > 1.5 & Garage Area <= 658.0 & Year Built <= 1976.5
-147,Gr Liv Area > 1491.5 & BsmtFin SF 1 > 789.5
-148,Garage Cars > 2.5
-149,Gr Liv Area > 1692.5
-150,Gr Liv Area <= 1951.0 & 1st Flr SF <= 1218.5
-151,Total Bsmt SF <= 645.5 & Year Built <= 1985.5
-152,BsmtFin SF 1 > 955.0
-153,Garage Area > 340.0 & Overall Qual <= 6.5
-154,Gr Liv Area <= 1658.0
-155,Overall Qual <= 7.5 & Garage Type > 3.5 & Overall Qual <= 4.5
-156,Total Bsmt SF <= 2394.0 & 1st Flr SF > 1465.5
-157,Gr Liv Area <= 2497.5 & Overall Qual > 6.5 & Total Bsmt SF <= 1837.0 & BsmtFin SF 1 <= 1066.5
-158,Bsmt Qual > 0.5 & Overall Qual > 5.5
-159,Overall Qual > 7.5 & Kitchen Qual <= 1.0 & Full Bath <= 2.5
-160,Neighborhood > 13.0 & Garage Cars > 2.5 & Total Bsmt SF > 1843.0
-161,Lot Area > 10859.0 & Overall Qual > 4.5 & Bsmt Qual > 0.5 & Year Built <= 1976.5
-162,Gr Liv Area > 2231.5 & Neighborhood <= 18.5
-163,Gr Liv Area <= 1949.0 & Bsmt Qual > 0.5 & Total Bsmt SF <= 1252.0 & Overall Qual > 5.5
-164,Overall Qual > 7.5
-165,Overall Qual > 6.5 & Kitchen Qual <= 1.0
-166,Gr Liv Area <= 1651.5 & Year Built > 1991.5
-167,Full Bath > 2.5 & Overall Qual > 7.5
-168,Overall Qual > 7.5 & Lot Area > 15375.0
-169,Total Bsmt SF > 1272.5 & Gr Liv Area <= 1709.5
-170,Gr Liv Area > 1940.0 & Year Built > 2004.5 & Overall Qual > 6.5
-171,Year Built > 1984.5 & Total Bsmt SF <= 1282.0
-172,Gr Liv Area <= 1973.0 & Garage Area > 658.0 & Fireplaces > 0.5
-173,Gr Liv Area <= 1973.0 & BsmtFin SF 1 > 957.0 & Year Built > 1983.0
-174,Garage Area > 658.0 & Pool QC > 2.5 & Gr Liv Area > 1973.0 & House Style > 4.5
-175,Gr Liv Area <= 1778.0 & Total Bsmt SF <= 1195.0
-176,Gr Liv Area <= 1492.0
-177,1st Flr SF <= 1685.5 & Overall Qual > 7.5 & 2nd Flr SF <= 1078.0
-178,Garage Cars <= 2.5 & Gr Liv Area <= 1387.5
-179,Fireplaces > 1.5 & Garage Cars > 2.5
-180,Bsmt Qual <= 0.5 & Mo Sold > 5.5 & Mas Vnr Area > 722.0
-181,Overall Qual > 8.5 & 1st Flr SF > 2307.0
-182,Year Built <= 1983.5 & Total Bsmt SF <= 1397.0
-183,Year Built > 1985.5 & BsmtFin SF 1 <= 941.0
-184,Total Bsmt SF > 1282.0 & Gr Liv Area <= 1957.0
-185,Total Bsmt SF > 1621.0 & BsmtFin SF 1 <= 1912.0 & 2nd Flr SF > 810.0
-186,Total Bsmt SF > 1397.0 & Gr Liv Area > 2223.0
-187,Overall Qual <= 7.5 & Overall Qual <= 5.5 & Total Bsmt SF <= 695.5
-188,Overall Qual > 6.5 & Total Bsmt SF <= 1837.0 & Gr Liv Area > 2497.5
-189,Year Built > 1987.5 & Overall Qual <= 8.5
-190,Overall Qual > 6.5 & 1st Flr SF <= 1718.5
-191,Bsmt Qual <= 0.5 & Lot Area > 13160.5
-192,2nd Flr SF > 1078.0 & 1st Flr SF <= 1685.5 & Overall Qual > 7.5
-193,Gr Liv Area > 2029.0
-194,House Style <= 4.5 & Garage Area > 658.0 & Gr Liv Area > 1973.0 & Gr Liv Area <= 2163.0
-195,Overall Qual <= 7.5 & Garage Cars > 1.5 & Garage Type <= 3.5
-196,BsmtFin SF 1 > 790.5 & 1st Flr SF > 1412.0 & Overall Qual > 6.5 & Gr Liv Area <= 2154.5 & Overall Qual <= 8.5
-197,Bsmt Qual <= 0.5 & TotRms AbvGrd <= 9.0
-198,Gr Liv Area > 1312.0 & Total Bsmt SF <= 1621.0 & Year Remod/Add <= 1983.5
-199,Bsmt Qual > 1.0 & Year Built > 1978.5
-200,Kitchen Qual <= 2.5 & Total Bsmt SF <= 1907.5
-201,1st Flr SF > 1743.0 & Overall Qual > 6.5
-202,BsmtFin SF 1 <= 1091.5
-203,Total Bsmt SF > 1905.0 & Overall Qual > 7.5
-204,Gr Liv Area > 3048.0 & Garage Cars > 2.5
-205,Gr Liv Area > 2303.0
-206,Overall Qual > 6.5 & Overall Qual <= 8.5 & Gr Liv Area <= 2064.0
-207,Year Built > 1982.5
-208,Total Bsmt SF <= 1392.5
-209,Overall Qual > 6.5 & 1st Flr SF <= 1713.5
-210,Overall Qual > 7.5 & Screen Porch <= 61.5 & Overall Qual > 8.5
-211,Total Bsmt SF > 1200.0 & Gr Liv Area > 1973.0 & Year Built > 1983.0
-212,Bsmt Qual > 0.5 & Gr Liv Area > 1922.0
-213,Gr Liv Area <= 1692.5
-214,BsmtFin SF 1 <= 955.0
-215,Gr Liv Area <= 1526.5 & Year Built > 1976.5 & Garage Area <= 658.0
-216,Garage Area <= 340.0 & Overall Qual <= 6.5
-217,1st Flr SF <= 1969.0 & Overall Qual > 7.5
-218,Year Built > 1985.5 & Gr Liv Area > 2017.0
-219,Gr Liv Area <= 2303.0 & Year Built <= 1985.0
-220,Year Built <= 1976.5 & Gr Liv Area <= 1970.0
-221,Garage Cars > 2.5 & Neighborhood <= 13.0 & Total Bsmt SF > 1843.0
-222,Lot Area <= 10859.0 & Overall Qual > 4.5 & Bsmt Qual > 0.5 & Year Built <= 1976.5
-223,Lot Area <= 15375.0 & Overall Qual > 7.5
-224,Total Bsmt SF <= 1272.5 & Gr Liv Area <= 1709.5
-225,Year Built <= 1978.5
-226,Garage Cars > 2.5 & Overall Qual > 8.5
-227,Overall Qual <= 7.5 & Overall Qual > 6.5 & Gr Liv Area > 1219.5
-228,1st Flr SF <= 1465.5
-229,Year Built <= 1991.5
-230,Gr Liv Area <= 1795.0 & Overall Qual > 6.5
-231,Total Bsmt SF <= 1282.0 & Year Built <= 1984.5
-232,Gr Liv Area > 3320.0 & Kitchen Qual <= 0.5
-233,Gr Liv Area > 1709.5
-234,Gr Liv Area <= 1973.0 & BsmtFin SF 1 <= 957.0 & Year Built > 1983.0
-235,Overall Qual <= 8.5 & Fireplaces > 0.5 & Year Built <= 1987.5
-236,Mas Vnr Area > 392.5 & Garage Cars > 2.5
-237,Garage Area > 658.0 & Gr Liv Area > 1973.0 & Pool QC <= 2.5 & House Style > 4.5
-238,Gr Liv Area > 1312.0 & Total Bsmt SF <= 1621.0 & Gr Liv Area > 2327.0 & Year Remod/Add > 1983.5
-239,Garage Cars <= 2.5 & Overall Qual > 6.5
-240,Year Built <= 1983.0 & Lot Area > 12075.0
-241,Overall Qual > 7.5 & Overall Qual > 8.5
-242,1st Flr SF <= 1722.5 & Overall Qual > 7.5
-243,Gr Liv Area > 2311.5
-244,Overall Qual > 6.5 & Overall Qual <= 8.5
-245,1st Flr SF <= 2307.0 & Overall Qual > 8.5
-246,Total Bsmt SF <= 1843.0 & Garage Cars > 2.5
-247,Garage Cars <= 2.5 & Overall Qual > 5.5
-248,Overall Qual > 6.5 & Gr Liv Area > 1795.0
-249,Year Built > 1983.5 & Total Bsmt SF <= 1397.0
-250,Overall Qual <= 4.5 & Overall Qual <= 6.5
-251,Total Bsmt SF > 1621.0 & BsmtFin SF 1 <= 1912.0 & 2nd Flr SF <= 810.0
-252,Overall Qual > 6.5 & Garage Area > 636.0
-253,Gr Liv Area <= 1147.0 & Overall Qual <= 6.5
-254,Lot Area > 13700.5 & Year Built <= 1985.5
-255,Garage Cars <= 2.5
-256,Gr Liv Area <= 2029.0
-257,Overall Qual <= 8.5
-258,Overall Qual <= 7.5 & Gr Liv Area > 1383.0
-259,Bsmt Qual <= 1.0 & Year Built > 1978.5
-260,Gr Liv Area <= 1319.5 & Overall Qual <= 7.5
-261,Total Bsmt SF > 1282.0 & Gr Liv Area > 1957.0 & 2nd Flr SF <= 1792.0 & Year Built <= 2004.0
-262,Overall Qual > 8.5 & Lot Area > 20983.0
-263,Lot Area <= 13601.0 & Gr Liv Area > 2455.5 & Overall Qual > 7.5
-264,Overall Qual > 7.5 & Total Bsmt SF <= 1905.0
-265,Overall Qual > 7.5 & Lot Area > 13601.0 & Overall Qual > 9.5 & Mas Vnr Area <= 687.0
-266,Gr Liv Area > 1940.0 & Overall Qual > 6.5 & Year Built <= 2004.5
-267,Garage Cars <= 2.5 & Garage Type > 3.5
-268,Overall Qual <= 7.5 & Gr Liv Area > 1396.0 & 2nd Flr SF > 1028.5
-269,1st Flr SF > 1218.5 & Gr Liv Area <= 1951.0
-270,BsmtFin SF 1 > 762.0 & Overall Qual > 6.5 & Overall Qual <= 8.5
-271,Total Bsmt SF > 1448.5 & Total Bsmt SF > 2529.5
-272,Bsmt Qual > 0.5 & Overall Qual <= 5.5
-273,Total Bsmt SF <= 1200.0 & Gr Liv Area > 1973.0 & Year Built > 1983.0
-274,Overall Qual <= 7.5
-275,Overall Qual <= 7.5 & Gr Liv Area > 1420.5 & Overall Qual > 5.5
-276,Gr Liv Area <= 1922.0 & Bsmt Qual > 0.5
-277,Total Bsmt SF > 1656.5 & Gr Liv Area > 1951.0
-278,Overall Qual > 7.5 & Gr Liv Area > 2808.5
-279,Garage Cars > 2.5 & Fireplaces <= 1.5
-280,Open Porch SF > 41.5 & Overall Qual <= 6.5 & Gr Liv Area > 1252.5
-281,Garage Cars <= 2.5 & Garage Type <= 3.5
-282,Overall Qual <= 7.5 & Garage Type > 3.5
-283,Bsmt Qual <= 0.5 & Mo Sold <= 5.5 & Mas Vnr Area > 722.0
-284,Gr Liv Area > 1742.5
-285,Overall Qual <= 7.5 & Gr Liv Area > 1219.5 & Overall Qual <= 6.5
-286,Bsmt Qual <= 0.5 & Mas Vnr Area <= 722.0
-287,Lot Area <= 23761.0 & Overall Qual > 7.5 & PID > 528406528.0 & Pool QC > 1.5 & Lot Area <= 19588.0
-288,Gr Liv Area > 1970.0 & Gr Liv Area > 4148.0
-289,Gr Liv Area > 1491.5 & BsmtFin SF 1 <= 789.5
-290,Gr Liv Area <= 2327.0 & Gr Liv Area > 1312.0 & Total Bsmt SF <= 1621.0 & Year Remod/Add > 1983.5
-291,Lot Area <= 12075.0 & Year Built <= 1983.0
-292,Bsmt Qual <= 0.5 & Lot Area <= 13160.5
-293,BsmtFin SF 1 > 1111.0 & Garage Cars > 1.5 & Gr Liv Area <= 2231.5
-294,Gr Liv Area <= 2311.5
-295,Overall Qual <= 8.5 & Overall Qual <= 6.5
-296,Gr Liv Area <= 1949.5 & Year Built <= 1976.5
-297,1st Flr SF > 1412.0 & Overall Qual > 6.5 & Gr Liv Area <= 2154.5 & Overall Qual <= 8.5 & BsmtFin SF 1 <= 790.5
-298,Year Built <= 1982.5
-299,Year Built <= 1985.5 & Total Bsmt SF > 645.5
-300,Overall Qual <= 7.5 & Overall Qual > 5.5 & Gr Liv Area > 1492.5 & Garage Type <= 3.5
-301,Overall Qual > 8.5 & PID <= 528392608.0
-302,Overall Qual <= 7.5 & Gr Liv Area <= 1219.5
-303,Overall Qual > 6.5 & Gr Liv Area > 1872.0
-304,Total Bsmt SF <= 1448.5
-305,Overall Qual > 6.5 & 1st Flr SF <= 1743.0
-306,Lot Area <= 13700.5 & Year Built <= 1985.5
-307,Gr Liv Area > 1417.5 & Overall Qual <= 7.5
-308,Overall Qual > 6.5 & 1st Flr SF > 1677.0
-309,Garage Cars <= 2.5 & Garage Cars <= 1.5
-310,Overall Qual > 6.5
-311,Overall Qual > 6.5 & Gr Liv Area <= 1940.0 & 1st Flr SF > 1573.0
-312,Overall Qual > 6.5 & Bedroom AbvGr > 3.5 & Total Bsmt SF > 1837.0
-313,Garage Cars <= 2.5 & Overall Qual <= 6.5 & Garage Area > 352.5
-314,Overall Qual > 7.5 & Overall Qual > 9.5
-315,Year Remod/Add > 1992.5 & Open Porch SF <= 41.5 & Overall Qual <= 6.5 & Gr Liv Area > 1252.5
-316,Gr Liv Area > 1867.5
-317,Overall Qual > 6.5 & Gr Liv Area > 1969.5
-318,PID > 528392608.0 & Overall Qual > 8.5
-319,Lot Area <= 20983.0 & Overall Qual > 8.5
-320,PID <= 528406528.0 & Overall Qual > 7.5 & BsmtFin SF 1 > 1921.0 & Pool QC > 1.5
-321,Kitchen Qual > 1.0 & Gr Liv Area > 1778.0
-322,Total Bsmt SF > 1226.5 & Bsmt Qual > 0.5
-323,Overall Qual > 7.5 & Land Contour > 1.5 & Full Bath <= 2.5 & Pool QC > 1.5 & 1st Flr SF > 1685.5
-324,Year Built > 1985.5 & Gr Liv Area <= 2017.0
-325,Overall Qual > 6.5 & Total Bsmt SF > 1383.5
+71,Overall Qual > 8.5 & 1st Flr SF > 2242.5 & Overall Qual > 7.5
+72,Overall Qual > 8.5 & Lot Area > 20983.0
+73,Bsmt Qual <= 0.5 & Mas Vnr Area <= 722.0
+74,Gr Liv Area > 1752.5
+75,Overall Qual > 8.5 & Overall Qual > 6.5 & Screen Porch > 163.0
+76,Gr Liv Area > 1617.5
+77,Gr Liv Area > 1492.5 & Garage Type <= 3.5 & Overall Qual <= 7.5
+78,Bsmt Qual > 0.5 & Overall Qual > 5.5
+79,Gr Liv Area > 1482.5
+80,Lot Area > 11770.0 & Overall Qual > 7.5
+81,Overall Qual <= 8.5 & Overall Qual <= 6.5
+82,Overall Qual <= 8.5 & Overall Qual > 6.5 & Gr Liv Area <= 1822.0
+83,Gr Liv Area <= 1312.0 & Total Bsmt SF <= 1621.0
+84,BsmtFin SF 1 > 1091.5 & Total Bsmt SF > 2056.0
+85,Gr Liv Area <= 1850.0
+86,Overall Qual <= 6.5 & Garage Type > 3.5
+87,Gr Liv Area > 2045.0 & Overall Qual > 6.5 & Garage Cars > 2.5
+88,BsmtFin SF 1 > 1212.5
+89,Overall Qual > 8.5 & Overall Qual > 6.5
+90,Year Built <= 1985.5 & Lot Area <= 13700.5
+91,Gr Liv Area <= 2311.5
+92,Gr Liv Area > 1420.5 & BsmtFin SF 1 > 598.0 & Overall Qual > 5.5 & Overall Qual <= 7.5
+93,1st Flr SF <= 1969.0 & Overall Qual > 7.5
+94,Year Built > 1983.5 & Total Bsmt SF <= 1397.0
+95,Gr Liv Area <= 1664.5 & Year Built > 1975.5 & Garage Area <= 658.0
+96,Total Bsmt SF <= 1282.0 & Garage Type <= 3.5
+97,Total Bsmt SF > 1392.5
+98,Overall Qual <= 6.5 & Gr Liv Area <= 1093.0
+99,Total Bsmt SF <= 2498.0 & 1st Flr SF > 1704.0 & Overall Qual > 7.5 & Garage Area <= 719.5
+100,Bsmt Qual > 0.5
+101,Year Built > 1976.5 & Gr Liv Area <= 1930.0
+102,Gr Liv Area <= 2045.0 & Total Bsmt SF <= 1723.5 & Overall Qual > 6.5
+103,Year Built <= 2004.5 & Overall Qual > 6.5 & Gr Liv Area > 1940.0
+104,Overall Qual <= 8.5 & Gr Liv Area > 1748.0 & Year Built > 1987.5
+105,Overall Qual <= 8.5
+106,Overall Qual <= 8.5 & Overall Qual > 6.5 & Gr Liv Area > 1963.0
+107,Gr Liv Area <= 2231.5
+108,Kitchen Qual <= 1.0 & Gr Liv Area > 1778.0
+109,Gr Liv Area <= 2244.5
+110,Total Bsmt SF > 1424.0
+111,Garage Cars <= 2.5 & Overall Qual > 6.5
+112,Gr Liv Area > 1709.5 & PID > 533240064.0
+113,1st Flr SF <= 2277.5 & Overall Qual <= 6.5
+114,Bsmt Qual > 0.5 & 2nd Flr SF <= 1700.0 & Overall Qual > 6.5
+115,Kitchen Qual > 0.5 & Gr Liv Area <= 1304.0
+116,Garage Area > 1261.5 & House Style > 4.5 & Gr Liv Area > 1973.0 & Garage Area > 658.0
+117,Gr Liv Area <= 2223.0 & Total Bsmt SF > 1397.0
+118,BsmtFin SF 1 <= 598.0 & Gr Liv Area > 1420.5 & 2nd Flr SF > 1054.5 & Overall Qual > 5.5 & Overall Qual <= 7.5
+119,Overall Qual <= 6.5 & Fireplaces > 0.5
+120,Full Bath > 1.5 & Open Porch SF > 22.5 & Overall Qual <= 7.5
+121,Overall Qual <= 8.5 & Overall Qual > 7.5
+122,Garage Cars > 2.5
+123,Overall Qual <= 8.5 & Year Built <= 1987.5 & Fireplaces <= 0.5
+124,Gr Liv Area > 1492.0 & Total Bsmt SF > 1198.5
+125,Year Built <= 1988.5
+126,Gr Liv Area > 1993.0 & Lot Area > 13110.0
+127,Screen Porch <= 165.0 & Overall Qual > 7.5
+128,1st Flr SF <= 2242.5 & Overall Qual > 8.5 & Overall Qual > 7.5
+129,Gr Liv Area > 1312.0 & Total Bsmt SF <= 1621.0 & Year Remod/Add <= 1983.5
+130,Overall Qual > 5.5 & Overall Qual <= 7.5
+131,Fireplaces > 0.5
+132,Gr Liv Area > 1642.5 & Garage Cars <= 2.5
+133,Total Bsmt SF > 1226.5 & Bsmt Qual > 0.5
+134,Garage Type <= 3.5 & Overall Qual <= 7.5 & Gr Liv Area > 2018.5
+135,1st Flr SF <= 1704.0 & Heating QC > 3.0 & Overall Qual > 7.5
+136,Gr Liv Area <= 1742.5
+137,Gr Liv Area <= 1807.0
+138,Bsmt Qual <= 0.5 & Gr Liv Area > 2612.5
+139,Overall Qual <= 8.5 & Garage Cars <= 1.5
+140,Total Bsmt SF <= 1272.5 & Gr Liv Area <= 1709.5
+141,Gr Liv Area <= 1969.5 & Total Bsmt SF > 1469.5 & Overall Qual > 6.5
+142,Year Built > 1985.0 & Gr Liv Area <= 2303.0
+143,Gr Liv Area > 1658.0 & Year Remod/Add <= 1992.5
+144,Gr Liv Area > 2228.5 & 2nd Flr SF <= 1501.5 & Lot Area <= 29423.0 & BsmtFin SF 1 > 955.0
+145,Gr Liv Area <= 1408.0 & Garage Type <= 4.5 & Overall Qual <= 6.5
+146,1st Flr SF <= 1286.5
+147,1st Flr SF > 1465.5
+148,Overall Qual <= 8.5 & Overall Qual > 6.5 & Gr Liv Area > 1822.0
+149,Gr Liv Area <= 1491.5
+150,Gr Liv Area <= 2215.5
+151,Total Bsmt SF > 1621.0 & BsmtFin SF 1 <= 1912.0
+152,Year Built <= 1985.5 & Lot Area > 13700.5
+153,Bsmt Qual > 0.5 & Gr Liv Area > 1922.0
+154,PID <= 528430112.0 & Overall Qual > 7.5
+155,Gr Liv Area > 2303.0
+156,Overall Qual <= 7.5
+157,Gr Liv Area > 1961.5
+158,2nd Flr SF <= 706.0 & Total Bsmt SF <= 1259.0
+159,Gr Liv Area <= 1795.0 & Overall Qual > 6.5
+160,Gr Liv Area <= 2854.0 & Garage Cars > 2.5
+161,Overall Qual > 6.5
+162,Gr Liv Area <= 1949.5 & Year Built <= 1976.5
+163,Total Bsmt SF > 1226.5 & Bsmt Qual <= 0.5 & Lot Frontage > 122.5
+164,Lot Area <= 26902.0 & BsmtFin SF 1 <= 735.5 & Overall Qual > 7.5
+165,Gr Liv Area <= 1951.0
+166,Open Porch SF <= 306.5 & Overall Qual > 5.5 & Kitchen Qual <= 0.5
+167,Gr Liv Area <= 2045.0 & Total Bsmt SF > 1723.5 & Overall Qual > 6.5
+168,Gr Liv Area > 1642.5 & Screen Porch <= 198.0 & Garage Cars > 2.5
+169,Overall Qual > 8.5 & Lot Frontage <= 103.0
+170,Kitchen Qual > 1.0 & Gr Liv Area > 1778.0
+171,1st Flr SF > 1817.5
+172,Gr Liv Area > 1491.5 & Gr Liv Area > 2215.5 & Bsmt Half Bath <= 0.5 & BsmtFin SF 1 > 789.5
+173,Gr Liv Area <= 1993.0 & Year Built > 1973.5
+174,Gr Liv Area > 1930.0
+175,Gr Liv Area > 1362.5 & Overall Qual <= 7.5
+176,Bsmt Qual > 0.5 & Overall Qual <= 5.5
+177,Gr Liv Area <= 1492.5 & Garage Type <= 3.5 & Overall Qual <= 7.5
+178,House Style > 4.5 & Gr Liv Area > 1973.0 & Garage Area <= 1261.5 & Garage Area > 658.0
+179,Year Built > 1985.5 & Gr Liv Area <= 2017.0
+180,1st Flr SF <= 1743.0 & Overall Qual > 6.5
+181,2nd Flr SF <= 1501.5 & BsmtFin SF 1 > 955.0 & Gr Liv Area <= 2228.5
+182,Gr Liv Area > 1524.0
+183,Lot Area <= 11770.0 & Overall Qual > 7.5
+184,Total Bsmt SF > 1282.0 & Gr Liv Area > 1999.0
+185,1st Flr SF > 1685.5 & Overall Qual > 7.5 & Full Bath <= 2.5
+186,Overall Qual <= 4.5 & Overall Qual <= 6.5
+187,Overall Qual <= 8.5 & Year Built <= 1987.5 & Fireplaces > 0.5
+188,Year Built <= 1973.5 & Overall Qual <= 7.5
+189,Gr Liv Area > 2311.5
+190,Bsmt Qual > 0.5 & Gr Liv Area > 1482.5
+191,Gr Liv Area <= 1312.0 & Overall Qual <= 7.5
+192,Total Bsmt SF <= 1392.5
+193,Gr Liv Area > 1969.5 & Overall Qual > 6.5 & Overall Qual > 7.5
+194,Garage Cars <= 1.5 & Overall Qual <= 7.5
+195,Year Built <= 1984.5
+196,Year Built > 1978.5
+197,BsmtFin SF 1 <= 1212.5
+198,Gr Liv Area > 1850.0
+199,Year Built <= 1975.5 & Fireplaces <= 1.5 & Garage Area <= 658.0
+200,Bsmt Qual <= 0.5 & Gr Liv Area <= 2612.5
+201,Total Bsmt SF > 1259.0
+202,Overall Qual <= 8.5 & BsmtFin SF 1 <= 762.0 & Overall Qual > 6.5
+203,Garage Type > 4.5 & Overall Qual <= 6.5
+204,Gr Liv Area > 2808.5 & Overall Qual > 7.5
+205,Gr Liv Area <= 1867.5
+206,Year Built > 1975.5 & Gr Liv Area > 1664.5 & Garage Area <= 658.0
+207,Year Built <= 1982.5
+208,Total Bsmt SF <= 1282.0 & Garage Type > 3.5
+209,Overall Qual <= 8.5 & Year Built > 1987.5 & Gr Liv Area <= 1748.0
+210,2nd Flr SF > 774.5 & Total Bsmt SF <= 1226.5
+211,Gr Liv Area > 2215.5
+212,Total Bsmt SF > 2529.5 & Total Bsmt SF > 1448.5
+213,Open Porch SF <= 22.5 & Full Bath > 1.5 & Overall Qual <= 7.5
+214,Gr Liv Area <= 1973.0 & Fireplaces <= 0.5 & Garage Area > 658.0
+215,Total Bsmt SF > 1621.0 & BsmtFin SF 1 > 1912.0
+216,2nd Flr SF <= 1078.0 & 1st Flr SF <= 1685.5 & Overall Qual > 7.5
+217,Year Built <= 1980.5 & Gr Liv Area <= 1961.5
+218,BsmtFin SF 1 > 1312.0 & Overall Qual > 7.5
+219,Overall Qual > 8.5 & Overall Qual > 6.5 & Screen Porch <= 163.0
+220,2nd Flr SF > 706.0 & Total Bsmt SF <= 1259.0
+221,Gr Liv Area <= 1617.5
+222,Gr Liv Area > 1920.0 & Overall Qual > 6.5
+223,Gr Liv Area <= 1482.5
+224,Lot Area <= 26902.0 & BsmtFin SF 1 > 735.5 & Overall Qual > 7.5
+225,Gr Liv Area > 1930.0 & Gr Liv Area > 1312.0 & Overall Qual <= 7.5
+226,Overall Qual <= 5.5 & Overall Qual <= 7.5
+227,Gr Liv Area > 1949.0 & Bsmt Qual > 0.5 & Overall Qual > 5.5
+228,Gr Liv Area > 1951.0
+229,Gr Liv Area > 2045.0 & Garage Cars <= 2.5 & Overall Qual > 6.5
+230,1st Flr SF <= 1619.0 & Overall Qual > 6.5
+231,Total Bsmt SF > 1843.0 & Garage Cars > 2.5
+232,Kitchen Qual > 0.5 & Overall Qual > 5.5
+233,Gr Liv Area > 1491.5 & Gr Liv Area > 2215.5 & Bsmt Half Bath > 0.5 & BsmtFin SF 1 > 789.5
+234,Overall Qual <= 8.5 & Garage Cars > 2.5
+235,Total Bsmt SF <= 1397.0 & Year Built <= 1983.5
+236,Overall Qual > 6.5 & 2nd Flr SF > 1700.0
+237,1st Flr SF > 2277.5
+238,Year Remod/Add > 1983.5 & Gr Liv Area > 1312.0 & Total Bsmt SF <= 1621.0
+239,Bsmt Qual <= 0.5
+240,Overall Qual <= 5.5 & Total Bsmt SF <= 695.5 & Overall Qual <= 7.5
+241,Year Built <= 1976.5 & Gr Liv Area <= 1930.0
+242,1st Flr SF <= 1465.5
+243,1st Flr SF > 1718.5 & Overall Qual > 6.5
+244,Total Bsmt SF > 1914.5 & Overall Qual > 6.5
+245,Overall Qual > 8.5
+246,1st Flr SF > 1685.5 & Full Bath > 2.5 & Overall Qual > 7.5
+247,Overall Qual <= 6.5 & Garage Cars <= 2.5
+248,Gr Liv Area > 2029.0 & Exter Qual <= 0.5
+249,Overall Qual <= 8.5 & Garage Cars > 1.5
+250,BsmtFin SF 1 > 1089.0 & BsmtFin SF 1 > 2030.5
+251,Overall Qual > 4.5 & Overall Qual <= 6.5
+252,Gr Liv Area > 3048.0 & Garage Cars > 2.5
+253,Gr Liv Area > 1709.5 & PID <= 533240064.0
+254,Total Bsmt SF <= 1195.0 & Gr Liv Area <= 1778.0
+255,Kitchen Qual > 0.5
+256,1st Flr SF <= 1704.0 & Heating QC <= 3.0 & Overall Qual > 7.5 & 2nd Flr SF > 1331.0
+257,Bsmt Qual <= 0.5 & 2nd Flr SF <= 1700.0 & Overall Qual > 6.5
+258,Gr Liv Area <= 1752.5
+259,1st Flr SF <= 1153.0 & Gr Liv Area <= 1492.0
+260,Overall Qual <= 7.5 & Garage Type > 3.5
+261,Overall Qual <= 8.5 & BsmtFin SF 1 > 762.0 & Overall Qual > 6.5
+262,Garage Cars <= 2.5
+263,Gr Liv Area > 1795.0 & Overall Qual > 6.5
+264,Gr Liv Area > 1867.5
+265,Overall Qual <= 8.5 & Overall Qual > 6.5
+266,Lot Area <= 13110.0 & Gr Liv Area > 1993.0
+267,Garage Cars > 2.5 & Gr Liv Area > 2854.0
+268,1st Flr SF <= 2397.0 & Garage Cars > 2.5
+269,Gr Liv Area > 1973.0 & House Style <= 4.5 & Garage Area > 658.0
+270,BsmtFin SF 1 <= 1091.5 & Gr Liv Area > 1198.0
+271,Open Porch SF > 306.5 & Overall Qual > 5.5 & Kitchen Qual <= 0.5
+272,Overall Qual <= 7.5 & Full Bath <= 1.5
+273,Year Built <= 1985.5
+274,Gr Liv Area > 1491.5 & Gr Liv Area <= 2215.5 & BsmtFin SF 1 > 789.5
+275,Gr Liv Area <= 1420.5 & Overall Qual > 5.5 & Overall Qual <= 7.5
+276,Gr Liv Area <= 1973.0 & Fireplaces > 0.5 & Garage Area > 658.0
+277,Overall Qual > 6.5 & Garage Area <= 636.0
+278,Gr Liv Area > 1093.0 & Overall Qual <= 6.5
+279,Year Built > 1980.5 & Gr Liv Area <= 1961.5
+280,2nd Flr SF > 1078.0 & 1st Flr SF <= 1685.5 & Overall Qual > 7.5
+281,Garage Type <= 3.5 & Overall Qual <= 7.5 & Gr Liv Area <= 2018.5
+282,Overall Qual > 8.5 & PID > 528392608.0
+283,Year Built > 2004.5 & Overall Qual > 6.5 & Gr Liv Area > 1940.0
+284,Gr Liv Area <= 1969.5 & Total Bsmt SF <= 1469.5 & Overall Qual > 6.5
+285,Gr Liv Area > 2231.5
+286,Overall Qual > 8.5 & Lot Area <= 20983.0
+287,2nd Flr SF > 1791.5 & Overall Qual > 7.5
+288,Total Bsmt SF <= 1448.5
+289,Overall Qual > 6.5 & Garage Cars > 2.5
+290,BsmtFin SF 1 > 1007.0 & Year Built > 1986.5 & Gr Liv Area <= 2029.0
+291,Gr Liv Area > 2228.5 & 2nd Flr SF <= 1501.5 & BsmtFin SF 1 > 955.0 & Lot Area > 29423.0
+292,Bsmt Qual > 0.5 & Gr Liv Area <= 1922.0
+293,1st Flr SF <= 2277.5 & Overall Qual > 6.5
+294,Year Built > 1973.5 & Overall Qual <= 7.5
+295,Overall Qual > 5.5
+296,Garage Cars > 1.5 & Overall Qual <= 7.5
+297,Overall Qual <= 6.5
+298,Overall Qual <= 6.5 & Garage Type <= 3.5
+299,BsmtFin SF 1 > 1091.5 & Total Bsmt SF <= 2056.0
+300,Bsmt Qual <= 0.5 & Mas Vnr Area > 722.0
+301,Year Built <= 1975.5 & Garage Area <= 658.0 & Fireplaces > 1.5
+302,Total Bsmt SF <= 2529.5 & Total Bsmt SF > 1448.5
+303,Kitchen Qual <= 0.5
+304,Gr Liv Area <= 1658.0
+305,Overall Qual > 7.5 & Screen Porch > 165.0
+306,Gr Liv Area > 2055.0 & BsmtFin SF 1 <= 955.0 & Garage Type <= 3.5
+307,Gr Liv Area <= 1940.0 & Overall Qual > 6.5
+308,Total Bsmt SF <= 2498.0 & 1st Flr SF > 1704.0 & Overall Qual > 7.5 & Garage Area > 719.5
+309,Gr Liv Area <= 1920.0 & Overall Qual > 6.5
+310,2nd Flr SF > 1501.5 & BsmtFin SF 1 > 955.0
