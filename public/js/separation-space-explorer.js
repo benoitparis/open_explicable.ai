@@ -5,7 +5,7 @@ if (WEBGL.isWebGLAvailable() === false) {
 
 // Globals
 var renderer, scene, camera, stats;
-var PARTICLE_SIZE = 1.5;
+const PARTICLE_SIZE = 1.5;
 var raycaster, intersects;
 var mouse, INTERSECTED;
 var lastMouseMoveDate = Date.now() - 5000;

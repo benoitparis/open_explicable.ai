@@ -6,15 +6,6 @@
     <meta name="author" content="Benoît Paris">
     <meta name="description" content="Explicable Machine Learning">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
-    <!--
-      Notice the use of %PUBLIC_URL% in the tags above.
-      It will be replaced with the URL of the `public` folder during the build.
-      Only files inside the `public` folder can be referenced from the HTML.
-
-      Unlike "/favicon.ico" or "favicon.ico", "%PUBLIC_URL%/favicon.ico" will
-      work correctly both with client-side routing and a non-root public URL.
-      Learn how to configure a non-root public URL by running `npm run build`.
-    -->
     <title>Explicable.AI</title>
 
     <link href="http://fonts.googleapis.com/css?family=Didact+Gothic" rel="stylesheet" />
@@ -26,147 +17,52 @@
       window.dataLayer = window.dataLayer || [];
       function gtag(){dataLayer.push(arguments);}
       gtag('js', new Date());
-
       gtag('config', 'UA-141392395-1');
     </script>
-
 
   </head>
   <body>
 
   <div id="header-wrapper">
     <div id="header" class="container">
-      <div id="logo" style="position:initial;"/>
-      <img src="img/logo.png"/>
-      <h1><a href="#">Explicable.AI</a></h1>
+      <div id="logo" style="position:initial;">
+        <img src="img/logo.png" alt="Explicable.AI logo"/>
+        <h1><a href="#">Explicable.AI</a></h1>
+      </div>
     </div>
-    <img src="img/thumbnail.png" style="display: none"/>
-    <div id="menu">
+    <img src="img/thumbnail.png" alt="" style="display: none"/>
+    <div id="menu" style="z-index: 1">
       <ul>
         <li class="active"><a href="#" accesskey="1" title="">Home</a></li>
         <li><a href="#services" accesskey="2" title="">Services</a></li>
         <li><a href="#copyright" accesskey="4" title="">Contact Us</a></li>
       </ul>
     </div>
+
+    <div id="banner" class="container" style="z-index: 1">
+      <div class="title">
+        <h2>Welcome to your data</h2>
+        <span class="byline">Rediscover it. Explore its topology. Find subtle yet invaluable signals.</span>
+      </div>
+    </div>
+
+    <div id="scroll-arrow">
+      <a href="#services">
+        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898.75 533.751" fill="#fff">
+            <path d="M224.687 309.061L0 84.372l42.186-42.186L84.372 0l182.815 182.811L450 365.622l182.5-182.496L815 .63l41.874 41.874L898.75 84.38 674.062 309.065 449.373 533.751 224.687 309.06z"></path>
+          </svg>
+        </svg>
+      </a>
+    </div>
+
   </div>
 
   <div id="eml-container">
   </div>
 
-  <div id="banner" class="container">
-    <div class="title">
-      <h2>Welcome to your data</h2>
-      <span class="byline">Rediscover it. Explore its topology. Find subtle yet invaluable signals.</span>
-    </div>
-  </div>
-
-  <div id="scroll-arrow">
-    <a href="#services">
-      <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="60" height="60">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898.75 533.751"
-             transform="matrix(.69 0 0 .69 15.5 15.5)" fill="#fff">
-          <path d="M224.687 309.061L0 84.372l42.186-42.186L84.372 0l182.815 182.811L450 365.622l182.5-182.496L815 .63l41.874 41.874L898.75 84.38 674.062 309.065 449.373 533.751 224.687 309.06z"></path>
-        </svg>
-      </svg>
-    </a>
-  </div>
-  </div>
-  <div id="wrapper">
-
-    <div id="services">
-      <div id="three-column" class="container">
-
-        <div class="title">
-          <h2>Services</h2>
-          <span class="byline"></span>
-        </div>
-
-        <div class="boxA">
-          <p>We use algorithms that win competitions, we just open them and present how they take their
-            decisions.</p>
-          <a href="#" class="button button-alt">Performant</a>
-        </div>
-
-        <div class="boxB">
-          <p>Know exactly how your models work. Establish compliance easily</p>
-          <a href="#" class="button button-alt">Transparent</a>
-        </div>
-
-        <div class="boxC">
-          <p>Gain deep insights about the topology of your clients, at an intuitive glance</p>
-          <a href="#" class="button button-alt">Visual</a>
-        </div>
-
-        <div class="boxA">
-          <p>Fully fledged data management, Extract-Transform-Load &amp; Machine Learning environment working
-            together</p>
-          <a href="#" class="button button-alt">Agile</a>
-        </div>
-
-        <div class="boxB">
-          <p>Follow the driving signals in the data as a management principle, concentrate only on data that has
-            value</p>
-          <a href="#" class="button button-alt">Smart</a>
-        </div>
-
-        <div class="boxC">
-          <p>Join open datasets with your data, and enable further insights and performance</p>
-          <a href="#" class="button button-alt">Enriched</a>
-        </div>
 
 
-      </div>
-    </div>
-
-
-  </div>
-  <div id="welcome">
-
-    <div id="welcome" class="container">
-
-      <div class="title">
-        <h2>Explicable Machine Learning</h2>
-        <span class="byline">Explore the hidden signals in your data</span>
-      </div>
-      <p>Gain invaluable insights from your existing databases that you would have otherwise missed with regular
-        machine learning. Use state-of-the-art predictive algorithms that we make open and inspectable to you.
-        Discover implicit structures and how they relate to events like customers buying your product.</p>
-      <div id="contact-box" style="width: 50%;">
-
-        <form class="gform" method="POST" data-email="example@email.net"
-              action="https://qss6f2ya7wp4lnz47cdf32wutq0rwser.lambda-url.eu-west-1.on.aws">
-
-          <ul class="actions">
-            <li>Let's talk about how we can help you</li>
-            <li style="display: flex"><input type="text" name="name" placeholder="Name (required)"
-                                             style="width: 100%;font-family: 'Didact Gothic', sans-serif;"></li>
-            <li style="display: flex"><input type="text" name="email" placeholder="Email (required)"
-                                             style="width: 100%;font-family: 'Didact Gothic', sans-serif;"></li>
-            <span class="email-invalid" style="display:none">Must be a valid email address</span>
-            <li style="display: flex"><textarea type="text" name="message"
-                                                placeholder="Message / Business sector / Interest"
-                                                style="width: 100%;font-family: 'Didact Gothic', sans-serif;"></textarea>
-            </li>
-            <li>
-              <button class="button" style="font-family: 'Didact Gothic', sans-serif;">Contact Us</button>
-            </li>
-            <li><span class="thankyou_message" style="display:none">
-<em>Thanks</em> for contacting us! <br>
-We will get back to you soon!</span>
-            </li>
-          </ul>
-        </form>
-      </div>
-
-    </div>
-
-
-  </div>
-
-
-  <div id="copyright" class="container">
-    <p>2017-2022 © <a href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved</p>
-  </div>
 
 
   <script src="js/three.js"></script>
@@ -310,11 +206,6 @@ We will get back to you soon!</span>
 
   </script>
 
-
-
-
-
-  <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
   </body>
 </html>
