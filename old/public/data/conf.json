@@ -1,0 +1,475 @@
+{
+    "binary-participations": "binary-participations.csv",
+    "data-prediction-embedding-cluster": "data-prediction-embedding-cluster.csv",
+    "datapoint_number": 2930,
+    "features": [
+        "Order",
+        "PID",
+        "MS SubClass",
+        "MS Zoning",
+        "Lot Frontage",
+        "Lot Area",
+        "Street",
+        "Alley",
+        "Lot Shape",
+        "Land Contour",
+        "Utilities",
+        "Lot Config",
+        "Land Slope",
+        "Neighborhood",
+        "Condition 1",
+        "Condition 2",
+        "Bldg Type",
+        "House Style",
+        "Overall Qual",
+        "Overall Cond",
+        "Year Built",
+        "Year Remod/Add",
+        "Roof Style",
+        "Roof Matl",
+        "Exterior 1st",
+        "Exterior 2nd",
+        "Mas Vnr Type",
+        "Mas Vnr Area",
+        "Exter Qual",
+        "Exter Cond",
+        "Foundation",
+        "Bsmt Qual",
+        "Bsmt Cond",
+        "Bsmt Exposure",
+        "BsmtFin Type 1",
+        "BsmtFin SF 1",
+        "BsmtFin Type 2",
+        "BsmtFin SF 2",
+        "Bsmt Unf SF",
+        "Total Bsmt SF",
+        "Heating",
+        "Heating QC",
+        "Central Air",
+        "Electrical",
+        "1st Flr SF",
+        "2nd Flr SF",
+        "Low Qual Fin SF",
+        "Gr Liv Area",
+        "Bsmt Full Bath",
+        "Bsmt Half Bath",
+        "Full Bath",
+        "Half Bath",
+        "Bedroom AbvGr",
+        "Kitchen AbvGr",
+        "Kitchen Qual",
+        "TotRms AbvGrd",
+        "Functional",
+        "Fireplaces",
+        "Fireplace Qu",
+        "Garage Type",
+        "Garage Yr Blt",
+        "Garage Finish",
+        "Garage Cars",
+        "Garage Area",
+        "Garage Qual",
+        "Garage Cond",
+        "Paved Drive",
+        "Wood Deck SF",
+        "Open Porch SF",
+        "Enclosed Porch",
+        "3Ssn Porch",
+        "Screen Porch",
+        "Pool Area",
+        "Pool QC",
+        "Fence",
+        "Misc Feature",
+        "Misc Val",
+        "Mo Sold",
+        "Yr Sold",
+        "Sale Type",
+        "Sale Condition"
+    ],
+    "label_mapping": {
+        "Alley": {
+            "Grvl": 0,
+            "NA": 1,
+            "Pave": 2
+        },
+        "Bldg Type": {
+            "1Fam": 0,
+            "2fmCon": 1,
+            "Duplex": 2,
+            "Twnhs": 3,
+            "TwnhsE": 4
+        },
+        "Bsmt Cond": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "NA": 3,
+            "Po": 4,
+            "TA": 5,
+            "nan": 6
+        },
+        "Bsmt Exposure": {
+            "Av": 0,
+            "Gd": 1,
+            "Mn": 2,
+            "NA": 3,
+            "No": 4,
+            "nan": 5
+        },
+        "Bsmt Qual": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "NA": 3,
+            "Po": 4,
+            "TA": 5,
+            "nan": 6
+        },
+        "BsmtFin Type 1": {
+            "ALQ": 0,
+            "BLQ": 1,
+            "GLQ": 2,
+            "LwQ": 3,
+            "NA": 4,
+            "Rec": 5,
+            "Unf": 6,
+            "nan": 7
+        },
+        "BsmtFin Type 2": {
+            "ALQ": 0,
+            "BLQ": 1,
+            "GLQ": 2,
+            "LwQ": 3,
+            "NA": 4,
+            "Rec": 5,
+            "Unf": 6,
+            "nan": 7
+        },
+        "Central Air": {
+            "N": 0,
+            "Y": 1
+        },
+        "Condition 1": {
+            "Artery": 0,
+            "Feedr": 1,
+            "Norm": 2,
+            "PosA": 3,
+            "PosN": 4,
+            "RRAe": 5,
+            "RRAn": 6,
+            "RRNe": 7,
+            "RRNn": 8
+        },
+        "Condition 2": {
+            "Artery": 0,
+            "Feedr": 1,
+            "Norm": 2,
+            "PosA": 3,
+            "PosN": 4,
+            "RRAe": 5,
+            "RRAn": 6,
+            "RRNn": 7
+        },
+        "Electrical": {
+            "FuseA": 0,
+            "FuseF": 1,
+            "FuseP": 2,
+            "Mix": 3,
+            "SBrkr": 4,
+            "nan": 5
+        },
+        "Exter Cond": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "Po": 3,
+            "TA": 4
+        },
+        "Exter Qual": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "TA": 3
+        },
+        "Exterior 1st": {
+            "AsbShng": 0,
+            "AsphShn": 1,
+            "BrkComm": 2,
+            "BrkFace": 3,
+            "CBlock": 4,
+            "CemntBd": 5,
+            "HdBoard": 6,
+            "ImStucc": 7,
+            "MetalSd": 8,
+            "Plywood": 9,
+            "PreCast": 10,
+            "Stone": 11,
+            "Stucco": 12,
+            "VinylSd": 13,
+            "Wd Sdng": 14,
+            "WdShing": 15
+        },
+        "Exterior 2nd": {
+            "AsbShng": 0,
+            "AsphShn": 1,
+            "Brk Cmn": 2,
+            "BrkFace": 3,
+            "CBlock": 4,
+            "CmentBd": 5,
+            "HdBoard": 6,
+            "ImStucc": 7,
+            "MetalSd": 8,
+            "Other": 9,
+            "Plywood": 10,
+            "PreCast": 11,
+            "Stone": 12,
+            "Stucco": 13,
+            "VinylSd": 14,
+            "Wd Sdng": 15,
+            "Wd Shng": 16
+        },
+        "Fence": {
+            "GdPrv": 0,
+            "GdWo": 1,
+            "MnPrv": 2,
+            "MnWw": 3,
+            "NA": 4
+        },
+        "Fireplace Qu": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "NA": 3,
+            "Po": 4,
+            "TA": 5
+        },
+        "Foundation": {
+            "BrkTil": 0,
+            "CBlock": 1,
+            "PConc": 2,
+            "Slab": 3,
+            "Stone": 4,
+            "Wood": 5
+        },
+        "Functional": {
+            "Maj1": 0,
+            "Maj2": 1,
+            "Min1": 2,
+            "Min2": 3,
+            "Mod": 4,
+            "Sal": 5,
+            "Sev": 6,
+            "Typ": 7
+        },
+        "Garage Cond": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "NA": 3,
+            "Po": 4,
+            "TA": 5,
+            "nan": 6
+        },
+        "Garage Finish": {
+            "Fin": 0,
+            "NA": 1,
+            "RFn": 2,
+            "Unf": 3,
+            "nan": 4
+        },
+        "Garage Qual": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "NA": 3,
+            "Po": 4,
+            "TA": 5,
+            "nan": 6
+        },
+        "Garage Type": {
+            "2Types": 0,
+            "Attchd": 1,
+            "Basment": 2,
+            "BuiltIn": 3,
+            "CarPort": 4,
+            "Detchd": 5,
+            "NA": 6
+        },
+        "Heating": {
+            "Floor": 0,
+            "GasA": 1,
+            "GasW": 2,
+            "Grav": 3,
+            "OthW": 4,
+            "Wall": 5
+        },
+        "Heating QC": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "Po": 3,
+            "TA": 4
+        },
+        "House Style": {
+            "1.5Fin": 0,
+            "1.5Unf": 1,
+            "1Story": 2,
+            "2.5Fin": 3,
+            "2.5Unf": 4,
+            "2Story": 5,
+            "SFoyer": 6,
+            "SLvl": 7
+        },
+        "Kitchen Qual": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "Po": 3,
+            "TA": 4
+        },
+        "Land Contour": {
+            "Bnk": 0,
+            "HLS": 1,
+            "Low": 2,
+            "Lvl": 3
+        },
+        "Land Slope": {
+            "Gtl": 0,
+            "Mod": 1,
+            "Sev": 2
+        },
+        "Lot Config": {
+            "Corner": 0,
+            "CulDSac": 1,
+            "FR2": 2,
+            "FR3": 3,
+            "Inside": 4
+        },
+        "Lot Shape": {
+            "IR1": 0,
+            "IR2": 1,
+            "IR3": 2,
+            "Reg": 3
+        },
+        "MS Zoning": {
+            "A (agr)": 0,
+            "C (all)": 1,
+            "FV": 2,
+            "I (all)": 3,
+            "RH": 4,
+            "RL": 5,
+            "RM": 6
+        },
+        "Mas Vnr Type": {
+            "BrkCmn": 0,
+            "BrkFace": 1,
+            "CBlock": 2,
+            "None": 3,
+            "Stone": 4,
+            "nan": 5
+        },
+        "Misc Feature": {
+            "Elev": 0,
+            "Gar2": 1,
+            "NA": 2,
+            "Othr": 3,
+            "Shed": 4,
+            "TenC": 5
+        },
+        "Neighborhood": {
+            "Blmngtn": 0,
+            "Blueste": 1,
+            "BrDale": 2,
+            "BrkSide": 3,
+            "ClearCr": 4,
+            "CollgCr": 5,
+            "Crawfor": 6,
+            "Edwards": 7,
+            "Gilbert": 8,
+            "Greens": 9,
+            "GrnHill": 10,
+            "IDOTRR": 11,
+            "Landmrk": 12,
+            "MeadowV": 13,
+            "Mitchel": 14,
+            "NAmes": 15,
+            "NPkVill": 16,
+            "NWAmes": 17,
+            "NoRidge": 18,
+            "NridgHt": 19,
+            "OldTown": 20,
+            "SWISU": 21,
+            "Sawyer": 22,
+            "SawyerW": 23,
+            "Somerst": 24,
+            "StoneBr": 25,
+            "Timber": 26,
+            "Veenker": 27
+        },
+        "Paved Drive": {
+            "N": 0,
+            "P": 1,
+            "Y": 2
+        },
+        "Pool QC": {
+            "Ex": 0,
+            "Fa": 1,
+            "Gd": 2,
+            "NA": 3,
+            "TA": 4
+        },
+        "Roof Matl": {
+            "ClyTile": 0,
+            "CompShg": 1,
+            "Membran": 2,
+            "Metal": 3,
+            "Roll": 4,
+            "Tar&Grv": 5,
+            "WdShake": 6,
+            "WdShngl": 7
+        },
+        "Roof Style": {
+            "Flat": 0,
+            "Gable": 1,
+            "Gambrel": 2,
+            "Hip": 3,
+            "Mansard": 4,
+            "Shed": 5
+        },
+        "Sale Condition": {
+            "Abnorml": 0,
+            "AdjLand": 1,
+            "Alloca": 2,
+            "Family": 3,
+            "Normal": 4,
+            "Partial": 5
+        },
+        "Sale Type": {
+            "COD": 0,
+            "CWD": 1,
+            "Con": 2,
+            "ConLD": 3,
+            "ConLI": 4,
+            "ConLw": 5,
+            "New": 6,
+            "Oth": 7,
+            "VWD": 8,
+            "WD ": 9
+        },
+        "Street": {
+            "Grvl": 0,
+            "Pave": 1
+        },
+        "Utilities": {
+            "AllPub": 0,
+            "NoSeWa": 1,
+            "NoSewr": 2
+        }
+    },
+    "mean": 180796.0600682594,
+    "predicted_variables": [
+        "SalePrice"
+    ],
+    "rule-definitions": "rule-definitions.csv",
+    "rule_number": 308,
+    "std": 79886.69235666493
+}
