@@ -11,10 +11,12 @@ const positionsArray = new Float32Array(MAX_POINTS * 3);
 const colorsArray = new Float32Array(MAX_POINTS * 3);
 const sizesArray = new Float32Array(MAX_POINTS);
 const hoveredArray = new Float32Array(MAX_POINTS);
+const selectedArray = new Float32Array(MAX_POINTS);
 const positionsAtt = new THREE.BufferAttribute(positionsArray, 3);
 const colorsAtt = new THREE.BufferAttribute(colorsArray, 3);
 const sizesAtt = new THREE.BufferAttribute(sizesArray, 1);
 const hoveredAtt = new THREE.BufferAttribute(hoveredArray, 1);
+const selectedAtt = new THREE.BufferAttribute(selectedArray, 1);
 
 const vertexShader = `
     attribute float size;
@@ -23,10 +25,13 @@ const vertexShader = `
     varying vec3 toFragmentColor;
     attribute float customHovered;
     varying float toFragmentHovered;
+    attribute float customSelected;
+    varying float toFragmentSelected;
     
     void main() {
       toFragmentColor = customColor;
       toFragmentHovered = customHovered;
+      toFragmentSelected = customSelected;
       vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
       gl_PointSize = size * ( 300.0 / -mvPosition.z );
       gl_Position = projectionMatrix * mvPosition;
@@ -37,6 +42,7 @@ const fragmentShader = `
     
     varying vec3 toFragmentColor;
     varying float toFragmentHovered;
+    varying float toFragmentSelected;
     
     const float BORDER_UP = 0.5;
     const float BORDER_LOW = 0.1;
@@ -45,12 +51,21 @@ const fragmentShader = `
     
         float dist = dot((gl_PointCoord - 0.5), (gl_PointCoord - 0.5));
         
-        gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * (1.0 - 2.0 * dist);
+        gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * (1.0 - 10.0 * dist);
         // gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * texture2D(pointTexture, gl_PointCoord);
         if (gl_FragColor.a < BORDER_LOW) 
             discard;
         if (toFragmentHovered == 1.0 && gl_FragColor.a < BORDER_UP) {
-            gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+            float mean = (BORDER_UP + BORDER_LOW) / 2.0;
+            float distanceToMean = 0.05 / abs(gl_FragColor.a - mean);
+            gl_FragColor = vec4(distanceToMean);
+        }
+        if (toFragmentSelected == 1.0 && gl_FragColor.a < BORDER_UP) {
+            float mean = (BORDER_UP + BORDER_LOW) / 2.0;
+            float distanceToMean = 0.05 / abs(gl_FragColor.a - mean);
+            float remainder = mod(((gl_PointCoord.x + gl_PointCoord.y) * 100.0), 10.0);
+            
+            gl_FragColor = vec4(distanceToMean) * remainder;
         }
     }`
 
@@ -203,10 +218,11 @@ function DataPoints(props: ThreeElements['points']) {
     }
 
     const ref = useRef<THREE.Points>(null!);
+    const [rotate, setRotate] = useState(true);
     const [hovered, hover] = useState(false);
     const [clicked, click] = useState(false);
     useFrame((state, delta) => {
-        if (!hovered) {
+        if (rotate) {
             ref.current.rotation.y += 0.001;
         }
     });
@@ -235,6 +251,7 @@ function DataPoints(props: ThreeElements['points']) {
         attributes.size.needsUpdate = true;
         attributes.customColor.needsUpdate = true;
         attributes.customHovered.needsUpdate = true;
+        attributes.customSelected.needsUpdate = true;
     }
     const updateBoundingSphere = () => {
         ref.current.geometry.computeBoundingSphere();
@@ -248,6 +265,8 @@ function DataPoints(props: ThreeElements['points']) {
             acc.distanceToRay < val.distanceToRay? acc : val
         )
         if (closest.index != null) {
+            setRotate(false);
+            selectedArray[closest.index] = selectedArray[closest.index] === 0.0 ? 1.0 : 0.0;
             sizesArray[closest.index] = 10;
         }
         updateAttributes();
@@ -278,7 +297,7 @@ function DataPoints(props: ThreeElements['points']) {
             onClick={onClick}
             onPointerOver={onPointerOver}
             onPointerOut={onPointerOut}>
-            <bufferGeometry attributes={{position:positionsAtt, size:sizesAtt, customColor:colorsAtt, customHovered:hoveredAtt}}/>
+            <bufferGeometry attributes={{position:positionsAtt, size:sizesAtt, customColor:colorsAtt, customHovered:hoveredAtt, customSelected:selectedAtt}}/>
             <shaderMaterial uniforms={materialUniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/>
         </points>
     )
