@@ -23,189 +23,185 @@
   </head>
   <body>
 
-  <div id="header-wrapper">
-    <div id="header" class="container">
-      <div id="logo" style="position:initial;">
-        <img src="img/logo.png" alt="Explicable.AI logo"/>
-        <h1><a href="#">Explicable.AI</a></h1>
-      </div>
-    </div>
-    <img src="img/thumbnail.png" alt="" style="display: none"/>
-    <div id="menu" style="z-index: 1">
-      <ul>
-        <li class="active"><a href="#" accesskey="1" title="">Home</a></li>
-        <li><a href="#services" accesskey="2" title="">Services</a></li>
-        <li><a href="#copyright" accesskey="4" title="">Contact Us</a></li>
-      </ul>
-    </div>
+<!--  <div id="header-wrapper">-->
+<!--    <div id="header" class="container">-->
+<!--      <div id="logo" style="position:initial;">-->
+<!--        <img src="img/logo.png" alt="Explicable.AI logo"/>-->
+<!--        <h1><a href="#">Explicable.AI</a></h1>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--    <img src="img/thumbnail.png" alt="" style="display: none"/>-->
+<!--    <div id="menu" style="z-index: 1">-->
+<!--      <ul>-->
+<!--        <li class="active"><a href="#" accesskey="1" title="">Home</a></li>-->
+<!--        <li><a href="#services" accesskey="2" title="">Services</a></li>-->
+<!--        <li><a href="#copyright" accesskey="4" title="">Contact Us</a></li>-->
+<!--      </ul>-->
+<!--    </div>-->
 
-    <div id="banner" class="container" style="z-index: 1">
-      <div class="title">
-        <h2>Welcome to your data</h2>
-        <span class="byline">Rediscover it. Explore its topology. Find subtle yet invaluable signals.</span>
-      </div>
-    </div>
+<!--    <div id="banner" class="container" style="z-index: 1">-->
+<!--      <div class="title">-->
+<!--        <h2>Welcome to your data</h2>-->
+<!--        <span class="byline">Rediscover it. Explore its topology. Find subtle yet invaluable signals.</span>-->
+<!--      </div>-->
+<!--    </div>-->
 
-    <div id="scroll-arrow">
-      <a href="#services">
-        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60">
-          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898.75 533.751" fill="#fff">
-            <path d="M224.687 309.061L0 84.372l42.186-42.186L84.372 0l182.815 182.811L450 365.622l182.5-182.496L815 .63l41.874 41.874L898.75 84.38 674.062 309.065 449.373 533.751 224.687 309.06z"></path>
-          </svg>
-        </svg>
-      </a>
-    </div>
+<!--    <div id="scroll-arrow">-->
+<!--      <a href="#services">-->
+<!--        <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60">-->
+<!--          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898.75 533.751" fill="#fff">-->
+<!--            <path d="M224.687 309.061L0 84.372l42.186-42.186L84.372 0l182.815 182.811L450 365.622l182.5-182.496L815 .63l41.874 41.874L898.75 84.38 674.062 309.065 449.373 533.751 224.687 309.06z"></path>-->
+<!--          </svg>-->
+<!--        </svg>-->
+<!--      </a>-->
+<!--    </div>-->
 
-  </div>
+<!--  </div>-->
 
-  <div id="eml-container">
-  </div>
+<!--  <div id="eml-container"></div>-->
+<!--  <script src="js/three.js"></script>-->
+<!--  <script src="js/WebGL.js"></script>-->
+<!--  <script src="js/stats.min.js"></script>-->
+<!--  <script src="js/OrbitControls.js"></script>-->
+<!--  <script src="js/FastBitSet.js"></script>-->
+<!--  <script src="js/separation-space-explorer.js"></script>-->
 
+<!--  <script data-cfasync="false">-->
 
+<!--    (function () {-->
+<!--      function validEmail(email) {-->
+<!--        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;-->
+<!--        return re.test(email);-->
+<!--      }-->
 
-
-
-  <script src="js/three.js"></script>
-  <script src="js/WebGL.js"></script>
-  <script src="js/stats.min.js"></script>
-  <script src="js/OrbitControls.js"></script>
-  <script src="js/FastBitSet.js"></script>
-  <script src="js/separation-space-explorer.js"></script>
-
-  <script data-cfasync="false">
-
-    (function () {
-      function validEmail(email) {
-        var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
-        return re.test(email);
-      }
-
-      function validateHuman(honeypot) {
-        if (honeypot) {
-          console.log("Robot Detected!");
-          return true;
-        } else {
-          console.log("Welcome Human!");
-        }
-      }
+<!--      function validateHuman(honeypot) {-->
+<!--        if (honeypot) {-->
+<!--          console.log("Robot Detected!");-->
+<!--          return true;-->
+<!--        } else {-->
+<!--          console.log("Welcome Human!");-->
+<!--        }-->
+<!--      }-->
 
 
-      function getFormData(form) {
-        var elements = form.elements;
+<!--      function getFormData(form) {-->
+<!--        var elements = form.elements;-->
 
-        var fields = Object.keys(elements).filter(function (k) {
-          return (elements[k].name !== "honeypot");
-        }).map(function (k) {
-          if (elements[k].name !== undefined) {
-            return elements[k].name;
+<!--        var fields = Object.keys(elements).filter(function (k) {-->
+<!--          return (elements[k].name !== "honeypot");-->
+<!--        }).map(function (k) {-->
+<!--          if (elements[k].name !== undefined) {-->
+<!--            return elements[k].name;-->
 
-          } else if (elements[k].length > 0) {
-            return elements[k].item(0).name;
-          }
-        }).filter(function (item, pos, self) {
-          return self.indexOf(item) == pos && item;
-        });
+<!--          } else if (elements[k].length > 0) {-->
+<!--            return elements[k].item(0).name;-->
+<!--          }-->
+<!--        }).filter(function (item, pos, self) {-->
+<!--          return self.indexOf(item) == pos && item;-->
+<!--        });-->
 
-        var formData = {};
-        fields.forEach(function (name) {
-          var element = elements[name];
-
-
-          formData[name] = element.value;
+<!--        var formData = {};-->
+<!--        fields.forEach(function (name) {-->
+<!--          var element = elements[name];-->
 
 
-          if (element.length) {
-            var data = [];
-            for (var i = 0; i < element.length; i++) {
-              var item = element.item(i);
-              if (item.checked || item.selected) {
-                data.push(item.value);
-              }
-            }
-            formData[name] = data.join(', ');
-          }
-        });
+<!--          formData[name] = element.value;-->
 
 
-        formData.formDataNameOrder = JSON.stringify(fields);
-        formData.formGoogleSheetName = form.dataset.sheet || "responses";
-        formData.formGoogleSendEmail = form.dataset.email || "";
+<!--          if (element.length) {-->
+<!--            var data = [];-->
+<!--            for (var i = 0; i < element.length; i++) {-->
+<!--              var item = element.item(i);-->
+<!--              if (item.checked || item.selected) {-->
+<!--                data.push(item.value);-->
+<!--              }-->
+<!--            }-->
+<!--            formData[name] = data.join(', ');-->
+<!--          }-->
+<!--        });-->
 
-        console.log(formData);
-        return formData;
-      }
 
-      function handleFormSubmit(event) {
-        event.preventDefault();
-        var form = event.target;
-        var data = getFormData(form);
+<!--        formData.formDataNameOrder = JSON.stringify(fields);-->
+<!--        formData.formGoogleSheetName = form.dataset.sheet || "responses";-->
+<!--        formData.formGoogleSendEmail = form.dataset.email || "";-->
+
+<!--        console.log(formData);-->
+<!--        return formData;-->
+<!--      }-->
+
+<!--      function handleFormSubmit(event) {-->
+<!--        event.preventDefault();-->
+<!--        var form = event.target;-->
+<!--        var data = getFormData(form);-->
 
 
-        if (data.email && !validEmail(data.email)) {
-          var invalidEmail = form.querySelector(".email-invalid");
-          if (invalidEmail) {
-            invalidEmail.style.display = "block";
-            return false;
-          }
-        } else {
-          disableAllButtons(form);
-          var url = form.action;
-          var xhr = new XMLHttpRequest();
-          xhr.open('POST', url);
+<!--        if (data.email && !validEmail(data.email)) {-->
+<!--          var invalidEmail = form.querySelector(".email-invalid");-->
+<!--          if (invalidEmail) {-->
+<!--            invalidEmail.style.display = "block";-->
+<!--            return false;-->
+<!--          }-->
+<!--        } else {-->
+<!--          disableAllButtons(form);-->
+<!--          var url = form.action;-->
+<!--          var xhr = new XMLHttpRequest();-->
+<!--          xhr.open('POST', url);-->
 
-          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-          xhr.onreadystatechange = function () {
-            console.log(xhr.status, xhr.statusText);
-            console.log(xhr.responseText);
-            form.reset();
-            var formElements = form.querySelector(".form-elements")
-            if (formElements) {
-              formElements.style.display = "none";
-            }
-            var thankYouMessage = form.querySelector("li > .thankyou_message");
-            if (thankYouMessage) {
-              thankYouMessage.style.display = "block";
-            }
-            var invalidEmail = form.querySelector(".email-invalid");
-            if (invalidEmail) {
-              invalidEmail.style.display = "none";
-              return false;
-            }
-            return;
-          };
-          xhr.onerror = function (e) {
-            console.log(e);
-          };
+<!--          xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");-->
+<!--          xhr.onreadystatechange = function () {-->
+<!--            console.log(xhr.status, xhr.statusText);-->
+<!--            console.log(xhr.responseText);-->
+<!--            form.reset();-->
+<!--            var formElements = form.querySelector(".form-elements")-->
+<!--            if (formElements) {-->
+<!--              formElements.style.display = "none";-->
+<!--            }-->
+<!--            var thankYouMessage = form.querySelector("li > .thankyou_message");-->
+<!--            if (thankYouMessage) {-->
+<!--              thankYouMessage.style.display = "block";-->
+<!--            }-->
+<!--            var invalidEmail = form.querySelector(".email-invalid");-->
+<!--            if (invalidEmail) {-->
+<!--              invalidEmail.style.display = "none";-->
+<!--              return false;-->
+<!--            }-->
+<!--            return;-->
+<!--          };-->
+<!--          xhr.onerror = function (e) {-->
+<!--            console.log(e);-->
+<!--          };-->
 
-          var encoded = Object.keys(data).map(function (k) {
-            return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);
-          }).join('&');
-          console.log('trying to send data:');
-          console.log(encoded);
-          xhr.send(encoded);
-        }
-      }
+<!--          var encoded = Object.keys(data).map(function (k) {-->
+<!--            return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]);-->
+<!--          }).join('&');-->
+<!--          console.log('trying to send data:');-->
+<!--          console.log(encoded);-->
+<!--          xhr.send(encoded);-->
+<!--        }-->
+<!--      }-->
 
-      function loaded() {
-        console.log("Contact form submission handler loaded successfully.");
+<!--      function loaded() {-->
+<!--        console.log("Contact form submission handler loaded successfully.");-->
 
-        var forms = document.querySelectorAll("form.gform");
-        for (var i = 0; i < forms.length; i++) {
-          forms[i].addEventListener("submit", handleFormSubmit, false);
-        }
-      };
-      document.addEventListener("DOMContentLoaded", loaded, false);
+<!--        var forms = document.querySelectorAll("form.gform");-->
+<!--        for (var i = 0; i < forms.length; i++) {-->
+<!--          forms[i].addEventListener("submit", handleFormSubmit, false);-->
+<!--        }-->
+<!--      };-->
+<!--      document.addEventListener("DOMContentLoaded", loaded, false);-->
 
-      function disableAllButtons(form) {
-        var buttons = form.querySelectorAll("button");
-        for (var i = 0; i < buttons.length; i++) {
-          buttons[i].disabled = true;
-        }
-      }
-    })();
+<!--      function disableAllButtons(form) {-->
+<!--        var buttons = form.querySelectorAll("button");-->
+<!--        for (var i = 0; i < buttons.length; i++) {-->
+<!--          buttons[i].disabled = true;-->
+<!--        }-->
+<!--      }-->
+<!--    })();-->
 
-  </script>
+<!--  </script>-->
 
-    <div id="root"></div>
+    <div id="root" style="height: 100%"
+
+    ></div>
   </body>
 </html>

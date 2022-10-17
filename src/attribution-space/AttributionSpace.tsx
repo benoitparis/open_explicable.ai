@@ -1,8 +1,8 @@
-import React from 'react'
-import {Canvas} from '@react-three/fiber'
-import Box from "./Box";
+import React from 'react';
+import {Canvas} from '@react-three/fiber';
 import CameraController from "./CameraController";
-import DataPointList from "./DataPointList";
+import DataPoints from "./DataPoints";
+import Box from "./Box";
 
 function AttributionSpace() {
     return (
@@ -10,7 +10,7 @@ function AttributionSpace() {
             <CameraController />
             <ambientLight />
             <pointLight position={[10, 10, 10]} />
-            <DataPointList/>
+            <DataPoints position={[0, 1, 0]}/>
             {/*<Box position={[-1.2, 0, 0]} />*/}
             {/*<Box position={[1.2, 0, 0]} />*/}
         </Canvas>
