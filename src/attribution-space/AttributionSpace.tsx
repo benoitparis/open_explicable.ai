@@ -2,11 +2,10 @@ import React from 'react';
 import {Canvas} from '@react-three/fiber';
 import CameraController from "./CameraController";
 import DataPoints from "./DataPoints";
-import Box from "./Box";
 
-function AttributionSpace() {
+function AttributionSpace(props:{showSpace: ()=> void}) {
     return (
-        <Canvas>
+        <Canvas onClick={props.showSpace}>
             <CameraController />
             <ambientLight />
             <pointLight position={[10, 10, 10]} />

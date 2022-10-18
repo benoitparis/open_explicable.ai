@@ -1,12 +1,11 @@
 import * as THREE from 'three'
 import React, {useEffect, useRef, useState} from 'react'
 import {useFrame, ThreeElements, ThreeEvent, useLoader} from '@react-three/fiber'
-import { TextureLoader } from 'three/src/loaders/TextureLoader'
 import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
 
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
-const MAX_POINTS = 10000;
+const MAX_POINTS = 50000;
 const positionsArray = new Float32Array(MAX_POINTS * 3);
 const colorsArray = new Float32Array(MAX_POINTS * 3);
 const sizesArray = new Float32Array(MAX_POINTS);
@@ -38,7 +37,6 @@ const vertexShader = `
     }`
 const fragmentShader = `
     uniform vec3 baseColor;
-    uniform sampler2D pointTexture;
     
     varying vec3 toFragmentColor;
     varying float toFragmentHovered;
@@ -52,30 +50,29 @@ const fragmentShader = `
         float dist = dot((gl_PointCoord - 0.5), (gl_PointCoord - 0.5));
         
         gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * (1.0 - 10.0 * dist);
-        // gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * texture2D(pointTexture, gl_PointCoord);
         if (gl_FragColor.a < BORDER_LOW) 
             discard;
         if (toFragmentHovered == 1.0 && gl_FragColor.a < BORDER_UP) {
             float mean = (BORDER_UP + BORDER_LOW) / 2.0;
             float distanceToMean = 0.05 / abs(gl_FragColor.a - mean);
             gl_FragColor = vec4(distanceToMean);
-        }
-        if (toFragmentSelected == 1.0 && gl_FragColor.a < BORDER_UP) {
+        } else if (toFragmentSelected == 1.0 && gl_FragColor.a < BORDER_UP) {
             float mean = (BORDER_UP + BORDER_LOW) / 2.0;
             float distanceToMean = 0.05 / abs(gl_FragColor.a - mean);
-            float remainder = mod(((gl_PointCoord.x + gl_PointCoord.y) * 100.0), 10.0);
-            
-            gl_FragColor = vec4(distanceToMean) * remainder;
+            float remainder = mod(((gl_PointCoord.x + gl_PointCoord.y) * 10.0), 1.0);
+            if (remainder > 0.5) {
+                gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+            } else {
+                gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
+            }
         }
     }`
 
 const PARTICLE_SIZE = 1.5;
 let drawCount = 0;
-var originalColors = new Float32Array( MAX_POINTS * 3 );
+const originalColors = new Float32Array( MAX_POINTS * 3 );
 
 function DataPoints(props: ThreeElements['points']) {
-
-
 
     const loadParticles = (configuration:any) => {
         console.log("loadParticles")
@@ -211,20 +208,27 @@ function DataPoints(props: ThreeElements['points']) {
     // const conf = useLoader(FileLoader, "data/conf.json", () => {});
 
     const baseColor = new THREE.Color( 0xffffff );
-    const pointTexture = useLoader(TextureLoader, 'sprites/disc.png');
     const materialUniforms = {
-        baseColor: { value: baseColor },
-        pointTexture: { value: pointTexture }
+        baseColor: { value: baseColor }
     }
 
     const ref = useRef<THREE.Points>(null!);
     const [rotate, setRotate] = useState(true);
     const [hovered, hover] = useState(false);
     const [clicked, click] = useState(false);
+
+
+    let lastFrame = Date.now();
     useFrame((state, delta) => {
+        const now = Date.now();
         if (rotate) {
+            // ben des fois c'est smooth, d'autres fois pas, on sait pas pk
+            // ref.current.rotation.y += (now-lastFrame) * 0.0001;
+            // ref.current.rotation.y += delta * 0.1;
+            // ref.current.rotation.y += state.clock.getDelta() * 100;
             ref.current.rotation.y += 0.001;
         }
+        lastFrame = now;
     });
 
     const addParticle = (vertex:Vector3, color:Color, size:number) => {
@@ -296,7 +300,8 @@ function DataPoints(props: ThreeElements['points']) {
             // scale={clicked ? 1.2 : 1}
             onClick={onClick}
             onPointerOver={onPointerOver}
-            onPointerOut={onPointerOut}>
+            onPointerOut={onPointerOut}
+        >
             <bufferGeometry attributes={{position:positionsAtt, size:sizesAtt, customColor:colorsAtt, customHovered:hoveredAtt, customSelected:selectedAtt}}/>
             <shaderMaterial uniforms={materialUniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/>
         </points>
