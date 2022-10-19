@@ -95,11 +95,12 @@ ul.actions {
 
 ul.actions li {
     /* display: inline-block; */
-    padding: 0.7em;
+    padding: 0.5em 1.5em;
 }
 
 ul.actions li input {
     width: 20em;
+    height: 2em;
 }
 
 ul.actions textarea {
@@ -151,6 +152,15 @@ ul.actions textarea {
 /*********************************************************************************/
 /* 3-column                                                                      */
 /*********************************************************************************/
+
+.box {
+
+}
+
+.box p {
+    width: 25em;
+    margin: 2em;
+}
 
 .boxA,
 .boxB,
@@ -328,6 +338,7 @@ ul.actions textarea {
 
 #banner .title h2 {
     font-size: 4em;
+    color: rgba(255, 255, 255, 0.8);
 }
 
 #banner .title .byline {
@@ -376,7 +387,7 @@ ul.actions textarea {
 
 #welcome {
     position: relative;
-    padding: 3em 0em 7em 0em;
+    padding: 3em 0em 3em 0em;
     background: #2651a8;
     background-size: cover;
     text-align: center;
@@ -385,7 +396,7 @@ ul.actions textarea {
 #welcome .container {
     width: 1000px;
     padding: 0px 100px;
-    color: rgba(255, 255, 255, 0.8);
+    color: rgba(255,255,255,0.8);
 }
 
 #welcome a {
@@ -405,6 +416,10 @@ ul.actions textarea {
 #three-column {
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
 }
 
 #three-column .fa {
@@ -415,6 +430,12 @@ ul.actions textarea {
 }
 
 #three-column .title h2 {
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+}
+
+#services .title h2 {
+    text-align: center;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);
 }

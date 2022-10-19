@@ -144,38 +144,38 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                     <div id="services"
                          // style={{paddingBottom: "3em"}}
                     >
+                        <div className="title">
+                            <h2>Features</h2>
+                            <span className="byline"></span>
+                        </div>
                         <div id="three-column" className="container">
-                            <div className="title">
-                                <h2>Features</h2>
-                                <span className="byline"></span>
-                            </div>
-                            <div className="boxA">
+                            <div className="box">
                                 <p>We use algorithms that win competitions, we just open them and present how they take
                                     their
                                     decisions.</p>
                                 <a href="#" className="button button-alt">Performant</a>
                             </div>
-                            <div className="boxB">
+                            <div className="box">
                                 <p>Know exactly how your models work. Establish compliance easily</p>
                                 <a href="#" className="button button-alt">Transparent</a>
                             </div>
-                            <div className="boxC">
+                            <div className="box">
                                 <p>Gain deep insights about the topology of your clients, at an intuitive glance</p>
                                 <a href="#" className="button button-alt">Visual</a>
                             </div>
-                            <div className="boxA">
+                            <div className="box">
                                 <p>Fully fledged data management, Extract-Transform-Load &amp; Machine Learning environment
                                     working
                                     together</p>
                                 <a href="#" className="button button-alt">Agile</a>
                             </div>
-                            <div className="boxB">
+                            <div className="box">
                                 <p>Follow the driving signals in the data as a management principle, concentrate only on
                                     data that has
                                     value</p>
                                 <a href="#" className="button button-alt">Smart</a>
                             </div>
-                            <div className="boxC">
+                            <div className="box">
                                 <p>Join open datasets with your data, and enable further insights and performance</p>
                                 <a href="#" className="button button-alt">Enriched</a>
                             </div>
