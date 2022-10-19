@@ -1,5 +1,6 @@
 import React from 'react';
 import ContactForm from "./ContactForm";
+import AttributionSpace from "./attribution-space/AttributionSpace";
 
 function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
     return (
@@ -12,11 +13,20 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
         }}>
 
             <div id="header-wrapper" style={{
-                pointerEvents:"none",
+                // pointerEvents:"none",
                 transition:"all 0.5s ease-out",
                 height: props.displayed?"80%":"100%",
                 paddingBottom: props.displayed?"auto":0
             }}>
+                <div id="app-wrapper" style={{
+                    position:"absolute",
+                    top:0,
+                    width: "100%",
+                    height: "100%",
+                    //zIndex:10
+                }}>
+                    <AttributionSpace showSpace={() => {}}/>
+                </div>
 
                 <img src="img/thumbnail.png" alt="" style={{display:"none"}}/>
 
@@ -43,20 +53,50 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                             zIndex:1,
                             pointerEvents:"initial",
                             transition:"all 0.5s ease-out",
-                            width: props.displayed?"auto":"0px",
-                            overflow: props.displayed?"initial":"hidden",
+                            // width: props.displayed?"auto":"0px",
+                            // overflow: props.displayed?"initial":"hidden",
                             display: "table-cell"
                         }}>
-                            <a href="#services" accessKey="2" title="">Services</a>
+                            <a href="#services" accessKey="2" title="" style={{
+                                paddingLeft: props.displayed?"1.5em":"0",
+                                paddingRight: props.displayed?"1.5em":"0",
+                                borderWidth: props.displayed?"thin":"0",
+                            }}>
+                                <div style={{
+                                    display: "inline-flex",
+                                    overflow: "hidden",
+                                    transition:"all 0.5s ease-out",
+                                    maxWidth: props.displayed?"100%":"0%",
+                                    fontSize: props.displayed?"inherit":"0",
+                                    // paddingLeft: props.displayed?"1.5em":"0",
+                                    // paddingRight: props.displayed?"inherit":"0",
+                                }}>Services</div>
+                            </a>
                         </li>
                         <li style={{
                             zIndex:1,
                             pointerEvents:"initial",
                             transition:"all 0.5s ease-out",
-                            width: props.displayed?"auto":"0px",
-                            overflow: props.displayed?"initial":"hidden",
+                            // width: props.displayed?"auto":"0px",
+                            // overflow: props.displayed?"initial":"hidden",
                             display: "table-cell"
-                        }}><a href="#copyright" accessKey="4" title="">Contact Us</a></li>
+                        }}>
+                            <a href="#copyright" accessKey="2" title="" style={{
+                                paddingLeft: props.displayed?"1.5em":"0",
+                                paddingRight: props.displayed?"1.5em":"0",
+                                borderWidth: props.displayed?"thin":"0",
+                            }}>
+                                <div style={{
+                                    display: "inline-flex",
+                                    overflow: "hidden",
+                                    transition:"all 0.5s ease-out",
+                                    maxWidth: props.displayed?"100%":"0%",
+                                    fontSize: props.displayed?"inherit":"0",
+                                    // paddingLeft: props.displayed?"1.5em":"0",
+                                    // paddingRight: props.displayed?"inherit":"0",
+                                }}>Contact Us</div>
+                            </a>
+                        </li>
                     </ul>
                 </div>
 
@@ -151,8 +191,8 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                     <div id="welcome-msg" className="container" style={{
                         transition:"all 0.5s ease-out",
                         height: props.displayed?"auto":"0%",
-                        paddingBottom: props.displayed?"auto":0,
-                        paddingTop: props.displayed?"auto":0
+                        paddingBottom: props.displayed?"3em":0,
+                        paddingTop: props.displayed?"3em":0
                     }}>
                         <div className="title" style={{
                             transition:"all 0.5s ease-out",

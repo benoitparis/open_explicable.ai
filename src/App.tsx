@@ -10,15 +10,15 @@ function App() {
     return (
         <>
 
-            <div id="app-wrapper" style={{
-                position:"absolute",
-                top:0,
-                width: "100%",
-                height: "100%",
-                //zIndex:10
-            }}>
-                <AttributionSpace showSpace={() => setShowWebsite(false)}/>
-            </div>
+            {/*<div id="app-wrapper" style={{*/}
+            {/*    position:"absolute",*/}
+            {/*    top:0,*/}
+            {/*    width: "100%",*/}
+            {/*    height: "100%",*/}
+            {/*    //zIndex:10*/}
+            {/*}}>*/}
+            {/*    <AttributionSpace showSpace={() => setShowWebsite(false)}/>*/}
+            {/*</div>*/}
 
             {/*<div style={{transition: "height 2s", height: showWebsite?"100%":0}}><Website/></div>*/}
             <Website displayed={showWebsite} display={setShowWebsite}/>

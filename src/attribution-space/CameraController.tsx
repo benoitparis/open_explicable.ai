@@ -10,7 +10,7 @@ const CameraController = () => {
             const controls = new OrbitControls(camera, gl.domElement);
             controls.minDistance = 1;
             controls.maxDistance = 40;
-            // controls.enableZoom = false; // TODO changer dynamiquement?
+            controls.enableZoom = false; // TODO changer dynamiquement?
 
             const factor = 4;
             camera.position.x *= factor;

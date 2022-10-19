@@ -217,6 +217,9 @@ function DataPoints(props: ThreeElements['points']) {
     const [hovered, hover] = useState(false);
     const [clicked, click] = useState(false);
 
+    useEffect(() => {
+        document.body.style.cursor = hovered ? 'pointer' : 'auto'
+    }, [hovered]);
 
     let lastFrame = Date.now();
     useFrame((state, delta) => {

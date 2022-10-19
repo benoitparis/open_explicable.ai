@@ -325,6 +325,10 @@
 /* Header                                                                        */
 /*********************************************************************************/
 
+	#header-wrapper:not(:has(:hover)) {
+		/*pointer-events: none;*/
+	}
+
 	#header-wrapper
 	{
 		position: relative;
@@ -338,7 +342,8 @@
     	z-index: 1;
 		position: relative;
 		padding: 1em 0em 1em 0em;
-    	width: 100%;
+		 width: fit-content;
+		margin: 0;
 	}
 
 
@@ -394,7 +399,7 @@
 	{
 		display: block;
 		float: left;
-		text-align: center;
+		/*text-align: center;*/
 		margin: 0.1em;
 	}
 	
@@ -409,6 +414,7 @@
 		border-style: groove;
 		border-width: thin;
 		color: rgba(255,255,255,0.80);
+		transition: all 0.5s ease-out;
 	}
 	
 	#menu li:hover a, #menu li.active a, #menu li.active span
