@@ -2,7 +2,9 @@ import * as THREE from 'three'
 import React, {useEffect, useRef, useState} from 'react'
 import {useFrame, ThreeElements, ThreeEvent, useLoader} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
-import {Vector3} from "three";
+import {Mesh, Vector3} from "three";
+import {useBVH} from "@react-three/drei";
+
 
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
 const MAX_POINTS = 50000;
@@ -73,6 +75,9 @@ let drawCount = 0;
 const originalColors = new Float32Array( MAX_POINTS * 3 );
 
 function DataPoints(props: ThreeElements['points']) {
+
+
+
 
     const loadParticles = (configuration:any) => {
         console.log("loadParticles")
@@ -220,19 +225,6 @@ function DataPoints(props: ThreeElements['points']) {
     useEffect(() => {
         document.body.style.cursor = hovered ? 'pointer' : 'auto'
     }, [hovered]);
-
-    let lastFrame = Date.now();
-    useFrame((state, delta) => {
-        const now = Date.now();
-        if (rotate) {
-            // ben des fois c'est smooth, d'autres fois pas, on sait pas pk
-            // ref.current.rotation.y += (now-lastFrame) * 0.0001;
-            // ref.current.rotation.y += delta * 0.1;
-            // ref.current.rotation.y += state.clock.getDelta() * 100;
-            ref.current.rotation.y += 0.001;
-        }
-        lastFrame = now;
-    });
 
     const addParticle = (vertex:Vector3, color:Color, size:number) => {
         var geometry = ref.current.geometry;

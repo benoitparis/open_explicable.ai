@@ -21,11 +21,11 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                 <div id="app-wrapper" style={{
                     position:"absolute",
                     top:0,
-                    width: "100%",
-                    height: "100%",
+                    width: "100vw",
+                    height: "100vh",
                     //zIndex:10
                 }}>
-                    <AttributionSpace showSpace={() => {}}/>
+                    <AttributionSpace displayed={!props.displayed} display={() => props.display(false)}/>
                 </div>
 
                 <img src="img/thumbnail.png" alt="" style={{display:"none"}}/>
