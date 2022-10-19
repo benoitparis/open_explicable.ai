@@ -134,65 +134,17 @@
 
 	#contact-box
 	{
-    width: fit-content;
-    text-align: center;
-    margin: auto;
-    background: #FFF;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1em;
-    color: #2651a8;
-	}
-	
-
-
-/*********************************************************************************/
-/* Social Icon Styles                                                            */
-/*********************************************************************************/
-
-	ul.contact
-	{
-		margin: 0;
-		padding: 2em 0em 0em 0em;
-		list-style: none;
-	}
-	
-	ul.contact li
-	{
-		display: inline-block;
-		font-size: 1em;
-	}
-	
-	ul.contact li span
-	{
-		display: none;
-		margin: 0;
-		padding: 0;
-	}
-	
-	ul.contact li a
-	{
-		color: #FFF;
-	}
-	
-	ul.contact li a:before
-	{
-		display: inline-block;
-		background: #3f3f3f;
-		width: 40px;
-		height: 40px;
-		line-height: 40px;
-		border-radius: 20px;
+		width: fit-content;
 		text-align: center;
-		color: #FFFFFF;
+		margin: auto;
+		background: #FFF;
+		border-radius: 6px;
+		text-decoration: none;
+		font-weight: 700;
+		font-size: 1em;
+		color: #2651a8;
 	}
-	
-	ul.contact li a.icon-twitter:before { background: #2DAAE4; }
-	ul.contact li a.icon-facebook:before { background: #39599F; }
-	ul.contact li a.icon-dribbble:before { background: #C4376B;	}
-	ul.contact li a.icon-tumblr:before { background: #31516A; }
-	ul.contact li a.icon-rss:before { background: #F2600B; }
+
 
 /*********************************************************************************/
 /* Button Style                                                                  */
@@ -201,9 +153,7 @@
 	.button
 	{
 		display: inline-block;
-		padding: 1em 2em 1em 2em;
 		letter-spacing: 0.10em;
-		/* margin-top: 2em; */
 		padding: 1.40em 3em;
 		background: #2651a8;
 		border-radius: 6px;
@@ -211,6 +161,8 @@
 		font-weight: 700;
 		font-size: 1em;
 		color: #FFF;
+		width: 30%;
+		min-width: fit-content;
 	}
 	
 	.button-alt
@@ -458,13 +410,12 @@
 
 	#banner
 	{
-    position: absolute;
-    bottom: 0;
-		padding-top: 10em;
+		position: absolute;
+		bottom: 0;
 		text-align: center;
-    width: 100%;
-    pointer-events: none;
-    padding-bottom: 1em;
+		width: 100%;
+		pointer-events: none;
+		padding-bottom: 1em;
 	}
 	
 	#banner .title h2
@@ -610,15 +561,3 @@
 		text-align: center;
 		color: rgba(0,0,0,.5);
 	}
-
-/*********************************************************************************/
-/* DEMO                                                                          */
-/*********************************************************************************/
-
-	#eml-container
-	{
-		position: absolute;
-    top: 0;
-	}
-
-    

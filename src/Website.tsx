@@ -6,7 +6,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
     return (
         <div id="website-wrapper" style={{
             height:"100%",
-            overflow: props.displayed?"auto":"hidden",
+            overflow: props.displayed?"visible":"hidden",
             // transform:props.displayed?"":"scale(1, 0)",
             // transition: "all",
             // transformOrigin: "bottom"
@@ -15,13 +15,13 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
             <div id="header-wrapper" style={{
                 // pointerEvents:"none",
                 transition:"all 0.5s ease-out",
-                height: props.displayed?"80%":"100%",
+                height: props.displayed?"75%":"100%",
                 paddingBottom: props.displayed?"auto":0
             }}>
                 <div id="app-wrapper" style={{
                     position:"absolute",
                     top:0,
-                    width: "100vw",
+                    width: "100%",
                     height: "100vh",
                     //zIndex:10
                 }}>
@@ -70,7 +70,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                                     fontSize: props.displayed?"inherit":"0",
                                     // paddingLeft: props.displayed?"1.5em":"0",
                                     // paddingRight: props.displayed?"inherit":"0",
-                                }}>Services</div>
+                                }}>Features</div>
                             </a>
                         </li>
                         <li style={{
@@ -146,7 +146,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                     >
                         <div id="three-column" className="container">
                             <div className="title">
-                                <h2>Services</h2>
+                                <h2>Features</h2>
                                 <span className="byline"></span>
                             </div>
                             <div className="boxA">
