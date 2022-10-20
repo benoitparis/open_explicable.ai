@@ -5,11 +5,16 @@ html, body {
 body {
     margin: 0px;
     padding: 0px;
-    background: #181818;
+    background: #050505;
     font-family: 'Didact Gothic', sans-serif;
     font-size: 12pt;
     font-weight: 200;
     color: #FFF;
+}
+@media only screen and (hover: none) and (pointer: coarse){
+    body {
+        font-size: 2rem;
+    }
 }
 
 
@@ -45,7 +50,6 @@ a:hover {
 .container {
     overflow: hidden;
     margin: 0em auto;
-    width: 1200px;
 }
 
 /*********************************************************************************/
@@ -99,14 +103,26 @@ ul.actions li {
 }
 
 ul.actions li input {
+    font-size: 12pt;
     width: 20em;
     height: 2em;
 }
-
 ul.actions textarea {
+    font-size: 12pt;
     width: 20em;
     height: 6em;
 }
+@media only screen and (hover: none) and (pointer: coarse){
+    ul.actions li input {
+        font-size: 2rem;
+        border-width: medium;
+    }
+    ul.actions textarea {
+        font-size: 2rem;
+        border-width: medium;
+    }
+}
+
 
 /*********************************************************************************/
 /* Contact Box                                                                       */
@@ -150,35 +166,13 @@ ul.actions textarea {
 }
 
 /*********************************************************************************/
-/* 3-column                                                                      */
+/* feature box                                                                   */
 /*********************************************************************************/
 
-.box {
-
-}
-
 .box p {
-    width: 25em;
+    max-width: 25em;
     margin: 2em;
 }
-
-.boxA,
-.boxB,
-.boxC {
-    margin-top: 1em;
-    width: 384px;
-}
-
-.boxA,
-.boxB {
-    float: left;
-    margin-right: 20px;
-}
-
-.boxC {
-    float: right;
-}
-
 
 /*********************************************************************************/
 /* Heading Titles                                                                */
@@ -217,7 +211,7 @@ ul.actions textarea {
 
 #header-wrapper {
     position: relative;
-    padding: 1em 0em 7em 0em;
+    padding-top: 1em;
     /* background: #111111 url(../images/header-bg.jpg) no-repeat center; */
     background-size: cover;
 }
@@ -225,7 +219,6 @@ ul.actions textarea {
 #header {
     z-index: 1;
     position: relative;
-    padding: 1em 0em 1em 0em;
     width: fit-content;
     margin: 0;
 }
@@ -334,6 +327,8 @@ ul.actions textarea {
     width: 100%;
     pointer-events: none;
     padding-bottom: 1em;
+    left: 0;
+    right: 0;
 }
 
 #banner .title h2 {
@@ -372,12 +367,12 @@ ul.actions textarea {
 #copyright p {
     text-align: center;
     font-size: 1em;
-    color: rgba(255, 255, 255, 0.3);
+    color: rgba(255, 255, 255, 0.6);
 }
 
 #copyright a {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(255, 255, 255, 0.85);
 }
 
 
@@ -394,7 +389,6 @@ ul.actions textarea {
 }
 
 #welcome .container {
-    width: 1000px;
     padding: 0px 100px;
     color: rgba(255,255,255,0.8);
 }
@@ -413,7 +407,7 @@ ul.actions textarea {
 /* Extra                                                                         */
 /*********************************************************************************/
 
-#three-column {
+#feature-list {
     text-align: center;
     color: rgba(0, 0, 0, 0.6);
     width: 80%;
@@ -422,14 +416,14 @@ ul.actions textarea {
     justify-content: center;
 }
 
-#three-column .fa {
+#feature-list .fa {
     display: block;
     padding: 1em 0em;
     color: rgba(0, 0, 0, 1);
     font-size: 2em;
 }
 
-#three-column .title h2 {
+#feature-list .title h2 {
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);
 }
@@ -440,7 +434,7 @@ ul.actions textarea {
     color: rgba(0, 0, 0, 0.8);
 }
 
-#three-column .title .byline {
+#feature-list .title .byline {
     text-align: center;
     color: rgba(0, 0, 0, .5);
 }

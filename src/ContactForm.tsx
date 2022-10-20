@@ -2,7 +2,7 @@ import React from "react";
 
 function ContactForm() {
     return (
-        <div id="contact-box" style={{width: "50%"}}>
+        <div id="contact-box" style={{maxWidth: "30em", width:"100%"}}>
             <form className="gform"
                   method="POST"
                   data-email="example@email.net"

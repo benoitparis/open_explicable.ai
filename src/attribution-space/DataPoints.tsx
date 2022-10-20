@@ -1,9 +1,8 @@
 import * as THREE from 'three'
 import React, {useEffect, useRef, useState} from 'react'
-import {useFrame, ThreeElements, ThreeEvent, useLoader} from '@react-three/fiber'
+import {ThreeElements, ThreeEvent} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
-import {Mesh, Vector3} from "three";
-import {useBVH} from "@react-three/drei";
+import {Vector3} from "three";
 
 
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
@@ -44,23 +43,25 @@ const fragmentShader = `
     varying float toFragmentHovered;
     varying float toFragmentSelected;
     
-    const float BORDER_UP = 0.5;
-    const float BORDER_LOW = 0.1;
+    const float BORDER_UP = 1.0;
+    const float BORDER_LOW = 0.8;
     
     void main() {
     
-        float dist = dot((gl_PointCoord - 0.5), (gl_PointCoord - 0.5));
-        
-        gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * (1.0 - 10.0 * dist);
-        if (gl_FragColor.a < BORDER_LOW) 
+        float dist = pow(dot((gl_PointCoord * 2.0 - 1.0), (gl_PointCoord * 2.0 - 1.0)), 0.5);
+        if (dist > BORDER_UP)
             discard;
-        if (toFragmentHovered == 1.0 && gl_FragColor.a < BORDER_UP) {
+            
+        float dim = pow(1.0 - dist, 0.05);
+        gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * dim;
+        
+        if (toFragmentHovered == 1.0 && dist > BORDER_LOW) {
             float mean = (BORDER_UP + BORDER_LOW) / 2.0;
-            float distanceToMean = 0.05 / abs(gl_FragColor.a - mean);
+            float distanceToMean = 0.05 / abs(dist - mean);
             gl_FragColor = vec4(distanceToMean);
-        } else if (toFragmentSelected == 1.0 && gl_FragColor.a < BORDER_UP) {
+        } else if (toFragmentSelected == 1.0 && dist > BORDER_LOW) {
             float mean = (BORDER_UP + BORDER_LOW) / 2.0;
-            float distanceToMean = 0.05 / abs(gl_FragColor.a - mean);
+            float distanceToMean = 0.05 / abs(dist - mean);
             float remainder = mod(((gl_PointCoord.x + gl_PointCoord.y) * 10.0), 1.0);
             if (remainder > 0.5) {
                 gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
@@ -68,9 +69,10 @@ const fragmentShader = `
                 gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
             }
         }
+        
     }`
 
-const PARTICLE_SIZE = 1.5;
+const PARTICLE_SIZE = 0.6 * (window.devicePixelRatio**2);
 let drawCount = 0;
 const originalColors = new Float32Array( MAX_POINTS * 3 );
 
@@ -210,15 +212,12 @@ function DataPoints(props: ThreeElements['points']) {
 
     },[])
 
-    // const conf = useLoader(FileLoader, "data/conf.json", () => {});
-
     const baseColor = new THREE.Color( 0xffffff );
     const materialUniforms = {
         baseColor: { value: baseColor }
     }
 
     const ref = useRef<THREE.Points>(null!);
-    const [rotate, setRotate] = useState(true);
     const [hovered, hover] = useState(false);
     const [clicked, click] = useState(false);
 
@@ -256,6 +255,11 @@ function DataPoints(props: ThreeElements['points']) {
         ref.current.geometry.computeBoundingSphere();
     }
 
+    const toggleSelected = (index:number) => {
+        sizesArray[index] = selectedArray[index] === 0.0 ? PARTICLE_SIZE * 5 : PARTICLE_SIZE;
+        selectedArray[index] = selectedArray[index] === 0.0 ? 1.0 : 0.0;
+    }
+
     const onClick = (event:ThreeEvent<MouseEvent>) => {
         click(!clicked);
         const closest = event.intersections.reduce((acc, val) =>
@@ -264,9 +268,7 @@ function DataPoints(props: ThreeElements['points']) {
             acc.distanceToRay < val.distanceToRay? acc : val
         )
         if (closest.index != null) {
-            setRotate(false);
-            selectedArray[closest.index] = selectedArray[closest.index] === 0.0 ? 1.0 : 0.0;
-            sizesArray[closest.index] = 10;
+            toggleSelected(closest.index);
         }
         updateAttributes();
         event.stopPropagation();
@@ -275,7 +277,6 @@ function DataPoints(props: ThreeElements['points']) {
         hover(true);
         if (event.index != null) {
             hoveredArray[event.index] = 1;
-            // sizesArray[event.index] = sizesArray[event.index] * 2;
             updateAttributes();
         }
     }
@@ -283,7 +284,6 @@ function DataPoints(props: ThreeElements['points']) {
         hover(false);
         if (event.index != null) {
             hoveredArray[event.index] = 0;
-            // sizesArray[event.index] = sizesArray[event.index] / 2;
             updateAttributes();
         }
     }

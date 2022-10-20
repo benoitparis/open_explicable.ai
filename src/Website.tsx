@@ -15,7 +15,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
             <div id="header-wrapper" style={{
                 // pointerEvents:"none",
                 transition:"all 0.5s ease-out",
-                height: props.displayed?"75%":"100%",
+                height: props.displayed?"90%":"100%",
                 paddingBottom: props.displayed?"auto":0
             }}>
                 <div id="app-wrapper" style={{
@@ -30,16 +30,17 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
 
                 <img src="img/thumbnail.png" alt="" style={{display:"none"}}/>
 
-                <div id="header"
-                     className="container"
-                     onClick={()=>props.display(true)}>
+                {/*<div id="header"*/}
+                {/*     className="container"*/}
+                {/*     onClick={()=>props.display(true)}>*/}
+
                     <div id="logo" style={{position:"initial", pointerEvents:"initial"}}>
                         <a href="#">
                             <img src="img/logo.png" alt="Explicable.AI logo"/>
                             <h1>Explicable.AI</h1>
                         </a>
                     </div>
-                </div>
+                {/*</div>*/}
 
                 <div id="menu" style={{zIndex:1, pointerEvents:"initial"}}>
                     <ul style={{display:"flex"}}>
@@ -148,7 +149,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                             <h2>Features</h2>
                             <span className="byline"></span>
                         </div>
-                        <div id="three-column" className="container">
+                        <div id="feature-list" className="container">
                             <div className="box">
                                 <p>We use algorithms that win competitions, we just open them and present how they take
                                     their
@@ -192,7 +193,8 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                         transition:"all 0.5s ease-out",
                         height: props.displayed?"auto":"0%",
                         paddingBottom: props.displayed?"3em":0,
-                        paddingTop: props.displayed?"3em":0
+                        paddingTop: props.displayed?"3em":0,
+                        maxWidth: "60em",
                     }}>
                         <div className="title" style={{
                             transition:"all 0.5s ease-out",
