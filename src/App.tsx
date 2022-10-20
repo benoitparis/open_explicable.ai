@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import AttributionSpace from "./attribution-space/AttributionSpace";
 import Website from "./Website";
 
 function App() {
