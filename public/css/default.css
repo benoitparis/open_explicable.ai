@@ -205,10 +205,6 @@ ul.actions textarea {
 /* Header                                                                        */
 /*********************************************************************************/
 
-#header-wrapper:not(:has(:hover)) {
-    /*pointer-events: none;*/
-}
-
 #header-wrapper {
     position: relative;
     padding-top: 1em;
@@ -346,13 +342,20 @@ ul.actions textarea {
     border-radius: 6px;
     font-weight: 700;
     font-size: 1em;
-
 }
 
 .banner {
     margin-bottom: 5em;
 }
 
+@media only screen and (hover: none) and (pointer: coarse){
+    #banner .title h2 {
+        font-size: 2.7em;
+    }
+    #banner .title .byline {
+        font-size: 1.3em;
+    }
+}
 
 /*********************************************************************************/
 /* Copyright                                                                     */
@@ -428,7 +431,7 @@ ul.actions textarea {
     color: rgba(0, 0, 0, 0.8);
 }
 
-#services .title h2 {
+#features .title h2 {
     text-align: center;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);

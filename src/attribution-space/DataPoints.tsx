@@ -12,6 +12,7 @@ const colorsArray = new Float32Array(MAX_POINTS * 3);
 const sizesArray = new Float32Array(MAX_POINTS);
 const hoveredArray = new Float32Array(MAX_POINTS);
 const selectedArray = new Float32Array(MAX_POINTS);
+let selected:number|null = null;
 const positionsAtt = new THREE.BufferAttribute(positionsArray, 3);
 const colorsAtt = new THREE.BufferAttribute(colorsArray, 3);
 const sizesAtt = new THREE.BufferAttribute(sizesArray, 1);
@@ -76,9 +77,7 @@ const PARTICLE_SIZE = 0.6 * (window.devicePixelRatio**2);
 let drawCount = 0;
 const originalColors = new Float32Array( MAX_POINTS * 3 );
 
-function DataPoints(props: ThreeElements['points']) {
-
-
+const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
 
     const loadParticles = (configuration:any) => {
@@ -88,9 +87,7 @@ function DataPoints(props: ThreeElements['points']) {
 
         loader.load(
             'data/' + configuration['data-prediction-embedding-cluster'],
-            function ( data ) {
-
-
+            (data) => {
 
                 console.log("loader.load")
                 // faudrait faire par naming des colonnes csv, limit avec un schema,
@@ -121,11 +118,11 @@ function DataPoints(props: ThreeElements['points']) {
                     });
 
                     const parent = parseInt(parts[j++], 10);
-                    var lambda_val = parseFloat(parts[j++]);
-                    var size = parseInt(parts[j++], 10);
-                    var x = parseFloat(parts[j++]);
-                    var y = parseFloat(parts[j++]);
-                    var z = parseFloat(parts[j++]);
+                    const lambda_val = parseFloat(parts[j++]);
+                    const size = parseInt(parts[j++], 10);
+                    const x = parseFloat(parts[j++]);
+                    const y = parseFloat(parts[j++]);
+                    const z = parseFloat(parts[j++]);
 
                     // faudrait valider que index affine sur i
                     if (index !== i - 1) {
@@ -144,16 +141,17 @@ function DataPoints(props: ThreeElements['points']) {
                         "z" : z
                     };
 
-                    var point = new THREE.Vector3(x, y, z);
-                    var color = new THREE.Color();
-                    var particleSize = 0;
+                    const point = new THREE.Vector3(x, y, z);
+                    const color = new THREE.Color();
+                    let particleSize = 0;
 
-                    var scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
+                    const scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
 
                     if (1 === size) {
                         color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
                         particleSize = PARTICLE_SIZE * 0.5;
                     } else {
+                        // tree nodes
                         color.setRGB(0.3, 0.3, 0.3);
                         particleSize = Math.log(size * 10 + 1) * PARTICLE_SIZE / 8;
                         if (4 >= size) {
@@ -187,7 +185,6 @@ function DataPoints(props: ThreeElements['points']) {
             }
         );
     }
-
 
     useEffect(() => {
 
@@ -226,11 +223,11 @@ function DataPoints(props: ThreeElements['points']) {
     }, [hovered]);
 
     const addParticle = (vertex:Vector3, color:Color, size:number) => {
-        var geometry = ref.current.geometry;
-        var attributes = geometry.attributes;
-        var positions = attributes.position.array;
-        var colors = attributes.customColor.array;
-        var sizes = attributes.size.array;
+        const geometry = ref.current.geometry;
+        const attributes = geometry.attributes;
+        const positions = attributes.position.array;
+        const colors = attributes.customColor.array;
+        const sizes = attributes.size.array;
         vertex.toArray( positions, drawCount * 3 );
         color.toArray( colors, drawCount * 3 );
         color.toArray( originalColors, drawCount * 3 );
@@ -239,7 +236,6 @@ function DataPoints(props: ThreeElements['points']) {
         hoveredArray[drawCount] = 0;
         drawCount++;
         geometry.setDrawRange( 0, drawCount );
-
     }
 
     const updateAttributes = () => {
@@ -255,9 +251,20 @@ function DataPoints(props: ThreeElements['points']) {
         ref.current.geometry.computeBoundingSphere();
     }
 
-    const toggleSelected = (index:number) => {
-        sizesArray[index] = selectedArray[index] === 0.0 ? PARTICLE_SIZE * 5 : PARTICLE_SIZE;
-        selectedArray[index] = selectedArray[index] === 0.0 ? 1.0 : 0.0;
+    const pickSelected = (index:number) => {
+        if (selected) {
+            sizesArray[selected] = PARTICLE_SIZE;
+            selectedArray[selected] = 0.0;
+        }
+        selected = index;
+        sizesArray[selected] = PARTICLE_SIZE * 4;
+        selectedArray[selected] = 1.0;
+        props.setCenter(new Vector3(
+            positionsArray[3*selected    ],
+            positionsArray[3*selected + 1],
+            positionsArray[3*selected + 2]
+        ));
+        updateAttributes();
     }
 
     const onClick = (event:ThreeEvent<MouseEvent>) => {
@@ -268,9 +275,8 @@ function DataPoints(props: ThreeElements['points']) {
             acc.distanceToRay < val.distanceToRay? acc : val
         )
         if (closest.index != null) {
-            toggleSelected(closest.index);
+            pickSelected(closest.index);
         }
-        updateAttributes();
         event.stopPropagation();
     }
     const onPointerOver = (event:ThreeEvent<PointerEvent>) => {
@@ -290,9 +296,8 @@ function DataPoints(props: ThreeElements['points']) {
 
     return (
         <points
-            {...props}
+            {...props.pointsProps}
             ref={ref}
-            // scale={clicked ? 1.2 : 1}
             onClick={onClick}
             onPointerOver={onPointerOver}
             onPointerOut={onPointerOut}

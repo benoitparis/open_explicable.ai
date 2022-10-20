@@ -2,7 +2,28 @@ import React from 'react';
 import ContactForm from "./ContactForm";
 import AttributionSpace from "./attribution-space/AttributionSpace";
 
-function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
+
+const FeatureBox = (props:{name:string, description:string}) =>
+    <div className="box">
+        <p>{props.description}</p>
+        <a href="#" className="button button-alt">{props.name}</a>
+    </div>
+
+const features = [
+    {name:"Performant", description:"We use algorithms that win competitions, we just open them and present how they take their decisions"},
+    {name:"Transparent", description:"Know exactly how your models work. Establish compliance easily"},
+    {name:"Visual", description:"Gain deep insights about the topology of your clients, at an intuitive glance"},
+    {name:"Agile", description:"Fully fledged data management, Extract-Transform-Load &amp; Machine Learning environment working together"},
+    {name:"Smart", description:"Follow the driving signals in the data as a management principle, concentrate only on data that has value"},
+    {name:"Enriched", description:"Join open datasets with your data, and enable further insights and performance"},
+]
+
+const Features = features.map(it => <FeatureBox name={it.name} description={it.description}/>)
+
+
+
+
+const Website = (props:{displayed:boolean, display:(d:boolean)=>void}) => {
     return (
         <div id="website-wrapper" style={{
             height:"100%",
@@ -58,7 +79,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                             // overflow: props.displayed?"initial":"hidden",
                             display: "table-cell"
                         }}>
-                            <a href="#services" accessKey="2" title="" style={{
+                            <a href="#features" accessKey="2" title="" style={{
                                 paddingLeft: props.displayed?"1.5em":"0",
                                 paddingRight: props.displayed?"1.5em":"0",
                                 borderWidth: props.displayed?"thin":"0",
@@ -123,7 +144,7 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                     transition:"all 0.5s ease-out",
                     height: props.displayed?"auto":0
                 }}>
-                    <a href="#services">
+                    <a href="#features">
                         <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 898.75 533.751" fill="#fff">
                                 <path
@@ -142,44 +163,13 @@ function Website(props:{displayed:boolean, display:(d:boolean)=>void}) {
                     paddingBottom: props.displayed?"7em":0,
                     paddingTop: props.displayed?"3em":0
                 }}>
-                    <div id="services"
-                         // style={{paddingBottom: "3em"}}
-                    >
+                    <div id="features">
                         <div className="title">
                             <h2>Features</h2>
                             <span className="byline"></span>
                         </div>
                         <div id="feature-list" className="container">
-                            <div className="box">
-                                <p>We use algorithms that win competitions, we just open them and present how they take
-                                    their
-                                    decisions.</p>
-                                <a href="#" className="button button-alt">Performant</a>
-                            </div>
-                            <div className="box">
-                                <p>Know exactly how your models work. Establish compliance easily</p>
-                                <a href="#" className="button button-alt">Transparent</a>
-                            </div>
-                            <div className="box">
-                                <p>Gain deep insights about the topology of your clients, at an intuitive glance</p>
-                                <a href="#" className="button button-alt">Visual</a>
-                            </div>
-                            <div className="box">
-                                <p>Fully fledged data management, Extract-Transform-Load &amp; Machine Learning environment
-                                    working
-                                    together</p>
-                                <a href="#" className="button button-alt">Agile</a>
-                            </div>
-                            <div className="box">
-                                <p>Follow the driving signals in the data as a management principle, concentrate only on
-                                    data that has
-                                    value</p>
-                                <a href="#" className="button button-alt">Smart</a>
-                            </div>
-                            <div className="box">
-                                <p>Join open datasets with your data, and enable further insights and performance</p>
-                                <a href="#" className="button button-alt">Enriched</a>
-                            </div>
+                            {Features}
                         </div>
                     </div>
                 </div>
