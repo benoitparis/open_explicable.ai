@@ -34,6 +34,9 @@
     margin: auto;
 }
 
+.featureTitle {
+    margin-bottom: 1em;
+}
 .featuresTitleH2 {
     text-align: center;
     font-weight: bold;
@@ -95,3 +98,4 @@
     text-decoration: none;
     color: rgba(255, 255, 255, 0.85);
 }
+

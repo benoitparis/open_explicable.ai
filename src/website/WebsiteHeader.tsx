@@ -1,6 +1,5 @@
 import React, {PropsWithChildren} from "react";
 import styles from "./WebsiteHeader.module.css";
-import stylesGlobals from "./Globals.module.css";
 
 const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
     <>
@@ -13,21 +12,42 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
             </a>
         </div>
 
-        <div id="menu" style={{zIndex:1, pointerEvents:"initial"}}>
-            <ul style={{display:"flex"}}>
-                <li className={props.displayed?"":"active"}
+        <div className={styles.menu} style={{zIndex:1, pointerEvents:"initial"}}>
+            <ul className={styles.menuUl} style={{display:"flex"}}>
+                <li className={[styles.menuLi].join(" ")}
                     onClick={()=>props.display(false)}
-                ><a href="#" accessKey="1" title="">App</a></li>
-                <li className={props.displayed?"active":""}
+                >
+                    <a className={[styles.menuLiA, props.displayed?"":styles.menuActiveA].join(" ")} href="#" accessKey="1" title="">
+                        <div style={{
+                            display: "inline-flex",
+                            overflow: "hidden",
+                            transition:"all 0.5s ease-out",
+                            maxWidth: "100%",
+                            fontSize: "inherit",
+                        }}>App</div>
+                    </a>
+                </li>
+                <li className={[styles.menuLi].join(" ")}
                     onClick={()=>props.display(true)}
-                ><a href="#" accessKey="1" title="">Home</a></li>
-                <li style={{
+                >
+                    <a className={[styles.menuLiA, props.displayed?styles.menuActiveA:""].join(" ")} href="#" accessKey="1" title="">
+                        <div style={{
+                            display: "inline-flex",
+                            overflow: "hidden",
+                            transition:"all 0.5s ease-out",
+                            maxWidth: "100%",
+                            fontSize: "inherit",
+                        }}>Home</div>
+                    </a>
+                </li>
+                <li className={styles.menuLi}
+                    style={{
                     zIndex:1,
                     pointerEvents:"initial",
                     transition:"all 0.5s ease-out",
                     display: "table-cell"
                 }}>
-                    <a href="#features" accessKey="2" title="" style={{
+                    <a className={styles.menuLiA} href="#features" accessKey="2" title="" style={{
                         paddingLeft: props.displayed?"1.5em":"0",
                         paddingRight: props.displayed?"1.5em":"0",
                         borderWidth: props.displayed?"thin":"0",
@@ -41,13 +61,14 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
                         }}>Features</div>
                     </a>
                 </li>
-                <li style={{
+                <li className={styles.menuLi}
+                    style={{
                     zIndex:1,
                     pointerEvents:"initial",
                     transition:"all 0.5s ease-out",
                     display: "table-cell"
                 }}>
-                    <a href="#copyright" accessKey="2" title="" style={{
+                    <a className={styles.menuLiA} href="#copyright" accessKey="2" title="" style={{
                         paddingLeft: props.displayed?"1.5em":"0",
                         paddingRight: props.displayed?"1.5em":"0",
                         borderWidth: props.displayed?"thin":"0",

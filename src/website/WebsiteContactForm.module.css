@@ -25,3 +25,38 @@
     font-size: 1em;
     color: #2651a8;
 }
+
+
+/*********************************************************************************/
+/* List Styles                                                                   */
+/*********************************************************************************/
+
+.ulActions {
+    margin-top: 3em;
+}
+
+.ulActionsLi {
+    padding: 0.5em 1.5em;
+}
+
+.ulActionsLiInput {
+    font-size: 12pt;
+    width: 20em;
+    height: 2em;
+}
+.ulActionsTextarea {
+    font-size: 12pt;
+    width: 20em;
+    height: 6em;
+}
+@media only screen and (hover: none) and (pointer: coarse){
+    .ulActionsLiInput {
+        font-size: 2rem;
+        border-width: medium;
+    }
+    .ulActionsTextarea {
+        font-size: 2rem;
+        border-width: medium;
+    }
+}
+

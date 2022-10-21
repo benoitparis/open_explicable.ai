@@ -77,3 +77,44 @@
         font-size: 1.3em;
     }
 }
+
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+.menu {
+    position: absolute;
+    top: 2em;
+    right: 0;
+    margin-right: 1em;
+}
+
+.menuUl {
+    display: inline-block;
+}
+
+.menuLi {
+    display: block;
+    float: left;
+    margin: 2px;
+}
+
+.menuLiA {
+    padding: 1em 1.5em;
+    letter-spacing: 1px;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 0.8em;
+    border-radius: 6px;
+    border-style: groove;
+    border-width: thin;
+    color: rgba(255, 255, 255, 0.80);
+    transition: all 0.5s ease-out;
+}
+
+.menuActiveA {
+    background: #2651a8;
+    border-radius: 6px;
+    border-style: inset;
+    color: rgba(255, 255, 255, 1);
+}

@@ -6,7 +6,7 @@ import stylesGlobals from "./Globals.module.css";
 const FeatureBox = (props:{name:string, description:string}) =>
     <div>
         <p className={styles.boxP}>{props.description}</p>
-        <a href="#" className={styles.boxButton}>{props.name}</a>
+        <a className={styles.boxButton}>{props.name}</a>
     </div>
 
 const features = [
@@ -28,7 +28,7 @@ const Features = (props:{displayed:boolean}) =>
         paddingTop: props.displayed?"3em":0
     }}>
         <div id="features">
-            <div className="title">
+            <div className={styles.featureTitle}>
                 <h2 className={styles.featuresTitleH2}>Features</h2>
             </div>
             <div className={styles.featureList}>
