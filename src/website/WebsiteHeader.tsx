@@ -1,92 +1,57 @@
 import React, {PropsWithChildren} from "react";
 import styles from "./WebsiteHeader.module.css";
+import {classes, collapsable} from "./Utils";
 
 const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
     <>
         <img src="img/thumbnail.png" alt="" style={{display:"none"}}/>
 
-        <div className={styles.logo} style={{}}>
+        <div className={styles.logo} onClick={()=>props.display(true)}>
             <a href="#" className={styles.logoA}>
                 <img className={styles.logoImg} src="img/logo.png" alt="Explicable.AI logo"/>
                 <h1 className={styles.logoH1}>Explicable.AI</h1>
             </a>
         </div>
 
-        <div className={styles.menu} style={{zIndex:1, pointerEvents:"initial"}}>
-            <ul className={styles.menuUl} style={{display:"flex"}}>
+        <div className={styles.menu}>
+            <ul className={styles.menuUl}>
                 <li className={styles.menuLi}
                     onClick={()=>props.display(false)}
                 >
-                    <a className={[styles.menuLiA, props.displayed?"":styles.menuActiveA].join(" ")} href="#" accessKey="1" title="">
-                        <div style={{
-                            display: "inline-flex",
-                            overflow: "hidden",
-                            transition:"all 0.5s ease-out",
-                            maxWidth: "100%",
-                            fontSize: "inherit",
-                        }}>App</div>
+                    <a className={classes(styles.menuLiA, props.displayed?"":styles.menuActiveA, styles.menuLiAPermanent)} href="#">
+                        <p className={styles.menuLiAP}>App</p>
                     </a>
                 </li>
                 <li className={styles.menuLi}
                     onClick={()=>props.display(true)}
                 >
-                    <a className={[styles.menuLiA, props.displayed?styles.menuActiveA:""].join(" ")} href="#" accessKey="1" title="">
-                        <div style={{
-                            display: "inline-flex",
-                            overflow: "hidden",
-                            transition:"all 0.5s ease-out",
-                            maxWidth: "100%",
-                            fontSize: "inherit",
-                        }}>Home</div>
+                    <a className={classes(styles.menuLiA, props.displayed?styles.menuActiveA:"", styles.menuLiAPermanent)} href="#">
+                        <p className={styles.menuLiAP}>Home</p>
                     </a>
                 </li>
                 <li className={styles.menuLi}>
-                    <a className={styles.menuLiA} href="#features" accessKey="2" title="" style={{
-                        paddingLeft: props.displayed?"1.5em":"0",
-                        paddingRight: props.displayed?"1.5em":"0",
-                        borderWidth: props.displayed?"thin":"0",
-                    }}>
-                        <div style={{
-                            display: "inline-flex",
-                            overflow: "hidden",
-                            transition:"all 0.5s ease-out",
-                            maxWidth: props.displayed?"100%":"0%",
-                            fontSize: props.displayed?"inherit":"0",
-                        }}>Features</div>
+                    <a className={classes(collapsable(props.displayed, styles.menuLiA), styles.menuLiAPermanent)} href="#features">
+                        <p className={classes(collapsable(props.displayed, styles.menuLiAP), styles.menuLiAPPermanent)}>Features</p>
                     </a>
                 </li>
                 <li className={styles.menuLi}>
-                    <a className={styles.menuLiA} href="#copyright" accessKey="2" title="" style={{
-                        paddingLeft: props.displayed?"1.5em":"0",
-                        paddingRight: props.displayed?"1.5em":"0",
-                        borderWidth: props.displayed?"thin":"0",
-                    }}>
-                        <div style={{
-                            display: "inline-flex",
-                            overflow: "hidden",
-                            transition:"all 0.5s ease-out",
-                            maxWidth: props.displayed?"100%":"0%",
-                            fontSize: props.displayed?"inherit":"0",
-                        }}>Contact Us</div>
+                    <a className={classes(collapsable(props.displayed, styles.menuLiA), styles.menuLiAPermanent)} href="#contact">
+                        <p className={classes(collapsable(props.displayed, styles.menuLiAP), styles.menuLiAPPermanent)}>Contact Us</p>
                     </a>
                 </li>
             </ul>
         </div>
 
-        <div id="banner" className={styles.banner} style={{
-            height: props.displayed?"auto":0,
-            padding: props.displayed?"auto":0
+        <div className={classes(collapsable(props.displayed, styles.banner), styles.bannerPermanent)} style={{
         }}>
-            <div className={styles.bannerTitle} style={{
-                height: props.displayed?"100%":0
+            <div className={collapsable(props.displayed, styles.bannerTitle)} style={{
             }}>
                 <h2 className={styles.bannerTitleH2}>Welcome to your data</h2>
                 <span className={styles.bannerTitleByline}>Rediscover it. Explore its topology. Find subtle yet invaluable signals.</span>
             </div>
         </div>
 
-        <div id="scroll-arrow" className={styles.scrollArrow} style={{
-            height: props.displayed?"auto":0
+        <div id="scroll-arrow" className={collapsable(props.displayed, styles.scrollArrow)} style={{
         }}>
             <a href="#features">
                 <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60">
@@ -100,9 +65,8 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
     </>
 
 const WebsiteHeader =  (props:PropsWithChildren<{displayed:boolean, display:(d:boolean)=>void}>) =>
-    <div className={styles.headerWrapper} style={{
-        height: props.displayed?"90%":"100%",
-        paddingBottom: props.displayed?"auto":0
+    <div className={classes(collapsable(props.displayed, styles.headerWrapper), styles.headerWrapperPermanent)} style={{
+        height: props.displayed?"90%":"100%"
     }}>
         <div style={{
             position:"absolute",

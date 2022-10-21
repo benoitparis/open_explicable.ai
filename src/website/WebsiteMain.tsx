@@ -1,6 +1,7 @@
 import WebsiteContactForm from "./WebsiteContactForm";
 import React from "react";
 import styles from "./WebsiteMain.module.css";
+import {classes, collapsable} from "./Utils";
 
 const FeatureBox = (props:{name:string, description:string}) =>
     <div>
@@ -20,11 +21,7 @@ const features = [
 const FeatureList = features.map(it => <FeatureBox name={it.name} description={it.description}/>)
 
 const Features = (props:{displayed:boolean}) =>
-    <div className={styles.featuresWrapper} style={{
-        height: props.displayed?"auto":"0%",
-        paddingBottom: props.displayed?"7em":0,
-        paddingTop: props.displayed?"3em":0
-    }}>
+    <div className={collapsable(props.displayed, styles.featuresWrapper)}>
         <div id="features">
             <div className={styles.featureTitle}>
                 <h2 className={styles.featuresTitleH2}>Features</h2>
@@ -36,20 +33,9 @@ const Features = (props:{displayed:boolean}) =>
     </div>
 
 const Welcome = (props:{displayed:boolean}) =>
-    <div className={styles.welcome} style={{
-        height: props.displayed?"auto":"0%",
-        paddingBottom: props.displayed?"auto":0,
-        paddingTop: props.displayed?"auto":0
-    }}>
-        <div className={styles.welcomeMsg}  style={{
-            height: props.displayed?"auto":"0%",
-            paddingBottom: props.displayed?"3em":0,
-            paddingTop: props.displayed?"3em":0,
-        }}>
-            <div className={styles.welcomeTitle} style={{
-                height: props.displayed?"auto":"0%",
-                paddingBottom: props.displayed?"auto":0,
-                paddingTop: props.displayed?"auto":0
+    <div className={[collapsable(props.displayed, styles.welcome), styles.welcomePermanent].join(" ")}>
+        <div className={collapsable(props.displayed, styles.welcomeMsg)}>
+            <div className={collapsable(props.displayed, styles.welcomeTitle)} style={{
             }}>
                 <h2 className={styles.welcomeTitleH2}>Explicable Machine Learning</h2>
                 <span  className={styles.welcomeTitleByLine}>Explore the hidden signals in your data</span>
@@ -72,7 +58,7 @@ const Copyright = () =>
     </div>
 
 const WebsiteMain = (props:{displayed:boolean}) =>
-    <div id="main-wrapper">
+    <div>
         <Features  displayed={props.displayed}/>
         <Welcome   displayed={props.displayed}/>
         <Copyright/>

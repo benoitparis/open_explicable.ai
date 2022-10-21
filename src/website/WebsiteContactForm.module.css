@@ -1,5 +1,6 @@
 
 .button {
+    composes: siteBlue from "Globals.module.css";
     display: inline-block;
     letter-spacing: 0.10em;
     padding: 1.40em 3em;
@@ -11,11 +12,12 @@
     min-width: fit-content;
     font-family: 'Didact Gothic', sans-serif;
     background: #FFF;
-    color: #2651a8;
 }
 
 .contactBox {
-    width: fit-content;
+    composes: siteBlue from "Globals.module.css";
+    max-width: 30em;
+    width: 100%;
     text-align: center;
     margin: auto;
     background: #FFF;
@@ -23,7 +25,6 @@
     text-decoration: none;
     font-weight: 700;
     font-size: 1em;
-    color: #2651a8;
 }
 
 .ulActions {
@@ -31,6 +32,7 @@
     margin-top: 3em;
 }
 .ulActionsLi {
+    display: flex;
     padding: 0.5em 1.5em;
 }
 .ulActionsLiUserInput {

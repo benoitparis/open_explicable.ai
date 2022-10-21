@@ -2,6 +2,21 @@
     margin: auto;
 }
 
-.darkBlue {
+.siteBlue {
     color: #2651a8;
+}
+.transitionMode {
+    transition: all 0.5s ease-out;
+}
+
+.collapseHide {
+    overflow: hidden;
+    border-width: 0;
+    max-width: 0;
+    height: 0;
+    padding: 0;
+    margin: 0;
+    color: rgba(0,0,0,0);
+    background-color: rgba(0,0,0,0);
+    border-color: rgba(0,0,0,0);
 }

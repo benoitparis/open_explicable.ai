@@ -18,7 +18,7 @@
 }
 
 .featuresWrapper {
-    transition: all 0.5s ease-out;
+    height: auto;
     position: relative;
     padding: 3em 0 7em 0;
     background: #FFF;
@@ -43,17 +43,19 @@
     font-size: 2.7em;
 }
 
-.welcome {
-    transition: all 0.5s ease-out;
+.welcomePermanent {
     position: relative;
-    padding: 3em 0 3em 0;
     background: #2651a8;
     background-size: cover;
     text-align: center;
 }
+.welcome {
+    height: auto;
+    padding: 3em 0 3em 0;
+}
 .welcomeTitle {
-    transition: all 0.5s ease-out;
     margin-bottom: 1em;
+    height: auto;
 }
 .welcomeTitleH2 {
     margin: 0;
@@ -65,8 +67,9 @@
 }
 .welcomeMsg {
     composes: centered from "Globals.module.css";
-    transition: all 0.5s ease-out;
-    padding: 0 100px;
+    height: auto;
+    padding-bottom: 3em;
+    padding-top: 3em;
     max-width: 60em;
     color: rgba(255,255,255,0.8);
 }
