@@ -186,6 +186,22 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
         );
     }
 
+    const addParticle = (vertex:Vector3, color:Color, size:number) => {
+        const geometry = ref.current.geometry;
+        const attributes = geometry.attributes;
+        const positions = attributes.position.array;
+        const colors = attributes.customColor.array;
+        const sizes = attributes.size.array;
+        vertex.toArray( positions, drawCount * 3 );
+        color.toArray( colors, drawCount * 3 );
+        color.toArray( originalColors, drawCount * 3 );
+        // @ts-ignore
+        sizes[drawCount] = size;
+        hoveredArray[drawCount] = 0;
+        drawCount++;
+        geometry.setDrawRange( 0, drawCount );
+    }
+
     useEffect(() => {
 
         const loader = new THREE.FileLoader();
@@ -222,21 +238,6 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
         document.body.style.cursor = hovered ? 'pointer' : 'auto'
     }, [hovered]);
 
-    const addParticle = (vertex:Vector3, color:Color, size:number) => {
-        const geometry = ref.current.geometry;
-        const attributes = geometry.attributes;
-        const positions = attributes.position.array;
-        const colors = attributes.customColor.array;
-        const sizes = attributes.size.array;
-        vertex.toArray( positions, drawCount * 3 );
-        color.toArray( colors, drawCount * 3 );
-        color.toArray( originalColors, drawCount * 3 );
-        // @ts-ignore
-        sizes[drawCount] = size;
-        hoveredArray[drawCount] = 0;
-        drawCount++;
-        geometry.setDrawRange( 0, drawCount );
-    }
 
     const updateAttributes = () => {
         const geometry = ref.current.geometry;
@@ -257,7 +258,7 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
             selectedArray[selected] = 0.0;
         }
         selected = index;
-        sizesArray[selected] = PARTICLE_SIZE * 4;
+        sizesArray[selected] = PARTICLE_SIZE * 2;
         selectedArray[selected] = 1.0;
         props.setCenter(new Vector3(
             positionsArray[3*selected    ],

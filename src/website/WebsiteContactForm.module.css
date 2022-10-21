@@ -1,0 +1,27 @@
+
+.button {
+    display: inline-block;
+    letter-spacing: 0.10em;
+    padding: 1.40em 3em;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1em;
+    width: 30%;
+    min-width: fit-content;
+    font-family: 'Didact Gothic', sans-serif;
+    background: #FFF;
+    color: #2651a8;
+}
+
+.contactBox {
+    width: fit-content;
+    text-align: center;
+    margin: auto;
+    background: #FFF;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1em;
+    color: #2651a8;
+}

@@ -1,0 +1,97 @@
+.boxP {
+    max-width: 25em;
+    margin: 2em;
+}
+
+.boxButton {
+    display: inline-block;
+    letter-spacing: 0.10em;
+    background: #2651a8;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1em;
+    color: #FFF;
+    width: 30%;
+    min-width: fit-content;
+    padding: 1em 2em;
+    border-color: rgba(0, 0, 0, .8);
+}
+
+
+.featuresWrapper {
+    position: relative;
+    padding: 3em 0 7em 0;
+    background: #FFF;
+}
+.featureList {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.6);
+    width: 80%;
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: center;
+    margin: auto;
+}
+
+.featuresTitleH2 {
+    text-align: center;
+    font-weight: bold;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 2.7em;
+}
+
+
+.copyright {
+    overflow: hidden;
+    padding: 5em 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+
+.welcome {
+    position: relative;
+    padding: 3em 0 3em 0;
+    background: #2651a8;
+    background-size: cover;
+    text-align: center;
+}
+
+.welcomeTitle {
+    margin-bottom: 1em;
+}
+
+.welcomeTitleH2 {
+    font-size: 2.7em;
+}
+
+.welcomeTitleByLine {
+    font-size: 1.3em;
+    color: rgba(255, 255, 255, 0.60);
+}
+
+.welcomeMsg {
+    composes: centered from "Globals.module.css";
+    padding: 0 100px;
+    color: rgba(255,255,255,0.8);
+}
+
+
+
+.copyright {
+    composes: centered from "Globals.module.css";
+    overflow: hidden;
+    padding: 5em 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.copyrightP {
+    text-align: center;
+    font-size: 1em;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.copyrightA {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 0.85);
+}

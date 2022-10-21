@@ -1,8 +1,9 @@
 import React from "react";
+import styles from "./WebsiteContactForm.module.css";
 
-function ContactForm() {
+function WebsiteContactForm() {
     return (
-        <div id="contact-box" style={{maxWidth: "30em", width:"100%"}}>
+        <div className={styles.contactBox} style={{maxWidth: "30em", width:"100%"}}>
             <form className="gform"
                   method="POST"
                   data-email="example@email.net"
@@ -42,8 +43,7 @@ function ContactForm() {
                         </textarea>
                     </li>
                     <li>
-                        <button className="button" style={{
-                            fontFamily:"'Didact Gothic', sans-serif"
+                        <button className={styles.button} style={{
                         }}>Contact
                             Us
                         </button>
@@ -59,4 +59,4 @@ function ContactForm() {
         </div>
     );
 }
-export default ContactForm;
+export default WebsiteContactForm;

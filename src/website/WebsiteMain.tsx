@@ -1,10 +1,12 @@
-import ContactForm from "./ContactForm";
+import WebsiteContactForm from "./WebsiteContactForm";
 import React from "react";
+import styles from "./WebsiteMain.module.css";
+import stylesGlobals from "./Globals.module.css";
 
 const FeatureBox = (props:{name:string, description:string}) =>
-    <div className="box">
-        <p>{props.description}</p>
-        <a href="#" className="button button-alt">{props.name}</a>
+    <div>
+        <p className={styles.boxP}>{props.description}</p>
+        <a href="#" className={styles.boxButton}>{props.name}</a>
     </div>
 
 const features = [
@@ -19,7 +21,7 @@ const features = [
 const FeatureList = features.map(it => <FeatureBox name={it.name} description={it.description}/>)
 
 const Features = (props:{displayed:boolean}) =>
-    <div id="features-wrapper" style={{
+    <div className={styles.featuresWrapper} style={{
         transition:"all 0.5s ease-out",
         height: props.displayed?"auto":"0%",
         paddingBottom: props.displayed?"7em":0,
@@ -27,37 +29,36 @@ const Features = (props:{displayed:boolean}) =>
     }}>
         <div id="features">
             <div className="title">
-                <h2>Features</h2>
-                <span className="byline"></span>
+                <h2 className={styles.featuresTitleH2}>Features</h2>
             </div>
-            <div id="feature-list" className="container">
+            <div className={styles.featureList}>
                 {FeatureList}
             </div>
         </div>
     </div>
 
 const Welcome = (props:{displayed:boolean}) =>
-    <div id="welcome" style={{
+    <div className={styles.welcome} style={{
         transition:"all 0.5s ease-out",
         height: props.displayed?"auto":"0%",
         paddingBottom: props.displayed?"auto":0,
         paddingTop: props.displayed?"auto":0
     }}>
-        <div id="welcome-msg" className="container" style={{
+        <div className={styles.welcomeMsg}  style={{
             transition:"all 0.5s ease-out",
             height: props.displayed?"auto":"0%",
             paddingBottom: props.displayed?"3em":0,
             paddingTop: props.displayed?"3em":0,
             maxWidth: "60em",
         }}>
-            <div className="title" style={{
+            <div className={styles.welcomeTitle} style={{
                 transition:"all 0.5s ease-out",
                 height: props.displayed?"auto":"0%",
                 paddingBottom: props.displayed?"auto":0,
                 paddingTop: props.displayed?"auto":0
             }}>
-                <h2>Explicable Machine Learning</h2>
-                <span className="byline">Explore the hidden signals in your data</span>
+                <h2 className={styles.welcomeTitleH2}>Explicable Machine Learning</h2>
+                <span  className={styles.welcomeTitleByLine}>Explore the hidden signals in your data</span>
             </div>
             <p>
                 Gain invaluable insights from your existing databases that you would have otherwise missed with
@@ -65,25 +66,27 @@ const Welcome = (props:{displayed:boolean}) =>
                 to you. Discover implicit structures and how they relate to events like customers buying your
                 product.
             </p>
-            <ContactForm/>
+            <WebsiteContactForm/>
         </div>
     </div>
 
-const Copyright = (props:{displayed:boolean}) =>
-    <div id="copyright" className="container" style={{
+const Copyright = () =>
+    <div className={styles.copyright} style={{
         backgroundColor: "black",
         backgroundSize: "cover",
         position: "relative",
         width: "100%"
     }}>
-        <p>2017-2022 © <a href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved</p>
+        <p className={styles.copyrightP}>
+            2017-2022 © <a className={styles.copyrightA} href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved
+        </p>
     </div>
 
 const WebsiteMain = (props:{displayed:boolean}) =>
     <div id="main-wrapper">
         <Features  displayed={props.displayed}/>
         <Welcome   displayed={props.displayed}/>
-        <Copyright displayed={props.displayed}/>
+        <Copyright/>
     </div>
 
 export default WebsiteMain;

@@ -1,11 +1,10 @@
-import React from 'react';
-import AttributionSpace from "./attribution-space/AttributionSpace";
+import React, {PropsWithChildren} from 'react';
 import WebsiteMain from "./WebsiteMain";
 import WebsiteHeader from "./WebsiteHeader";
 import "./Website.module.css";
 
 
-const Website = (props:{displayed:boolean, display:(d:boolean)=>void}) => {
+const Website = (props:PropsWithChildren<{displayed:boolean, display:(d:boolean)=>void}>) => {
     return (
         <div id="website-wrapper" style={{
             height:"100%",
@@ -13,7 +12,7 @@ const Website = (props:{displayed:boolean, display:(d:boolean)=>void}) => {
         }}>
 
             <WebsiteHeader displayed={props.displayed} display={props.display}>
-                <AttributionSpace displayed={!props.displayed} display={() => props.display(false)}/>
+                {props.children}
             </WebsiteHeader>
 
             <WebsiteMain displayed={props.displayed}/>

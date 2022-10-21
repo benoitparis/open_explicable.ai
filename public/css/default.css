@@ -3,8 +3,8 @@ html, body {
 }
 
 body {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 0;
     background: #050505;
     font-family: 'Didact Gothic', sans-serif;
     font-size: 12pt;
@@ -35,62 +35,13 @@ p {
     line-height: 180%;
 }
 
-strong {
-}
-
-a {
-    color: #ee0000;
-}
-
 a:hover {
     text-decoration: none;
-}
-
-.container {
-    overflow: hidden;
-    margin: 0em auto;
-}
-
-/*********************************************************************************/
-/* Image Style                                                                   */
-/*********************************************************************************/
-
-.image {
-    display: inline-block;
-}
-
-.image img {
-    display: block;
-    width: 100%;
-}
-
-.image-full {
-    display: block;
-    width: 100%;
-    margin: 0 0 2em 0;
-}
-
-.image-left {
-    float: left;
-    margin: 0 2em 2em 0;
-}
-
-.image-centered {
-    display: block;
-    margin: 0 0 2em 0;
-}
-
-.image-centered img {
-    margin: 0 auto;
-    width: auto;
 }
 
 /*********************************************************************************/
 /* List Styles                                                                   */
 /*********************************************************************************/
-
-ul.style1 {
-}
 
 ul.actions {
     margin-top: 3em;
@@ -122,57 +73,6 @@ ul.actions textarea {
     }
 }
 
-
-/*********************************************************************************/
-/* Contact Box                                                                       */
-/*********************************************************************************/
-
-#contact-box {
-    width: fit-content;
-    text-align: center;
-    margin: auto;
-    background: #FFF;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1em;
-    color: #2651a8;
-}
-
-
-/*********************************************************************************/
-/* Button Style                                                                  */
-/*********************************************************************************/
-
-.button {
-    display: inline-block;
-    letter-spacing: 0.10em;
-    padding: 1.40em 3em;
-    background: #2651a8;
-    border-radius: 6px;
-    text-decoration: none;
-    font-weight: 700;
-    font-size: 1em;
-    color: #FFF;
-    width: 30%;
-    min-width: fit-content;
-}
-
-.button-alt {
-    padding: 1em 2em;
-    border-color: rgba(0, 0, 0, .8);
-    color: #FFF;
-}
-
-/*********************************************************************************/
-/* feature box                                                                   */
-/*********************************************************************************/
-
-.box p {
-    max-width: 25em;
-    margin: 2em;
-}
-
 /*********************************************************************************/
 /* Heading Titles                                                                */
 /*********************************************************************************/
@@ -181,70 +81,6 @@ ul.actions textarea {
     margin-bottom: 1em;
 }
 
-.title h2 {
-    font-size: 2.7em;
-}
-
-.title .byline {
-    font-size: 1.3em;
-    color: rgba(255, 255, 255, 0.60);
-}
-
-/*********************************************************************************/
-/* Header                                                                        */
-/*********************************************************************************/
-
-#features-wrapper {
-    position: relative;
-    padding: 3em 0em 7em 0em;
-    background: #FFF;
-}
-
-/*********************************************************************************/
-/* Header                                                                        */
-/*********************************************************************************/
-
-#header-wrapper {
-    position: relative;
-    padding-top: 1em;
-    /* background: #111111 url(../images/header-bg.jpg) no-repeat center; */
-    background-size: cover;
-}
-
-#header {
-    z-index: 1;
-    position: relative;
-    width: fit-content;
-    margin: 0;
-}
-
-
-/*********************************************************************************/
-/* Logo                                                                          */
-/*********************************************************************************/
-
-#logo {
-    position: absolute;
-    top: 3.6em;
-    left: 0;
-    margin-left: 1em;
-}
-
-#logo h1 {
-    float: left;
-    margin-left: 0.2em;
-    font-size: 2.6em;
-}
-
-#logo a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 1);
-}
-
-#logo img {
-    max-height: 4em;
-    float: left;
-}
 
 /*********************************************************************************/
 /* Menu                                                                          */
@@ -294,149 +130,3 @@ ul.actions textarea {
 #menu .icon {
 }
 
-
-/*********************************************************************************/
-/* scroll-arrow                                                                  */
-/*********************************************************************************/
-
-#scroll-arrow {
-    position: absolute;
-    bottom: -2.5em;
-    text-align: center;
-    width: 100%;
-    z-index: 1;
-}
-
-#scroll-arrow svg {
-    fill: #2651a8;
-}
-
-/*********************************************************************************/
-/* Banner                                                                        */
-/*********************************************************************************/
-
-#banner {
-    position: absolute;
-    bottom: 0;
-    text-align: center;
-    width: 100%;
-    pointer-events: none;
-    padding-bottom: 1em;
-    left: 0;
-    right: 0;
-}
-
-#banner .title h2 {
-    font-size: 4em;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-#banner .title .byline {
-    font-size: 2em;
-}
-
-#banner .button {
-    margin-top: 2em;
-    padding: 1.40em 3em;
-    border-radius: 6px;
-    font-weight: 700;
-    font-size: 1em;
-}
-
-.banner {
-    margin-bottom: 5em;
-}
-
-@media only screen and (hover: none) and (pointer: coarse){
-    #banner .title h2 {
-        font-size: 2.7em;
-    }
-    #banner .title .byline {
-        font-size: 1.3em;
-    }
-}
-
-/*********************************************************************************/
-/* Copyright                                                                     */
-/*********************************************************************************/
-
-#copyright {
-    overflow: hidden;
-    padding: 5em 0em;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-#copyright p {
-    text-align: center;
-    font-size: 1em;
-    color: rgba(255, 255, 255, 0.6);
-}
-
-#copyright a {
-    text-decoration: none;
-    color: rgba(255, 255, 255, 0.85);
-}
-
-
-/*********************************************************************************/
-/* Welcome                                                                       */
-/*********************************************************************************/
-
-#welcome {
-    position: relative;
-    padding: 3em 0em 3em 0em;
-    background: #2651a8;
-    background-size: cover;
-    text-align: center;
-}
-
-#welcome .container {
-    padding: 0px 100px;
-    color: rgba(255,255,255,0.8);
-}
-
-#welcome a {
-    color: rgba(255, 255, 255, 1);
-}
-
-#welcome .button {
-    background: #FFF;
-    color: #2651a8;
-}
-
-
-/*********************************************************************************/
-/* Extra                                                                         */
-/*********************************************************************************/
-
-#feature-list {
-    text-align: center;
-    color: rgba(0, 0, 0, 0.6);
-    width: 80%;
-    display: flex;
-    flex-flow: row wrap;
-    justify-content: center;
-}
-
-#feature-list .fa {
-    display: block;
-    padding: 1em 0em;
-    color: rgba(0, 0, 0, 1);
-    font-size: 2em;
-}
-
-#feature-list .title h2 {
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.8);
-}
-
-#features .title h2 {
-    text-align: center;
-    font-weight: bold;
-    color: rgba(0, 0, 0, 0.8);
-}
-
-#feature-list .title .byline {
-    text-align: center;
-    color: rgba(0, 0, 0, .5);
-}

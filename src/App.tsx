@@ -1,27 +1,15 @@
 import React, {useState} from 'react';
-import Website from "./Website";
+import Website from "./website/Website";
+import AttributionSpace from "./attribution-space/AttributionSpace";
 
 function App() {
 
     const [showWebsite, setShowWebsite] = useState(true);
 
-
     return (
-        <>
-
-            {/*<div id="app-wrapper" style={{*/}
-            {/*    position:"absolute",*/}
-            {/*    top:0,*/}
-            {/*    width: "100%",*/}
-            {/*    height: "100%",*/}
-            {/*    //zIndex:10*/}
-            {/*}}>*/}
-            {/*    <AttributionSpace showSpace={() => setShowWebsite(false)}/>*/}
-            {/*</div>*/}
-
-            {/*<div style={{transition: "height 2s", height: showWebsite?"100%":0}}><Website/></div>*/}
-            <Website displayed={showWebsite} display={setShowWebsite}/>
-        </>
+        <Website displayed={showWebsite} display={setShowWebsite}>
+            <AttributionSpace displayed={!showWebsite} display={() => setShowWebsite(false)}/>
+        </Website>
     );
 }
 
