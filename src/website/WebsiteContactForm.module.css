@@ -26,30 +26,28 @@
     color: #2651a8;
 }
 
-
-/*********************************************************************************/
-/* List Styles                                                                   */
-/*********************************************************************************/
-
 .ulActions {
+    padding: 0;
     margin-top: 3em;
 }
-
 .ulActionsLi {
     padding: 0.5em 1.5em;
 }
-
-.ulActionsLiInput {
+.ulActionsLiUserInput {
     font-size: 12pt;
-    width: 20em;
+    height: 2em;
+    width: 100%;
+    font-family: 'Didact Gothic', sans-serif;
+}
+.ulActionsLiInput {
+    composes: ulActionsLiUserInput;
     height: 2em;
 }
 .ulActionsTextarea {
-    font-size: 12pt;
-    width: 20em;
+    composes: ulActionsLiUserInput;
     height: 6em;
 }
-@media only screen and (hover: none) and (pointer: coarse){
+@media only screen and (hover: none) and (pointer: coarse) {
     .ulActionsLiInput {
         font-size: 2rem;
         border-width: medium;
@@ -59,4 +57,3 @@
         border-width: medium;
     }
 }
-

@@ -1,74 +1,67 @@
+.clickable {
+    pointer-events: initial;
+    z-index: 1;
+}
 
 .scrollArrow {
+    composes: clickable;
+    transition: all 0.5s ease-out;
     position: absolute;
     bottom: -2.5em;
     text-align: center;
     width: 100%;
-    z-index: 1;
 }
 
-
 .headerWrapper {
+    transition: all 0.5s ease-out;
     position: relative;
     padding-top: 1em;
-    /* background: #111111 url(../images/header-bg.jpg) no-repeat center; */
     background-size: cover;
 }
 
-
-/*********************************************************************************/
-/* Logo                                                                          */
-/*********************************************************************************/
-
 .logo {
-    position: absolute;
     top: 3.6em;
     left: 0;
     margin-left: 1em;
 }
-
 .logoH1 {
     float: left;
+    margin-top: 0;
     margin-left: 0.2em;
     font-size: 2.6em;
 }
-
 .logoA {
     text-decoration: none;
     color: rgba(255, 255, 255, 1);
 }
-
 .logoImg {
     max-height: 4em;
     float: left;
 }
 
-
 .banner {
     composes: centered from "Globals.module.css";
+    composes: clickable;
+    transition: all 0.5s ease-out;
     position: absolute;
-    bottom: 0;
     text-align: center;
     width: 100%;
-    pointer-events: none;
     padding-bottom: 1em;
-    left: 0;
-    right: 0;
+    bottom: 0;
 }
 .bannerTitle {
+    transition: all 0.5s ease-out;
     margin-bottom: 1em;
 }
-
 .bannerTitleH2 {
+    margin: 0;
     font-size: 4em;
     color: rgba(255, 255, 255, 0.8);
 }
-
 .bannerTitleByline {
     font-size: 2em;
     color: rgba(255, 255, 255, 0.60);
 }
-
 @media only screen and (hover: none) and (pointer: coarse){
     .bannerTitleH2 {
         font-size: 2.7em;
@@ -78,9 +71,6 @@
     }
 }
 
-/*********************************************************************************/
-/* Menu                                                                          */
-/*********************************************************************************/
 
 .menu {
     position: absolute;
@@ -88,18 +78,22 @@
     right: 0;
     margin-right: 1em;
 }
-
 .menuUl {
+    padding: 0;
+    margin-top: 0;
     display: inline-block;
 }
-
 .menuLi {
-    display: block;
+    composes: clickable;
+    transition: all 0.5s ease-out;
+    display: table-cell;
     float: left;
     margin: 2px;
 }
-
 .menuLiA {
+    display: inline-flex;
+    overflow: hidden;
+    max-width: 100%;
     padding: 1em 1.5em;
     letter-spacing: 1px;
     text-decoration: none;
@@ -111,7 +105,6 @@
     color: rgba(255, 255, 255, 0.80);
     transition: all 0.5s ease-out;
 }
-
 .menuActiveA {
     background: #2651a8;
     border-radius: 6px;

@@ -1,7 +1,6 @@
 import WebsiteContactForm from "./WebsiteContactForm";
 import React from "react";
 import styles from "./WebsiteMain.module.css";
-import stylesGlobals from "./Globals.module.css";
 
 const FeatureBox = (props:{name:string, description:string}) =>
     <div>
@@ -22,7 +21,6 @@ const FeatureList = features.map(it => <FeatureBox name={it.name} description={i
 
 const Features = (props:{displayed:boolean}) =>
     <div className={styles.featuresWrapper} style={{
-        transition:"all 0.5s ease-out",
         height: props.displayed?"auto":"0%",
         paddingBottom: props.displayed?"7em":0,
         paddingTop: props.displayed?"3em":0
@@ -39,20 +37,16 @@ const Features = (props:{displayed:boolean}) =>
 
 const Welcome = (props:{displayed:boolean}) =>
     <div className={styles.welcome} style={{
-        transition:"all 0.5s ease-out",
         height: props.displayed?"auto":"0%",
         paddingBottom: props.displayed?"auto":0,
         paddingTop: props.displayed?"auto":0
     }}>
         <div className={styles.welcomeMsg}  style={{
-            transition:"all 0.5s ease-out",
             height: props.displayed?"auto":"0%",
             paddingBottom: props.displayed?"3em":0,
             paddingTop: props.displayed?"3em":0,
-            maxWidth: "60em",
         }}>
             <div className={styles.welcomeTitle} style={{
-                transition:"all 0.5s ease-out",
                 height: props.displayed?"auto":"0%",
                 paddingBottom: props.displayed?"auto":0,
                 paddingTop: props.displayed?"auto":0
@@ -71,12 +65,7 @@ const Welcome = (props:{displayed:boolean}) =>
     </div>
 
 const Copyright = () =>
-    <div className={styles.copyright} style={{
-        backgroundColor: "black",
-        backgroundSize: "cover",
-        position: "relative",
-        width: "100%"
-    }}>
+    <div className={styles.copyright}>
         <p className={styles.copyrightP}>
             2017-2022 © <a className={styles.copyrightA} href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved
         </p>

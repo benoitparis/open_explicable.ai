@@ -2,7 +2,6 @@
     max-width: 25em;
     margin: 2em;
 }
-
 .boxButton {
     display: inline-block;
     letter-spacing: 0.10em;
@@ -18,8 +17,8 @@
     border-color: rgba(0, 0, 0, .8);
 }
 
-
 .featuresWrapper {
+    transition: all 0.5s ease-out;
     position: relative;
     padding: 3em 0 7em 0;
     background: #FFF;
@@ -33,69 +32,61 @@
     justify-content: center;
     margin: auto;
 }
-
 .featureTitle {
     margin-bottom: 1em;
 }
 .featuresTitleH2 {
+    margin: 0;
     text-align: center;
     font-weight: bold;
     color: rgba(0, 0, 0, 0.8);
     font-size: 2.7em;
 }
 
-
-.copyright {
-    overflow: hidden;
-    padding: 5em 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
-}
-
-
 .welcome {
+    transition: all 0.5s ease-out;
     position: relative;
     padding: 3em 0 3em 0;
     background: #2651a8;
     background-size: cover;
     text-align: center;
 }
-
 .welcomeTitle {
+    transition: all 0.5s ease-out;
     margin-bottom: 1em;
 }
-
 .welcomeTitleH2 {
+    margin: 0;
     font-size: 2.7em;
 }
-
 .welcomeTitleByLine {
     font-size: 1.3em;
     color: rgba(255, 255, 255, 0.60);
 }
-
 .welcomeMsg {
     composes: centered from "Globals.module.css";
+    transition: all 0.5s ease-out;
     padding: 0 100px;
+    max-width: 60em;
     color: rgba(255,255,255,0.8);
 }
 
-
-
 .copyright {
     composes: centered from "Globals.module.css";
+
+    background-color: black;
+    background-size: cover;
+    position: relative;
+    width: 100%;
     overflow: hidden;
     padding: 5em 0;
-    border-top: 1px solid rgba(0, 0, 0, 0.08);
 }
-
 .copyrightP {
     text-align: center;
     font-size: 1em;
     color: rgba(255, 255, 255, 0.6);
 }
-
 .copyrightA {
     text-decoration: none;
-    color: rgba(255, 255, 255, 0.85);
+    color: rgba(255, 255, 255, 0.8);
 }
-

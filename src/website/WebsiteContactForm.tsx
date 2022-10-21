@@ -15,10 +15,6 @@ function WebsiteContactForm() {
                                type="text"
                                name="name"
                                placeholder="Name (required)"
-                               style={{
-                                   width:"100%",
-                                   fontFamily:"'Didact Gothic', sans-serif"
-                               }}
                         />
                     </li>
                     <li className={styles.ulActionsLi} style={{display: "flex"}}>
@@ -26,10 +22,7 @@ function WebsiteContactForm() {
                                type="text"
                                name="email"
                                placeholder="Email (required)"
-                               style={{
-                                   width:"100%",
-                                   fontFamily:"'Didact Gothic', sans-serif"
-                               }}/>
+                        />
                     </li>
                     <span className="email-invalid"
                           style={{display:"none"}}>
@@ -38,11 +31,7 @@ function WebsiteContactForm() {
                     <li className={styles.ulActionsLi} style={{display: "flex"}}>
                         <textarea className={styles.ulActionsTextarea}
                                   name="message"
-                                  placeholder="Message / Business sector / Interest"
-                                  style={{
-                                      width:"100%",
-                                      fontFamily:"'Didact Gothic', sans-serif"
-                                  }}>
+                                  placeholder="Message / Business sector / Interest">
                         </textarea>
                     </li>
                     <li className={styles.ulActionsLi} >

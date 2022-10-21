@@ -1,13 +1,12 @@
 import React, {PropsWithChildren} from 'react';
 import WebsiteMain from "./WebsiteMain";
 import WebsiteHeader from "./WebsiteHeader";
-import "./Website.module.css";
+import styles from "./Website.module.css";
 
 
 const Website = (props:PropsWithChildren<{displayed:boolean, display:(d:boolean)=>void}>) => {
     return (
-        <div id="website-wrapper" style={{
-            height:"100%",
+        <div className={styles.websiteWrapper} style={{
             overflow: props.displayed?"visible":"hidden",
         }}>
 
