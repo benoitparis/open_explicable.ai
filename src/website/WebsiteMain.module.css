@@ -43,13 +43,11 @@
     font-size: 2.7em;
 }
 
-.welcomePermanent {
+.welcome {
     position: relative;
     background: #2651a8;
     background-size: cover;
     text-align: center;
-}
-.welcome {
     height: auto;
     padding: 3em 0 3em 0;
 }

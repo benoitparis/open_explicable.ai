@@ -1,7 +1,7 @@
 import WebsiteContactForm from "./WebsiteContactForm";
 import React from "react";
 import styles from "./WebsiteMain.module.css";
-import {classes, collapsable} from "./Utils";
+import CollapsibleDiv from "./CollapsibleDiv";
 
 const FeatureBox = (props:{name:string, description:string}) =>
     <div>
@@ -20,8 +20,8 @@ const features = [
 
 const FeatureList = features.map(it => <FeatureBox name={it.name} description={it.description}/>)
 
-const Features = (props:{displayed:boolean}) =>
-    <div className={collapsable(props.displayed, styles.featuresWrapper)}>
+const Features = () =>
+    <div className={styles.featuresWrapper}>
         <div id="features">
             <div className={styles.featureTitle}>
                 <h2 className={styles.featuresTitleH2}>Features</h2>
@@ -32,10 +32,10 @@ const Features = (props:{displayed:boolean}) =>
         </div>
     </div>
 
-const Welcome = (props:{displayed:boolean}) =>
-    <div className={[collapsable(props.displayed, styles.welcome), styles.welcomePermanent].join(" ")}>
-        <div className={collapsable(props.displayed, styles.welcomeMsg)}>
-            <div className={collapsable(props.displayed, styles.welcomeTitle)} style={{
+const Welcome = () =>
+    <div className={styles.welcome}>
+        <div className={styles.welcomeMsg}>
+            <div className={styles.welcomeTitle} style={{
             }}>
                 <h2 className={styles.welcomeTitleH2}>Explicable Machine Learning</h2>
                 <span  className={styles.welcomeTitleByLine}>Explore the hidden signals in your data</span>
@@ -58,10 +58,12 @@ const Copyright = () =>
     </div>
 
 const WebsiteMain = (props:{displayed:boolean}) =>
-    <div>
-        <Features  displayed={props.displayed}/>
-        <Welcome   displayed={props.displayed}/>
-        <Copyright/>
-    </div>
+    <CollapsibleDiv displayed={props.displayed}>
+        <div>
+            <Features/>
+            <Welcome/>
+            <Copyright/>
+        </div>
+    </CollapsibleDiv>
 
 export default WebsiteMain;
