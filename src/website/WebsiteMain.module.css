@@ -3,9 +3,9 @@
     margin: 2em;
 }
 .boxButton {
+    composes: siteBlueBackground from "Globals.module.css";
     display: inline-block;
     letter-spacing: 0.10em;
-    background: #2651a8;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
@@ -44,8 +44,8 @@
 }
 
 .welcome {
+    composes: siteBlueBackground from "Globals.module.css";
     position: relative;
-    background: #2651a8;
     background-size: cover;
     text-align: center;
     height: auto;

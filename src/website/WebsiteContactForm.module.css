@@ -1,6 +1,6 @@
 
 .button {
-    composes: siteBlue from "Globals.module.css";
+    composes: siteBlueColor from "Globals.module.css";
     display: inline-block;
     letter-spacing: 0.10em;
     padding: 1.40em 3em;
@@ -15,7 +15,7 @@
 }
 
 .contactBox {
-    composes: siteBlue from "Globals.module.css";
+    composes: siteBlueColor from "Globals.module.css";
     max-width: 30em;
     width: 100%;
     text-align: center;

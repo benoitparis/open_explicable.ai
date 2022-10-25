@@ -1,22 +1,12 @@
 .centered {
     margin: auto;
 }
-
-.siteBlue {
+.siteBlueColor {
     color: #2651a8;
 }
-.transitionMode {
-    transition: all 0.5s ease-out;
+.siteBlueBackground {
+    background: #2651a8;
 }
-
-.collapseHide {
-    overflow: hidden;
-    border-width: 0;
-    max-width: 0;
-    height: 0;
-    padding: 0;
-    margin: 0;
-    color: rgba(0,0,0,0);
-    background-color: rgba(0,0,0,0);
-    border-color: rgba(0,0,0,0);
+.transitionMode {
+    transition: all 1s ease-out;
 }
