@@ -1,0 +1,6 @@
+.outer {
+    overflow: hidden;
+}
+.inner {
+    composes: transitionMode from "Globals.module.css";
+}

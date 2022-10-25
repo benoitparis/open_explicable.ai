@@ -5,8 +5,6 @@ import CollapsibleDiv from "./CollapsibleDiv";
 import thumbnail from './img/thumbnail.png';
 import logo from './img/logo.png';
 
-
-
 const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
     <>
         <img src={thumbnail} alt="" style={{display:"none"}}/>

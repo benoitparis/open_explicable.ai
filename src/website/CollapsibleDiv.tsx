@@ -1,4 +1,5 @@
 import React, {PropsWithChildren} from "react";
+import styles from "./CollapsibleDiv.module.css";
 
 const CollapsibleDiv = (props:PropsWithChildren<{displayed:boolean, to?:"bottom"|"top"}>) => {
     props = {
@@ -8,11 +9,8 @@ const CollapsibleDiv = (props:PropsWithChildren<{displayed:boolean, to?:"bottom"
     const margin = props.displayed? "0" : "-100%";
 
     return (
-        <div style={{
-            overflow: "hidden",
-        }}>
-            <div style={{
-                transition: "all 0.5s ease-out", // TODO from globals
+        <div className={styles.outer}>
+            <div className={styles.inner} style={{
                 marginBottom: props.to === "bottom"? margin : "0",
                 marginTop:    props.to === "top"   ? margin : "0"
             }}>
