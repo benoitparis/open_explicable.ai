@@ -77,8 +77,8 @@ const PARTICLE_SIZE = 0.6 * (window.devicePixelRatio**2);
 let drawCount = 0;
 const originalColors = new Float32Array( MAX_POINTS * 3 );
 
-const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
+const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
     const loadParticles = (configuration:any) => {
         console.log("loadParticles")
@@ -150,6 +150,8 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
                     if (1 === size) {
                         color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
                         particleSize = PARTICLE_SIZE * 0.5;
+                        addParticle(point, color, particleSize);
+
                     } else {
                         // tree nodes
                         color.setRGB(0.3, 0.3, 0.3);
@@ -157,9 +159,10 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
                         if (4 >= size) {
                             particleSize = 0;
                         }
+                        // TODO refaire les trees en 3D, les loader séparément, faire de l'UI
+                        // addParticle(point, color, particleSize);
                     }
 
-                    addParticle(point, color, particleSize);
                 }
 
 

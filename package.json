@@ -12,8 +12,15 @@
     "@types/node": "^16.11.65",
     "@types/react": "^18.0.21",
     "@types/react-dom": "^18.0.6",
+    "apache-arrow": "^9.0.0",
+    "parquet-wasm": "^0.4.0-beta.5",
+    "parquetjs": "^0.11.2",
+    "parquets": "^0.10.10",
+    "plotly.js": "^2.16.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-draggable": "^4.4.5",
+    "react-plotly.js": "^2.6.0",
     "react-scripts": "5.0.1",
     "three": "^0.145.0",
     "three-orbitcontrols-ts": "^0.1.2",
@@ -45,6 +52,9 @@
     ]
   },
   "devDependencies": {
+    "@types/parquetjs": "^0.10.3",
+    "@types/plotly.js": "^2.12.7",
+    "@types/react-plotly.js": "^2.5.2",
     "@types/three": "^0.144.0"
   }
 }
