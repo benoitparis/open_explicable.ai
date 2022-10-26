@@ -1,0 +1,4 @@
+col_num_int,col_num_int_missing,col_categ,col_categ_missing,col_nobegin,col_misleading_1,col_misleading_2
+1,1,A,A,,1,A
+2,2,B,B,A,A,1
+2,,B,,A,A,1

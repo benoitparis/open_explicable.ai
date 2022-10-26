@@ -1,0 +1,4 @@
+col_num_float,col_num_float_no_data,col_num_float_no_data_missing
+1.0,1.0,0
+2.0,2.0,0
+2.0,-1.0,1

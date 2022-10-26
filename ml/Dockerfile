@@ -1,8 +1,7 @@
-FROM python:3
-#RUN useradd --create-home --shell /bin/bash ml-user
-#USER ml-env
-RUN python3 -m venv ml-env
+FROM python:3.11.0-bullseye
+RUN python -m venv ml-env
 RUN . ml-env/bin/activate
+RUN pip install --upgrade pip
 COPY requirements-base.txt ./
 RUN pip install -r requirements-base.txt
 COPY rulefitcustom ./rulefitcustom
