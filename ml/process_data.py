@@ -39,6 +39,7 @@ import shap
 explainer = shap.TreeExplainer(rf.tree_generator)
 shap_values = explainer.shap_values(X)
 shap_values_df = pd.DataFrame(shap_values, columns=list(map(lambda x: "attribution_" + x, features.values)))
+shap_values_df.to_csv('data-shap-values.csv', index=False)
 
 
 import numpy as np
@@ -70,17 +71,21 @@ embedding = embedding - embedding.mean(axis=0) # faudra care au predict a partir
 embedding_df = pd.DataFrame({'x' : embedding[:,0], 'y' : embedding[:,1], 'z' : embedding[:,2]})
 
 
-
 points_df = pd.concat([embedding_df, prediction_df], axis=1)
 points_df.to_csv('data-points.csv', index=False)
 
-# #### Cluster structure
-#
-# import hdbscan
-#
-# clusterer = hdbscan.HDBSCAN(min_cluster_size=5, gen_min_span_tree=True)
-# clusterer.fit(embedding_df)
-# tree_ct_df = clusterer.condensed_tree_.to_pandas().join(embedding_df, on='child')
+#### Cluster structure
+
+import hdbscan
+
+clusterer = hdbscan.HDBSCAN(min_cluster_size=5, gen_min_span_tree=True)
+clusterer.fit(embedding_df)
+tree_df = clusterer.condensed_tree_.to_pandas()
+tree_df.to_csv('data-tree.csv', index=False)
+
+#TODO centroide
+#TODO mean prediction
+
 #
 # # add root if not present
 # if (tree_ct_df.loc[tree_ct_df['child'] == df.shape[0]].shape[0] == 0):
@@ -146,6 +151,8 @@ conf['rule-definitions'] = 'rule-definitions.csv'
 conf['data-prediction-embedding-cluster'] = 'data-prediction-embedding-cluster.csv'
 
 conf['data-points'] = 'data-points.csv'
+conf['data-shap-values'] = 'data-shap-values.csv'
+conf['data-tree'] = 'data-tree.csv'
 
 with open('conf.json', 'w') as outfile:
     json.dump(conf, outfile, indent=4, sort_keys=True)

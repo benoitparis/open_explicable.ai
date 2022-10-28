@@ -77,8 +77,34 @@ const PARTICLE_SIZE = 0.6 * (window.devicePixelRatio**2);
 let drawCount = 0;
 const originalColors = new Float32Array( MAX_POINTS * 3 );
 
+type DataPoint = {
+    x:number,
+    y:number,
+    z:number,
+    prediction:number
+}
 
 const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
+
+
+    const parseDataPointsLine = (line:string):DataPoint => {
+        const parts = line.split(',');
+        return {
+            x:parseFloat(parts[0]),
+            y:parseFloat(parts[1]),
+            z:parseFloat(parts[2]),
+            prediction:parseFloat(parts[3])
+        }
+    }
+
+
+
+    // const loadDataPoints2 = async (configuration:any) => {
+    //
+    //     fetch('data/' + configuration['data-points'])
+    //         .then()
+    //
+    // }
 
 
     const loadDataPoints = (configuration:any) => {
@@ -93,34 +119,24 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
                 const lines = (data as string).trim().split('\n');
 
                 console.log(configuration['datapoint_number'] + 1 === lines.length) // header
+
+                let points:Array<DataPoint> = [];
+
                 for (let i = 1; i < lines.length; i++) {
-
-                    const parts = lines[i].split(',');
-                    let j = 0;
-                    const x = parseFloat(parts[j++]);
-                    const y = parseFloat(parts[j++]);
-                    const z = parseFloat(parts[j++]);
-                    const prediction = parseFloat(parts[j++]);
-
-                    const point = new THREE.Vector3(x, y, z);
-                    const color = new THREE.Color();
-                    let particleSize = 0;
-
-                    const scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
-
-                    color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
-                    particleSize = PARTICLE_SIZE * 0.5;
-                    addParticle(point, color, particleSize);
-
+                    points.push(parseDataPointsLine(lines[i]));
                 }
+
+                points.forEach(dataPoint => {
+                    const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
+                    const color = new THREE.Color();
+                    const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.prediction - configuration['mean']) / 2 / configuration['std']));
+                    color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
+                    addParticle(point, color, PARTICLE_SIZE * 0.5);
+                })
 
                 updateAttributes();
                 updateBoundingSphere();
 
-            },
-            function(xhr) {},
-            function(error) {
-                console.log('An error happened');
             }
         );
     }

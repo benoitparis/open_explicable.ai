@@ -2,6 +2,8 @@
     "binary-participations": "binary-participations.csv",
     "data-points": "data-points.csv",
     "data-prediction-embedding-cluster": "data-prediction-embedding-cluster.csv",
+    "data-shap-values": "data-shap-values.csv",
+    "data-tree": "data-tree.csv",
     "datapoint_number": 2930,
     "features": [
         "Order",
@@ -490,6 +492,6 @@
         "SalePrice"
     ],
     "rule-definitions": "rule-definitions.csv",
-    "rule_number": 316,
+    "rule_number": 309,
     "std": 79886.692356665
 }
