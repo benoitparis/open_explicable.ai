@@ -80,64 +80,27 @@ const originalColors = new Float32Array( MAX_POINTS * 3 );
 
 const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
-    const loadParticles = (configuration:any) => {
+
+    const loadDataPoints = (configuration:any) => {
 
         var loader = new THREE.FileLoader();
 
         loader.load(
-            'data/' + configuration['data-prediction-embedding-cluster'],
+            'data/' + configuration['data-points'],
             (data) => {
 
-                // faudrait faire par naming des colonnes csv, limit avec un schema,
-                //   [convention d'avoir les predicted_variables en premier avant les features?
-                //   un sqlite?
-                var lines = (data as string).trim().split('\n');
+                // TODO schema, standard reader, compression
+                const lines = (data as string).trim().split('\n');
 
-                let condensedTree = [];
+                console.log(configuration['datapoint_number'] + 1 === lines.length) // header
+                for (let i = 1; i < lines.length; i++) {
 
-                for (var i = 1; i < lines.length; i++) {
-
-                    var parts = lines[i].split(',');
-                    var j = 0;
-                    var index = parseInt(parts[j++], 10);
-                    var prediction = -1;
-                    configuration['predicted_variables'].forEach((item:any) => {
-                        // save data..
-                        j++;
-                    });
-                    configuration['features'].forEach((item:any) => {
-                        // save data..
-                        j++;
-                    })
-                    configuration['predicted_variables'].forEach((item:any) => {
-                        // convention: appended _prediction to name (TODO enforce? dans le schema?)
-                        // on suppose qu'il n'y en a qu'une
-                        prediction = parseFloat(parts[j++]);
-                    });
-
-                    const parent = parseInt(parts[j++], 10);
-                    const lambda_val = parseFloat(parts[j++]);
-                    const size = parseInt(parts[j++], 10);
+                    const parts = lines[i].split(',');
+                    let j = 0;
                     const x = parseFloat(parts[j++]);
                     const y = parseFloat(parts[j++]);
                     const z = parseFloat(parts[j++]);
-
-                    // faudrait valider que index affine sur i
-                    if (index !== i - 1) {
-                        console.log("" + index + " vs " + (i-1) );
-                        throw "Data file must be sorted by index";
-                    }
-
-                    condensedTree[index] = {
-                        "identity" : index,
-                        "size" : size,
-                        "lambda_val": lambda_val,
-                        "parent" : parent,
-                        "children" : [],
-                        "x" : x,
-                        "y" : y,
-                        "z" : z
-                    };
+                    const prediction = parseFloat(parts[j++]);
 
                     const point = new THREE.Vector3(x, y, z);
                     const color = new THREE.Color();
@@ -145,36 +108,11 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
 
                     const scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
 
-                    if (1 === size) {
-                        color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
-                        particleSize = PARTICLE_SIZE * 0.5;
-                        addParticle(point, color, particleSize);
-
-                    } else {
-                        // tree nodes
-                        color.setRGB(0.3, 0.3, 0.3);
-                        particleSize = Math.log(size * 10 + 1) * PARTICLE_SIZE / 8;
-                        if (4 >= size) {
-                            particleSize = 0;
-                        }
-                        // TODO refaire les trees en 3D, les loader séparément, faire de l'UI
-                        // addParticle(point, color, particleSize);
-                    }
+                    color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
+                    particleSize = PARTICLE_SIZE * 0.5;
+                    addParticle(point, color, particleSize);
 
                 }
-
-
-
-                // link parents to children
-                // for (var k in condensedTree) {
-                //     var item = condensedTree[k];
-                //     var parent = condensedTree[item["parent"]];
-                //     if (parent) {
-                //         parent["children"].push(item["identity"]);
-                //     } else {
-                //
-                //     }
-                // };
 
                 updateAttributes();
                 updateBoundingSphere();
@@ -186,6 +124,113 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
             }
         );
     }
+
+    // const loadParticles = (configuration:any) => {
+    //
+    //     var loader = new THREE.FileLoader();
+    //
+    //     loader.load(
+    //         'data/' + configuration['data-prediction-embedding-cluster'],
+    //         (data) => {
+    //
+    //             // faudrait faire par naming des colonnes csv, limit avec un schema,
+    //             //   [convention d'avoir les predicted_variables en premier avant les features?
+    //             //   un sqlite?
+    //             var lines = (data as string).trim().split('\n');
+    //
+    //             let condensedTree = [];
+    //
+    //             for (var i = 1; i < lines.length; i++) {
+    //
+    //                 var parts = lines[i].split(',');
+    //                 var j = 0;
+    //                 var index = parseInt(parts[j++], 10);
+    //                 var prediction = -1;
+    //                 configuration['predicted_variables'].forEach((item:any) => {
+    //                     // save data..
+    //                     j++;
+    //                 });
+    //                 configuration['features'].forEach((item:any) => {
+    //                     // save data..
+    //                     j++;
+    //                 })
+    //                 configuration['predicted_variables'].forEach((item:any) => {
+    //                     // convention: appended _prediction to name (TODO enforce? dans le schema?)
+    //                     // on suppose qu'il n'y en a qu'une
+    //                     prediction = parseFloat(parts[j++]);
+    //                 });
+    //
+    //                 const parent = parseInt(parts[j++], 10);
+    //                 const lambda_val = parseFloat(parts[j++]);
+    //                 const size = parseInt(parts[j++], 10);
+    //                 const x = parseFloat(parts[j++]);
+    //                 const y = parseFloat(parts[j++]);
+    //                 const z = parseFloat(parts[j++]);
+    //
+    //                 // faudrait valider que index affine sur i
+    //                 if (index !== i - 1) {
+    //                     console.log("" + index + " vs " + (i-1) );
+    //                     throw "Data file must be sorted by index";
+    //                 }
+    //
+    //                 condensedTree[index] = {
+    //                     "identity" : index,
+    //                     "size" : size,
+    //                     "lambda_val": lambda_val,
+    //                     "parent" : parent,
+    //                     "children" : [],
+    //                     "x" : x,
+    //                     "y" : y,
+    //                     "z" : z
+    //                 };
+    //
+    //                 const point = new THREE.Vector3(x, y, z);
+    //                 const color = new THREE.Color();
+    //                 let particleSize = 0;
+    //
+    //                 const scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
+    //
+    //                 if (1 === size) {
+    //                     color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
+    //                     particleSize = PARTICLE_SIZE * 0.5;
+    //                     addParticle(point, color, particleSize);
+    //
+    //                 } else {
+    //                     // tree nodes
+    //                     color.setRGB(0.3, 0.3, 0.3);
+    //                     particleSize = Math.log(size * 10 + 1) * PARTICLE_SIZE / 8;
+    //                     if (4 >= size) {
+    //                         particleSize = 0;
+    //                     }
+    //                     // TODO refaire les trees en 3D, les loader séparément, faire de l'UI
+    //                     // addParticle(point, color, particleSize);
+    //                 }
+    //
+    //             }
+    //
+    //
+    //
+    //             // link parents to children
+    //             // for (var k in condensedTree) {
+    //             //     var item = condensedTree[k];
+    //             //     var parent = condensedTree[item["parent"]];
+    //             //     if (parent) {
+    //             //         parent["children"].push(item["identity"]);
+    //             //     } else {
+    //             //
+    //             //     }
+    //             // };
+    //
+    //             updateAttributes();
+    //             updateBoundingSphere();
+    //
+    //         },
+    //         function(xhr) {},
+    //         function(error) {
+    //             console.log('An error happened');
+    //         }
+    //     );
+    // }
 
     const addParticle = (vertex:Vector3, color:Color, size:number) => {
         const geometry = ref.current.geometry;
@@ -213,7 +258,9 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
                 const configuration = JSON.parse(data as string);
                 console.log(configuration);
 
-                loadParticles(configuration);
+
+                loadDataPoints(configuration);
+                // loadParticles(configuration);
                 // loadRuleParticipations
                 // loadRuleDefinitions
             },

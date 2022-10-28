@@ -22,7 +22,9 @@ RUN apt-get install -y gcc
 COPY requirements-explicable.txt ./
 RUN pip install -r requirements-explicable.txt
 
-COPY cleaning/Cleaning.py process_data.ipynb AmesHousing.csv run.sh ./
+COPY cleaning/Cleaning.py ./cleaning/
+COPY process_data.py ./
+COPY process_data.ipynb AmesHousing.csv run.sh ./
 #RUN apt update
 #RUN apt-get install net-tools
 #EXPOSE 127.0.0.1:8888:8888
