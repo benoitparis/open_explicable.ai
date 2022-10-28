@@ -81,7 +81,6 @@ const originalColors = new Float32Array( MAX_POINTS * 3 );
 const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
     const loadParticles = (configuration:any) => {
-        console.log("loadParticles")
 
         var loader = new THREE.FileLoader();
 
@@ -89,7 +88,6 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
             'data/' + configuration['data-prediction-embedding-cluster'],
             (data) => {
 
-                console.log("loader.load")
                 // faudrait faire par naming des colonnes csv, limit avec un schema,
                 //   [convention d'avoir les predicted_variables en premier avant les features?
                 //   un sqlite?

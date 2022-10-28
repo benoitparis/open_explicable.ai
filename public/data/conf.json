@@ -8,9 +8,11 @@
         "MS SubClass",
         "MS Zoning",
         "Lot Frontage",
+        "Lot Frontage_missing",
         "Lot Area",
         "Street",
         "Alley",
+        "Alley_missing",
         "Lot Shape",
         "Land Contour",
         "Utilities",
@@ -30,29 +32,43 @@
         "Exterior 1st",
         "Exterior 2nd",
         "Mas Vnr Type",
+        "Mas Vnr Type_missing",
         "Mas Vnr Area",
+        "Mas Vnr Area_missing",
         "Exter Qual",
         "Exter Cond",
         "Foundation",
         "Bsmt Qual",
+        "Bsmt Qual_missing",
         "Bsmt Cond",
+        "Bsmt Cond_missing",
         "Bsmt Exposure",
+        "Bsmt Exposure_missing",
         "BsmtFin Type 1",
+        "BsmtFin Type 1_missing",
         "BsmtFin SF 1",
+        "BsmtFin SF 1_missing",
         "BsmtFin Type 2",
+        "BsmtFin Type 2_missing",
         "BsmtFin SF 2",
+        "BsmtFin SF 2_missing",
         "Bsmt Unf SF",
+        "Bsmt Unf SF_missing",
         "Total Bsmt SF",
+        "Total Bsmt SF_missing",
         "Heating",
         "Heating QC",
         "Central Air",
         "Electrical",
+        "Electrical_missing",
         "1st Flr SF",
         "2nd Flr SF",
         "Low Qual Fin SF",
         "Gr Liv Area",
         "Bsmt Full Bath",
+        "Bsmt Full Bath_missing",
         "Bsmt Half Bath",
+        "Bsmt Half Bath_missing",
         "Full Bath",
         "Half Bath",
         "Bedroom AbvGr",
@@ -62,13 +78,21 @@
         "Functional",
         "Fireplaces",
         "Fireplace Qu",
+        "Fireplace Qu_missing",
         "Garage Type",
+        "Garage Type_missing",
         "Garage Yr Blt",
+        "Garage Yr Blt_missing",
         "Garage Finish",
+        "Garage Finish_missing",
         "Garage Cars",
+        "Garage Cars_missing",
         "Garage Area",
+        "Garage Area_missing",
         "Garage Qual",
+        "Garage Qual_missing",
         "Garage Cond",
+        "Garage Cond_missing",
         "Paved Drive",
         "Wood Deck SF",
         "Open Porch SF",
@@ -77,8 +101,11 @@
         "Screen Porch",
         "Pool Area",
         "Pool QC",
+        "Pool QC_missing",
         "Fence",
+        "Fence_missing",
         "Misc Feature",
+        "Misc Feature_missing",
         "Misc Val",
         "Mo Sold",
         "Yr Sold",
@@ -88,8 +115,8 @@
     "label_mapping": {
         "Alley": {
             "Grvl": 0,
-            "NA": 1,
-            "Pave": 2
+            "Pave": 1,
+            "___missing_data___": 2
         },
         "Bldg Type": {
             "1Fam": 0,
@@ -102,47 +129,42 @@
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
-            "NA": 3,
-            "Po": 4,
-            "TA": 5,
-            "nan": 6
+            "Po": 3,
+            "TA": 4,
+            "___missing_data___": 5
         },
         "Bsmt Exposure": {
             "Av": 0,
             "Gd": 1,
             "Mn": 2,
-            "NA": 3,
-            "No": 4,
-            "nan": 5
+            "No": 3,
+            "___missing_data___": 4
         },
         "Bsmt Qual": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
-            "NA": 3,
-            "Po": 4,
-            "TA": 5,
-            "nan": 6
+            "Po": 3,
+            "TA": 4,
+            "___missing_data___": 5
         },
         "BsmtFin Type 1": {
             "ALQ": 0,
             "BLQ": 1,
             "GLQ": 2,
             "LwQ": 3,
-            "NA": 4,
-            "Rec": 5,
-            "Unf": 6,
-            "nan": 7
+            "Rec": 4,
+            "Unf": 5,
+            "___missing_data___": 6
         },
         "BsmtFin Type 2": {
             "ALQ": 0,
             "BLQ": 1,
             "GLQ": 2,
             "LwQ": 3,
-            "NA": 4,
-            "Rec": 5,
-            "Unf": 6,
-            "nan": 7
+            "Rec": 4,
+            "Unf": 5,
+            "___missing_data___": 6
         },
         "Central Air": {
             "N": 0,
@@ -175,7 +197,7 @@
             "FuseP": 2,
             "Mix": 3,
             "SBrkr": 4,
-            "nan": 5
+            "___missing_data___": 5
         },
         "Exter Cond": {
             "Ex": 0,
@@ -232,15 +254,15 @@
             "GdWo": 1,
             "MnPrv": 2,
             "MnWw": 3,
-            "NA": 4
+            "___missing_data___": 4
         },
         "Fireplace Qu": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
-            "NA": 3,
-            "Po": 4,
-            "TA": 5
+            "Po": 3,
+            "TA": 4,
+            "___missing_data___": 5
         },
         "Foundation": {
             "BrkTil": 0,
@@ -264,26 +286,23 @@
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
-            "NA": 3,
-            "Po": 4,
-            "TA": 5,
-            "nan": 6
+            "Po": 3,
+            "TA": 4,
+            "___missing_data___": 5
         },
         "Garage Finish": {
             "Fin": 0,
-            "NA": 1,
-            "RFn": 2,
-            "Unf": 3,
-            "nan": 4
+            "RFn": 1,
+            "Unf": 2,
+            "___missing_data___": 3
         },
         "Garage Qual": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
-            "NA": 3,
-            "Po": 4,
-            "TA": 5,
-            "nan": 6
+            "Po": 3,
+            "TA": 4,
+            "___missing_data___": 5
         },
         "Garage Type": {
             "2Types": 0,
@@ -292,7 +311,7 @@
             "BuiltIn": 3,
             "CarPort": 4,
             "Detchd": 5,
-            "NA": 6
+            "___missing_data___": 6
         },
         "Heating": {
             "Floor": 0,
@@ -365,15 +384,15 @@
             "CBlock": 2,
             "None": 3,
             "Stone": 4,
-            "nan": 5
+            "___missing_data___": 5
         },
         "Misc Feature": {
             "Elev": 0,
             "Gar2": 1,
-            "NA": 2,
-            "Othr": 3,
-            "Shed": 4,
-            "TenC": 5
+            "Othr": 2,
+            "Shed": 3,
+            "TenC": 4,
+            "___missing_data___": 5
         },
         "Neighborhood": {
             "Blmngtn": 0,
@@ -414,8 +433,8 @@
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
-            "NA": 3,
-            "TA": 4
+            "TA": 3,
+            "___missing_data___": 4
         },
         "Roof Matl": {
             "ClyTile": 0,
@@ -470,6 +489,6 @@
         "SalePrice"
     ],
     "rule-definitions": "rule-definitions.csv",
-    "rule_number": 308,
-    "std": 79886.69235666493
+    "rule_number": 324,
+    "std": 79886.692356665
 }

@@ -1,46 +1,36 @@
 import Cleaning
 import glob
+import json
 
 
+def print_diff(name, expected, actual):
+    expected_content = open(expected, 'r').read()
+    actual_content = open(actual, 'r').read()
 
-# df = Cleaning.from_path('test.csv')
-
-
-for expectedPath in glob.glob("*.expected.csv"):
-    inputPath = expectedPath.replace(".expected", "")
-    actualPath = expectedPath.replace(".expected", ".actual")
-
-    Cleaning.to_path(Cleaning.from_path(inputPath), actualPath)
-
-    expectedContent = open(expectedPath, 'r').read()
-    actualContent = open(actualPath, 'r').read()
-
-    if expectedContent == actualContent:
-        print(f"{inputPath} is ok")
+    if expected_content == actual_content:
+        print(f"{name} is ok")
     else:
-        print(f"A difference was found in {inputPath}:")
-        print(f"{expectedContent}#EOF")
-        print(f"vs")
-        print(f"{actualContent}#EOF")
+        print(f"A difference was found in {name}:")
+        print(f"   --Expected--")
+        print(f"{expected_content}#EOF")
+        print(f"vs -- Actual --")
+        print(f"{actual_content}#EOF")
 
 
+def scan_test():
+    for sourcePath in glob.glob("*.source.csv"):
+        name = sourcePath.replace(".source.csv", "")
+        expected_df_path = sourcePath.replace(".source.csv", ".expected-df.csv")
+        actual_df_path = sourcePath.replace(".source.csv", ".actual-df.csv")
+        expected_labels_path = sourcePath.replace(".source.csv", ".expected-labels.json")
+        actual_labels_path = sourcePath.replace(".source.csv", ".actual-labels.json")
+
+        df, labels_mapping = Cleaning.from_path(sourcePath)
+        df.to_csv(actual_df_path, index=False)
+        open(actual_labels_path, "wt").write(json.dumps(labels_mapping))
+
+        print_diff(f"{name} df", expected_df_path, actual_df_path)
+        print_diff(f"{name} labels", expected_labels_path, actual_labels_path)
 
 
-# print(f"dtype ok: {'float64' == df.dtypes['col_num_float']}")
-# print(f"dtype ok: {'float64' == df.dtypes['col_num_float_missing']}")
-# print(f"dtype ok: {'int64'   == df.dtypes['col_num_int']}")
-# print(f"dtype ok: {'int64'   == df.dtypes['col_num_int_missing']}")
-# print(f"dtype ok: {'float64' == df.dtypes['col_categ']}")
-# print(f"dtype ok: {'float64' == df.dtypes['col_categ_missing']}")
-# print(f"dtype ok: {'float64' == df.dtypes['col_nobegin']}")
-# print(f"dtype ok: {'float64' == df.dtypes['col_misleading_1']}")
-# print(f"dtype ok: {'float64' == df.dtypes['col_misleading_2']}")
-
-
-# col_num_float,col_num_float_missing,col_num_int,col_num_int_missing,col_categ,col_categ_missing,col_nobegin,col_misleading_1,col_misleading_2
-# df.dtypes["col_num"]
-
-# ,col_num_missing,col_categ,col_categ_missing,col_nobegin,col_misleading_1,col_misleading_2
-
-
-# print(f"From class Cleaning: {object1.get_path()}")
+scan_test()

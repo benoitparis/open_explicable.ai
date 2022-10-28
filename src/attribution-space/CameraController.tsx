@@ -18,7 +18,6 @@ const CameraController = (props:{isBackground:boolean, center:Vector3}) => {
 
     useFrame(() => {
         if (controls) {
-            console.log(reachedTarget);
             if (controls.target.distanceTo(props.center) < EPSILON) {
                 reachedTarget = true;
             }
