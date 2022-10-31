@@ -53,6 +53,8 @@ const CameraController = (props:{isBackground:boolean, center:Vector3}) => {
                 }
             };
         },
+        // do not add props.isBackground to the dependency list:
+        //   it would re-init the controls as well on props.isBackground change
         [camera, gl]
     );
     useEffect(
@@ -66,7 +68,7 @@ const CameraController = (props:{isBackground:boolean, center:Vector3}) => {
             );
             reachedTarget = false;
         },
-        [props.center]
+        [props.center, camera.position]
     );
 
     return null;
