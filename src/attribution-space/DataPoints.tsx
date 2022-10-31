@@ -4,7 +4,6 @@ import {ThreeElements, ThreeEvent} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
 
-
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
 const MAX_POINTS = 50000;
 const positionsArray = new Float32Array(MAX_POINTS * 3);
@@ -86,7 +85,6 @@ type DataPoint = {
 
 const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
-
     const parseDataPointsLine = (line:string):DataPoint => {
         const parts = line.split(',');
         return {
@@ -97,156 +95,38 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
         }
     }
 
+    const processPoints = async (configuration:any, data: Response) => {
 
+        // TODO schema, standard reader, compression
+        const lines = (await data.text()).trim().split('\n');
 
-    // const loadDataPoints2 = async (configuration:any) => {
-    //
-    //     fetch('data/' + configuration['data-points'])
-    //         .then()
-    //
-    // }
+        console.log(configuration['datapoint_number'] + 1 === lines.length) // header
 
+        let points:Array<DataPoint> = [];
 
-    const loadDataPoints = (configuration:any) => {
+        for (let i = 1; i < lines.length; i++) {
+            points.push(parseDataPointsLine(lines[i]));
+        }
 
-        var loader = new THREE.FileLoader();
+        points.forEach(dataPoint => {
+            const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
+            const color = new THREE.Color();
+            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.prediction - configuration['mean']) / 2 / configuration['std']));
+            color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
+            addParticle(point, color, PARTICLE_SIZE * 0.5);
+        })
 
-        loader.load(
-            'data/' + configuration['data-points'],
-            (data) => {
+        updateAttributes();
+        updateBoundingSphere();
 
-                // TODO schema, standard reader, compression
-                const lines = (data as string).trim().split('\n');
-
-                console.log(configuration['datapoint_number'] + 1 === lines.length) // header
-
-                let points:Array<DataPoint> = [];
-
-                for (let i = 1; i < lines.length; i++) {
-                    points.push(parseDataPointsLine(lines[i]));
-                }
-
-                points.forEach(dataPoint => {
-                    const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
-                    const color = new THREE.Color();
-                    const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.prediction - configuration['mean']) / 2 / configuration['std']));
-                    color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
-                    addParticle(point, color, PARTICLE_SIZE * 0.5);
-                })
-
-                updateAttributes();
-                updateBoundingSphere();
-
-            }
-        );
     }
 
-    // const loadParticles = (configuration:any) => {
-    //
-    //     var loader = new THREE.FileLoader();
-    //
-    //     loader.load(
-    //         'data/' + configuration['data-prediction-embedding-cluster'],
-    //         (data) => {
-    //
-    //             // faudrait faire par naming des colonnes csv, limit avec un schema,
-    //             //   [convention d'avoir les predicted_variables en premier avant les features?
-    //             //   un sqlite?
-    //             var lines = (data as string).trim().split('\n');
-    //
-    //             let condensedTree = [];
-    //
-    //             for (var i = 1; i < lines.length; i++) {
-    //
-    //                 var parts = lines[i].split(',');
-    //                 var j = 0;
-    //                 var index = parseInt(parts[j++], 10);
-    //                 var prediction = -1;
-    //                 configuration['predicted_variables'].forEach((item:any) => {
-    //                     // save data..
-    //                     j++;
-    //                 });
-    //                 configuration['features'].forEach((item:any) => {
-    //                     // save data..
-    //                     j++;
-    //                 })
-    //                 configuration['predicted_variables'].forEach((item:any) => {
-    //                     // convention: appended _prediction to name (TODO enforce? dans le schema?)
-    //                     // on suppose qu'il n'y en a qu'une
-    //                     prediction = parseFloat(parts[j++]);
-    //                 });
-    //
-    //                 const parent = parseInt(parts[j++], 10);
-    //                 const lambda_val = parseFloat(parts[j++]);
-    //                 const size = parseInt(parts[j++], 10);
-    //                 const x = parseFloat(parts[j++]);
-    //                 const y = parseFloat(parts[j++]);
-    //                 const z = parseFloat(parts[j++]);
-    //
-    //                 // faudrait valider que index affine sur i
-    //                 if (index !== i - 1) {
-    //                     console.log("" + index + " vs " + (i-1) );
-    //                     throw "Data file must be sorted by index";
-    //                 }
-    //
-    //                 condensedTree[index] = {
-    //                     "identity" : index,
-    //                     "size" : size,
-    //                     "lambda_val": lambda_val,
-    //                     "parent" : parent,
-    //                     "children" : [],
-    //                     "x" : x,
-    //                     "y" : y,
-    //                     "z" : z
-    //                 };
-    //
-    //                 const point = new THREE.Vector3(x, y, z);
-    //                 const color = new THREE.Color();
-    //                 let particleSize = 0;
-    //
-    //                 const scaledPrediction = Math.max(0, Math.min(1,(prediction - configuration['mean']) / 2 / configuration['std']));
-    //
-    //                 if (1 === size) {
-    //                     color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
-    //                     particleSize = PARTICLE_SIZE * 0.5;
-    //                     addParticle(point, color, particleSize);
-    //
-    //                 } else {
-    //                     // tree nodes
-    //                     color.setRGB(0.3, 0.3, 0.3);
-    //                     particleSize = Math.log(size * 10 + 1) * PARTICLE_SIZE / 8;
-    //                     if (4 >= size) {
-    //                         particleSize = 0;
-    //                     }
-    //                     // TODO refaire les trees en 3D, les loader séparément, faire de l'UI
-    //                     // addParticle(point, color, particleSize);
-    //                 }
-    //
-    //             }
-    //
-    //
-    //
-    //             // link parents to children
-    //             // for (var k in condensedTree) {
-    //             //     var item = condensedTree[k];
-    //             //     var parent = condensedTree[item["parent"]];
-    //             //     if (parent) {
-    //             //         parent["children"].push(item["identity"]);
-    //             //     } else {
-    //             //
-    //             //     }
-    //             // };
-    //
-    //             updateAttributes();
-    //             updateBoundingSphere();
-    //
-    //         },
-    //         function(xhr) {},
-    //         function(error) {
-    //             console.log('An error happened');
-    //         }
-    //     );
-    // }
+    const loadPoints = async (configuration:any) => {
+
+        return fetch('data/' + configuration['data-points'])
+            .then((data) => processPoints(configuration, data))
+
+    }
 
     const addParticle = (vertex:Vector3, color:Color, size:number) => {
         const geometry = ref.current.geometry;
@@ -254,40 +134,39 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
         const positions = attributes.position.array;
         const colors = attributes.customColor.array;
         const sizes = attributes.size.array;
-        vertex.toArray( positions, drawCount * 3 );
-        color.toArray( colors, drawCount * 3 );
-        color.toArray( originalColors, drawCount * 3 );
+        vertex.toArray(positions, drawCount * 3);
+        color.toArray(colors, drawCount * 3);
+        color.toArray(originalColors, drawCount * 3);
         // @ts-ignore
         sizes[drawCount] = size;
         hoveredArray[drawCount] = 0;
         drawCount++;
-        geometry.setDrawRange( 0, drawCount );
+        geometry.setDrawRange(0, drawCount);
     }
+
+    const loadDataset = async (configuration:any) => {}
+    const loadShapValues = async (configuration:any) => {}
+    const loadTree = async (configuration:any) => {}
+    const loadRuleDefinitions = async (configuration:any) => {}
+    const loadBinaryParticipations = async (configuration:any) => {}
 
     useEffect(() => {
 
-        const loader = new THREE.FileLoader();
+        fetch("data/conf.json")
+            .then(res => res.json())
+            .then(async conf => {
+                await loadPoints(conf); // asap
+                await Promise.all([
+                    loadDataset(conf),
+                    loadShapValues(conf),
+                    loadTree(conf),
+                    loadRuleDefinitions(conf),
+                    loadBinaryParticipations(conf)
+                ])
+            })
+            .catch(console.error)
 
-        loader.load(
-            'data/conf.json',
-            (data) => {
-                const configuration = JSON.parse(data as string);
-                console.log(configuration);
-
-
-                loadDataPoints(configuration);
-                // loadParticles(configuration);
-                // loadRuleParticipations
-                // loadRuleDefinitions
-            },
-            function(xhr) {},
-            function(error) {
-                console.log('An error happened loading the configuration: ');
-                console.log(error);
-            }
-        );
-
-    },[])
+    },[]);
 
     const baseColor = new THREE.Color( 0xffffff );
     const materialUniforms = {
@@ -301,7 +180,6 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
     useEffect(() => {
         document.body.style.cursor = hovered ? 'pointer' : 'auto'
     }, [hovered]);
-
 
     const updateAttributes = () => {
         const geometry = ref.current.geometry;

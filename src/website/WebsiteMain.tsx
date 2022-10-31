@@ -18,7 +18,7 @@ const features = [
     {name:"Enriched",    description:"Join open datasets with your data, and enable further insights and performance"},
 ]
 
-const FeatureList = features.map(it => <FeatureBox name={it.name} description={it.description}/>)
+const FeatureList = features.map(it => <FeatureBox key={it.name} name={it.name} description={it.description}/>)
 
 const Features = () =>
     <div className={styles.featuresWrapper}>
