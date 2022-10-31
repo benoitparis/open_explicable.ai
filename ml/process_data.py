@@ -8,6 +8,7 @@
 #### Cleaning
 from cleaning import Cleaning
 df, labelMapping = Cleaning.from_path("AmesHousing.csv")
+df.to_parquet('data-cleaned-file.parquet', engine='fastparquet', compression='gzip')
 
 X, y = df.iloc[:,:-1], df.iloc[:, -1] # Last one by convention
 #from sklearn.model_selection import train_test_split
@@ -27,8 +28,8 @@ X_mat = X.values
 # 400 c'est beau
 rf = RuleFitCustom(max_rules=400, model_type='r')
 rf.fit(X_mat, y, feature_names=features)
-rules_df = pd.DataFrame({'Rule' : rf.rule_ensemble.rules})
-rules_df.to_csv('rule-definitions.csv', index=False)
+rules_df = pd.DataFrame({'Rule' : rf.rule_ensemble.rules}).astype("str")
+rules_df.to_parquet('data-rule-definitions.parquet', engine='fastparquet', compression='gzip')
 
 prediction = rf.predict(X_mat)
 prediction_df = pd.DataFrame({'__prediction' : prediction})
@@ -39,7 +40,7 @@ import shap
 explainer = shap.TreeExplainer(rf.tree_generator)
 shap_values = explainer.shap_values(X)
 shap_values_df = pd.DataFrame(shap_values, columns=list(map(lambda x: "attribution_" + x, features.values)))
-shap_values_df.to_csv('data-shap-values.csv', index=False)
+shap_values_df.to_parquet('data-shap-values.parquet', engine='fastparquet', compression='gzip')
 
 
 import numpy as np
@@ -49,10 +50,9 @@ binaryParticipations = rf.rule_ensemble.transform(X_mat, weigh_rules = False)
 # ou bien on la fait robuste
 binaryParticipations = (binaryParticipations > 0.0000001)
 
-np.savetxt("binary-participations.csv", binaryParticipations, delimiter=",", fmt="%i")
 dfBinaryParticipations = pd.DataFrame(binaryParticipations)
-dfBinaryParticipations.rename(columns=lambda x: "{}".format(x), inplace=True)
-dfBinaryParticipations.to_parquet('binary-participations.parquet')
+dfBinaryParticipations.rename(columns=lambda x: "_{}".format(x), inplace=True)
+dfBinaryParticipations.to_parquet('data-binary-participations.parquet', engine='fastparquet', compression='gzip')
 
 
 
@@ -72,7 +72,7 @@ embedding_df = pd.DataFrame({'x' : embedding[:,0], 'y' : embedding[:,1], 'z' : e
 
 
 points_df = pd.concat([embedding_df, prediction_df], axis=1)
-points_df.to_csv('data-points.csv', index=False)
+points_df.to_parquet('data-points.parquet', engine='fastparquet', compression='gzip')
 
 #### Cluster structure
 
@@ -81,7 +81,7 @@ import hdbscan
 clusterer = hdbscan.HDBSCAN(min_cluster_size=5, gen_min_span_tree=True)
 clusterer.fit(embedding_df)
 tree_df = clusterer.condensed_tree_.to_pandas()
-tree_df.to_csv('data-tree.csv', index=False)
+tree_df.to_parquet('data-tree.parquet', engine='fastparquet', compression='gzip')
 
 #TODO centroide
 #TODO mean prediction
@@ -125,8 +125,7 @@ tree_df.to_csv('data-tree.csv', index=False)
 # # care format
 # export_tree_df = tree_ct_df[['child', 'parent', 'lambda_val', 'child_size', 'x', 'y', 'z']].set_index('child')
 # output = df.join(prediction_df).join(export_tree_df, how='outer').join(shap_values_df).reset_index().sort_values(by=['index'])
-# output.to_csv('data-prediction-embedding-cluster.csv', index=False)
-# output.to_parquet('data-prediction-embedding-cluster.parquet', index=False)
+# output.to_parquet('data-prediction-embedding-cluster.parquet', engine='fastparquet', compression='gzip')
 
 
 #### Evaluation of this 3D space as a map of the different behaviors
@@ -146,6 +145,8 @@ conf['std'] = y.std()
 conf['label_mapping'] = labelMapping
 conf['datapoint_number'] = df.shape[0]
 conf['rule_number'] = len(rf.rule_ensemble.rules)
+
+# TODO still needed ????????/
 conf['binary-participations'] = 'binary-participations.csv'
 conf['rule-definitions'] = 'rule-definitions.csv'
 conf['data-prediction-embedding-cluster'] = 'data-prediction-embedding-cluster.csv'
@@ -153,6 +154,8 @@ conf['data-prediction-embedding-cluster'] = 'data-prediction-embedding-cluster.c
 conf['data-points'] = 'data-points.csv'
 conf['data-shap-values'] = 'data-shap-values.csv'
 conf['data-tree'] = 'data-tree.csv'
+# TODO original data
+
 
 with open('conf.json', 'w') as outfile:
     json.dump(conf, outfile, indent=4, sort_keys=True)

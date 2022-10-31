@@ -3,6 +3,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {ThreeElements, ThreeEvent} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
+import parquets, {ParquetReader} from "@dsnp/parquetjs/dist/browser/parquet.esm";
 
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
 const MAX_POINTS = 50000;
@@ -80,38 +81,28 @@ type DataPoint = {
     x:number,
     y:number,
     z:number,
-    prediction:number
+    __prediction:number
 }
 
 const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
 
-    const parseDataPointsLine = (line:string):DataPoint => {
-        const parts = line.split(',');
-        return {
-            x:parseFloat(parts[0]),
-            y:parseFloat(parts[1]),
-            z:parseFloat(parts[2]),
-            prediction:parseFloat(parts[3])
-        }
-    }
+    const processPoints = async (configuration:any, reader: ParquetReader) => {
 
-    const processPoints = async (configuration:any, data: Response) => {
+        console.log(configuration['datapoint_number'] + 1 === reader.metadata?.num_rows) // header
+        console.log(reader)
 
-        // TODO schema, standard reader, compression
-        const lines = (await data.text()).trim().split('\n');
-
-        console.log(configuration['datapoint_number'] + 1 === lines.length) // header
+        let cursor = reader.getCursor();
 
         let points:Array<DataPoint> = [];
-
-        for (let i = 1; i < lines.length; i++) {
-            points.push(parseDataPointsLine(lines[i]));
+        let record = null;
+        while (record = await cursor.next()) {
+            points.push(record as DataPoint)
         }
 
         points.forEach(dataPoint => {
             const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
             const color = new THREE.Color();
-            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.prediction - configuration['mean']) / 2 / configuration['std']));
+            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.__prediction - configuration['mean']) / 2 / configuration['std']));
             color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
             addParticle(point, color, PARTICLE_SIZE * 0.5);
         })
@@ -123,8 +114,8 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
 
     const loadPoints = async (configuration:any) => {
 
-        return fetch('data/' + configuration['data-points'])
-            .then((data) => processPoints(configuration, data))
+        return parquets.ParquetReader.openUrl('data/data-points.parquet')
+            .then((reader) => processPoints(configuration, reader))
 
     }
 

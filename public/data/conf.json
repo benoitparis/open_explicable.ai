@@ -8,112 +8,112 @@
     "features": [
         "Order",
         "PID",
-        "MS SubClass",
-        "MS Zoning",
-        "Lot Frontage",
-        "Lot Frontage_missing",
-        "Lot Area",
+        "MS_SubClass",
+        "MS_Zoning",
+        "Lot_Frontage",
+        "Lot_Frontage_missing",
+        "Lot_Area",
         "Street",
         "Alley",
         "Alley_missing",
-        "Lot Shape",
-        "Land Contour",
+        "Lot_Shape",
+        "Land_Contour",
         "Utilities",
-        "Lot Config",
-        "Land Slope",
+        "Lot_Config",
+        "Land_Slope",
         "Neighborhood",
-        "Condition 1",
-        "Condition 2",
-        "Bldg Type",
-        "House Style",
-        "Overall Qual",
-        "Overall Cond",
-        "Year Built",
-        "Year Remod/Add",
-        "Roof Style",
-        "Roof Matl",
-        "Exterior 1st",
-        "Exterior 2nd",
-        "Mas Vnr Type",
-        "Mas Vnr Type_missing",
-        "Mas Vnr Area",
-        "Mas Vnr Area_missing",
-        "Exter Qual",
-        "Exter Cond",
+        "Condition_1",
+        "Condition_2",
+        "Bldg_Type",
+        "House_Style",
+        "Overall_Qual",
+        "Overall_Cond",
+        "Year_Built",
+        "Year_Remod_Add",
+        "Roof_Style",
+        "Roof_Matl",
+        "Exterior_1st",
+        "Exterior_2nd",
+        "Mas_Vnr_Type",
+        "Mas_Vnr_Type_missing",
+        "Mas_Vnr_Area",
+        "Mas_Vnr_Area_missing",
+        "Exter_Qual",
+        "Exter_Cond",
         "Foundation",
-        "Bsmt Qual",
-        "Bsmt Qual_missing",
-        "Bsmt Cond",
-        "Bsmt Cond_missing",
-        "Bsmt Exposure",
-        "Bsmt Exposure_missing",
-        "BsmtFin Type 1",
-        "BsmtFin Type 1_missing",
-        "BsmtFin SF 1",
-        "BsmtFin SF 1_missing",
-        "BsmtFin Type 2",
-        "BsmtFin Type 2_missing",
-        "BsmtFin SF 2",
-        "BsmtFin SF 2_missing",
-        "Bsmt Unf SF",
-        "Bsmt Unf SF_missing",
-        "Total Bsmt SF",
-        "Total Bsmt SF_missing",
+        "Bsmt_Qual",
+        "Bsmt_Qual_missing",
+        "Bsmt_Cond",
+        "Bsmt_Cond_missing",
+        "Bsmt_Exposure",
+        "Bsmt_Exposure_missing",
+        "BsmtFin_Type_1",
+        "BsmtFin_Type_1_missing",
+        "BsmtFin_SF_1",
+        "BsmtFin_SF_1_missing",
+        "BsmtFin_Type_2",
+        "BsmtFin_Type_2_missing",
+        "BsmtFin_SF_2",
+        "BsmtFin_SF_2_missing",
+        "Bsmt_Unf_SF",
+        "Bsmt_Unf_SF_missing",
+        "Total_Bsmt_SF",
+        "Total_Bsmt_SF_missing",
         "Heating",
-        "Heating QC",
-        "Central Air",
+        "Heating_QC",
+        "Central_Air",
         "Electrical",
         "Electrical_missing",
-        "1st Flr SF",
-        "2nd Flr SF",
-        "Low Qual Fin SF",
-        "Gr Liv Area",
-        "Bsmt Full Bath",
-        "Bsmt Full Bath_missing",
-        "Bsmt Half Bath",
-        "Bsmt Half Bath_missing",
-        "Full Bath",
-        "Half Bath",
-        "Bedroom AbvGr",
-        "Kitchen AbvGr",
-        "Kitchen Qual",
-        "TotRms AbvGrd",
+        "_1st_Flr_SF",
+        "_2nd_Flr_SF",
+        "Low_Qual_Fin_SF",
+        "Gr_Liv_Area",
+        "Bsmt_Full_Bath",
+        "Bsmt_Full_Bath_missing",
+        "Bsmt_Half_Bath",
+        "Bsmt_Half_Bath_missing",
+        "Full_Bath",
+        "Half_Bath",
+        "Bedroom_AbvGr",
+        "Kitchen_AbvGr",
+        "Kitchen_Qual",
+        "TotRms_AbvGrd",
         "Functional",
         "Fireplaces",
-        "Fireplace Qu",
-        "Fireplace Qu_missing",
-        "Garage Type",
-        "Garage Type_missing",
-        "Garage Yr Blt",
-        "Garage Yr Blt_missing",
-        "Garage Finish",
-        "Garage Finish_missing",
-        "Garage Cars",
-        "Garage Cars_missing",
-        "Garage Area",
-        "Garage Area_missing",
-        "Garage Qual",
-        "Garage Qual_missing",
-        "Garage Cond",
-        "Garage Cond_missing",
-        "Paved Drive",
-        "Wood Deck SF",
-        "Open Porch SF",
-        "Enclosed Porch",
-        "3Ssn Porch",
-        "Screen Porch",
-        "Pool Area",
-        "Pool QC",
-        "Pool QC_missing",
+        "Fireplace_Qu",
+        "Fireplace_Qu_missing",
+        "Garage_Type",
+        "Garage_Type_missing",
+        "Garage_Yr_Blt",
+        "Garage_Yr_Blt_missing",
+        "Garage_Finish",
+        "Garage_Finish_missing",
+        "Garage_Cars",
+        "Garage_Cars_missing",
+        "Garage_Area",
+        "Garage_Area_missing",
+        "Garage_Qual",
+        "Garage_Qual_missing",
+        "Garage_Cond",
+        "Garage_Cond_missing",
+        "Paved_Drive",
+        "Wood_Deck_SF",
+        "Open_Porch_SF",
+        "Enclosed_Porch",
+        "_3Ssn_Porch",
+        "Screen_Porch",
+        "Pool_Area",
+        "Pool_QC",
+        "Pool_QC_missing",
         "Fence",
         "Fence_missing",
-        "Misc Feature",
-        "Misc Feature_missing",
-        "Misc Val",
-        "Mo Sold",
-        "Yr Sold",
-        "Sale Type",
-        "Sale Condition"
+        "Misc_Feature",
+        "Misc_Feature_missing",
+        "Misc_Val",
+        "Mo_Sold",
+        "Yr_Sold",
+        "Sale_Type",
+        "Sale_Condition"
     ],
     "label_mapping": {
         "Alley": {
@@ -121,14 +121,32 @@
             "Pave": 1,
             "___missing_data___": 2
         },
-        "Bldg Type": {
+        "Bldg_Type": {
             "1Fam": 0,
             "2fmCon": 1,
             "Duplex": 2,
             "Twnhs": 3,
             "TwnhsE": 4
         },
-        "Bsmt Cond": {
+        "BsmtFin_Type_1": {
+            "ALQ": 0,
+            "BLQ": 1,
+            "GLQ": 2,
+            "LwQ": 3,
+            "Rec": 4,
+            "Unf": 5,
+            "___missing_data___": 6
+        },
+        "BsmtFin_Type_2": {
+            "ALQ": 0,
+            "BLQ": 1,
+            "GLQ": 2,
+            "LwQ": 3,
+            "Rec": 4,
+            "Unf": 5,
+            "___missing_data___": 6
+        },
+        "Bsmt_Cond": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
@@ -136,14 +154,14 @@
             "TA": 4,
             "___missing_data___": 5
         },
-        "Bsmt Exposure": {
+        "Bsmt_Exposure": {
             "Av": 0,
             "Gd": 1,
             "Mn": 2,
             "No": 3,
             "___missing_data___": 4
         },
-        "Bsmt Qual": {
+        "Bsmt_Qual": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
@@ -151,29 +169,11 @@
             "TA": 4,
             "___missing_data___": 5
         },
-        "BsmtFin Type 1": {
-            "ALQ": 0,
-            "BLQ": 1,
-            "GLQ": 2,
-            "LwQ": 3,
-            "Rec": 4,
-            "Unf": 5,
-            "___missing_data___": 6
-        },
-        "BsmtFin Type 2": {
-            "ALQ": 0,
-            "BLQ": 1,
-            "GLQ": 2,
-            "LwQ": 3,
-            "Rec": 4,
-            "Unf": 5,
-            "___missing_data___": 6
-        },
-        "Central Air": {
+        "Central_Air": {
             "N": 0,
             "Y": 1
         },
-        "Condition 1": {
+        "Condition_1": {
             "Artery": 0,
             "Feedr": 1,
             "Norm": 2,
@@ -184,7 +184,7 @@
             "RRNe": 7,
             "RRNn": 8
         },
-        "Condition 2": {
+        "Condition_2": {
             "Artery": 0,
             "Feedr": 1,
             "Norm": 2,
@@ -202,20 +202,20 @@
             "SBrkr": 4,
             "___missing_data___": 5
         },
-        "Exter Cond": {
+        "Exter_Cond": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
             "Po": 3,
             "TA": 4
         },
-        "Exter Qual": {
+        "Exter_Qual": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
             "TA": 3
         },
-        "Exterior 1st": {
+        "Exterior_1st": {
             "AsbShng": 0,
             "AsphShn": 1,
             "BrkComm": 2,
@@ -233,7 +233,7 @@
             "Wd Sdng": 14,
             "WdShing": 15
         },
-        "Exterior 2nd": {
+        "Exterior_2nd": {
             "AsbShng": 0,
             "AsphShn": 1,
             "Brk Cmn": 2,
@@ -259,7 +259,7 @@
             "MnWw": 3,
             "___missing_data___": 4
         },
-        "Fireplace Qu": {
+        "Fireplace_Qu": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
@@ -285,7 +285,7 @@
             "Sev": 6,
             "Typ": 7
         },
-        "Garage Cond": {
+        "Garage_Cond": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
@@ -293,13 +293,13 @@
             "TA": 4,
             "___missing_data___": 5
         },
-        "Garage Finish": {
+        "Garage_Finish": {
             "Fin": 0,
             "RFn": 1,
             "Unf": 2,
             "___missing_data___": 3
         },
-        "Garage Qual": {
+        "Garage_Qual": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
@@ -307,7 +307,7 @@
             "TA": 4,
             "___missing_data___": 5
         },
-        "Garage Type": {
+        "Garage_Type": {
             "2Types": 0,
             "Attchd": 1,
             "Basment": 2,
@@ -324,14 +324,14 @@
             "OthW": 4,
             "Wall": 5
         },
-        "Heating QC": {
+        "Heating_QC": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
             "Po": 3,
             "TA": 4
         },
-        "House Style": {
+        "House_Style": {
             "1.5Fin": 0,
             "1.5Unf": 1,
             "1Story": 2,
@@ -341,38 +341,38 @@
             "SFoyer": 6,
             "SLvl": 7
         },
-        "Kitchen Qual": {
+        "Kitchen_Qual": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
             "Po": 3,
             "TA": 4
         },
-        "Land Contour": {
+        "Land_Contour": {
             "Bnk": 0,
             "HLS": 1,
             "Low": 2,
             "Lvl": 3
         },
-        "Land Slope": {
+        "Land_Slope": {
             "Gtl": 0,
             "Mod": 1,
             "Sev": 2
         },
-        "Lot Config": {
+        "Lot_Config": {
             "Corner": 0,
             "CulDSac": 1,
             "FR2": 2,
             "FR3": 3,
             "Inside": 4
         },
-        "Lot Shape": {
+        "Lot_Shape": {
             "IR1": 0,
             "IR2": 1,
             "IR3": 2,
             "Reg": 3
         },
-        "MS Zoning": {
+        "MS_Zoning": {
             "A (agr)": 0,
             "C (all)": 1,
             "FV": 2,
@@ -381,7 +381,7 @@
             "RL": 5,
             "RM": 6
         },
-        "Mas Vnr Type": {
+        "Mas_Vnr_Type": {
             "BrkCmn": 0,
             "BrkFace": 1,
             "CBlock": 2,
@@ -389,7 +389,7 @@
             "Stone": 4,
             "___missing_data___": 5
         },
-        "Misc Feature": {
+        "Misc_Feature": {
             "Elev": 0,
             "Gar2": 1,
             "Othr": 2,
@@ -427,19 +427,19 @@
             "Timber": 26,
             "Veenker": 27
         },
-        "Paved Drive": {
+        "Paved_Drive": {
             "N": 0,
             "P": 1,
             "Y": 2
         },
-        "Pool QC": {
+        "Pool_QC": {
             "Ex": 0,
             "Fa": 1,
             "Gd": 2,
             "TA": 3,
             "___missing_data___": 4
         },
-        "Roof Matl": {
+        "Roof_Matl": {
             "ClyTile": 0,
             "CompShg": 1,
             "Membran": 2,
@@ -449,7 +449,7 @@
             "WdShake": 6,
             "WdShngl": 7
         },
-        "Roof Style": {
+        "Roof_Style": {
             "Flat": 0,
             "Gable": 1,
             "Gambrel": 2,
@@ -457,7 +457,7 @@
             "Mansard": 4,
             "Shed": 5
         },
-        "Sale Condition": {
+        "Sale_Condition": {
             "Abnorml": 0,
             "AdjLand": 1,
             "Alloca": 2,
@@ -465,7 +465,7 @@
             "Normal": 4,
             "Partial": 5
         },
-        "Sale Type": {
+        "Sale_Type": {
             "COD": 0,
             "CWD": 1,
             "Con": 2,
@@ -492,6 +492,6 @@
         "SalePrice"
     ],
     "rule-definitions": "rule-definitions.csv",
-    "rule_number": 309,
+    "rule_number": 314,
     "std": 79886.692356665
 }

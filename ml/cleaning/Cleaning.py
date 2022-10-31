@@ -1,5 +1,6 @@
 import pandas as pd
 from tableschema import Table
+import re
 
 
 def from_path(path):
@@ -47,10 +48,14 @@ def from_path(path):
             for i, value in enumerate(values):
                 mappings[value] = i
             df[column] = df[column].map(mappings)
-            labels_mapping[column] = mappings
+            labels_mapping[re.sub(r"[ ,;{}()\t=/]", "_", re.sub(r"^(\d.*)", "_\\1", column))] = mappings
 
         output_columns.append(df[column])
         if nullness:
             output_columns.append(df[column + "_missing"])
 
-    return pd.concat(output_columns, axis=1), labels_mapping
+    output = pd.concat(output_columns, axis=1)
+    output.columns = output.columns.str.replace(r"[ ,;{}()\t=/]", "_", regex=True)
+    output.columns = output.columns.str.replace(r"^(\d.*)", "_\\1", regex=True)
+
+    return output, labels_mapping

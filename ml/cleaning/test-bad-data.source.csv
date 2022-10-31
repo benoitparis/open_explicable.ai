@@ -1,4 +1,4 @@
-col_nobegin,col_space_blank,col_mixed
-,,A
-A, ,1
-A,A,1
+col_nobegin,col_space_blank,col_mixed,col spaced
+,,A,
+A, ,1,A
+A,A,1,B

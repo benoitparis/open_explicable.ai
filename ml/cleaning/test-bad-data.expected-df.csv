@@ -1,4 +1,4 @@
-col_nobegin,col_nobegin_missing,col_space_blank,col_space_blank_missing,col_mixed
-1,1,2,1,1
-0,0,0,0,0
-0,0,1,0,0
+col_nobegin,col_nobegin_missing,col_space_blank,col_space_blank_missing,col_mixed,col_spaced,col_spaced_missing
+1,1,2,1,1,2,1
+0,0,0,0,0,0,0
+0,0,1,0,0,1,0
