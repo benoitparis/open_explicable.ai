@@ -4,6 +4,10 @@ import {ThreeElements, ThreeEvent} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
 import parquets, {ParquetReader} from "@dsnp/parquetjs/dist/browser/parquet.esm";
+import {ParquetSchema} from "@dsnp/parquetjs/dist/lib/schema";
+import DataHandler from "./DataHandler";
+import {BufferReaderOptions} from "@dsnp/parquetjs/dist/lib/bufferReader";
+import {DataConfiguration} from "./AttributionSpace";
 
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
 const MAX_POINTS = 50000;
@@ -84,21 +88,18 @@ type DataPoint = {
     __prediction:number
 }
 
-const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(newCenter:Vector3) => void}) => {
+const DataPoints = (props: {
+            pointsProps?: ThreeElements['points'],
+            setCenter:(newCenter:Vector3) => void,
+            configuration:DataConfiguration|null,
+            points:Array<DataPoint>|null,
+        }) => {
 
-    const processPoints = async (configuration:any, reader: ParquetReader) => {
+    const registerPointsAsync = async (configurationPromise:Promise<any>, pointsPromise:Promise<Array<DataPoint>>) => {
+        const configuration = await configurationPromise;
+        const points = await pointsPromise;
 
-        console.log(configuration['datapoint_number'] + 1 === reader.metadata?.num_rows) // header
-        console.log(reader)
-
-        let cursor = reader.getCursor();
-
-        let points:Array<DataPoint> = [];
-        let record = null;
-        while (record = await cursor.next()) {
-            points.push(record as DataPoint)
-        }
-
+        console.log(configuration['mean'])
         points.forEach(dataPoint => {
             const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
             const color = new THREE.Color();
@@ -106,17 +107,17 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
             color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
             addParticle(point, color, PARTICLE_SIZE * 0.5);
         })
-
-        updateAttributes();
-        updateBoundingSphere();
-
     }
 
-    const loadPoints = async (configuration:any) => {
-
-        return parquets.ParquetReader.openUrl('data/data-points.parquet')
-            .then((reader) => processPoints(configuration, reader))
-
+    const registerPoints = (configuration:any, points:Array<DataPoint>) => {
+        console.log(configuration['mean'])
+        points.forEach(dataPoint => {
+            const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
+            const color = new THREE.Color();
+            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.__prediction - configuration['mean']) / 2 / configuration['std']));
+            color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
+            addParticle(point, color, PARTICLE_SIZE * 0.5);
+        })
     }
 
     const addParticle = (vertex:Vector3, color:Color, size:number) => {
@@ -135,29 +136,104 @@ const DataPoints = (props: {pointsProps?: ThreeElements['points'], setCenter:(ne
         geometry.setDrawRange(0, drawCount);
     }
 
-    const loadDataset = async (configuration:any) => {}
-    const loadShapValues = async (configuration:any) => {}
+    const readDataset = async (configuration:any, reader: ParquetReader) => {
+        // props.setSchema(reader.schema);
+        let cursor = reader.getCursor();
+        let record = null;
+        while (record = await cursor.next()) {
+            // console.log(record)
+        }
+
+    }
+    const loadDataset = async (configuration:any) => {
+        console.log("loadDataset")
+        return parquets.ParquetReader.openUrl('data/data-cleaned-file.parquet')
+            .then((reader) => readDataset(configuration, reader))
+    }
+
+    const readShapValues = async (configuration:any, reader: ParquetReader) => {
+        console.log(reader.schema)
+        const fields = reader.schema.fieldList
+        let cursor = reader.getCursor();
+        let record:any = null;
+        record = await cursor.next()
+        // while (record = await cursor.next()) {
+            console.log(record)
+            fields.forEach(field => console.log(record[field.name]))
+        // }
+    }
+    const loadShapValues = async (configuration:any) => {
+        console.log("loadShapValues")
+        return parquets.ParquetReader.openUrl('data/data-shap-values.parquet')
+            .then((reader) => readShapValues(configuration, reader))
+
+    }
     const loadTree = async (configuration:any) => {}
     const loadRuleDefinitions = async (configuration:any) => {}
     const loadBinaryParticipations = async (configuration:any) => {}
 
+
+    const readPoints = async (configuration:any, reader: ParquetReader) => {
+
+        // console.log(configuration['datapoint_number'] + 1)
+        // console.log(reader.metadata?.num_rows)
+        // console.log(reader)
+
+        let cursor = reader.getCursor();
+
+        let points:Array<DataPoint> = [];
+        let record = null;
+        while (record = await cursor.next()) {
+            points.push(record as DataPoint)
+        }
+
+        return points;
+
+    }
+
+    const loadPoints = async (configuration:any) => {
+
+        console.log("loadPoints")
+
+        return parquets.ParquetReader.openUrl('data/data-points.parquet')
+            .then((reader) => readPoints(configuration, reader))
+            .then((points) => registerPoints(configuration, points))
+            .then(updateAttributes)
+            .then(updateBoundingSphere)
+
+    }
+
     useEffect(() => {
 
-        fetch("data/conf.json")
-            .then(res => res.json())
-            .then(async conf => {
-                await loadPoints(conf); // asap
-                await Promise.all([
-                    loadDataset(conf),
-                    loadShapValues(conf),
-                    loadTree(conf),
-                    loadRuleDefinitions(conf),
-                    loadBinaryParticipations(conf)
-                ])
-            })
-            .catch(console.error)
+        console.log("useEffect dp");
+
+        // registerPointsAsync(props.dataHandler.getConfiguration(), props.dataHandler.getPoints())
+        //     .then(updateAttributes)
+        //     .then(updateBoundingSphere)
+
+        // fetch("data/conf.json")
+        //     .then(res => res.json())
+        //     .then(async conf => {
+        //         await loadPoints(conf); // asap
+        //         await Promise.all([
+        //             loadDataset(conf),
+        //             // loadShapValues(conf),
+        //             // loadTree(conf),
+        //             // loadRuleDefinitions(conf),
+        //             // loadBinaryParticipations(conf)
+        //         ])
+        //     })
+        //     .catch(console.error)
 
     },[]);
+
+    useEffect(() => {
+        if (props.configuration && props.points) {
+            registerPoints(props.configuration, props.points);
+            updateAttributes();
+            updateBoundingSphere();
+        }
+    },[props.configuration, props.points]);
 
     const baseColor = new THREE.Color( 0xffffff );
     const materialUniforms = {

@@ -63,6 +63,7 @@ import umap
 from sklearn.decomposition import PCA
 from sklearn.preprocessing import StandardScaler
 
+# TODO tester sur les shap values? les rules ça simplifie trop?
 # https://stats.stackexchange.com/questions/235882/pca-in-numpy-and-sklearn-produces-different-results
 x_std = StandardScaler().fit_transform(rf.X_rules)
 embedding_data = PCA(n_components=50).fit_transform(x_std)
