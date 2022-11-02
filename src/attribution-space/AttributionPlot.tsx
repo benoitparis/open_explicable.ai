@@ -1,28 +1,22 @@
 import React from 'react';
 import Plot from 'react-plotly.js';
+import {DataConfiguration, DataSet} from "./DataManagement";
 
-const AttributionPlot = (props:{featureNames?:Array<string>, attributionValues?:Array<number>}) => {
+const AttributionPlot = (props:{
+        selected:number,
+        configuration:DataConfiguration,
+        dataset:DataSet<any>,
+        shapValues:DataSet<any>,
+    }) => {
 
-    const featureNames = props.featureNames?props.featureNames:[
-        "Sales",
-        "Consulting",
-        "Purchases",
-        "Other expenses",
-        "1Sales",
-        "1Consulting",
-        "1Purchases",
-        "1Other expenses",
-    ]
-    const attributionValues = props.attributionValues?props.attributionValues:[
-        60,
-        80,
-        -40,
-        -20,
-        60,
-        80,
-        -40,
-        -20,
-    ]
+    const featureNames = props.dataset.metadata.schema.map(it => it.name);
+    const attributionObj = props.shapValues.data[props.selected];
+    const attributionValues = featureNames.map(it => {
+        return attributionObj["attribution_" + it];
+    })
+
+    console.log(props.selected)
+    console.log(attributionValues)
 
     return (
         <div style={{
@@ -56,7 +50,6 @@ const AttributionPlot = (props:{featureNames?:Array<string>, attributionValues?:
                 config={{
                     displaylogo: false,
                     setBackground: "transparent"
-
                 }}
 
             />

@@ -3,11 +3,7 @@ import React, {useEffect, useRef, useState} from 'react'
 import {ThreeElements, ThreeEvent} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
-import parquets, {ParquetReader} from "@dsnp/parquetjs/dist/browser/parquet.esm";
-import {ParquetSchema} from "@dsnp/parquetjs/dist/lib/schema";
-import DataHandler from "./DataHandler";
-import {BufferReaderOptions} from "@dsnp/parquetjs/dist/lib/bufferReader";
-import {DataConfiguration} from "./AttributionSpace";
+import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
 
 // TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
 const MAX_POINTS = 50000;
@@ -81,33 +77,15 @@ const PARTICLE_SIZE = 0.6 * (window.devicePixelRatio**2);
 let drawCount = 0;
 const originalColors = new Float32Array( MAX_POINTS * 3 );
 
-type DataPoint = {
-    x:number,
-    y:number,
-    z:number,
-    __prediction:number
-}
+let singletonHadLoaded:boolean = false; // no dataset change for now
 
 const DataPoints = (props: {
             pointsProps?: ThreeElements['points'],
             setCenter:(newCenter:Vector3) => void,
+            setSelected:(index:number|null) => void,
             configuration:DataConfiguration|null,
-            points:Array<DataPoint>|null,
+            points:DataSet<DataPoint>|null,
         }) => {
-
-    const registerPointsAsync = async (configurationPromise:Promise<any>, pointsPromise:Promise<Array<DataPoint>>) => {
-        const configuration = await configurationPromise;
-        const points = await pointsPromise;
-
-        console.log(configuration['mean'])
-        points.forEach(dataPoint => {
-            const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
-            const color = new THREE.Color();
-            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.__prediction - configuration['mean']) / 2 / configuration['std']));
-            color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
-            addParticle(point, color, PARTICLE_SIZE * 0.5);
-        })
-    }
 
     const registerPoints = (configuration:any, points:Array<DataPoint>) => {
         console.log(configuration['mean'])
@@ -136,102 +114,13 @@ const DataPoints = (props: {
         geometry.setDrawRange(0, drawCount);
     }
 
-    const readDataset = async (configuration:any, reader: ParquetReader) => {
-        // props.setSchema(reader.schema);
-        let cursor = reader.getCursor();
-        let record = null;
-        while (record = await cursor.next()) {
-            // console.log(record)
-        }
-
-    }
-    const loadDataset = async (configuration:any) => {
-        console.log("loadDataset")
-        return parquets.ParquetReader.openUrl('data/data-cleaned-file.parquet')
-            .then((reader) => readDataset(configuration, reader))
-    }
-
-    const readShapValues = async (configuration:any, reader: ParquetReader) => {
-        console.log(reader.schema)
-        const fields = reader.schema.fieldList
-        let cursor = reader.getCursor();
-        let record:any = null;
-        record = await cursor.next()
-        // while (record = await cursor.next()) {
-            console.log(record)
-            fields.forEach(field => console.log(record[field.name]))
-        // }
-    }
-    const loadShapValues = async (configuration:any) => {
-        console.log("loadShapValues")
-        return parquets.ParquetReader.openUrl('data/data-shap-values.parquet')
-            .then((reader) => readShapValues(configuration, reader))
-
-    }
-    const loadTree = async (configuration:any) => {}
-    const loadRuleDefinitions = async (configuration:any) => {}
-    const loadBinaryParticipations = async (configuration:any) => {}
-
-
-    const readPoints = async (configuration:any, reader: ParquetReader) => {
-
-        // console.log(configuration['datapoint_number'] + 1)
-        // console.log(reader.metadata?.num_rows)
-        // console.log(reader)
-
-        let cursor = reader.getCursor();
-
-        let points:Array<DataPoint> = [];
-        let record = null;
-        while (record = await cursor.next()) {
-            points.push(record as DataPoint)
-        }
-
-        return points;
-
-    }
-
-    const loadPoints = async (configuration:any) => {
-
-        console.log("loadPoints")
-
-        return parquets.ParquetReader.openUrl('data/data-points.parquet')
-            .then((reader) => readPoints(configuration, reader))
-            .then((points) => registerPoints(configuration, points))
-            .then(updateAttributes)
-            .then(updateBoundingSphere)
-
-    }
-
     useEffect(() => {
-
-        console.log("useEffect dp");
-
-        // registerPointsAsync(props.dataHandler.getConfiguration(), props.dataHandler.getPoints())
-        //     .then(updateAttributes)
-        //     .then(updateBoundingSphere)
-
-        // fetch("data/conf.json")
-        //     .then(res => res.json())
-        //     .then(async conf => {
-        //         await loadPoints(conf); // asap
-        //         await Promise.all([
-        //             loadDataset(conf),
-        //             // loadShapValues(conf),
-        //             // loadTree(conf),
-        //             // loadRuleDefinitions(conf),
-        //             // loadBinaryParticipations(conf)
-        //         ])
-        //     })
-        //     .catch(console.error)
-
-    },[]);
-
-    useEffect(() => {
-        if (props.configuration && props.points) {
-            registerPoints(props.configuration, props.points);
+        if (props.configuration && props.points && !singletonHadLoaded) {
+            console.log("useEffect dddddpppp");
+            registerPoints(props.configuration, props.points.data);
             updateAttributes();
             updateBoundingSphere();
+            singletonHadLoaded = true;
         }
     },[props.configuration, props.points]);
 
@@ -262,9 +151,13 @@ const DataPoints = (props: {
     }
 
     const pickSelected = (index:number) => {
+        console.log(drawCount);
+        console.log(index);
+
         if (selected) {
             sizesArray[selected] = PARTICLE_SIZE;
             selectedArray[selected] = 0.0;
+            props.setSelected(null);
         }
         selected = index;
         sizesArray[selected] = PARTICLE_SIZE * 2;
@@ -274,6 +167,7 @@ const DataPoints = (props: {
             positionsArray[3*selected + 1],
             positionsArray[3*selected + 2]
         ));
+        props.setSelected(selected);
         updateAttributes();
     }
 
