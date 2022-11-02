@@ -5,20 +5,6 @@ import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
 import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
 
-// TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
-const MAX_POINTS = 50000;
-const positionsArray = new Float32Array(MAX_POINTS * 3);
-const colorsArray = new Float32Array(MAX_POINTS * 3);
-const sizesArray = new Float32Array(MAX_POINTS);
-const hoveredArray = new Float32Array(MAX_POINTS);
-const selectedArray = new Float32Array(MAX_POINTS);
-let selected:number|null = null;
-const positionsAtt = new THREE.BufferAttribute(positionsArray, 3);
-const colorsAtt = new THREE.BufferAttribute(colorsArray, 3);
-const sizesAtt = new THREE.BufferAttribute(sizesArray, 1);
-const hoveredAtt = new THREE.BufferAttribute(hoveredArray, 1);
-const selectedAtt = new THREE.BufferAttribute(selectedArray, 1);
-
 const vertexShader = `
     attribute float size;
     
@@ -73,11 +59,24 @@ const fragmentShader = `
         
     }`
 
+// TODO essayer de changer les array dynamiquement au loading, sinon on peut faire max 50k points
+const MAX_POINTS = 50000;
+const positionsArray = new Float32Array(MAX_POINTS * 3);
+const colorsArray = new Float32Array(MAX_POINTS * 3);
+const sizesArray = new Float32Array(MAX_POINTS);
+const hoveredArray = new Float32Array(MAX_POINTS);
+const selectedArray = new Float32Array(MAX_POINTS);
+let selected:number|null = null;
+const positionsAtt = new THREE.BufferAttribute(positionsArray, 3);
+const colorsAtt = new THREE.BufferAttribute(colorsArray, 3);
+const sizesAtt = new THREE.BufferAttribute(sizesArray, 1);
+const hoveredAtt = new THREE.BufferAttribute(hoveredArray, 1);
+const selectedAtt = new THREE.BufferAttribute(selectedArray, 1);
+
 const PARTICLE_SIZE = 0.6 * (window.devicePixelRatio**2);
 let drawCount = 0;
-const originalColors = new Float32Array( MAX_POINTS * 3 );
 
-let singletonHadLoaded:boolean = false; // no dataset change for now
+let singletonHadLoaded:boolean = false; // no dataset change for now, TODO better functional style
 
 const DataPoints = (props: {
             pointsProps?: ThreeElements['points'],
@@ -88,7 +87,6 @@ const DataPoints = (props: {
         }) => {
 
     const registerPoints = (configuration:any, points:Array<DataPoint>) => {
-        console.log(configuration['mean'])
         points.forEach(dataPoint => {
             const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
             const color = new THREE.Color();
@@ -106,7 +104,6 @@ const DataPoints = (props: {
         const sizes = attributes.size.array;
         vertex.toArray(positions, drawCount * 3);
         color.toArray(colors, drawCount * 3);
-        color.toArray(originalColors, drawCount * 3);
         // @ts-ignore
         sizes[drawCount] = size;
         hoveredArray[drawCount] = 0;
@@ -116,7 +113,6 @@ const DataPoints = (props: {
 
     useEffect(() => {
         if (props.configuration && props.points && !singletonHadLoaded) {
-            console.log("useEffect dddddpppp");
             registerPoints(props.configuration, props.points.data);
             updateAttributes();
             updateBoundingSphere();
@@ -206,7 +202,13 @@ const DataPoints = (props: {
             onPointerOver={onPointerOver}
             onPointerOut={onPointerOut}
         >
-            <bufferGeometry attributes={{position:positionsAtt, size:sizesAtt, customColor:colorsAtt, customHovered:hoveredAtt, customSelected:selectedAtt}}/>
+            <bufferGeometry attributes={{
+                position:positionsAtt,
+                size:sizesAtt,
+                customColor:colorsAtt,
+                customHovered:hoveredAtt,
+                customSelected:selectedAtt
+            }}/>
             <shaderMaterial uniforms={materialUniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/>
         </points>
     )

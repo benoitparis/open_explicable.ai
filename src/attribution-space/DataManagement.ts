@@ -32,9 +32,11 @@ export const readFull = async<T> (reader: ParquetReader) => {
     while (record = await cursor.next()) {
         data.push(record as T)
     }
+    const metadata = reader.metadata
+    await reader.close();
     return {
         data: data,
-        metadata: reader.metadata
+        metadata: metadata
     } as DataSet<T>;
 }
 

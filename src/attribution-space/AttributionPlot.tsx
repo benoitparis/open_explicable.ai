@@ -9,11 +9,17 @@ const AttributionPlot = (props:{
         shapValues:DataSet<any>,
     }) => {
 
-    const featureNames = props.dataset.metadata.schema.map(it => it.name);
+    const featureNames = [
+        // "Mean",
+        ...props.dataset.metadata.schema.map(it => it.name)
+    ];
     const attributionObj = props.shapValues.data[props.selected];
-    const attributionValues = featureNames.map(it => {
-        return attributionObj["attribution_" + it];
-    })
+    const attributionValues = [
+        // props.configuration["mean"],
+        ...featureNames.map(it => {
+            return attributionObj["attribution_" + it];
+        })
+    ]
 
     console.log(props.selected)
     console.log(attributionValues)
@@ -22,7 +28,7 @@ const AttributionPlot = (props:{
         <div style={{
             position:"absolute",
             top: "5em",
-            right: "1em",
+            left: "1em",
             zIndex: 4,
         }}>
             <Plot

@@ -12,7 +12,8 @@ import {
     getShapValues,
     getTree,
     getRuleDefinitions,
-    getBinaryParticipations, DataSet,
+    getBinaryParticipations,
+    DataSet,
 } from "./DataManagement";
 import AttributionPlot from "./AttributionPlot";
 
