@@ -2,22 +2,19 @@ import {ParquetReader} from "@dsnp/parquetjs/dist/browser/parquet.esm";
 import {FileMetaDataExt} from "@dsnp/parquetjs/dist/lib/declare";
 
 export type DataConfiguration = {
-    "binary-participations": string,
-    "data-prediction-embedding-cluster": string,
     "datapoint_number": number,
     "features": Array<string>,
     "label_mapping": object,
     "mean": number,
     "predicted_variables": Array<string>,
-    "rule-definitions": string,
     "rule_number": number,
     "std": number
 }
 export type DataPoint = {
-    x:number,
-    y:number,
-    z:number,
-    __prediction:number
+    x: number,
+    y: number,
+    z: number,
+    __prediction: number
 }
 
 export type DataSet<T> = {

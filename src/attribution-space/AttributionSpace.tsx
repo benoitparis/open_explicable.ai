@@ -49,7 +49,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
     return (
 
         <>
-            {props.displayed && selected && configuration && dataset && shapValues?
+            {props.displayed && selected?
                 <AttributionPlot
                     selected={selected}
                     configuration={configuration}
