@@ -4,7 +4,7 @@ import {FileMetaDataExt} from "@dsnp/parquetjs/dist/lib/declare";
 export type DataConfiguration = {
     "datapoint_number": number,
     "features": Array<string>,
-    "label_mapping": object,
+    "label_mapping": {[key in string] : {[key in string]: number}},
     "mean": number,
     "predicted_variables": Array<string>,
     "rule_number": number,

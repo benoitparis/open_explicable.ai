@@ -85,7 +85,11 @@ const AttributionPlot = (props:{
     );
 
 }
-type base = {name:string, value:number};
+type base = {
+    name:string,
+    attributionValue:number,
+    dataValue:number,
+};
 type cumulative = {
     start:number,
     end:number,
@@ -126,17 +130,18 @@ export const AttributionsWaterfallPlot = (props:{
         return [x - margin, y - margin, width + 2 * margin, height + 2 * margin].toString();
     };
 
-    const accumulatedData = (data:base[]):chartable[] => {
-            let cumulative = 0;
+    const accumulatedData = (mean: number, data:base[]):chartable[] => {
+            let cumulative = mean;
             return data.map(it => {
                 const before = cumulative;
-                cumulative += it.value;
+                cumulative += it.attributionValue;
                 return {
                     name: it.name,
-                    value: it.value,
+                    attributionValue: it.attributionValue,
+                    dataValue: it.dataValue,
                     start: before,
                     end: cumulative,
-                    fill: it.value > 0? "blue" : "red"
+                    fill: it.attributionValue > 0? "blue" : "red"
                 }
             })
         }
@@ -153,13 +158,17 @@ export const AttributionsWaterfallPlot = (props:{
             .map((d, i) => {
                 return {
                         name: d,
-                        value: props.attributionValues[i]
+                    attributionValue: props.attributionValues[i],
+                    dataValue: props.dataValues[i]
                 }
         })
 
         // console.log(attributionData)
+        const mean = props.configuration.mean;
+        const predicted = props.conf ICI iguration.mean;
+        const actual = props.dataVal ICI ues[props.featureNames.length];
 
-        const ad = accumulatedData(attributionData);
+        const ad = accumulatedData(mean, attributionData);
         // const ad = accumulatedData(exampleData);
 
         // console.log(ad)
@@ -183,6 +192,14 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("transform", "translate(" + margin + "," + margin + ")")
         ;
 
+        chart.append("text")
+            .attr("x", width/3)
+            .attr("y", -margin)
+            .attr("text-anchor", "middle")
+            .attr("font-size", "2em")
+            .text("Signal Attribution");
+
+
         chart.append("g")
             .attr("class", "y axis")
             .call(yAxis)
@@ -203,6 +220,27 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("font-size", "1.5em")
         ;
 
+        chart
+            .append("line")
+            .style("color", "black")
+            .style("stroke", "grey")
+            .style("stroke-dasharray", "3")
+            .attr("x1", xScale(mean) )
+            .attr("y1", 100)
+            .attr("x2", xScale(mean) )
+            .attr("y2", 500)
+        ;
+
+        chart
+            .append("line")
+            .style("stroke", "black")
+            .style("stroke-dasharray", "3")
+            .attr("x1", xScale(mean) )
+            .attr("y1", 100)
+            .attr("x2", xScale(mean) )
+            .attr("y2", 500)
+        ;
+
         const bar = chart.selectAll(".bar")
             .data(ad)
             .enter()
@@ -217,13 +255,14 @@ export const AttributionsWaterfallPlot = (props:{
             .style("opacity", 0)
             .style("position", "absolute")
             .style("z-index", "10")
-            .style("padding", "2px")
+            .style("padding", "10px")
             .style("background", "black")
             .style("color", "white")
             .style("border", "0")
             .style("border-radius", "8px")
             .style("pointer-events", "none")
-            .style("width", "120px")
+            .style("left", "0px")
+            .style("top", "0px")
         ;
 
         const numberFormatter = Intl.NumberFormat('en-US', {
@@ -231,6 +270,16 @@ export const AttributionsWaterfallPlot = (props:{
             maximumFractionDigits: 2,
             signDisplay: "always"
         })
+
+        const invertObj = (obj:{[key in string]: number}) => Object.fromEntries(Object.entries(obj).map(a => a.reverse()))
+        const getValue = (d:chartable):string => {
+            const mapping = props.configuration.label_mapping[d.name];
+            if (mapping) {
+                return invertObj(mapping)[d.dataValue];
+            } else {
+                return "" + d.dataValue;
+            }
+        }
 
         bar.append("rect") // how to config hover?
             .attr("shape-rendering", "crispedges")
@@ -246,8 +295,8 @@ export const AttributionsWaterfallPlot = (props:{
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                tooltip.html(d.name + "<br/>" +
-                    (numberFormatter.format(d.value)) + "<br/>" +
+                tooltip.html(d.name + " (value: " + getValue(d) + ")" + "<br/>" +
+                    (numberFormatter.format(d.attributionValue)) + "<br/>" +
                     "(Initial: " + (numberFormatter.format(d.start)) + ")"
                 )
                     .style("left", xPosition + "px")
@@ -275,6 +324,7 @@ export const AttributionsWaterfallPlot = (props:{
         return(() => {
             // TODO full react? maybe not: we want
             chart.selectChildren().remove();
+            tooltip.remove();
         })
 
     }, [props.featureNames, props.dataValues, props.attributionValues]);
