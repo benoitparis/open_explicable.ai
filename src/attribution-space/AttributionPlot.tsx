@@ -1,8 +1,6 @@
 import React from 'react';
-import Plot from 'react-plotly.js';
 import {DataConfiguration, DataSet} from "./DataManagement";
 import * as d3 from "d3";
-
 
 const AttributionPlot = (props:{
         selected: number,
@@ -11,144 +9,113 @@ const AttributionPlot = (props:{
         shapValues: DataSet<any>|null,
     }) => {
 
-    const featureNames = [
-        // "Mean",
-        ... (props.dataset
+    const featureNames = props.dataset
             ? props.dataset.metadata.schema.map(it => it.name)
-            : []
-        )
-    ];
+            : [];
+    if (featureNames.length > 0) {
+        featureNames.shift(); // first element is the parquet schema TODO filter upstream?
+    }
+
+    const dataObj = props.dataset?.data[props.selected];
+    const dataValues = featureNames.map(it => {
+            return dataObj[it];
+        });
     const attributionObj = props.shapValues?.data[props.selected];
-    const attributionValues = [
-        // props.configuration["mean"],
-        ...featureNames.map(it => {
+    const attributionValues = featureNames.map(it => {
             return attributionObj["attribution_" + it];
         })
-    ]
-
-    const plot =
-        <Plot
-            data={[
-                {
-                    name: "Attributions",
-                    type: "waterfall",
-                    orientation: "h",
-                    y: featureNames,
-                    x: attributionValues,
-                    textposition: "outside",
-                }
-            ]}
-            layout={{
-                title: {text: "Attributions"},
-                yaxis: {type: "category"},
-                xaxis: {type: "linear"}
-            }}
-            style={{
-                borderRadius: "17px",
-                borderWidth: "6px",
-                borderColor: "skyblue",
-                borderStyle: "dashed",
-            }}
-            config={{
-                displaylogo: false,
-                setBackground: "transparent"
-            }}
-        />
 
     const loading =
         <div style={{
-            position: "absolute",
-            background: "white",
-            height: "25em",
-            width: "25em",
-            zIndex: 4,
+            margin: "2em",
         }}>
-            <div style={{
-                margin: "2em",
-            }}>
-                <pre>Data:</pre>
-                <pre>{"Configuration " + (props.configuration? "OK" : "Loading...")}</pre>
-                <pre>{"Dataset       " + (props.dataset      ? "OK" : "Loading...")}</pre>
-                <pre>{"Attributions  " + (props.shapValues   ? "OK" : "Loading...")}</pre>
-            </div>
+            <pre>Data:</pre>
+            <pre>{"Configuration " + (props.configuration? "OK" : "Loading...")}</pre>
+            <pre>{"Dataset       " + (props.dataset      ? "OK" : "Loading...")}</pre>
+            <pre>{"Attributions  " + (props.shapValues   ? "OK" : "Loading...")}</pre>
         </div>
 
     console.log(props.selected)
     console.log(attributionValues)
 
-    const plot2 = <AttributionsWaterfallPlot
+    const plot =
+        props.configuration?
+        <AttributionsWaterfallPlot
+            configuration={props.configuration}
+            featureNames={featureNames}
+            dataValues={dataValues}
+            attributionValues={attributionValues}
+        />
+        :"";
 
-     configuration={props.configuration} dataset={props.dataset} selected={props.selected} shapValues={props.shapValues}/>
+    const hasLoaded = props.configuration && props.dataset && props.shapValues;
 
+    // TODO abstract boxes?
+    // TODO abstract a loading box?
     return (
         <div style={{
             position:"absolute",
-            top: "5em",
+            top: "6em",
             left: "1em",
             zIndex: 4,
         }}>
-            {
-                // !(props.configuration && props.dataset && props.shapValues)?
-                false?
-                loading : plot2
-            }
+
+            <div
+                style={{
+                    background:"white",
+                    opacity: 0.95,
+                    borderRadius: "15px",
+                    borderWidth: "5px",
+                    borderColor: "grey",
+                    borderStyle: "dashed",
+                    transition: "all 2s ease-out",
+                    minHeight: hasLoaded ? "300px" : "50px",
+                    maxHeight: hasLoaded ? "1000px" : "200px",
+                    minWidth: hasLoaded ? "500px" : "50px",
+                    maxWidth: hasLoaded ? "800px" : "300px",
+                    overflow: "hidden"
+                }}>
+                {
+                    hasLoaded?
+                    // true?
+                    plot : loading
+                }
+            </div>
         </div>
     );
 
 }
 type base = {name:string, value:number};
-const data:base[] = [
-        {name:"List Price","value":100},
-        {name:"County Adj","value":-13},
-        {name:"Country List Price","value":-20},
-        // {name:"Subtotal","value":sub_cumulative},
-        {name:"Std Discount","value":-20},
-        {name:"Promotion","value":7},
-        {name:"Volume Discount","value":-10},
-        {name:"Freight Surcharge","value":6},
-        {name:"Sales Discount","value":5},
-        {name:"Invoice Price","value":9},
-        {name:"Cash Discount","value":-2},
-        {name:"Customer Rebate","value":-14},
-        {name:"Buying Group Rebate","value":4},
-        {name:"Net Price","value":-12},
-        {name:"Bonus","value":13},
-        {name:"Cost to Serve","value":-9},
-        {name:"Pocket Price","value":-12},
-        {name:"Production Cost","value":-12},
-        {name:"Net Margin","value":-14}
-    ];
 type cumulative = {
     start:number,
     end:number,
-    fill:"blue"|"red",
+    fill:"blue"|"red"|"orange"|"grey", // -, +, hovered, composite
 }
 type chartable = (base & cumulative)
-const accumulatedData = ():chartable[] => {
-    let cumulative = 0;
-    return data.map(it => {
-        const before = cumulative;
-        cumulative += it.value;
-        return {
-            name: it.name,
-            value: it.value,
-            start: before,
-            end: cumulative,
-            fill: it.value > 0? "blue" : "red"
-        }
-    })
-}
-;
 
-// const SIZE = 975;
+
+// TODO coding convention: https://wattenberger.com/blog/react-and-d3
 export const AttributionsWaterfallPlot = (props:{
-    selected: number|null,
-    configuration: DataConfiguration|null,
-    dataset: DataSet<any>|null,
-    shapValues: DataSet<any>|null,
+    configuration: DataConfiguration,
+    featureNames: string[],
+    dataValues: number[],
+    attributionValues: number[],
 }) => {
     const svgRef = React.useRef<SVGSVGElement>(null);
     const [viewBox, setViewBox] = React.useState("0,0,0,0");
+
+    const margin = 20;
+    const screenHeight = 800;
+    const minBarHeight = 14;
+    const barHeight = Math.max(
+        minBarHeight,
+        (screenHeight + 4 * margin) / props.featureNames.length // 4 arbitrary, to account for left axis text space
+    );
+    const width = 600;
+    const svgHeight = Math.max(
+        screenHeight,
+        minBarHeight * props.featureNames.length
+    );
 
     const getAutoBox = () => {
         if (!svgRef.current) {
@@ -156,101 +123,144 @@ export const AttributionsWaterfallPlot = (props:{
         }
         console.log(svgRef.current.getBBox())
         const { x, y, width, height } = svgRef.current.getBBox();
-        return [x, y, width, height].toString();
+        return [x - margin, y - margin, width + 2 * margin, height + 2 * margin].toString();
     };
 
-    React.useLayoutEffect(() => {
-        setViewBox(getAutoBox());
-    }, []);
+    const accumulatedData = (data:base[]):chartable[] => {
+            let cumulative = 0;
+            return data.map(it => {
+                const before = cumulative;
+                cumulative += it.value;
+                return {
+                    name: it.name,
+                    value: it.value,
+                    start: before,
+                    end: cumulative,
+                    fill: it.value > 0? "blue" : "red"
+                }
+            })
+        }
+    ;
 
-    const margin = {top: 20, right: 30, bottom: 100, left: 70},
-        width = 960 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+    React.useEffect(() => {
 
-    React.useLayoutEffect(() => {
 
-        const ad = accumulatedData();
-        console.log(ad)
+        // console.log(props.featureNames)
+        // console.log(props.attributionValues)
 
-        const x = d3.scaleOrdinal(
-                ad.map(it => it.name),
-                ad.map((it, idx) => idx * 25)
-            );
+        const attributionData:base[] = props.featureNames
+            .filter(it => it !== props.configuration["predicted_variables"][0])
+            .map((d, i) => {
+                return {
+                        name: d,
+                        value: props.attributionValues[i]
+                }
+        })
 
-        const y = d3.scaleLinear()
-            .domain([0, Math.max(...ad.map(it => it.end))])
-            .range([height, 0])
+        // console.log(attributionData)
+
+        const ad = accumulatedData(attributionData);
+        // const ad = accumulatedData(exampleData);
+
+        // console.log(ad)
+
+        const yScale = d3.scaleOrdinal<number>()
+            .domain([...ad.map(it => it.name), ""])
+            .range([...ad.map((it, idx) => idx * barHeight), ad.length * barHeight])
         ;
 
-        const xAxis = d3.axisBottom(x);
-        const yAxis = d3.axisLeft(y);
+        // TODO rework domain min max from whole dataset?
+        const xScale = d3.scaleLinear()
+            .domain([Math.min(...ad.map(it => it.start)), Math.max(...ad.map(it => it.end))])
+            .range([0, width*(3/5)])
+        ;
+
+        const yAxis = d3.axisLeft(yScale);
+        const xAxis = d3.axisBottom(xScale);
 
         const chart = d3.select(svgRef.current)
             .append("g")
-            .attr("transform", "translate(" + margin.left + "," + margin.top + ")")
+            .attr("transform", "translate(" + margin + "," + margin + ")")
         ;
-
-
-        chart.append("g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + height + ")")
-            .call(xAxis)
-            .selectAll("text")
-            .attr("y", 6)
-            .attr("x", 9)
-            .attr("dy", ".35em")
-            .attr("transform", "rotate(50) translate(0," + (-10) + ")")
-            .style("text-anchor", "start");
 
         chart.append("g")
             .attr("class", "y axis")
-            .call(yAxis);
+            .call(yAxis)
+            .selectAll("text")
+            .attr("transform", "translate(-10, 0) rotate(-20)")
+            .attr("font-size", "1.5em")
+            .style("text-anchor", "end")
+        ;
+
+        chart.append("g")
+            .attr("class", "x axis")
+            .attr("transform", "translate(0," + (ad.length) * barHeight + ")")
+            .call(xAxis)
+            .selectAll("text")
+            .style("text-anchor", "start")
+            // TODO something dynamic with range?
+            .attr("transform", "translate(0, 20) rotate(90) translate(0, -16)")
+            .attr("font-size", "1.5em")
+        ;
 
         const bar = chart.selectAll(".bar")
             .data(ad)
             .enter()
             .append("g")
             .attr("fill", d => d.fill)
-            .attr("transform", d => "translate(" + x(d.name) + ",0)");
+            .attr("transform", d => "translate(0," + yScale(d.name) + ")")
+        ;
 
-        bar.append("rect")
-            .attr("y", d => y(Math.max(d.start, d.end)))
-            .attr("height", d => Math.abs(y(d.start) - y(d.end)))
-            .attr("width", 20)
+        const tooltip = d3.select("body").append("div")
+            .attr("class", "tooltip")
+            .attr("align","middle")
+            .style("opacity", 0)
+            .style("position", "absolute")
+            .style("z-index", "10")
+            .style("padding", "2px")
+            .style("background", "black")
+            .style("color", "white")
+            .style("border", "0")
+            .style("border-radius", "8px")
+            .style("pointer-events", "none")
+            .style("width", "120px")
+        ;
 
+        const numberFormatter = Intl.NumberFormat('en-US', {
+            notation: "compact",
+            maximumFractionDigits: 2,
+            signDisplay: "always"
+        })
 
-// //tooltip
-//         var tooltip = d3.select("body").append("div")
-//             .attr("class", "tooltip")
-//             .style("opacity", 0)
-//             .attr("align","middle");
+        bar.append("rect") // how to config hover?
+            .attr("shape-rendering", "crispedges")
+            .attr("x", d => xScale(Math.min(d.start, d.end)))
+            .attr("transform", "translate(0, " + -barHeight/2 + ")")
+            .attr("width", d => Math.abs(xScale(d.start) - xScale(d.end)))
+            .attr("height", barHeight)
+            .on("mouseover", (event, d) => {
+                const xPosition = event.pageX - 40;
+                const yPosition = event.pageY + 40;
+                console.log(xPosition)
+                console.log(yPosition)
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", .9);
+                tooltip.html(d.name + "<br/>" +
+                    (numberFormatter.format(d.value)) + "<br/>" +
+                    "(Initial: " + (numberFormatter.format(d.start)) + ")"
+                )
+                    .style("left", xPosition + "px")
+                    .style("top",  yPosition + "px");
+            })
+            .on("mouseout", function(d) {
+                tooltip.transition()
+                    .duration(200)
+                    .style("opacity", 0);
+            });
 
-        // .attr("width", x.rangeBand())
-        // function to draw the tooltip
-
-            // .on("mouseover", function(d) {
-            //     // // to find the parent node,to calculate the x position
-            //     // var parentG = d3.select(this.parentNode);
-            //     // var barPos = parseFloat(parentG.attr('transform').split("(")[1]);
-            //     // var xPosition = barPos+x.rangeBand()/2;
-            //     // //to find the y position
-            //     // var yPosition = parseFloat(d3.select(this).attr("y"))+ Math.abs( y(d.start) - y(d.end))/2;
-            //     // tooltip.transition()
-            //     //     .duration(200)
-            //     //     .style("opacity", .9);
-            //     // tooltip.html(d.name + "<br/>"  + (d.value) + "M")
-            //     //     .style("left", xPosition + "px")
-            //     //     .style("top",  yPosition + "px");
-            // })
-            // .on("mouseout", function(d) {
-            //     // tooltip.transition()
-            //     //     .duration(500)
-            //     //     .style("opacity", 0);
-            // });
-
-
+        // TODO collapse small contiguous unimportant features
         // bar
-        //     // .filter(function(d) { return d.class != "total" })
         //     .append("line")
         //     .attr("class", "connector")
         //     // .attr("x1", x.rangeBand() + 5 )
@@ -260,14 +270,36 @@ export const AttributionsWaterfallPlot = (props:{
         //     .attr("x2", 10 )
         //     .attr("y2", function(d:any) { return y(d.end) } )
 
-        chart.attr("viewBox", getAutoBox);
+        setViewBox(getAutoBox());
 
-    });
+        return(() => {
+            // TODO full react? maybe not: we want
+            chart.selectChildren().remove();
+        })
+
+    }, [props.featureNames, props.dataValues, props.attributionValues]);
 
 
     return (
-        <svg width={width + margin.left + margin.right} height={height + margin.top + margin.bottom} viewBox={viewBox} ref={svgRef} style={{background:"white"}}>
-        </svg>
+        <div
+            style={{
+                // background:"white",
+                // opacity: 0.95,
+                // borderRadius: "15px",
+                // borderWidth: "5px",
+                // borderColor: "grey",
+                // borderStyle: "dashed",
+                maxHeight: screenHeight,
+                overflow: "overlay",
+                width: width + margin,
+            }}>
+            <svg
+                ref={svgRef}
+                width={width}
+                height={svgHeight}
+                viewBox={viewBox}>
+            </svg>
+        </div>
     );
 
 }
