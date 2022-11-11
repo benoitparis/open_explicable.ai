@@ -1,5 +1,5 @@
 import React from 'react';
-import {DataConfiguration, DataSet} from "./DataManagement";
+import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
 import * as d3 from "d3";
 
 const AttributionPlot = (props:{
@@ -7,6 +7,7 @@ const AttributionPlot = (props:{
         configuration: DataConfiguration|null,
         dataset: DataSet<any>|null,
         shapValues: DataSet<any>|null,
+        points:DataSet<DataPoint>|null,
     }) => {
 
     const featureNames = props.dataset
@@ -24,6 +25,7 @@ const AttributionPlot = (props:{
     const attributionValues = featureNames.map(it => {
             return attributionObj["attribution_" + it];
         })
+    const point:DataPoint|undefined = props.points?.data[props.selected];
 
     const loading =
         <div style={{
@@ -31,6 +33,7 @@ const AttributionPlot = (props:{
         }}>
             <pre>Data:</pre>
             <pre>{"Configuration " + (props.configuration? "OK" : "Loading...")}</pre>
+            <pre>{"Points        " + (props.points       ? "OK" : "Loading...")}</pre>
             <pre>{"Dataset       " + (props.dataset      ? "OK" : "Loading...")}</pre>
             <pre>{"Attributions  " + (props.shapValues   ? "OK" : "Loading...")}</pre>
         </div>
@@ -45,10 +48,11 @@ const AttributionPlot = (props:{
             featureNames={featureNames}
             dataValues={dataValues}
             attributionValues={attributionValues}
+            point={point}
         />
         :"";
 
-    const hasLoaded = props.configuration && props.dataset && props.shapValues;
+    const hasLoaded = props.configuration && props.dataset && props.shapValues && props.points;
 
     // TODO abstract boxes?
     // TODO abstract a loading box?
@@ -104,6 +108,7 @@ export const AttributionsWaterfallPlot = (props:{
     featureNames: string[],
     dataValues: number[],
     attributionValues: number[],
+    point:DataPoint|undefined,
 }) => {
     const svgRef = React.useRef<SVGSVGElement>(null);
     const [viewBox, setViewBox] = React.useState("0,0,0,0");
@@ -141,7 +146,7 @@ export const AttributionsWaterfallPlot = (props:{
                     dataValue: it.dataValue,
                     start: before,
                     end: cumulative,
-                    fill: it.attributionValue > 0? "blue" : "red"
+                    fill: it.attributionValue > 0? "red" : "blue"
                 }
             })
         }
@@ -149,6 +154,7 @@ export const AttributionsWaterfallPlot = (props:{
 
     React.useEffect(() => {
 
+        // TODO verify data actually usable, maybe before creation?
 
         // console.log(props.featureNames)
         // console.log(props.attributionValues)
@@ -157,7 +163,7 @@ export const AttributionsWaterfallPlot = (props:{
             .filter(it => it !== props.configuration["predicted_variables"][0])
             .map((d, i) => {
                 return {
-                        name: d,
+                    name: d,
                     attributionValue: props.attributionValues[i],
                     dataValue: props.dataValues[i]
                 }
@@ -165,13 +171,23 @@ export const AttributionsWaterfallPlot = (props:{
 
         // console.log(attributionData)
         const mean = props.configuration.mean;
-        const predicted = props.conf ICI iguration.mean;
-        const actual = props.dataVal ICI ues[props.featureNames.length];
+        const predicted = props.point?.__prediction;
+        const actual = props.dataValues[props.featureNames.length]; // TODO
 
         const ad = accumulatedData(mean, attributionData);
         // const ad = accumulatedData(exampleData);
 
         // console.log(ad)
+        const invertObj = (obj:{[key in string]: number}) => Object.fromEntries(Object.entries(obj).map(a => a.reverse()))
+        const getValue = (d:chartable):string => {
+            const mapping = props.configuration.label_mapping[d.name];
+            if (mapping) {
+                return invertObj(mapping)[d.dataValue];
+            } else {
+                return "" + d.dataValue;
+            }
+        }
+
 
         const yScale = d3.scaleOrdinal<number>()
             .domain([...ad.map(it => it.name), ""])
@@ -197,13 +213,21 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("y", -margin)
             .attr("text-anchor", "middle")
             .attr("font-size", "2em")
-            .text("Signal Attribution");
+            // .text("Signal Attribution")
+            .text("Prediction Drivers")
+        ;
 
-
+        // être open sur la tech utilisée:
+        // Explicable.AI stands on the shoulders of giants:
+        // XGBoost, SHAP, UMAP, RuleFit (Customized version), ThreeJS, (Gamma FACET, Causal libs)
+        //   (and scikit-learn, React, D3)
+        // so that it can bring you an opinionated data exploration platform with state-of-the-art ML algos woven together in an
+        // accessible, fast-actionable manner. Enabling you to dive easily and fast in the smart data management you can do
+        // in an integrated BI, inference, enriching, etc. platform
         chart.append("g")
             .attr("class", "y axis")
             .call(yAxis)
-            .selectAll("text")
+            .selectAll("text")// TODO mettre la valeur dans le texte de l'axe aussi
             .attr("transform", "translate(-10, 0) rotate(-20)")
             .attr("font-size", "1.5em")
             .style("text-anchor", "end")
@@ -220,26 +244,36 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("font-size", "1.5em")
         ;
 
-        chart
-            .append("line")
-            .style("color", "black")
-            .style("stroke", "grey")
-            .style("stroke-dasharray", "3")
-            .attr("x1", xScale(mean) )
-            .attr("y1", 100)
-            .attr("x2", xScale(mean) )
-            .attr("y2", 500)
-        ;
+        // chart
+        //     .append("line")
+        //     .style("stroke", "black")
+        //     .style("stroke-dasharray", "3")
+        //     .attr("x1", xScale(mean) )
+        //     .attr("y1", 100)
+        //     .attr("x2", xScale(mean) )
+        //     .attr("y2", 500)
+        // ;
 
-        chart
-            .append("line")
-            .style("stroke", "black")
-            .style("stroke-dasharray", "3")
-            .attr("x1", xScale(mean) )
-            .attr("y1", 100)
-            .attr("x2", xScale(mean) )
-            .attr("y2", 500)
-        ;
+        // if (predicted) {
+        //     chart
+        //         .append("line")
+        //         .style("stroke", "green")
+        //         .style("stroke-dasharray", "4")
+        //         .attr("x1", xScale(predicted) )
+        //         .attr("y1", 100)
+        //         .attr("x2", xScale(predicted) )
+        //         .attr("y2", 500)
+        //     ;
+        // }
+        // chart
+        //     .append("line")
+        //     .style("stroke", "yellow")
+        //     .style("stroke-dasharray", "5")
+        //     .attr("x1", xScale(actual) )
+        //     .attr("y1", 100)
+        //     .attr("x2", xScale(actual) )
+        //     .attr("y2", 500)
+        // ;
 
         const bar = chart.selectAll(".bar")
             .data(ad)
@@ -271,15 +305,7 @@ export const AttributionsWaterfallPlot = (props:{
             signDisplay: "always"
         })
 
-        const invertObj = (obj:{[key in string]: number}) => Object.fromEntries(Object.entries(obj).map(a => a.reverse()))
-        const getValue = (d:chartable):string => {
-            const mapping = props.configuration.label_mapping[d.name];
-            if (mapping) {
-                return invertObj(mapping)[d.dataValue];
-            } else {
-                return "" + d.dataValue;
-            }
-        }
+
 
         bar.append("rect") // how to config hover?
             .attr("shape-rendering", "crispedges")
@@ -333,12 +359,6 @@ export const AttributionsWaterfallPlot = (props:{
     return (
         <div
             style={{
-                // background:"white",
-                // opacity: 0.95,
-                // borderRadius: "15px",
-                // borderWidth: "5px",
-                // borderColor: "grey",
-                // borderStyle: "dashed",
                 maxHeight: screenHeight,
                 overflow: "overlay",
                 width: width + margin,

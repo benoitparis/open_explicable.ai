@@ -55,6 +55,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
                     configuration={configuration}
                     dataset={dataset}
                     shapValues={shapValues}
+                    points={points}
                 />
                 :""
             }
