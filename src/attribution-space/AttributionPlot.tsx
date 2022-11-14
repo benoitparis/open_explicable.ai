@@ -177,7 +177,8 @@ export const AttributionsWaterfallPlot = (props:{
     React.useEffect(() => {
 
         const chosenFeatureNames = Object.entries(props.globalAttributionValues)
-            .filter(([k, v], i, a) => Math.abs(v) > 0)
+            .filter(([k, v], i, a) => Math.abs(v) > props.configuration.std/1000)
+            // TODO totally arbitrary, need to fix/choose it (top10, topX from UI)
             .map(([k, v]) => k.replace("attribution_", ""));
 
         svgHeight = Math.min(

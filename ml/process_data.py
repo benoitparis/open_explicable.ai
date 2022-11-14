@@ -83,14 +83,15 @@ x_std = StandardScaler().fit_transform(rf.X_rules)
 embedding_data = PCA(n_components=50).fit_transform(x_std)
 embedding = umap.UMAP(n_components=3).fit_transform(embedding_data)
 embedding = embedding - embedding.mean(axis=0) # faudra care au predict a partir du umap à mettre ça aussi
-embedding_df = pd.DataFrame({'x' : embedding[:,0], 'y' : embedding[:,1], 'z' : embedding[:,2]})
+embedding_df = pd.DataFrame({'x': embedding[:,0], 'y': embedding[:,1], 'z': embedding[:,2]})
 points_df = pd.concat([embedding_df, prediction_df], axis=1)
 points_df.to_parquet('data-points.parquet', engine='fastparquet', compression='gzip')
 
 
-xg_shap_embedding = umap.UMAP(n_components=3).fit_transform(xg_shap_values)
+# xg_shap_embedding = umap.UMAP(n_components=3, n_neighbors=5).fit_transform(xg_shap_values) // good?
+xg_shap_embedding = umap.UMAP(n_components=3, n_neighbors=5, min_dist=0.25).fit_transform(xg_shap_values)
 xg_shap_embedding = xg_shap_embedding - xg_shap_embedding.mean(axis=0) # faudra care au predict a partir du umap à mettre ça aussi
-xg_shap_embedding_df = pd.DataFrame({'x' : xg_shap_embedding[:,0], 'y' : xg_shap_embedding[:,1], 'z' : xg_shap_embedding[:,2]})
+xg_shap_embedding_df = pd.DataFrame({'x': xg_shap_embedding[:,0], 'y': xg_shap_embedding[:,1], 'z': xg_shap_embedding[:,2]})
 xg_shap_points_df = pd.concat([xg_shap_embedding_df, xg_prediction_df], axis=1)
 xg_shap_points_df.to_parquet('data-xg-shap-points.parquet', engine='fastparquet', compression='gzip')
 
