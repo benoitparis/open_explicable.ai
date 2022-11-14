@@ -2,10 +2,10 @@ import React from 'react';
 import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
 import * as d3 from "d3";
 
-type NotNullOrUndefined<T> = {
+// TODO use
+type Loaded<T> = {
     [P in keyof T]: Exclude<T[P], null | undefined>
 }
-
 type AttributionPlotProps = {
     selected: number,
     configuration: DataConfiguration|null,
@@ -13,8 +13,7 @@ type AttributionPlotProps = {
     attributionValues: DataSet<any>|null,
     points:DataSet<DataPoint>|null,
 }
-type test5 = NotNullOrUndefined<AttributionPlotProps>;
-
+type test5 = Loaded<AttributionPlotProps>;
 
 const AttributionPlot = (props:AttributionPlotProps) => {
 
@@ -29,6 +28,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
             <pre>{"Attributions  " + (props.attributionValues? "OK" : "Loading...")}</pre>
         </div>
 
+    const landscape = window.innerHeight < window.innerWidth;
     const hasLoaded = props.configuration && props.dataset && props.attributionValues && props.points;
     const plot = () => {
         if (props.configuration && props.dataset && props.attributionValues && props.points) {
@@ -51,7 +51,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                 })
             Object.keys(globalAttributionValues).forEach((key) => globalAttributionValues[key] /= number);
 
-            console.log(globalAttributionValues);
+            console.log(window.innerHeight);
 
             return (
                 <AttributionsWaterfallPlot
@@ -61,6 +61,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                     attributionValues={attributionValues}
                     globalAttributionValues={globalAttributionValues}
                     point={point}
+                    filterTopN={landscape? 36: 6}
                 />
             );
         } else {
@@ -69,12 +70,14 @@ const AttributionPlot = (props:AttributionPlotProps) => {
 
     };
 
+
     // TODO abstract boxes?
     // TODO abstract a loading box?
     return (
         <div style={{
             position:"absolute",
-            top: "6em",
+            top: landscape?"6em":"",
+            bottom: landscape?"":"1em",
             left: "1em",
             zIndex: 4,
         }}>
@@ -90,7 +93,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                     transition: "all 2s ease-out",
                     minHeight: hasLoaded ? "300px" : "50px",
                     maxHeight: hasLoaded ? "1000px" : "200px",
-                    minWidth: hasLoaded ? "500px" : "50px",
+                    minWidth: hasLoaded ? "400px" : "50px",
                     maxWidth: hasLoaded ? "800px" : "300px",
                     overflow: "hidden"
                 }}>
@@ -134,6 +137,7 @@ export const AttributionsWaterfallPlot = (props:{
     attributionValues: number[],
     globalAttributionValues: number[],
     point:DataPoint,
+    filterTopN:number|null
 }) => {
     const svgRef = React.useRef<SVGSVGElement>(null);
     const [viewBox, setViewBox] = React.useState("0,0,0,0");
@@ -145,7 +149,7 @@ export const AttributionsWaterfallPlot = (props:{
         minBarHeight,
         (maxScreenHeight + 4 * margin) / props.featureNames.length // 4 arbitrary, to account for left axis text space
     );
-    const width = 600;
+    const width = 450;
     let svgHeight = maxScreenHeight;
 
 
@@ -176,8 +180,14 @@ export const AttributionsWaterfallPlot = (props:{
 
     React.useEffect(() => {
 
+        const threshold = Object.values(props.globalAttributionValues)
+            .map(v => Math.abs(v))
+            .sort((a, b) => b-a)
+                [(props.filterTopN||props.configuration.features.length)-1]
+        ;
+
         const chosenFeatureNames = Object.entries(props.globalAttributionValues)
-            .filter(([k, v], i, a) => Math.abs(v) > props.configuration.std/1000)
+            .filter(([k, v], i, a) => Math.abs(v) >= threshold)
             // TODO totally arbitrary, need to fix/choose it (top10, topX from UI)
             .map(([k, v]) => k.replace("attribution_", ""));
 
@@ -215,8 +225,6 @@ export const AttributionsWaterfallPlot = (props:{
                 return "" + d.dataValue;
             }
         }
-
-
 
         const yScale = d3.scaleOrdinal<number>()
             .domain([...ad.map(it => it.name), ""])

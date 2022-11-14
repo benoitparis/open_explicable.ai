@@ -33,20 +33,6 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
                     </span>
                 </a>
             </li>
-            <li className={styles.horizontalFitOuterBlock}>
-                <a href={"#features"} className={styles.horizontalFitOuterBlockA}>
-                    <span className={classes(styles.horizontalFitInnerBlock, props.displayed?styles.horizontalFitInnerBlockOpened:styles.horizontalFitInnerBlockCollapsed)}>
-                        Features
-                    </span>
-                </a>
-            </li>
-            <li className={styles.horizontalFitOuterBlock}>
-                <a href={"#contact"} className={styles.horizontalFitOuterBlockA}>
-                    <span className={classes(styles.horizontalFitInnerBlock, props.displayed?styles.horizontalFitInnerBlockOpened:styles.horizontalFitInnerBlockCollapsed)}>
-                        Contact Us
-                    </span>
-                </a>
-            </li>
         </ul>
 
         <div className={styles.banner}>
@@ -74,7 +60,7 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
 
 const WebsiteHeader =  (props:PropsWithChildren<{displayed:boolean, display:(d:boolean)=>void}>) =>
     <div className={styles.headerWrapper} style={{
-        height: props.displayed?"90%":"100%"
+        height: props.displayed?"85vh":"100vh"
     }}>
         <div style={{
             position:"absolute",
