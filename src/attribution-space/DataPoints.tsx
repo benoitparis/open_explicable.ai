@@ -92,6 +92,7 @@ const DataPoints = (props: {
             const color = new THREE.Color();
             const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.__prediction - configuration['mean']) / 2 / configuration['std']));
             color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
+            // color.setRGB(1 - scaledPrediction, 0.2, scaledPrediction);
             addParticle(point, color, PARTICLE_SIZE * 0.5);
         })
     }

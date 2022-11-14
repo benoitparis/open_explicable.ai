@@ -2,57 +2,72 @@ import React from 'react';
 import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
 import * as d3 from "d3";
 
-const AttributionPlot = (props:{
-        selected: number,
-        configuration: DataConfiguration|null,
-        dataset: DataSet<any>|null,
-        shapValues: DataSet<any>|null,
-        points:DataSet<DataPoint>|null,
-    }) => {
+type NotNullOrUndefined<T> = {
+    [P in keyof T]: Exclude<T[P], null | undefined>
+}
 
-    const featureNames = props.dataset
-            ? props.dataset.metadata.schema.map(it => it.name)
-            : [];
-    if (featureNames.length > 0) {
-        featureNames.shift(); // first element is the parquet schema TODO filter upstream?
-    }
+type AttributionPlotProps = {
+    selected: number,
+    configuration: DataConfiguration|null,
+    dataset: DataSet<any>|null,
+    attributionValues: DataSet<any>|null,
+    points:DataSet<DataPoint>|null,
+}
+type test5 = NotNullOrUndefined<AttributionPlotProps>;
 
-    const dataObj = props.dataset?.data[props.selected];
-    const dataValues = featureNames.map(it => {
-            return dataObj[it];
-        });
-    const attributionObj = props.shapValues?.data[props.selected];
-    const attributionValues = featureNames.map(it => {
-            return attributionObj["attribution_" + it];
-        })
-    const point:DataPoint|undefined = props.points?.data[props.selected];
+
+const AttributionPlot = (props:AttributionPlotProps) => {
 
     const loading =
         <div style={{
             margin: "2em",
         }}>
             <pre>Data:</pre>
-            <pre>{"Configuration " + (props.configuration? "OK" : "Loading...")}</pre>
-            <pre>{"Points        " + (props.points       ? "OK" : "Loading...")}</pre>
-            <pre>{"Dataset       " + (props.dataset      ? "OK" : "Loading...")}</pre>
-            <pre>{"Attributions  " + (props.shapValues   ? "OK" : "Loading...")}</pre>
+            <pre>{"Configuration " + (props.configuration    ? "OK" : "Loading...")}</pre>
+            <pre>{"Points        " + (props.points           ? "OK" : "Loading...")}</pre>
+            <pre>{"Dataset       " + (props.dataset          ? "OK" : "Loading...")}</pre>
+            <pre>{"Attributions  " + (props.attributionValues? "OK" : "Loading...")}</pre>
         </div>
 
-    console.log(props.selected)
-    console.log(attributionValues)
+    const hasLoaded = props.configuration && props.dataset && props.attributionValues && props.points;
+    const plot = () => {
+        if (props.configuration && props.dataset && props.attributionValues && props.points) {
 
-    const plot =
-        props.configuration?
-        <AttributionsWaterfallPlot
-            configuration={props.configuration}
-            featureNames={featureNames}
-            dataValues={dataValues}
-            attributionValues={attributionValues}
-            point={point}
-        />
-        :"";
+            const featureNames = props.configuration.features;
+            const number = props.configuration.datapoint_number;
+            const point = props.points.data[props.selected];
+            const dataObj = props.dataset.data[props.selected];
+            const dataValues = featureNames.map(it => dataObj[it]);
+            const attributionObj = props.attributionValues.data[props.selected];
+            const attributionValues = featureNames.map(it => attributionObj["attribution_" + it]);
+            // TODO move server-side? what's the policy? does it consume resources? CPU vs network
+            const globalAttributionValues =
+                props.attributionValues.data.reduce((prev, curr) => {
+                    for (let k in prev) {
+                        if (curr.hasOwnProperty(k))
+                            prev[k] = (prev[k] || 0) + curr[k];
+                    }
+                    return prev;
+                })
+            Object.keys(globalAttributionValues).forEach((key) => globalAttributionValues[key] /= number);
 
-    const hasLoaded = props.configuration && props.dataset && props.shapValues && props.points;
+            console.log(globalAttributionValues);
+
+            return (
+                <AttributionsWaterfallPlot
+                    configuration={props.configuration}
+                    featureNames={featureNames}
+                    dataValues={dataValues}
+                    attributionValues={attributionValues}
+                    globalAttributionValues={globalAttributionValues}
+                    point={point}
+                />
+            );
+        } else {
+            return ""
+        }
+
+    };
 
     // TODO abstract boxes?
     // TODO abstract a loading box?
@@ -82,7 +97,7 @@ const AttributionPlot = (props:{
                 {
                     hasLoaded?
                     // true?
-                    plot : loading
+                    plot() : loading
                 }
             </div>
         </div>
@@ -101,6 +116,15 @@ type cumulative = {
 }
 type chartable = (base & cumulative)
 
+const numberFormatterRelative = Intl.NumberFormat('en-US', {
+    notation: "compact",
+    maximumFractionDigits: 2,
+    signDisplay: "always"
+})
+const numberFormatterAbsolute = Intl.NumberFormat('en-US', {
+    notation: "compact",
+    maximumFractionDigits: 2
+})
 
 // TODO coding convention: https://wattenberger.com/blog/react-and-d3
 export const AttributionsWaterfallPlot = (props:{
@@ -108,29 +132,27 @@ export const AttributionsWaterfallPlot = (props:{
     featureNames: string[],
     dataValues: number[],
     attributionValues: number[],
-    point:DataPoint|undefined,
+    globalAttributionValues: number[],
+    point:DataPoint,
 }) => {
     const svgRef = React.useRef<SVGSVGElement>(null);
     const [viewBox, setViewBox] = React.useState("0,0,0,0");
 
     const margin = 20;
-    const screenHeight = 800;
+    const maxScreenHeight = 800;
     const minBarHeight = 14;
     const barHeight = Math.max(
         minBarHeight,
-        (screenHeight + 4 * margin) / props.featureNames.length // 4 arbitrary, to account for left axis text space
+        (maxScreenHeight + 4 * margin) / props.featureNames.length // 4 arbitrary, to account for left axis text space
     );
     const width = 600;
-    const svgHeight = Math.max(
-        screenHeight,
-        minBarHeight * props.featureNames.length
-    );
+    let svgHeight = maxScreenHeight;
+
 
     const getAutoBox = () => {
         if (!svgRef.current) {
             return "";
         }
-        console.log(svgRef.current.getBBox())
         const { x, y, width, height } = svgRef.current.getBBox();
         return [x - margin, y - margin, width + 2 * margin, height + 2 * margin].toString();
     };
@@ -154,28 +176,33 @@ export const AttributionsWaterfallPlot = (props:{
 
     React.useEffect(() => {
 
-        // TODO verify data actually usable, maybe before creation?
+        const chosenFeatureNames = Object.entries(props.globalAttributionValues)
+            .filter(([k, v], i, a) => Math.abs(v) > 0)
+            .map(([k, v]) => k.replace("attribution_", ""));
 
-        // console.log(props.featureNames)
-        // console.log(props.attributionValues)
+        svgHeight = Math.min(
+            maxScreenHeight,
+            minBarHeight * chosenFeatureNames.length
+        );
 
-        const attributionData:base[] = props.featureNames
-            .filter(it => it !== props.configuration["predicted_variables"][0])
-            .map((d, i) => {
+
+        const attributionData:base[] = chosenFeatureNames
+            .filter(it => it !== props.configuration["predicted_variables"][0]) // should already be good
+            .map((d) => {
                 return {
                     name: d,
-                    attributionValue: props.attributionValues[i],
-                    dataValue: props.dataValues[i]
+                    attributionValue: props.attributionValues[props.featureNames.indexOf(d)],
+                    dataValue: props.dataValues[props.featureNames.indexOf(d)]
                 }
-        })
+            })
 
         // console.log(attributionData)
         const mean = props.configuration.mean;
-        const predicted = props.point?.__prediction;
-        const actual = props.dataValues[props.featureNames.length]; // TODO
+        const predicted = props.point.__prediction;
+        // const actual = props.dataValues[props.featureNames.length]; // TODO
+        const total = mean + attributionData.map(it => it.attributionValue).reduce((a, b) => a + b);
 
         const ad = accumulatedData(mean, attributionData);
-        // const ad = accumulatedData(exampleData);
 
         // console.log(ad)
         const invertObj = (obj:{[key in string]: number}) => Object.fromEntries(Object.entries(obj).map(a => a.reverse()))
@@ -187,6 +214,7 @@ export const AttributionsWaterfallPlot = (props:{
                 return "" + d.dataValue;
             }
         }
+
 
 
         const yScale = d3.scaleOrdinal<number>()
@@ -201,7 +229,9 @@ export const AttributionsWaterfallPlot = (props:{
         ;
 
         const yAxis = d3.axisLeft(yScale);
-        const xAxis = d3.axisBottom(xScale);
+        const xAxis = d3.axisBottom(xScale)
+            .tickFormat(domainValue => numberFormatterAbsolute.format(domainValue.valueOf()))
+        ;
 
         const chart = d3.select(svgRef.current)
             .append("g")
@@ -209,12 +239,12 @@ export const AttributionsWaterfallPlot = (props:{
         ;
 
         chart.append("text")
-            .attr("x", width/3)
-            .attr("y", -margin)
+            .attr("x", width/4)
+            .attr("y", -3 * margin)
             .attr("text-anchor", "middle")
             .attr("font-size", "2em")
             // .text("Signal Attribution")
-            .text("Prediction Drivers")
+            .text("Drivers of " + props.configuration.predicted_variables[0]);
         ;
 
         // être open sur la tech utilisée:
@@ -244,15 +274,38 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("font-size", "1.5em")
         ;
 
-        // chart
-        //     .append("line")
-        //     .style("stroke", "black")
-        //     .style("stroke-dasharray", "3")
-        //     .attr("x1", xScale(mean) )
-        //     .attr("y1", 100)
-        //     .attr("x2", xScale(mean) )
-        //     .attr("y2", 500)
-        // ;
+        chart
+            .append("line")
+            .style("stroke", "black")
+            .style("stroke-dasharray", "3")
+            .attr("x1", xScale(mean) )
+            .attr("y1", -margin*3/4)
+            .attr("x2", xScale(mean) )
+            .attr("y2", (ad.length) * barHeight)
+        ;
+        chart.append("text")
+            .attr("x", xScale(mean))
+            .attr("y", -margin)
+            .attr("text-anchor", "end")
+            .attr("font-size", "1em")
+            .text("mean: " + numberFormatterAbsolute.format(mean));
+        ;
+        chart
+            .append("line")
+            .style("stroke", "black")
+            .style("stroke-dasharray", "3")
+            .attr("x1", xScale(total) )
+            .attr("y1", -margin*1/4)
+            .attr("x2", xScale(total) )
+            .attr("y2", (ad.length) * barHeight)
+        ;
+        chart.append("text")
+            .attr("x", xScale(total))
+            .attr("y", -margin/2)
+            .attr("text-anchor", "end")
+            .attr("font-size", "1em")
+            .text("total: " + numberFormatterAbsolute.format(total));
+        ;
 
         // if (predicted) {
         //     chart
@@ -299,13 +352,6 @@ export const AttributionsWaterfallPlot = (props:{
             .style("top", "0px")
         ;
 
-        const numberFormatter = Intl.NumberFormat('en-US', {
-            notation: "compact",
-            maximumFractionDigits: 2,
-            signDisplay: "always"
-        })
-
-
 
         bar.append("rect") // how to config hover?
             .attr("shape-rendering", "crispedges")
@@ -322,8 +368,8 @@ export const AttributionsWaterfallPlot = (props:{
                     .duration(200)
                     .style("opacity", .9);
                 tooltip.html(d.name + " (value: " + getValue(d) + ")" + "<br/>" +
-                    (numberFormatter.format(d.attributionValue)) + "<br/>" +
-                    "(Initial: " + (numberFormatter.format(d.start)) + ")"
+                    (numberFormatterRelative.format(d.attributionValue)) + "<br/>" +
+                    "(Initial: " + (numberFormatterAbsolute.format(d.start)) + ")"
                 )
                     .style("left", xPosition + "px")
                     .style("top",  yPosition + "px");
@@ -359,14 +405,12 @@ export const AttributionsWaterfallPlot = (props:{
     return (
         <div
             style={{
-                maxHeight: screenHeight,
+                maxHeight: maxScreenHeight,
                 overflow: "overlay",
                 width: width + margin,
             }}>
             <svg
                 ref={svgRef}
-                width={width}
-                height={svgHeight}
                 viewBox={viewBox}>
             </svg>
         </div>

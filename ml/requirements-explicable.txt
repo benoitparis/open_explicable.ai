@@ -2,3 +2,4 @@ shap==0.41.0
 umap-learn==0.5.3
 fastparquet==0.8.3
 hdbscan==0.8.28
+xgboost==1.7.1

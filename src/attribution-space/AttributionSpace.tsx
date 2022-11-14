@@ -9,7 +9,7 @@ import {
     getConfiguration,
     getDataset,
     getPoints,
-    getShapValues,
+    getAttributionValues,
     getTree,
     getRuleDefinitions,
     getBinaryParticipations,
@@ -26,20 +26,20 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
     const [configuration, setConfiguration] = useState<DataConfiguration|null>(null);
     const [points, setPoints] = useState<DataSet<DataPoint>|null>(null);
     const [dataset, setDataset] = useState<DataSet<any>|null>(null);
-    const [shapValues, setShapValues] = useState<DataSet<any>|null>(null);
+    const [attributionValues, setAttributionValues] = useState<DataSet<any>|null>(null);
     const [tree, setTree] = useState<DataSet<any>|null>(null);
     // const [ruleDefinitions, setRuleDefinitions] = useState<DataSet<any>|null>(null);
     // const [binaryParticipations, setBinaryParticipations] = useState<DataSet<any>|null>(null);
 
     useEffect(() => {
         Promise.resolve()
-            .then(getConfiguration)
-            .then(setConfiguration)
-            .then(getPoints)
-            .then(setPoints)
+            .then(() => Promise.all([
+                Promise.resolve().then(getConfiguration).then(setConfiguration),
+                Promise.resolve().then(getPoints).then(setPoints),
+            ]))
             .then(() => Promise.all([
                 Promise.resolve().then(getDataset).then(setDataset),
-                Promise.resolve().then(getShapValues).then(setShapValues),
+                Promise.resolve().then(getAttributionValues).then(setAttributionValues),
                 Promise.resolve().then(getTree).then(setTree),
                 // Promise.resolve().then(getRuleDefinitions).then(setRuleDefinitions),
                 // Promise.resolve().then(getBinaryParticipations).then(setBinaryParticipations),
@@ -54,7 +54,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
                     selected={selected}
                     configuration={configuration}
                     dataset={dataset}
-                    shapValues={shapValues}
+                    attributionValues={attributionValues}
                     points={points}
                 />
                 :""
@@ -68,8 +68,8 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
             }}>
                 <Canvas onClick={props.display}>
                     <CameraController isBackground={!props.displayed} center={center}/>
-                    <ambientLight />
-                    <pointLight position={[0, 0, 0]}  />
+                    <ambientLight/>
+                    <pointLight position={[0, 0, 0]}/>
                     <DataPoints
                         setCenter={setCenter}
                         setSelected={setSelected}
