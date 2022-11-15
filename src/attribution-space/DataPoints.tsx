@@ -1,12 +1,15 @@
 import * as THREE from 'three'
-import React, {useEffect, useRef, useState} from 'react'
-import {ThreeElements, ThreeEvent} from '@react-three/fiber'
+import React, {useEffect, useMemo, useRef, useState} from 'react'
+import {ThreeElements, ThreeEvent, useFrame} from '@react-three/fiber'
 import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
 import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
+import {ShaderMaterial} from "three/src/materials/ShaderMaterial";
 
 const vertexShader = `
     attribute float size;
+    
+    varying vec3 toFragmentPosition;
     
     attribute vec3 customColor;
     varying vec3 toFragmentColor;
@@ -16,6 +19,7 @@ const vertexShader = `
     varying float toFragmentSelected;
     
     void main() {
+      toFragmentPosition = position;
       toFragmentColor = customColor;
       toFragmentHovered = customHovered;
       toFragmentSelected = customSelected;
@@ -24,30 +28,35 @@ const vertexShader = `
       gl_Position = projectionMatrix * mvPosition;
     }`
 const fragmentShader = `
-    uniform vec3 baseColor;
+    uniform float time;
     
+    varying vec3 toFragmentPosition;
+
     varying vec3 toFragmentColor;
     varying float toFragmentHovered;
     varying float toFragmentSelected;
     
-    const float BORDER_UP = 1.0;
+    const float BORDER_HIGH = 1.0;
     const float BORDER_LOW = 0.8;
     
-    void main() {
+    const float TIME_REPEAT = 5.0;
+    const float ANIM_TIME_CONVERSION = 50.0;
+    
+    void main() {       
     
         float dist = pow(dot((gl_PointCoord * 2.0 - 1.0), (gl_PointCoord * 2.0 - 1.0)), 0.5);
-        if (dist > BORDER_UP)
+        if (dist > BORDER_HIGH)
             discard;
             
         float dim = pow(1.0 - dist, 0.05);
-        gl_FragColor = vec4(baseColor * toFragmentColor, 1.0) * dim;
+        gl_FragColor = vec4(toFragmentColor, 1.0) * dim;
         
-        if (toFragmentHovered == 1.0 && dist > BORDER_LOW) {
-            float mean = (BORDER_UP + BORDER_LOW) / 2.0;
+        if ((toFragmentHovered == 1.0) && dist > BORDER_LOW) {
+            float mean = (BORDER_HIGH + BORDER_LOW) / 2.0;
             float distanceToMean = 0.05 / abs(dist - mean);
             gl_FragColor = vec4(distanceToMean);
         } else if (toFragmentSelected == 1.0 && dist > BORDER_LOW) {
-            float mean = (BORDER_UP + BORDER_LOW) / 2.0;
+            float mean = (BORDER_HIGH + BORDER_LOW) / 2.0;
             float distanceToMean = 0.05 / abs(dist - mean);
             float remainder = mod(((gl_PointCoord.x + gl_PointCoord.y) * 10.0), 1.0);
             if (remainder > 0.5) {
@@ -56,6 +65,13 @@ const fragmentShader = `
                 gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);
             }
         }
+    
+        // float distFromCenter = pow(dot(toFragmentPosition, toFragmentPosition), 0.5);
+        // float timeRepeat = mod(-time + distFromCenter / ANIM_TIME_CONVERSION, TIME_REPEAT) * 2.0;
+        // float timeAnim = exp(-pow(timeRepeat, 2.0));
+        // if (timeAnim > 0.995) {
+        //     gl_FragColor = vec4(1.0, 1.0, 1.0, 1.0);
+        // }
         
     }`
 
@@ -86,13 +102,12 @@ const DataPoints = (props: {
             points:DataSet<DataPoint>|null,
         }) => {
 
-    const registerPoints = (configuration:any, points:Array<DataPoint>) => {
+    const registerPoints = (configuration:DataConfiguration, points:Array<DataPoint>) => {
         points.forEach(dataPoint => {
             const point = new THREE.Vector3(dataPoint.x, dataPoint.y, dataPoint.z);
             const color = new THREE.Color();
-            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.__prediction - configuration['mean']) / 2 / configuration['std']));
+            const scaledPrediction = Math.max(0, Math.min(1,(dataPoint.__prediction - configuration.mean) / 2 / configuration.std));
             color.setRGB(scaledPrediction, 0.2, 1 - scaledPrediction);
-            // color.setRGB(1 - scaledPrediction, 0.2, scaledPrediction);
             addParticle(point, color, PARTICLE_SIZE * 0.5);
         })
     }
@@ -121,19 +136,6 @@ const DataPoints = (props: {
         }
     },[props.configuration, props.points]);
 
-    const baseColor = new THREE.Color( 0xffffff );
-    const materialUniforms = {
-        baseColor: { value: baseColor }
-    }
-
-    const ref = useRef<THREE.Points>(null!);
-    const [hovered, hover] = useState(false);
-    const [clicked, click] = useState(false);
-
-    useEffect(() => {
-        document.body.style.cursor = hovered ? 'pointer' : 'auto'
-    }, [hovered]);
-
     const updateAttributes = () => {
         const geometry = ref.current.geometry;
         const attributes = geometry.attributes;
@@ -146,6 +148,28 @@ const DataPoints = (props: {
     const updateBoundingSphere = () => {
         ref.current.geometry.computeBoundingSphere();
     }
+
+    const uniforms = useMemo(() => {
+        return {
+            time: {type: 'f', value: 0.0},
+        }
+    }, []);
+
+
+    useFrame((state) => {
+        const material = ref.current.material as ShaderMaterial;
+        material.uniforms["time"].value = state.clock.elapsedTime;
+        material.uniformsNeedUpdate = true;
+    })
+
+    const ref = useRef<THREE.Points>(null!);
+    const [hovered, hover] = useState(false);
+    const [clicked, click] = useState(false);
+
+    useEffect(() => {
+        document.body.style.cursor = hovered ? 'pointer' : 'auto'
+    }, [hovered]);
+
 
     const pickSelected = (index:number) => {
         console.log(drawCount);
@@ -195,6 +219,8 @@ const DataPoints = (props: {
         }
     }
 
+
+
     return (
         <points
             {...props.pointsProps}
@@ -210,7 +236,7 @@ const DataPoints = (props: {
                 customHovered:hoveredAtt,
                 customSelected:selectedAtt
             }}/>
-            <shaderMaterial uniforms={materialUniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/>
+            <shaderMaterial uniforms={uniforms} vertexShader={vertexShader} fragmentShader={fragmentShader}/>
         </points>
     )
 }

@@ -73,4 +73,5 @@ const CameraController = (props:{isBackground:boolean, center:Vector3}) => {
 
     return null;
 };
+
 export default CameraController
