@@ -31,7 +31,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
         </div>
 
     const landscape = window.innerHeight < window.innerWidth;
-    const hasLoaded = props.configuration && props.dataset && props.attributionValues && props.points;
+    const hasLoaded = props.configuration && props.dataDescription && props.dataset && props.attributionValues && props.points;
     const plot = () => {
         if (props.configuration && props.dataDescription && props.dataset && props.attributionValues && props.points) {
 

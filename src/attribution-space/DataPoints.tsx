@@ -219,8 +219,6 @@ const DataPoints = (props: {
         }
     }
 
-
-
     return (
         <points
             {...props.pointsProps}
