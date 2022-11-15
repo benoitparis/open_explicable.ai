@@ -1,5 +1,5 @@
 import React from 'react';
-import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
+import {DataConfiguration, DataDescription, DataPoint, DataSet} from "./DataManagement";
 import * as d3 from "d3";
 
 // TODO use
@@ -9,6 +9,7 @@ type Loaded<T> = {
 type AttributionPlotProps = {
     selected: number,
     configuration: DataConfiguration|null,
+    dataDescription: DataDescription|null,
     dataset: DataSet<any>|null,
     attributionValues: DataSet<any>|null,
     points:DataSet<DataPoint>|null,
@@ -21,17 +22,18 @@ const AttributionPlot = (props:AttributionPlotProps) => {
         <div style={{
             margin: "2em",
         }}>
-            <pre>Data:</pre>
-            <pre>{"Configuration " + (props.configuration    ? "OK" : "Loading...")}</pre>
-            <pre>{"Points        " + (props.points           ? "OK" : "Loading...")}</pre>
-            <pre>{"Dataset       " + (props.dataset          ? "OK" : "Loading...")}</pre>
-            <pre>{"Attributions  " + (props.attributionValues? "OK" : "Loading...")}</pre>
+            <pre>Data Loading: </pre>
+            <pre>{"Configuration    " + (props.configuration    ? "OK" : "Loading...")}</pre>
+            <pre>{"Data Description " + (props.dataDescription  ? "OK" : "Loading...")}</pre>
+            <pre>{"Points           " + (props.points           ? "OK" : "Loading...")}</pre>
+            <pre>{"Dataset values   " + (props.dataset          ? "OK" : "Loading...")}</pre>
+            <pre>{"Attributions     " + (props.attributionValues? "OK" : "Loading...")}</pre>
         </div>
 
     const landscape = window.innerHeight < window.innerWidth;
     const hasLoaded = props.configuration && props.dataset && props.attributionValues && props.points;
     const plot = () => {
-        if (props.configuration && props.dataset && props.attributionValues && props.points) {
+        if (props.configuration && props.dataDescription && props.dataset && props.attributionValues && props.points) {
 
             const featureNames = props.configuration.features;
             const number = props.configuration.datapoint_number;
@@ -56,6 +58,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
             return (
                 <AttributionsWaterfallPlot
                     configuration={props.configuration}
+                    dataDescription={props.dataDescription}
                     featureNames={featureNames}
                     dataValues={dataValues}
                     attributionValues={attributionValues}
@@ -132,6 +135,7 @@ const numberFormatterAbsolute = Intl.NumberFormat('en-US', {
 // TODO coding convention: https://wattenberger.com/blog/react-and-d3
 export const AttributionsWaterfallPlot = (props:{
     configuration: DataConfiguration,
+    dataDescription: DataDescription,
     featureNames: string[],
     dataValues: number[],
     attributionValues: number[],
@@ -195,7 +199,6 @@ export const AttributionsWaterfallPlot = (props:{
             maxScreenHeight,
             minBarHeight * chosenFeatureNames.length
         );
-
 
         const attributionData:base[] = chosenFeatureNames
             .filter(it => it !== props.configuration["predicted_variables"][0]) // should already be good
@@ -313,7 +316,7 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("y", -margin/2)
             .attr("text-anchor", "end")
             .attr("font-size", "1em")
-            .text("total: " + numberFormatterAbsolute.format(total));
+            .text("end value: " + numberFormatterAbsolute.format(total));
         ;
 
         // if (predicted) {
@@ -376,10 +379,16 @@ export const AttributionsWaterfallPlot = (props:{
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
-                tooltip.html(d.name + " (value: " + getValue(d) + ")" + "<br/>" +
-                    (numberFormatterRelative.format(d.attributionValue)) + "<br/>" +
-                    "(Initial: " + (numberFormatterAbsolute.format(d.start)) + ")"
-                )
+                let html = "";
+                html += d.name + " (value: " + getValue(d) + ")" + "<br/>";
+                html += (d.attributionValue>0?"🡆":"🡄") + " " + (numberFormatterRelative.format(d.attributionValue)) + "<br/>";
+                html += "(Initial: " + (numberFormatterAbsolute.format(d.start)) + ")" + "<br/>";
+                html += props.dataDescription[d.name].description + "<br/>";
+                const values = props.dataDescription[d.name].values;
+                if (values && values[getValue(d)]) {
+                    html += getValue(d) + ": " + values[getValue(d)]
+                }
+                tooltip.html(html)
                     .style("left", xPosition + "px")
                     .style("top",  yPosition + "px");
             })

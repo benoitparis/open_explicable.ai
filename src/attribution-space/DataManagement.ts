@@ -11,6 +11,14 @@ export type DataConfiguration = {
     "rule_number": number,
     "std": number
 }
+export type DataDescription =
+    {
+        [key in ColumnName]: {
+            description: string,
+            values?: {[key in string]: string}
+        }
+    }
+
 export type DataPoint = {
     x: number,
     y: number,
@@ -46,6 +54,9 @@ const readParquet = <T> (url:string) =>
 export const getConfiguration =
     () => fetch("data/conf.json")
         .then(res => res.json() as unknown as DataConfiguration);
+export const getDataDescription =
+    () => fetch("data/data-description.json")
+        .then(res => res.json() as unknown as DataDescription);
 // export const getPoints = readParquet<DataPoint>("data/data-points.parquet");
 export const getPoints = readParquet<DataPoint>("data/data-xg-shap-points.parquet");
 export const getDataset = readParquet<any>("data/data-cleaned-file.parquet");

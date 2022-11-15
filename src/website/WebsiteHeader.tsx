@@ -60,7 +60,7 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
 
 const WebsiteHeader =  (props:PropsWithChildren<{displayed:boolean, display:(d:boolean)=>void}>) =>
     <div className={styles.headerWrapper} style={{
-        height: props.displayed?"85vh":"100vh"
+        height: props.displayed?"calc(85vh - calc(100vh - 100%))":"calc(100vh - calc(100vh - 100%))"
     }}>
         <div style={{
             position:"absolute",

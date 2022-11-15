@@ -13,7 +13,7 @@ import {
     getTree,
     getRuleDefinitions,
     getBinaryParticipations,
-    DataSet,
+    DataSet, DataDescription, getDataDescription,
 } from "./DataManagement";
 import AttributionPlot from "./AttributionPlot";
 
@@ -24,6 +24,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
     const [selected, setSelected] = useState<number|null>(null);
 
     const [configuration, setConfiguration] = useState<DataConfiguration|null>(null);
+    const [dataDescription, setDataDescription] = useState<DataDescription|null>(null);
     const [points, setPoints] = useState<DataSet<DataPoint>|null>(null);
     const [dataset, setDataset] = useState<DataSet<any>|null>(null);
     const [attributionValues, setAttributionValues] = useState<DataSet<any>|null>(null);
@@ -39,6 +40,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
             ]))
             .then(() => Promise.all([
                 Promise.resolve().then(getDataset).then(setDataset),
+                Promise.resolve().then(getDataDescription).then(setDataDescription),
                 Promise.resolve().then(getAttributionValues).then(setAttributionValues),
                 Promise.resolve().then(getTree).then(setTree),
                 // Promise.resolve().then(getRuleDefinitions).then(setRuleDefinitions),
@@ -53,6 +55,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
                 <AttributionPlot
                     selected={selected}
                     configuration={configuration}
+                    dataDescription={dataDescription}
                     dataset={dataset}
                     attributionValues={attributionValues}
                     points={points}
