@@ -64,7 +64,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                     attributionValues={attributionValues}
                     globalAttributionValues={globalAttributionValues}
                     point={point}
-                    filterTopN={landscape? 36: 6}
+                    filterTopN={landscape? 36: 10}
                 />
             );
         } else {
@@ -80,7 +80,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
         <div style={{
             position:"absolute",
             top: landscape?"6em":"",
-            bottom: landscape?"":"1em",
+            bottom: landscape?"":"5em",
             left: "1em",
             zIndex: 4,
         }}>
@@ -94,15 +94,15 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                     borderColor: "grey",
                     borderStyle: "dashed",
                     transition: "all 2s ease-out",
-                    minHeight: hasLoaded ? "300px" : "50px",
-                    maxHeight: hasLoaded ? "1000px" : "200px",
-                    minWidth: hasLoaded ? "400px" : "50px",
-                    maxWidth: hasLoaded ? "800px" : "300px",
+                    minHeight: hasLoaded ? 75 * window.devicePixelRatio + "px" : 25 * window.devicePixelRatio + "px",
+                    maxHeight: hasLoaded ? 1000 * window.devicePixelRatio + "px" : 300 * window.devicePixelRatio + "px",
+                    minWidth: hasLoaded ? 200 * window.devicePixelRatio + "px" : 50 * window.devicePixelRatio + "px",
+                    maxWidth: hasLoaded ? 800 * window.devicePixelRatio + "px" : 300 * window.devicePixelRatio + "px",
                     overflow: "hidden"
                 }}>
                 {
                     hasLoaded?
-                    // true?
+                    // false?
                     plot() : loading
                 }
             </div>
@@ -153,7 +153,7 @@ export const AttributionsWaterfallPlot = (props:{
         minBarHeight,
         (maxScreenHeight + 4 * margin) / props.featureNames.length // 4 arbitrary, to account for left axis text space
     );
-    const width = 450;
+    const width = 400 * window.devicePixelRatio;
     let svgHeight = maxScreenHeight;
 
 
@@ -210,11 +210,12 @@ export const AttributionsWaterfallPlot = (props:{
                 }
             })
 
-        // console.log(attributionData)
+        console.log(attributionData)
         const mean = props.configuration.mean;
         const predicted = props.point.__prediction;
         // const actual = props.dataValues[props.featureNames.length]; // TODO
         const total = mean + attributionData.map(it => it.attributionValue).reduce((a, b) => a + b);
+        console.log(total)
 
         const ad = accumulatedData(mean, attributionData);
 
@@ -290,7 +291,7 @@ export const AttributionsWaterfallPlot = (props:{
             .append("line")
             .style("stroke", "black")
             .style("stroke-dasharray", "3")
-            .attr("x1", xScale(mean) )
+            .attr("x1", () => { console.log(mean); console.log(xScale); console.log(xScale(mean)); return xScale(mean);})
             .attr("y1", -margin*3/4)
             .attr("x2", xScale(mean) )
             .attr("y2", (ad.length) * barHeight)
@@ -298,7 +299,7 @@ export const AttributionsWaterfallPlot = (props:{
         chart.append("text")
             .attr("x", xScale(mean))
             .attr("y", -margin)
-            .attr("text-anchor", "end")
+            .attr("text-anchor", mean > total ? "end" : "start")
             .attr("font-size", "1em")
             .text("mean: " + numberFormatterAbsolute.format(mean));
         ;
@@ -306,7 +307,7 @@ export const AttributionsWaterfallPlot = (props:{
             .append("line")
             .style("stroke", "black")
             .style("stroke-dasharray", "3")
-            .attr("x1", xScale(total) )
+            .attr("x1", () => { console.log(total); console.log(xScale); console.log(xScale(total)); return xScale(total);} )
             .attr("y1", -margin*1/4)
             .attr("x2", xScale(total) )
             .attr("y2", (ad.length) * barHeight)
@@ -314,7 +315,7 @@ export const AttributionsWaterfallPlot = (props:{
         chart.append("text")
             .attr("x", xScale(total))
             .attr("y", -margin/2)
-            .attr("text-anchor", "end")
+            .attr("text-anchor", total > mean? "end" : "start")
             .attr("font-size", "1em")
             .text("end value: " + numberFormatterAbsolute.format(total));
         ;
@@ -348,11 +349,13 @@ export const AttributionsWaterfallPlot = (props:{
             .attr("transform", d => "translate(0," + yScale(d.name) + ")")
         ;
 
-        const tooltip = d3.select("body").append("div")
+        // TODO append elsewhere, in relative container?
+        const tooltip = d3.select("body")
+            .append("div")
+            .style("position", "absolute")
             .attr("class", "tooltip")
             .attr("align","middle")
             .style("opacity", 0)
-            .style("position", "absolute")
             .style("z-index", "10")
             .style("padding", "10px")
             .style("background", "black")
@@ -420,12 +423,13 @@ export const AttributionsWaterfallPlot = (props:{
     }, [props.featureNames, props.dataValues, props.attributionValues]);
 
 
+    const landscape = window.innerHeight < window.innerWidth;
     return (
         <div
             style={{
                 maxHeight: maxScreenHeight,
                 overflow: "overlay",
-                width: width + margin,
+                width: landscape?width:"93vw",
             }}>
             <svg
                 ref={svgRef}
