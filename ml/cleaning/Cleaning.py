@@ -3,7 +3,7 @@ from tableschema import Table
 import re
 
 
-def from_path(path):
+def from_path(path: str) -> (pd.Dataframe, dict[str, dict[str, int]]):
     # TODO detect header
     # TODO excel files
     # TODO limit number of categories?
