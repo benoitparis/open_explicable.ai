@@ -1,13 +1,13 @@
 [
   {
     "title": "What it this?",
-    "body": "Data is multidimensional. Any analysis you do is about picking the dimensions you want to investigate. What if you could just specify what you care about, and we do the rest auto-magically?",
+    "body": "Data is multidimensional. Any analysis you do means examining the effect of countless dimensions on each other. What if you could just specify what you care about, and we do the rest auto-magically?",
     "selected_data_points_ids": null,
     "show_waterfall": false
   },
   {
     "title": "The Data",
-    "body": "This is the [Ames Housing DataSet](/data/AmesHousing.csv). Each point here represents one among 2930 other properties located Ames, Iowa; 82 columns describe  zoning information, surface areas, utilities available, quality ratings of house features, etc. It also contains the `SalePrice`, which is what we care about. Blue represents a low SalePrice, Red means a high SalePrice.",
+    "body": "This is the [Ames Housing DataSet](/data/AmesHousing.csv). Each point here represents one among 2930 properties located Ames, Iowa; 82 columns describe  zoning information, surface areas, utilities available, quality ratings of house features, etc. It also contains the `SalePrice`, which is what we care about. Blue represents a low SalePrice, Red means a high SalePrice.",
     "selected_data_points_ids": null,
     "show_waterfall": false
   },
@@ -19,19 +19,19 @@
   },
   {
     "title": "Importance Breakdown",
-    "body": "Let's focus on one data point. Here is a breakdown of how the algorithm attributes importance of what information it used for it's prediction. It starts from the average SalePrice (at $180.9k), and works its way (from top to bottom here) to how it predicts the SalePrice (at $385.29k). Here we see that build quality (Overall_Qual) being Exceptional contributed a lot, along with good surface area (Gr_Liv_Area) and garage size (Garage_Area).",
+    "body": "Let's focus on one data point. Here is a breakdown of how the algorithm attributes importance of what information it used for it's prediction. It starts from the average SalePrice and works its way (from top to bottom here) to a predicted SalePrice value. Here we see that build quality (Overall_Qual) being Exceptional contributed a lot, along with good surface area (Gr_Liv_Area) and garage size (Garage_Area).",
     "selected_data_points_ids": [1697],
     "show_waterfall": true
   },
   {
     "title": "Clumps Of Data Points",
-    "body": "Here we have two other points. Sold at same price as the points, for different reasons this time. Here the variables X and Y drive the prediction of the price. This is what \uD83D\uDD25sets Explicable.AI apart\uD83D\uDD25: an algorithm can give you the same predictions with the same accuracy; but we'll dissect it and extract how the prediction is made, so your business strategy is not following the blind prediction of an Oracle",
-    "selected_data_points_ids": [2500, 2501],
+    "body": "Here we have two other points. Sold at about the same price as previous example, but very different reasons this time. Here most of the values derives from having a good surface area (Gr_Liv_Area). Without this insight, an email marketer might not be able to differentiate high-value properties. Here, it is given visually about a minute from uploading the CSV data. This is what sets \uD83D\uDD25Explicable.AI\uD83D\uDD25 apart: an algorithm can give you the same predictions with the same accuracy; but we'll dissect it and extract how the prediction is made, so your business strategy is not following the blind prediction of an Oracle",
+    "selected_data_points_ids": [1106, 2096],
     "show_waterfall": true
   },
   {
     "title": "Let's talk!",
-    "body": "If you wish to see how the topology of your data looks like, send us a CSV at contact@explicable.ai! (limited to 10k rows, the column you care about at the end)",
+    "body": "If you wish to see how the topology of your data looks like, send us a CSV or Excel file at contact@explicable.ai! (limited to 50k rows, the column you care about at the end)",
     "selected_data_points_ids": null,
     "show_waterfall": false
   }

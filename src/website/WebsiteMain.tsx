@@ -10,12 +10,12 @@ const FeatureBox = (props:{name:string, description:string}) =>
     </div>
 
 const features = [
-    {name:"Performant",  description:"We use algorithms that win competitions, we just open them and present how they take their decisions"},
-    {name:"Transparent", description:"Know exactly how your models work. Establish compliance easily"},
-    {name:"Visual",      description:"Gain deep insights about the topology of your clients, at an intuitive glance"},
-    {name:"Agile",       description:"Fully fledged data management, Extract-Transform-Load & Machine Learning environment working together"},
-    {name:"Smart",       description:"Follow the driving signals in the data as a management principle, concentrate only on data that has value"},
-    {name:"Enriched",    description:"Join open datasets with your data, and enable further insights and performance"},
+    {name:"Performant",   description:"We use algorithms that win competitions, we just open them and distill how they take their decisions"},
+    {name:"Transparent",  description:"Know exactly how your models work. Use them confidently. Establish compliance easily"},
+    {name:"Visual",       description:"Gain deep insights about the topology of your business data, at an intuitive glance"},
+    {name:"Data-Driving", description:"Share how your AIs make their decisions across your org. Aggregate insights from your knowledge workers"},
+    {name:"Focused",      description:"Follow the driving signals in the data as a management principle, concentrate only on data that has value"},
+    {name:"Simple",       description:"Just upload a Excel with blank values if you wish to get them back predicted."},
 ]
 
 const FeatureList = features.map(it => <FeatureBox key={it.name} name={it.name} description={it.description}/>)

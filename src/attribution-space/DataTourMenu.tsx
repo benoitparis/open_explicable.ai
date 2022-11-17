@@ -27,7 +27,6 @@ const DataTourMenu = (props: {
     useEffect(() => {
         if (props.dataTour) {
             const points = props.dataTour[step].selected_data_points_ids;
-            console.log(points)
             if (points && points.length > 1) {
                 // race condition?
                 props.setCameraFollows(false);
@@ -45,10 +44,11 @@ const DataTourMenu = (props: {
                 newStep = 0;
                 setTouring(false);
                 props.setShowWaterfall(true);
+                props.setCameraFollows(true);
             } else {
                 newStep = step + 1;
+                props.setShowWaterfall(props.dataTour[newStep].show_waterfall);
             }
-            props.setShowWaterfall(props.dataTour[newStep].show_waterfall);
             setStep(newStep);
         }
     }
@@ -91,7 +91,7 @@ const DataTourMenu = (props: {
                             transition: "all 2s ease-out",
                             padding: "1em",
                             overflow: "hidden",
-                            maxWidth: "20vw",
+                            maxWidth: "25em",
                         }}>
                         {touring
                             ?
@@ -106,15 +106,25 @@ const DataTourMenu = (props: {
                                 <button
                                     onClick={next}
                                     style={{
-                                        marginTop: "0.5em"
+                                        marginTop: "0.5em",
+                                        fontSize: "inherit"
                                     }}>
-                                    {props.dataTour.length - 1 === step?"Close":"Next"}
+                                    <div>
+                                        {props.dataTour.length - 1 === step?"Close":"Next"}
+                                    </div>
                                 </button>
                             </div>
                             :
                             <button
-                                onClick={() => {setTouring(true); props.display(true)}}>
-                                Take the tour
+                                onClick={() => {setTouring(true); props.display(true)}}
+                                style={{
+                                    fontFamily: "'Didact Gothic', sans-serif",
+                                    fontSize: "inherit"
+                                }}
+                            >
+                                <div>
+                                    Take the tour
+                                </div>
                             </button>
                         }
                     </div>

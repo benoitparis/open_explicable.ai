@@ -9,7 +9,7 @@ const DAMPING_FACTOR = 0.05;
 const DAMPING_FACTOR_TARGET = 0.10;
 const EPSILON = 0.1;
 const CAMERA_DISTANCE_INIT = 20;
-const CAMERA_DISTANCE_ONCLICK = 7;
+const CAMERA_DISTANCE_ONCLICK = 10;
 const idealCameraPosition:Vector3 = new Vector3(0,0,0);
 let reachedTarget:boolean = true;
 
