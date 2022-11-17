@@ -13,7 +13,7 @@ const CAMERA_DISTANCE_ONCLICK = 7;
 const idealCameraPosition:Vector3 = new Vector3(0,0,0);
 let reachedTarget:boolean = true;
 
-const CameraController = (props:{isBackground:boolean, center:Vector3}) => {
+const CameraController = (props:{isBackground:boolean, center:Vector3, cameraFollows:boolean}) => {
     const {camera, gl} = useThree();
 
     useFrame(() => {
@@ -60,12 +60,14 @@ const CameraController = (props:{isBackground:boolean, center:Vector3}) => {
     useEffect(
         () => {
             const distanceScaling = 1 - CAMERA_DISTANCE_ONCLICK/props.center.distanceTo(camera.position);
-            idealCameraPosition.copy(
-                camera.position.clone().add(
-                    props.center.clone().sub(camera.position)
-                        .multiplyScalar(distanceScaling)
+            if (props.cameraFollows) {
+                idealCameraPosition.copy(
+                    camera.position.clone().add(
+                        props.center.clone().sub(camera.position)
+                            .multiplyScalar(distanceScaling)
+                    )
                 )
-            );
+            }
             reachedTarget = false;
         },
         [props.center, camera.position]

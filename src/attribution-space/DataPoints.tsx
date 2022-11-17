@@ -5,6 +5,7 @@ import {Color} from "three/src/math/Color";
 import {Vector3} from "three";
 import {DataConfiguration, DataPoint, DataSet} from "./DataManagement";
 import {ShaderMaterial} from "three/src/materials/ShaderMaterial";
+import {usePrevious} from "./Utils";
 
 const vertexShader = `
     attribute float size;
@@ -82,7 +83,6 @@ const colorsArray = new Float32Array(MAX_POINTS * 3);
 const sizesArray = new Float32Array(MAX_POINTS);
 const hoveredArray = new Float32Array(MAX_POINTS);
 const selectedArray = new Float32Array(MAX_POINTS);
-let selected:number|null = null;
 const positionsAtt = new THREE.BufferAttribute(positionsArray, 3);
 const colorsAtt = new THREE.BufferAttribute(colorsArray, 3);
 const sizesAtt = new THREE.BufferAttribute(sizesArray, 1);
@@ -97,6 +97,7 @@ let singletonHadLoaded:boolean = false; // no dataset change for now, TODO bette
 const DataPoints = (props: {
             pointsProps?: ThreeElements['points'],
             setCenter:(newCenter:Vector3) => void,
+            selected:number|null,
             setSelected:(index:number|null) => void,
             configuration:DataConfiguration|null,
             points:DataSet<DataPoint>|null,
@@ -117,10 +118,9 @@ const DataPoints = (props: {
         const attributes = geometry.attributes;
         const positions = attributes.position.array;
         const colors = attributes.customColor.array;
-        const sizes = attributes.size.array;
+        const sizes = attributes.size.array as Array<number>;
         vertex.toArray(positions, drawCount * 3);
         color.toArray(colors, drawCount * 3);
-        // @ts-ignore
         sizes[drawCount] = size;
         hoveredArray[drawCount] = 0;
         drawCount++;
@@ -171,24 +171,26 @@ const DataPoints = (props: {
     }, [hovered]);
 
 
-    const pickSelected = (index:number) => {
-        console.log(drawCount);
-        console.log(index);
+    const previousSelected = usePrevious(props.selected);
+    useEffect(() => {
+        updateSelected(props.selected);
+    }, [props.selected]);
 
-        if (selected) {
-            sizesArray[selected] = PARTICLE_SIZE;
-            selectedArray[selected] = 0.0;
-            props.setSelected(null);
+    const updateSelected = (index:number|null) => {
+        if (previousSelected) {
+            sizesArray[previousSelected] = PARTICLE_SIZE;
+            selectedArray[previousSelected] = 0.0;
         }
-        selected = index;
-        sizesArray[selected] = PARTICLE_SIZE * 2;
-        selectedArray[selected] = 1.0;
-        props.setCenter(new Vector3(
-            positionsArray[3*selected    ],
-            positionsArray[3*selected + 1],
-            positionsArray[3*selected + 2]
-        ));
-        props.setSelected(selected);
+        if (index) {
+            console.log(index);
+            sizesArray[index] = PARTICLE_SIZE * 2;
+            selectedArray[index] = 1.0;
+            props.setCenter(new Vector3(
+                positionsArray[3*index    ],
+                positionsArray[3*index + 1],
+                positionsArray[3*index + 2]
+            ));
+        }
         updateAttributes();
     }
 
@@ -200,7 +202,8 @@ const DataPoints = (props: {
             acc.distanceToRay < val.distanceToRay? acc : val
         )
         if (closest.index != null) {
-            pickSelected(closest.index);
+            updateSelected(closest.index);
+            props.setSelected(closest.index);
         }
         event.stopPropagation();
     }

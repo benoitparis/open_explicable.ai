@@ -18,6 +18,13 @@ export type DataDescription =
             values?: {[key in string]: string}
         }
     }
+export type DataTour =
+    Array<{
+        title: string,
+        body: string,
+        selected_data_points_ids: Array<number>,
+        show_waterfall: boolean
+    }>
 
 export type DataPoint = {
     x: number,
@@ -57,9 +64,14 @@ export const getConfiguration =
 export const getDataDescription =
     () => fetch("data/data-description.json")
         .then(res => res.json() as unknown as DataDescription);
+export const getDataTour =
+    () => fetch("data/data-tour.json")
+        .then(res => res.json() as unknown as DataTour)
+
+;
 // export const getPoints = readParquet<DataPoint>("data/data-points.parquet");
 export const getPoints = readParquet<DataPoint>("data/data-xg-shap-points.parquet");
-export const getDataset = readParquet<any>("data/data-cleaned-file.parquet");
+export const getDataValues = readParquet<any>("data/data-cleaned-file.parquet");
 // export const getAttributionValues = readParquet<any>("data/data-attribution-values.parquet");
 export const getAttributionValues = readParquet<any>("data/data-xg-attribution-values.parquet");
 export const getTree = readParquet<any>("data/data-tree.parquet");

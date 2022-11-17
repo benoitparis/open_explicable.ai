@@ -10,7 +10,7 @@ type AttributionPlotProps = {
     selected: number,
     configuration: DataConfiguration|null,
     dataDescription: DataDescription|null,
-    dataset: DataSet<any>|null,
+    dataValues: DataSet<any>|null,
     attributionValues: DataSet<any>|null,
     points:DataSet<DataPoint>|null,
 }
@@ -26,19 +26,19 @@ const AttributionPlot = (props:AttributionPlotProps) => {
             <pre>{"Configuration    " + (props.configuration    ? "OK" : "Loading...")}</pre>
             <pre>{"Data Description " + (props.dataDescription  ? "OK" : "Loading...")}</pre>
             <pre>{"Points           " + (props.points           ? "OK" : "Loading...")}</pre>
-            <pre>{"Dataset values   " + (props.dataset          ? "OK" : "Loading...")}</pre>
+            <pre>{"Dataset values   " + (props.dataValues       ? "OK" : "Loading...")}</pre>
             <pre>{"Attributions     " + (props.attributionValues? "OK" : "Loading...")}</pre>
         </div>
 
     const landscape = window.innerHeight < window.innerWidth;
-    const hasLoaded = props.configuration && props.dataDescription && props.dataset && props.attributionValues && props.points;
+    const hasLoaded = props.configuration && props.dataDescription && props.dataValues && props.attributionValues && props.points;
     const plot = () => {
-        if (props.configuration && props.dataDescription && props.dataset && props.attributionValues && props.points) {
+        if (props.configuration && props.dataDescription && props.dataValues && props.attributionValues && props.points) {
 
             const featureNames = props.configuration.features;
             const number = props.configuration.datapoint_number;
             const point = props.points.data[props.selected];
-            const dataObj = props.dataset.data[props.selected];
+            const dataObj = props.dataValues.data[props.selected];
             const dataValues = featureNames.map(it => dataObj[it]);
             const attributionObj = props.attributionValues.data[props.selected];
             const attributionValues = featureNames.map(it => attributionObj["attribution_" + it]);
@@ -53,7 +53,6 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                 })
             Object.keys(globalAttributionValues).forEach((key) => globalAttributionValues[key] /= number);
 
-            console.log(window.innerHeight);
 
             return (
                 <AttributionsWaterfallPlot
@@ -210,12 +209,11 @@ export const AttributionsWaterfallPlot = (props:{
                 }
             })
 
-        console.log(attributionData)
+        // console.log(attributionData)
         const mean = props.configuration.mean;
         const predicted = props.point.__prediction;
         // const actual = props.dataValues[props.featureNames.length]; // TODO
         const total = mean + attributionData.map(it => it.attributionValue).reduce((a, b) => a + b);
-        console.log(total)
 
         const ad = accumulatedData(mean, attributionData);
 
@@ -291,7 +289,7 @@ export const AttributionsWaterfallPlot = (props:{
             .append("line")
             .style("stroke", "black")
             .style("stroke-dasharray", "3")
-            .attr("x1", () => { console.log(mean); console.log(xScale); console.log(xScale(mean)); return xScale(mean);})
+            .attr("x1", xScale(mean))
             .attr("y1", -margin*3/4)
             .attr("x2", xScale(mean) )
             .attr("y2", (ad.length) * barHeight)
@@ -307,7 +305,7 @@ export const AttributionsWaterfallPlot = (props:{
             .append("line")
             .style("stroke", "black")
             .style("stroke-dasharray", "3")
-            .attr("x1", () => { console.log(total); console.log(xScale); console.log(xScale(total)); return xScale(total);} )
+            .attr("x1", xScale(total))
             .attr("y1", -margin*1/4)
             .attr("x2", xScale(total) )
             .attr("y2", (ad.length) * barHeight)
@@ -377,8 +375,6 @@ export const AttributionsWaterfallPlot = (props:{
             .on("mouseover", (event, d) => {
                 const xPosition = event.pageX - 40;
                 const yPosition = event.pageY + 40;
-                console.log(xPosition)
-                console.log(yPosition)
                 tooltip.transition()
                     .duration(200)
                     .style("opacity", .9);
