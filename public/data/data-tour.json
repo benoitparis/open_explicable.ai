@@ -1,7 +1,7 @@
 [
   {
     "title": "What it this?",
-    "body": "Data is multidimensional. Any analysis you do means examining the effect of countless dimensions on each other. What if you could just specify what you care about, and we do the rest auto-magically?",
+    "body": "Data is multidimensional. Any analysis you do means examining the impact of countless dimensions on each other. What if you could just specify what you care about, and we do the rest auto-magically?",
     "selected_data_points_ids": null,
     "show_waterfall": false
   },
@@ -19,7 +19,7 @@
   },
   {
     "title": "Importance Breakdown",
-    "body": "Let's focus on one data point. Here is a breakdown of how the algorithm attributes importance of what information it used for it's prediction. It starts from the average SalePrice and works its way (from top to bottom here) to a predicted SalePrice value. Here we see that build quality (Overall_Qual) being Exceptional contributed a lot, along with good surface area (Gr_Liv_Area) and garage size (Garage_Area).",
+    "body": "Let's focus on one data point. Here is a breakdown of how the algorithm attributes importance of what information it used for its prediction. It starts from the average SalePrice and works its way (from top to bottom here) to a predicted SalePrice value. Here we see that build quality (Overall_Qual) being Exceptional contributed a lot, along with good surface area (Gr_Liv_Area) and garage size (Garage_Area).",
     "selected_data_points_ids": [1697],
     "show_waterfall": true
   },
