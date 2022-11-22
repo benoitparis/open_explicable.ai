@@ -55,7 +55,11 @@ export const readFull = async<T> (reader: ParquetReader) => {
     } as DataSet<T>;
 }
 const readParquet = <T> (url:string) =>
-    () => ParquetReader.openUrl(url)
+    () => Promise.resolve(url)
+        .then(fetch)
+        .then(response => response.blob())
+        .then(URL.createObjectURL) // batch to one external request
+        .then((url) => ParquetReader.openUrl(url))
         .then(readFull<T>);
 
 export const getConfiguration =
