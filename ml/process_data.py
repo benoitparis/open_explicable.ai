@@ -5,9 +5,12 @@
 ## Global interpretation - Separation space
 # We project the leaf node participations into a 3D space, and package representations to visualize it.
 
+
+input_filename = "AmesHousing.csv"
+
 #### Cleaning
 from cleaning import Cleaning
-df, labelMapping = Cleaning.from_path("AmesHousing.csv")
+df, labelMapping = Cleaning.from_path(input_filename)
 df.to_parquet('data-cleaned-file.parquet', engine='fastparquet', compression='gzip')
 
 X, y = df.iloc[:,:-1], df.iloc[:, -1] # Last one by convention
@@ -55,7 +58,16 @@ xg_shap_values = xg_explainer.shap_values(X)
 xg_shap_values_df = pd.DataFrame(xg_shap_values, columns=list(map(lambda x: "attribution_" + x, features.values)))
 xg_shap_values_df.to_parquet('data-xg-attribution-values.parquet', engine='fastparquet', compression='gzip')
 
+def highlight_cells(a):
+    return 'background-color: rgba(230, 25, 25, 255)'
 
+excel_data_predicted_df = pd.concat([df, xg_prediction_df], axis=1)
+excel_data_predicted_df = excel_data_predicted_df.style.applymap(highlight_cells)
+excel_attributions_df = pd.concat([xg_shap_values_df, xg_prediction_df], axis=1)
+
+with pd.ExcelWriter("Report_" + input_filename.replace(".csv", ".xlsx")) as writer:
+    excel_data_predicted_df.to_excel(writer, sheet_name='Cleaned Data and Prediction', index=False)
+    excel_attributions_df.to_excel(writer, sheet_name='Attributions', index=False)
 
 import numpy as np
 
