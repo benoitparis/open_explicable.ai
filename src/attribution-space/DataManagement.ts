@@ -70,9 +70,8 @@ export const getDataDescription =
         .then(res => res.json() as unknown as DataDescription);
 export const getDataTour =
     () => fetch("data/data-tour.json")
-        .then(res => res.json() as unknown as DataTour)
+        .then(res => res.json() as unknown as DataTour);
 
-;
 // export const getPoints = readParquet<DataPoint>("data/data-points.parquet");
 export const getPoints = readParquet<DataPoint>("data/data-xg-shap-points.parquet");
 export const getDataValues = readParquet<any>("data/data-cleaned-file.parquet");
