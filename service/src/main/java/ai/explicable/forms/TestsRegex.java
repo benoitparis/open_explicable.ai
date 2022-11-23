@@ -4,10 +4,35 @@ import java.util.Base64;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+class UserData {
+    String name;
+    String email;
+    String message;
+    String fileName;
+    String fileContent;
+
+    boolean valid() {
+        return null != name  && !"".equals(name )
+            && null != email && !"".equals(email)
+        ;
+    }
+
+    @Override
+    public String toString() {
+        return "UserData{" +
+            "name='" + name + '\'' +
+            ", email='" + email + '\'' +
+            ", message='" + message + '\'' +
+            ", fileName='" + fileName + '\'' +
+            ", fileContent='" + fileContent + '\'' +
+        '}';
+    }
+}
 
 
 public class TestsRegex {
 
+    // from stackoverflow
     static String whitespace_chars =  ""       /* dummy empty string for homogeneity */
             + "\\u0009" // CHARACTER TABULATION
             + "\\u000A" // LINE FEED (LF)
@@ -35,102 +60,91 @@ public class TestsRegex {
             + "\\u202F" // NARROW NO-BREAK SPACE
             + "\\u205F" // MEDIUM MATHEMATICAL SPACE
             + "\\u3000" // IDEOGRAPHIC SPACE
-            ;
+    ;
     /* A \s that actually works for Java’s native character set: Unicode */
     static String     whitespace_charclass = "["  + whitespace_chars + "]";
     /* A \S that actually works for  Java’s native character set: Unicode */
     static String non_whitespace_charclass = "[^" + whitespace_chars + "]";
 
+    static String group(String content, boolean required) {
+        return "(" + content + ")" + (required ? "" : "?");
+    }
+    static String line(String content) {
+        return content + whitespace_charclass + "{2}";
+    }
+    static String param(String name) {
+        return name + "=\"" + "(?<" + name + "ParamX" + ">[^\"]+)" + "\"";
+    }
+
+    static String part = ""
+        + line( ""
+            + "Content-Disposition: form-data; "
+            + param("name")
+            + group("; " + param("filename"), false)
+        )
+        + group(line("Content-Type: application/octet-stream"), false)
+        + line("")
+        + line("(?<bodyParamX>.*)")
+    ;
+
+    static Pattern multipartPattern(String boundary) {
+        String separation = line("--" + boundary);
+        String epilogue = line("--" + boundary + "--");
+        String pattern = "^"
+            + group(separation + part.replace("ParamX>", "Param0>"), true)
+            + group(separation + part.replace("ParamX>", "Param1>"), true)
+            + group(separation + part.replace("ParamX>", "Param2>"), false)
+            + group(separation + part.replace("ParamX>", "Param3>"), true)
+            + epilogue
+            + "$"
+        ;
+        System.out.println(pattern);
+        return Pattern.compile(pattern, Pattern.DOTALL);
+    }
+
+    static UserData parse(String content, String boundary) {
+        Matcher matcher = multipartPattern(boundary).matcher(content);
+        if (matcher.find()) {
+
+            var result = new UserData();
+
+            if ("name".equals(matcher.group("nameParam0"))) {
+                result.name = matcher.group("bodyParam0");
+            }
+            if ("email".equals(matcher.group("nameParam1"))) {
+                result.email = matcher.group("bodyParam1");
+            }
+            if ("message".equals(matcher.group("nameParam2"))) {
+                result.message = matcher.group("bodyParam2");
+            }
+            if ("myFile".equals(matcher.group("nameParam3"))) {
+                result.fileName = matcher.group("filenameParam3");
+                result.fileContent = matcher.group("bodyParam3");
+            }
+
+            if (result.valid()) {
+                return result;
+            } else {
+                throw new RuntimeException("Non valid user data object: " + result);
+            }
+
+        } else {
+            throw new RuntimeException("Unable to parse user data: \n" + boundary + "\n" + content);
+        }
+
+    }
+
+
+
     public static void main(String[] args) throws Exception {
 
         String fromProd = "LS0tLS0tV2ViS2l0Rm9ybUJvdW5kYXJ5VTM3OHdibHZhblQ1WExhZA0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJuYW1lIg0KDQpmZmRmZA0KLS0tLS0tV2ViS2l0Rm9ybUJvdW5kYXJ5VTM3OHdibHZhblQ1WExhZA0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJlbWFpbCINCg0KZmZmQGRkLmNvbQ0KLS0tLS0tV2ViS2l0Rm9ybUJvdW5kYXJ5VTM3OHdibHZhblQ1WExhZA0KQ29udGVudC1EaXNwb3NpdGlvbjogZm9ybS1kYXRhOyBuYW1lPSJteUZpbGUiOyBmaWxlbmFtZT0iLmdpdGlnbm9yZSINCkNvbnRlbnQtVHlwZTogYXBwbGljYXRpb24vb2N0ZXQtc3RyZWFtDQoNCiMgU2VlIGh0dHBzOi8vaGVscC5naXRodWIuY29tL2FydGljbGVzL2lnbm9yaW5nLWZpbGVzLyBmb3IgbW9yZSBhYm91dCBpZ25vcmluZyBmaWxlcy4KCiMgZGVwZW5kZW5jaWVzCi9ub2RlX21vZHVsZXMKLy5wbnAKLnBucC5qcwoKIyB0ZXN0aW5nCi9jb3ZlcmFnZQoKIyBwcm9kdWN0aW9uCi9idWlsZAoKIyBtaXNjCi5EU19TdG9yZQouZW52LmxvY2FsCi5lbnYuZGV2ZWxvcG1lbnQubG9jYWwKLmVudi50ZXN0LmxvY2FsCi5lbnYucHJvZHVjdGlvbi5sb2NhbAoKbnBtLWRlYnVnLmxvZyoKeWFybi1kZWJ1Zy5sb2cqCnlhcm4tZXJyb3IubG9nKgoKLy5pZGVhDQotLS0tLS1XZWJLaXRGb3JtQm91bmRhcnlVMzc4d2JsdmFuVDVYTGFkLS0NCg==";
         String message = new String(Base64.getDecoder().decode(fromProd));
-        String boundary = "----WebKitFormBoundaryU378wblvanT5XLad";
         System.out.println(message);
+        String boundary = "----WebKitFormBoundaryU378wblvanT5XLad";
+        System.out.println("===========================================");
 
-        String separation = "--" + boundary + whitespace_charclass + "{2}";
-
-        String part0 = ""
-            + "("
-            + "Content-Disposition: form-data; name=\"" + "(?<nameParam0>[^\"]+)" + "\"" + whitespace_charclass + "{2}"
-            + whitespace_charclass + "{2}"
-            + "(?<body0>.*?)" + whitespace_charclass + "{2}"
-            + separation
-            + ")?"
-        ;
-        String part1 = ""
-            + "("
-            + "Content-Disposition: form-data; name=\"" + "(?<nameParam1>[^\"]+)" + "\"" + whitespace_charclass + "{2}"
-            + whitespace_charclass + "{2}"
-            + "(?<body1>.*?)" + whitespace_charclass + "{2}"
-            + separation
-            + ")?"
-        ;
-        String part2 = ""
-            + "("
-            + "Content-Disposition: form-data; name=\"" + "(?<nameParam2>[^\"]+)" + "\"" + whitespace_charclass + "{2}"
-            + whitespace_charclass + "{2}"
-            + "(?<body2>.*?)" + whitespace_charclass + "{2}"
-            + separation
-            + ")?"
-        ;
-        String part3 = ""
-            + "(.*"
-            + "(.*"
-            + "Content-Disposition: form-data; "
-                + "name=\"" + "(?<nameParam3>[^\"]+)" + "\""
-                + "; "
-                + "filename=\"" + "(?<filenameParam3>[^\"]+)" + "\""
-                + whitespace_charclass + "{2}"
-            + "Content-Type: application/octet-stream" + whitespace_charclass + "{2}"
-            + whitespace_charclass + "{2}"
-            + "(?<body3>.*?)" + whitespace_charclass + "{2}"
-            + separation
-            + ")?"
-            + ")"
-        ;
-
-        String epilogue = ""
-            + "--"
-            + whitespace_charclass + "{2}"
-        ;
-
-        String pattern = "^"
-            + separation
-            + part0
-            + part1
-            + part2
-            + part3
-//            + "(?<remainder>.*)"
-            + epilogue
-            + "$"
-        ;
-        Pattern regex = Pattern.compile(pattern, Pattern.DOTALL);
-        Matcher matcher = regex.matcher(message);
-
-
-
-
-        if (matcher.find()) {
-            System.out.println("######## MATCHING #########");
-            System.out.println(matcher.group("nameParam0"));
-            System.out.println(matcher.group("body0"));
-            System.out.println(matcher.group("nameParam1"));
-            System.out.println(matcher.group("body1"));
-            System.out.println(matcher.group("nameParam2"));
-            System.out.println(matcher.group("body2"));
-            System.out.println(matcher.group("nameParam3"));
-            System.out.println(matcher.group("filenameParam3"));
-            System.out.println(matcher.group("body3"));
-//            System.out.println("@@@@@@@@@  remainder  @@@@@@@@@");
-//            String remainder = matcher.group("remainder");
-//            System.out.println(remainder);
-//            System.out.println(remainder.length());
-            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
-            System.out.println(matcher.groupCount());
-            System.out.println("######## MATCHING #########");
-        } else {
-            System.out.println("NO MATCH");
-        }
+        var userData = parse(message, boundary);
+        System.out.println(userData);
     }
 }
