@@ -75,6 +75,7 @@ const WebsiteContactForm = () => {
             );
         }
 
+        console.log("Request:");
         console.log(data);
         setSubmitting(true);
 
@@ -84,10 +85,13 @@ const WebsiteContactForm = () => {
             body: formData
         };
         fetch('https://qss6f2ya7wp4lnz47cdf32wutq0rwser.lambda-url.eu-west-1.on.aws', requestOptions)
-            .then(response => response.json())
             .then((res) => {
+                console.log("Response:");
                 console.log(res);
                 setSubmitting(false);
+                if (200 !== res.status) {
+                    throw new Error(res.statusText);
+                }
                 setSuccessfulContact(true);
             })
             .catch((e) => {
@@ -185,7 +189,7 @@ const WebsiteContactForm = () => {
                                     className={stylesG.centered}
                                 >
                                     There was an error :/<br/>
-                                    You can contact us at contact@explicable.ai
+                                    You can contact us alternatively at contact@explicable.ai
                                 </span>
                             :
                                 ""

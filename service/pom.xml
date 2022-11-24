@@ -54,11 +54,13 @@
             <version>2.10</version>
         </dependency>
 
+<!--        // TODO apache fileupload a une CVE transitive dans commons-io. il faudra remplacer activement cette dep-->
         <dependency>
-            <groupId>org.javafp</groupId>
-            <artifactId>parsecj</artifactId>
-            <version>0.6</version>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>1.4</version>
         </dependency>
+
 
         <dependency>
             <groupId>org.junit.jupiter</groupId>
