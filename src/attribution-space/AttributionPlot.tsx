@@ -235,7 +235,10 @@ export const AttributionsWaterfallPlot = (props:{
 
         // TODO rework domain min max from whole dataset?
         const xScale = d3.scaleLinear()
-            .domain([Math.min(...ad.map(it => it.start)), Math.max(...ad.map(it => it.end))])
+            .domain([
+                Math.min(...ad.map(it => it.start), ...ad.map(it => it.end)),
+                Math.max(...ad.map(it => it.start), ...ad.map(it => it.end))
+            ])
             .range([0, width*(3/5)])
         ;
 

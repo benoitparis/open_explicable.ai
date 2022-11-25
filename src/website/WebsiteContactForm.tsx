@@ -101,10 +101,7 @@ const WebsiteContactForm = () => {
             })
         ;
 
-
-
     };
-
 
     return (
         <div id="contact" className={styles.contactBox} style={{}}>
@@ -138,12 +135,10 @@ const WebsiteContactForm = () => {
                                onBlur={e => onBlurEmail(e.target.value)}
                         />
                     </li>
-                    <span className={stylesG.centered} style={{display:"none"}}>
-                        Must be a valid email address
-                    </span>
                     <li className={styles.ulActionsLi}>
                         <textarea className={styles.ulActionsTextarea}
                                   name="message"
+                                  onChange={e => setField("message", e.target.value)}
                                   placeholder="Message / Business sector / Interest">
                         </textarea>
                     </li>
@@ -158,7 +153,12 @@ const WebsiteContactForm = () => {
                     </li>
 
                     <li className={styles.ulActionsLi}>
-                        <input type="file" onChange={onFileChange}/>
+                        <input
+                            type="file"
+                            style={{
+                                fontSize: "1em"
+                            }}
+                            onChange={onFileChange}/>
                     </li>
 
                     <li className={styles.ulActionsLi} >
