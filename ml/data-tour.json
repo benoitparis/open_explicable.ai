@@ -31,7 +31,7 @@
   },
   {
     "title": "Let's talk!",
-    "body": "If you wish to see how the topology of your data looks like, send us a CSV or Excel file at contact@explicable.ai! (limited to 50k rows, the column you care about at the end)",
+    "body": "If you wish to see how the topology of your data looks like, send us a CSV or Excel file at contact@explicable.ai! (limited to 10k rows, the column you care about at the end)",
     "selected_data_points_ids": null,
     "show_waterfall": false
   }
