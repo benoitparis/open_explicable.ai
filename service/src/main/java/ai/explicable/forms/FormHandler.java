@@ -10,9 +10,6 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import software.amazon.awssdk.regions.Region;
 import software.amazon.awssdk.services.eventbridge.EventBridgeClient;
-import software.amazon.awssdk.services.eventbridge.model.PutEventsRequest;
-import software.amazon.awssdk.services.eventbridge.model.PutEventsRequestEntry;
-import software.amazon.awssdk.services.eventbridge.model.PutEventsResponse;
 
 import java.io.ByteArrayInputStream;
 import java.text.SimpleDateFormat;
@@ -105,10 +102,6 @@ public class FormHandler implements RequestHandler<Map<String, Object>, String> 
 
                 s3Put(userData, contactData, jsonContactData);
 
-//                PutEventsResponse response = eventBridgePut(jsonContactData);
-
-//                System.out.println("Event status: " + response.sdkHttpResponse().statusCode());
-
                 return gson.toJson(jsonContactData);
 
             } else {
@@ -120,27 +113,6 @@ public class FormHandler implements RequestHandler<Map<String, Object>, String> 
             System.out.println(t);
             throw new RuntimeException(t);
         }
-    }
-
-
-    static String BRIDGE_ADDRESS = "arn:aws:events:eu-west-1:100172815067:event-bus/ai-explicable-event-bus";
-
-    private PutEventsResponse eventBridgePut(String jsonContactData) {
-        System.out.println("Putting event");
-        PutEventsRequestEntry request_entry = PutEventsRequestEntry.builder()
-                .detail(jsonContactData)
-                .detailType(UserContactFormData.class.getName())
-                .resources(BRIDGE_ADDRESS)
-                .source(this.getClass().getCanonicalName())
-                .build();
-
-        PutEventsRequest request = PutEventsRequest.builder()
-                .entries(request_entry)
-                .build();
-
-        PutEventsResponse response = eventBrClient.putEvents(request);
-
-        return response;
     }
 
     static String APP_BUCKET = "app.explicable.ai";
