@@ -1,5 +1,6 @@
 import {ParquetReader} from "@dsnp/parquetjs/dist/browser/parquet.esm";
 import {FileMetaDataExt} from "@dsnp/parquetjs/dist/lib/declare";
+import {Buffer} from 'buffer';
 
 export type ColumnName = string;
 export type DataConfiguration = {
@@ -40,7 +41,6 @@ export type DataSet<T> = {
 
 export const readFull = async<T> (reader: ParquetReader) => {
     // TODO throw error on bad loading
-
     let cursor = reader.getCursor();
     let data:Array<T> = [];
     let record = null;
@@ -54,13 +54,17 @@ export const readFull = async<T> (reader: ParquetReader) => {
         metadata: metadata
     } as DataSet<T>;
 }
+
 const readParquet = <T> (url:string) =>
     () => Promise.resolve(url)
         .then(fetch)
         .then(response => response.blob())
-        .then(URL.createObjectURL) // batch to one external request
-        .then((url) => ParquetReader.openUrl(url))
-        .then(readFull<T>);
+        .then(blob => blob.arrayBuffer())
+        .then(Buffer.from)
+        .then(buff => ParquetReader.openBuffer(buff))
+        .then(readFull<T>)
+        // .catch(console.error)
+;
 
 export const getConfiguration =
     () => fetch("data/conf.json")
