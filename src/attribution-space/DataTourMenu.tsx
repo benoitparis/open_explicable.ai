@@ -58,7 +58,7 @@ const DataTourMenu = (props: {
         const regex = /(?<before>.*)\[(?<anchor>.*)\]\((?<url>.*)\)(?<remainder>.*)/;
         const found = input.match(regex);
         if (found && found.groups) {
-            console.log(found.groups);
+            // console.log(found.groups);
             return(<>
                 {found.groups.before}
                 <a href={found.groups.url}>{found.groups.anchor}</a>
