@@ -1,4 +1,16 @@
 {
+   "Order":{
+      "description":"Observation number",
+      "values":{
+
+      }
+   },
+   "PID":{
+      "description":"Parcel identification number",
+      "values":{
+
+      }
+   },
    "MS_SubClass":{
       "description":"Identifies the type of dwelling involved in the sale.",
       "values":{

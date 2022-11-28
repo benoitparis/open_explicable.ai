@@ -6,6 +6,11 @@
 # We project the leaf node participations into a 3D space, and package representations to visualize it.
 
 
+
+
+
+
+
 input_filename = "AmesHousing.csv"
 
 #### Cleaning
@@ -14,6 +19,9 @@ df, labelMapping = Cleaning.from_path(input_filename)
 df.to_parquet('data-cleaned-file.parquet', engine='fastparquet', compression='gzip')
 
 X, y = df.iloc[:,:-1], df.iloc[:, -1] # Last one by convention
+mean = y.mean()
+std = y.std()
+
 #from sklearn.model_selection import train_test_split
 #X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=1)
 
@@ -43,8 +51,7 @@ import shap
 # TODO et partir de XGBoost ça marche pas mieux?
 explainer = shap.TreeExplainer(rf.tree_generator)
 shap_values = explainer.shap_values(X)
-shap_values_df = pd.DataFrame(shap_values, columns=list(map(lambda x: "attribution_" + x, features.values)))
-shap_values_df.to_parquet('data-attribution-values.parquet', engine='fastparquet', compression='gzip')
+shap_values_df = pd.DataFrame(shap_values, columns=list(features.values))
 
 
 import xgboost
@@ -55,14 +62,40 @@ xg_prediction_df = pd.DataFrame({'__prediction' : xg_prediction})
 
 xg_explainer = shap.TreeExplainer(xg_reg)
 xg_shap_values = xg_explainer.shap_values(X)
-xg_shap_values_df = pd.DataFrame(xg_shap_values, columns=list(map(lambda x: "attribution_" + x, features.values)))
-xg_shap_values_df.to_parquet('data-xg-attribution-values.parquet', engine='fastparquet', compression='gzip')
+xg_shap_values_df = pd.DataFrame(xg_shap_values, columns=list(features.values))
 
-def highlight_cells(a):
-    return 'background-color: rgba(230, 25, 25, 255)'
+
+
+xg_shap_std = xg_shap_values_df.stack().std()
+
+color_attenuation_factor = 3
+
+import math
+def highlight_cells(val):
+    # must correspond with points color scheme, but different base color
+    scaled_val = abs(max(-1, min(1, val / xg_shap_std / color_attenuation_factor)))
+    if val > 0:
+        r = int(255)
+        g = int(255 - scaled_val * 255)
+        b = int(255 - scaled_val * 255)
+    else:
+        r = int(255 - scaled_val * 255)
+        g = int(255 - scaled_val * 255)
+        b = int(255)
+    # scaled_val = max(-127, min(128, val * 128 / xg_shap_std)) + 127
+    # r = int(scaled_val)
+    # g = int(255 * 0.2)
+    # b = int(255 - scaled_val)
+    hex_val = "#%0.6X" % ((((r << 8) + g) << 8) + b)
+    return 'background-color: {}'.format(hex_val)
 
 excel_data_predicted_df = pd.concat([df, xg_prediction_df], axis=1)
-excel_data_predicted_df = excel_data_predicted_df.style.applymap(highlight_cells)
+# excel_data_predicted_df = excel_data_predicted_df.style.applymap(highlight_cells)
+
+excel_data_predicted_df = excel_data_predicted_df.style.apply(
+    lambda x: xg_shap_values_df.applymap(highlight_cells),
+    subset=excel_data_predicted_df.columns[:-2], # all but last 2: target, prediction
+    axis=None)
 excel_attributions_df = pd.concat([xg_shap_values_df, xg_prediction_df], axis=1)
 
 with pd.ExcelWriter("Report_" + input_filename.replace(".csv", ".xlsx")) as writer:
@@ -80,6 +113,11 @@ dfBinaryParticipations = pd.DataFrame(binaryParticipations)
 dfBinaryParticipations.rename(columns=lambda x: "_{}".format(x), inplace=True)
 dfBinaryParticipations.to_parquet('data-binary-participations.parquet', engine='fastparquet', compression='gzip')
 
+# TODO debordelize: only saving now because we need the colnames to match for building the excel
+shap_values_df = shap_values_df.add_prefix('attribution_')
+shap_values_df.to_parquet('data-attribution-values.parquet', engine='fastparquet', compression='gzip')
+xg_shap_values_df = xg_shap_values_df.add_prefix('attribution_')
+xg_shap_values_df.to_parquet('data-xg-attribution-values.parquet', engine='fastparquet', compression='gzip')
 
 
 #### Embedding
@@ -175,8 +213,8 @@ import json
 conf = {}
 conf['features'] = features.to_list()
 conf['predicted_variables'] = [y.name]
-conf['mean'] = y.mean()
-conf['std'] = y.std()
+conf['mean'] = mean
+conf['std'] = std
 conf['label_mapping'] = labelMapping
 conf['datapoint_number'] = df.shape[0]
 conf['rule_number'] = len(rf.rule_ensemble.rules)
