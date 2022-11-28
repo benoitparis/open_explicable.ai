@@ -30,6 +30,12 @@
     "show_waterfall": true
   },
   {
+    "title": "So, what do I do with this?",
+    "body": "It's great to have the data topology, but how can I integrate it with my business? With each model, you get an [Excel report](/data/Report_AmesHousing.xlsx) detailing the prediction breakdown for each data points. This will enable you to engage with the data points with a profile on what drives them with regards to the data column you care about.",
+    "selected_data_points_ids": null,
+    "show_waterfall": true
+  },
+  {
     "title": "Let's talk!",
     "body": "If you wish to see how the topology of your data looks like, send us a CSV or Excel file at contact@explicable.ai! (limited to 10k rows, the column you care about at the end)",
     "selected_data_points_ids": null,
