@@ -31,7 +31,7 @@
   },
   {
     "title": "So, what do I do with this?",
-    "body": "It's great to have the data topology, but how can I integrate it with my business? With each model, you get an [Excel report](/data/Report_AmesHousing.xlsx) detailing the prediction breakdown for each data points. This will enable you to engage with the data points with a profile on what drives them with regards to the data column you care about.",
+    "body": "It's great to explore the data topology, but how do you integrate it with your business? With each dataset analysis, you get an [Excel report](/data/Report_AmesHousing.xlsx) detailing the prediction breakdown for each data point. This will enable you to engage your data with a profile for each item. For example with this data analysis, a realtor will be able to get the precise local market drivers for a few properties in his portfolio.",
     "selected_data_points_ids": null,
     "show_waterfall": true
   },
