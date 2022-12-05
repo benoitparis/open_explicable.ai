@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
 import {DataTour} from "./DataManagement";
+import styles from "./DataTourMenu.module.css";
 import stylesG from "../Globals.module.css";
 
 const ANIMATION_PERIOD = 2000;
@@ -53,6 +54,10 @@ const DataTourMenu = (props: {
             setStep(newStep);
         }
     }
+    const startTour = () => {
+        setTouring(true);
+        props.display(true);
+    }
 
     // safe inputs, TODO maybe later markdown subset?
     const convertLinks = (input:string):JSX.Element => {
@@ -83,37 +88,28 @@ const DataTourMenu = (props: {
                     <div
                         className={stylesG.dashedBox}
                         style={{
-                            padding: "1em",
                             maxWidth: "25em",
                         }}>
                         {touring
                             ?
                             <div>
-                                <div
-                                    style={{
-                                        fontSize: "1.3em"
-                                    }}>
+                                <div className={stylesG.fontMedium}>
                                     {props.dataTour[step].title}
                                 </div>
-                                <div>{convertLinks(props.dataTour[step].body)}</div>
+                                <div className={styles.commentBody}>
+                                    {convertLinks(props.dataTour[step].body)}
+                                </div>
                                 <button
+                                    className={styles.button}
                                     onClick={next}
-                                    style={{
-                                        marginTop: "0.5em",
-                                        fontSize: "inherit"
-                                    }}>
-                                    <div>
-                                        {props.dataTour.length - 1 === step?"Close":"Next"}
-                                    </div>
+                                >
+                                    {props.dataTour.length - 1 === step? "Close" : "Next"}
                                 </button>
                             </div>
                             :
                             <button
-                                onClick={() => {setTouring(true); props.display(true)}}
-                                style={{
-                                    fontFamily: "'Didact Gothic', sans-serif",
-                                    fontSize: "inherit"
-                                }}
+                                className={styles.button}
+                                onClick={startTour}
                             >
                                 <div>
                                     Take the tour

@@ -42,4 +42,5 @@
     border-color: grey;
     border-style: dashed;
     overflow: hidden;
+    padding: 1em;
 }

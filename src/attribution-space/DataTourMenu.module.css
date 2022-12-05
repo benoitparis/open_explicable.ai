@@ -1,0 +1,7 @@
+.button {
+    composes: siteFont from "../Globals.module.css";
+    composes: fontSmall from "../Globals.module.css";
+}
+.commentBody {
+    margin-bottom: 0.5em;
+}

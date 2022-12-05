@@ -143,18 +143,17 @@ export const AttributionsWaterfallPlot = (props:{
     const minBarHeight = 14;
     const barHeight = Math.max(
         minBarHeight,
-        (maxScreenHeight + 4 * margin) / props.featureNames.length // 4 arbitrary, to account for left axis text space
+        maxScreenHeight / props.featureNames.length // 4 arbitrary, to account for left axis text space
     );
     const width = 400 * window.devicePixelRatio;
     let svgHeight = maxScreenHeight;
-
 
     const getAutoBox = () => {
         if (!svgRef.current) {
             return "";
         }
-        const { x, y, width, height } = svgRef.current.getBBox();
-        return [x - margin, y - margin, width + 2 * margin, height + 2 * margin].toString();
+        const {x, y, width, height} = svgRef.current.getBBox();
+        return [x, y, width, height].toString();
     };
 
     const accumulatedData = (mean: number, data:base[]):chartable[] => {
