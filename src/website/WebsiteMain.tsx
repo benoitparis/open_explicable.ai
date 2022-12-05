@@ -35,8 +35,7 @@ const Features = () =>
 const Welcome = () =>
     <div className={styles.welcome}>
         <div className={styles.welcomeMsg}>
-            <div className={styles.welcomeTitle} style={{
-            }}>
+            <div className={styles.welcomeTitle}>
                 <h2 className={styles.welcomeTitleH2}>Explicable Machine Learning</h2>
                 <span  className={styles.welcomeTitleByLine}>Explore the hidden signals in your data</span>
             </div>

@@ -64,7 +64,7 @@
 }
 @media only screen and (hover: none) and (pointer: coarse){
     .bannerTitleH2 {
-        composes: fontBig from "../Globals.module.css";
+        composes: fontMedium2 from "../Globals.module.css";
     }
     .bannerTitleByline {
         composes: fontMedium from "../Globals.module.css";

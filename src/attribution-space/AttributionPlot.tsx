@@ -415,7 +415,7 @@ export const AttributionsWaterfallPlot = (props:{
             style={{
                 maxHeight: maxScreenHeight,
                 overflow: "overlay",
-                width: landscape?width:"93vw",
+                width: landscape?width:"86vw",
             }}>
             <svg
                 ref={svgRef}
