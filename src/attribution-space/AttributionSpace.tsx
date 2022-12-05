@@ -22,7 +22,7 @@ import {
 import AttributionPlot from "./AttributionPlot";
 import DataTourMenu from "./DataTourMenu";
 
-function AttributionSpace(props:{displayed:boolean, display: () => void}) {
+function AttributionSpace(props:{displayed:boolean, display:() => void}) {
 
     const [center, setCenter] = useState<Vector3>(new Vector3());
     const [selected, setSelected] = useState<number|null>(null);
