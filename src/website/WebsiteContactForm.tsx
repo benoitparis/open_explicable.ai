@@ -1,6 +1,6 @@
 import React, {ChangeEvent, EventHandler, useState} from "react";
 import styles from "./WebsiteContactForm.module.css";
-import stylesG from "./Globals.module.css";
+import stylesG from "../Globals.module.css";
 import {classes} from "./Utils";
 
 type FormDataType = {

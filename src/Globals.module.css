@@ -1,0 +1,45 @@
+.centered {
+    margin: auto;
+}
+.siteBlueColor {
+    color: #2651a8;
+    background: white;
+}
+.siteBlueBackground {
+    background: #2651a8;
+}
+.siteFont {
+    font-family: 'Didact Gothic', sans-serif;
+}
+.fontSmaller {
+    font-size: 0.8em;
+}
+.fontSmall {
+    font-size: 1em;
+}
+.fontMedium {
+    font-size: 1.3em;
+}
+.fontMedium2 {
+    font-size: 2em;
+}
+.fontBig {
+    font-size: 2.7em;
+}
+.fontBigger {
+    font-size: 4em;
+}
+
+.transitionMode {
+    transition: all 1s ease-out;
+}
+.dashedBox {
+    composes: transitionMode;
+    background: white;
+    opacity: 0.95;
+    border-radius: 15px;
+    border-width: 5px;
+    border-color: grey;
+    border-style: dashed;
+    overflow: hidden;
+}

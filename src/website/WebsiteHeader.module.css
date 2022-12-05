@@ -13,7 +13,7 @@
 }
 
 .headerWrapper {
-    composes: transitionMode from "Globals.module.css";
+    composes: transitionMode from "../Globals.module.css";
     position: relative;
     padding-top: 1em;
 }
@@ -41,7 +41,7 @@
 
 .banner {
     composes: clickable;
-    composes: centered from "Globals.module.css";
+    composes: centered from "../Globals.module.css";
     position: absolute;
     bottom: 0;
     text-align: center;
@@ -54,20 +54,20 @@
     height: 100%;
 }
 .bannerTitleH2 {
+    composes: fontBigger from "../Globals.module.css";
     margin: 0;
-    font-size: 4em;
     color: rgba(255, 255, 255, 0.8);
 }
 .bannerTitleByline {
-    font-size: 2em;
+    composes: fontMedium2 from "../Globals.module.css";
     color: rgba(255, 255, 255, 0.60);
 }
 @media only screen and (hover: none) and (pointer: coarse){
     .bannerTitleH2 {
-        font-size: 2.7em;
+        composes: fontBig from "../Globals.module.css";
     }
     .bannerTitleByline {
-        font-size: 1.3em;
+        composes: fontMedium from "../Globals.module.css";
     }
 }
 
@@ -88,7 +88,8 @@
     text-decoration: none;
 }
 .horizontalFitInnerBlock {
-    composes: transitionMode from "Globals.module.css";
+    composes: transitionMode from "../Globals.module.css";
+    composes: fontSmaller from "../Globals.module.css";
     overflow: hidden;
     display: block;
     text-align: center;
@@ -96,7 +97,6 @@
     padding: 1em 1.5em;
     white-space:nowrap;
     text-transform: uppercase;
-    font-size: 0.8em;
     border-width: medium;
     border-style: groove;
     border-radius: 6px;
@@ -104,7 +104,7 @@
     margin-left: 0.5em;
 }
 .horizontalFitInnerBlockActive {
-    composes: siteBlueBackground from "Globals.module.css";
+    composes: siteBlueBackground from "../Globals.module.css";
     border-style: inset;
 }
 .horizontalFitInnerBlockOpened {

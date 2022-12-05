@@ -1,30 +1,28 @@
 
 .button {
-    composes: siteBlueColor from "Globals.module.css";
+    composes: siteBlueColor from "../Globals.module.css";
+    composes: siteFont from "../Globals.module.css";
+    composes: fontSmall from "../Globals.module.css";
     display: inline-block;
     letter-spacing: 0.10em;
     padding: 1.40em 3em;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1em;
     width: 30%;
     min-width: fit-content;
-    font-family: 'Didact Gothic', sans-serif;
-    background: #FFF;
 }
 
 .contactBox {
-    composes: siteBlueColor from "Globals.module.css";
+    composes: siteBlueColor from "../Globals.module.css";
+    composes: fontSmall from "../Globals.module.css";
     max-width: 30em;
     width: 100%;
     text-align: center;
     margin: auto;
-    background: #FFF;
     border-radius: 6px;
     text-decoration: none;
     font-weight: 700;
-    font-size: 1em;
 }
 
 .ulActions {
@@ -36,10 +34,10 @@
     padding: 0.5em 1.5em;
 }
 .ulActionsLiUserInput {
-    font-size: 12pt;
+    composes: siteFont from "../Globals.module.css";
+    composes: fontSmall from "../Globals.module.css";
     height: 2em;
     width: 100%;
-    font-family: 'Didact Gothic', sans-serif;
     border-width: 2px;
     border-style: inset;
 }
@@ -53,6 +51,7 @@
 }
 @media only screen and (hover: none) and (pointer: coarse) {
     .ulActionsLiInput {
+        /*TODO mettre en em?*/
         font-size: 2rem;
         border-width: medium;
     }

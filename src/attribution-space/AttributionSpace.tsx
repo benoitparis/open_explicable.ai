@@ -9,7 +9,7 @@ import {
     DataTour,
     DataSet,
     DataPoint,
-    getConfiguration,
+    getDataConfiguration,
     getDataDescription,
     getDataTour,
     getPoints,
@@ -46,7 +46,7 @@ function AttributionSpace(props:{displayed:boolean, display: () => void}) {
     useEffect(() => {
         Promise.resolve()
             .then(() => Promise.all([
-                getSet(getConfiguration, setConfiguration),
+                getSet(getDataConfiguration, setConfiguration),
                 getSet(getDataTour, setDataTour),
                 getSet(getPoints, setPoints),
             ]))

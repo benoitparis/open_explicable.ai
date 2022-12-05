@@ -2,5 +2,5 @@
     overflow: hidden;
 }
 .inner {
-    composes: transitionMode from "Globals.module.css";
+    composes: transitionMode from "../Globals.module.css";
 }

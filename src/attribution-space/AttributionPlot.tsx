@@ -1,6 +1,7 @@
 import React from 'react';
 import {DataConfiguration, DataDescription, DataPoint, DataSet} from "./DataManagement";
 import * as d3 from "d3";
+import stylesG from "../Globals.module.css";
 
 // TODO use
 type Loaded<T> = {
@@ -51,8 +52,7 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                     }
                     return prev;
                 })
-            Object.keys(globalAttributionValues).forEach((key) => globalAttributionValues[key] /= number);
-
+            Object.keys(globalAttributionValues).forEach(key => globalAttributionValues[key] /= number);
 
             return (
                 <AttributionsWaterfallPlot
@@ -63,13 +63,13 @@ const AttributionPlot = (props:AttributionPlotProps) => {
                     attributionValues={attributionValues}
                     globalAttributionValues={globalAttributionValues}
                     point={point}
+                    // TODO totally arbitrary, need to fix/choose it (top10, topX from UI)
                     filterTopN={landscape? 36: 10}
                 />
             );
         } else {
             return ""
         }
-
     };
 
 
@@ -85,19 +85,12 @@ const AttributionPlot = (props:AttributionPlotProps) => {
         }}>
 
             <div
+                className={stylesG.dashedBox}
                 style={{
-                    background:"white",
-                    opacity: 0.95,
-                    borderRadius: "15px",
-                    borderWidth: "5px",
-                    borderColor: "grey",
-                    borderStyle: "dashed",
-                    transition: "all 2s ease-out",
                     minHeight: hasLoaded ? 75 * window.devicePixelRatio + "px" : 25 * window.devicePixelRatio + "px",
                     maxHeight: hasLoaded ? 1000 * window.devicePixelRatio + "px" : 300 * window.devicePixelRatio + "px",
                     minWidth: hasLoaded ? 200 * window.devicePixelRatio + "px" : 50 * window.devicePixelRatio + "px",
-                    maxWidth: hasLoaded ? 800 * window.devicePixelRatio + "px" : 300 * window.devicePixelRatio + "px",
-                    overflow: "hidden"
+                    maxWidth: hasLoaded ? 800 * window.devicePixelRatio + "px" : 300 * window.devicePixelRatio + "px"
                 }}>
                 {
                     hasLoaded?
@@ -184,14 +177,13 @@ export const AttributionsWaterfallPlot = (props:{
     React.useEffect(() => {
 
         const threshold = Object.values(props.globalAttributionValues)
-            .map(v => Math.abs(v))
+            .map(Math.abs)
             .sort((a, b) => b-a)
                 [(props.filterTopN||props.configuration.features.length)-1]
         ;
 
         const chosenFeatureNames = Object.entries(props.globalAttributionValues)
-            .filter(([k, v], i, a) => Math.abs(v) >= threshold)
-            // TODO totally arbitrary, need to fix/choose it (top10, topX from UI)
+            .filter(([k, v]) => Math.abs(v) >= threshold)
             .map(([k, v]) => k.replace("attribution_", ""));
 
         svgHeight = Math.min(
@@ -201,13 +193,11 @@ export const AttributionsWaterfallPlot = (props:{
 
         const attributionData:base[] = chosenFeatureNames
             .filter(it => it !== props.configuration["predicted_variables"][0]) // should already be good
-            .map((d) => {
-                return {
+            .map(d => ({
                     name: d,
                     attributionValue: props.attributionValues[props.featureNames.indexOf(d)],
                     dataValue: props.dataValues[props.featureNames.indexOf(d)]
-                }
-            })
+                }))
 
         // console.log(attributionData)
         const mean = props.configuration.mean;
@@ -368,7 +358,6 @@ export const AttributionsWaterfallPlot = (props:{
             .style("top", "0px")
         ;
 
-
         bar.append("rect") // how to config hover?
             .attr("shape-rendering", "crispedges")
             .attr("x", d => xScale(Math.min(d.start, d.end)))
@@ -420,7 +409,6 @@ export const AttributionsWaterfallPlot = (props:{
         })
 
     }, [props.featureNames, props.dataValues, props.attributionValues]);
-
 
     const landscape = window.innerHeight < window.innerWidth;
     return (

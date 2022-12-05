@@ -15,7 +15,7 @@ const features = [
     {name:"Visual",       description:"Gain deep insights about the topology of your business data, at an intuitive glance"},
     {name:"Data-Driving", description:"Share how your AIs make their decisions across your org. Aggregate insights from your knowledge workers"},
     {name:"Focused",      description:"Follow the driving signals in the data as a management principle, concentrate only on data that has value"},
-    {name:"Simple",       description:"Just upload a Excel with blank values if you wish to get them back predicted."},
+    {name:"Simple",       description:"Just upload an Excel file with blank values if you wish to get them back predicted."},
 ]
 
 const FeatureList = features.map(it => <FeatureBox key={it.name} name={it.name} description={it.description}/>)
@@ -53,7 +53,7 @@ const Welcome = () =>
 const Copyright = () =>
     <div className={styles.copyright}>
         <p className={styles.copyrightP}>
-            2017-2022 © <a className={styles.copyrightA} href="http://benoit.paris">Benoît Paris Consulting</a> | All rights reserved
+            2017-2022 © <a className={styles.copyrightA} href="https://benoit.paris">Benoît Paris Consulting</a> | All rights reserved
         </p>
     </div>
 

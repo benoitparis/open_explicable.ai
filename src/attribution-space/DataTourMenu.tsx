@@ -1,5 +1,6 @@
-import React, {useEffect, useMemo, useRef, useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import {DataTour} from "./DataManagement";
+import stylesG from "../Globals.module.css";
 
 const ANIMATION_PERIOD = 2000;
 
@@ -69,7 +70,6 @@ const DataTourMenu = (props: {
         }
     }
 
-
     return (
         <div>
             {props.dataTour?<>
@@ -81,16 +81,9 @@ const DataTourMenu = (props: {
                     zIndex: 4,
                 }}>
                     <div
+                        className={stylesG.dashedBox}
                         style={{
-                            background:"white",
-                            opacity: 0.95,
-                            borderRadius: "15px",
-                            borderWidth: "5px",
-                            borderColor: "grey",
-                            borderStyle: "dashed",
-                            transition: "all 2s ease-out",
                             padding: "1em",
-                            overflow: "hidden",
                             maxWidth: "25em",
                         }}>
                         {touring

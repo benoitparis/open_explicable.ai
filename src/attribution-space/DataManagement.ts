@@ -55,10 +55,9 @@ export const readFull = async<T> (reader: ParquetReader) => {
     } as DataSet<T>;
 }
 
-const readParquet = <T> (url:string) =>
-    () => Promise.resolve(url)
-        .then(fetch)
-        .then(response => response.blob())
+const readParquet = <T> (url:string):() => Promise<DataSet<T>> =>
+    () => fetch(url)
+        .then(res => res.blob())
         .then(blob => blob.arrayBuffer())
         .then(Buffer.from)
         .then(buff => ParquetReader.openBuffer(buff))
@@ -66,15 +65,14 @@ const readParquet = <T> (url:string) =>
         // .catch(console.error)
 ;
 
-export const getConfiguration =
-    () => fetch("data/conf.json")
-        .then(res => res.json() as unknown as DataConfiguration);
-export const getDataDescription =
-    () => fetch("data/data-description.json")
-        .then(res => res.json() as unknown as DataDescription);
-export const getDataTour =
-    () => fetch("data/data-tour.json")
-        .then(res => res.json() as unknown as DataTour);
+export const getJson = <T> (url:string):() => Promise<T> =>
+    () => fetch(url)
+        .then(res => res.json())
+;
+
+export const getDataConfiguration = getJson<DataConfiguration>("data/conf.json");
+export const getDataDescription = getJson<DataDescription>("data/data-description.json");
+export const getDataTour = getJson<DataTour>("data/data-tour.json");
 
 // export const getPoints = readParquet<DataPoint>("data/data-points.parquet");
 export const getPoints = readParquet<DataPoint>("data/data-xg-shap-points.parquet");
