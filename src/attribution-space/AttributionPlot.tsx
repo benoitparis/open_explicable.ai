@@ -357,7 +357,24 @@ export const AttributionsWaterfallPlot = (props:{
             .style("top", "0px")
         ;
 
-        bar.append("rect") // how to config hover?
+
+
+        // <g transform="scale(100, 20)">
+        //     <g transform="scale(0.1, 0.5)">
+        //         <path d="M 0 0 L 9 0 L 10 1 L 9 2 L 0 2 Z"/>
+        //     </g>
+        // </g>
+        // <g transform="scale(100, 20) translate(1, 0) scale(-1, 1)">
+        //     <g transform="scale(0.1, 0.5)">
+        //         <path d="M 0 0 L 9 0 L 10 1 L 9 2 L 0 2 Z"/>
+        //     </g>
+        // </g>
+
+
+        bar.append("g")
+            .attr("transform", d => "translate(" + Math.abs(xScale(d.start) - xScale(d.end)) + ", " + barHeight + ")")
+
+        bar.append("rect")
             .attr("shape-rendering", "crispedges")
             .attr("x", d => xScale(Math.min(d.start, d.end)))
             .attr("transform", "translate(0, " + -barHeight/2 + ")")

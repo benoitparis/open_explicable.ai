@@ -5,8 +5,8 @@ import CollapsibleDiv from "./CollapsibleDiv";
 
 const FeatureBox = (props:{name:string, description:string}) =>
     <div>
-        <p className={styles.boxP}>{props.description}</p>
         <a className={styles.boxButton}>{props.name}</a>
+        <p className={styles.boxP}>{props.description}</p>
     </div>
 
 const features = [

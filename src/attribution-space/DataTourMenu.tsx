@@ -86,7 +86,7 @@ const DataTourMenu = (props: {
                     zIndex: 4,
                 }}>
                     <div
-                        className={stylesG.dashedBox}
+                        className={touring?stylesG.dashedBox:stylesG.animateDashedBox}
                         style={{
                             maxWidth: "25em",
                         }}>

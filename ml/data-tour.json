@@ -1,6 +1,7 @@
 [
   {
     "title": "What it this?",
+    "body2": "Your own data, if you give it to our AI. \n Say you want to enter the Real Estate business. You just got raw, messy market data. How do you: 1) unveil drivers of this market, and get an explanation of what drives the price? 2) craft a data-driven market strategy, for identifying opportunities? 3) segment the market, reason about it? \n We think we can help you cover these needs and much more, a few minutes after we analyse your data",
     "body": "Data is multidimensional. Any analysis you do means examining the impact of countless dimensions on each other. What if you could just specify what you care about, and we do the rest auto-magically?",
     "selected_data_points_ids": null,
     "show_waterfall": false
@@ -13,7 +14,7 @@
   },
   {
     "title": "In 3D",
-    "body": "We run state-of-the-art AI algorithms to give you this 3D topological view of your data. It represents how the algorithms would group rows together with regards to the information they contain when trying to guess the SalePrice. For example, the algorithm here shows us it detected different strategies for these different groups highly-priced properties",
+    "body": "We run state-of-the-art AI algorithms to give you this 3D topological view of your data. It represents how the algorithms would group items together with regards to the information they contain when trying to guess the SalePrice. For example, the algorithm here shows us it detected different strategies for these different groups highly-priced properties",
     "selected_data_points_ids": [1697, 2500],
     "show_waterfall": false
   },

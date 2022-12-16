@@ -44,3 +44,17 @@
     overflow: hidden;
     padding: 1em;
 }
+
+.animateDashedBox {
+    composes: dashedBox;
+    animation: .5s linear 1s infinite alternate slidein;
+    animation-name: blinkBorderColor;
+}
+@keyframes blinkBorderColor {
+    from {
+        border-color: orange;
+    }
+    to {
+        border-color: grey;
+    }
+}

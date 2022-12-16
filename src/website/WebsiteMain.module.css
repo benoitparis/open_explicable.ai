@@ -4,16 +4,14 @@
 }
 .boxButton {
     composes: siteBlueBackground from "../Globals.module.css";
-    composes: fontSmall from "../Globals.module.css";
+    composes: fontMedium from "../Globals.module.css";
     display: inline-block;
     letter-spacing: 0.10em;
-    border-radius: 6px;
     text-decoration: none;
-    font-weight: 700;
     color: #FFF;
     width: 30%;
     min-width: fit-content;
-    padding: 1em 2em;
+    padding: 0.5em;
     border-color: rgba(0, 0, 0, .8);
 }
 
@@ -33,7 +31,7 @@
     margin: auto;
 }
 .featureTitle {
-    margin-bottom: 1em;
+    margin-bottom: 2em;
 }
 .featuresTitleH2 {
     composes: fontBig from "../Globals.module.css";

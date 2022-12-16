@@ -21,7 +21,7 @@ const HeaderOverlay = (props:{displayed:boolean, display:(d:boolean)=>void}) =>
                 onClick={()=>props.display(false)}>
                 <a href={"#"} className={styles.horizontalFitOuterBlockA}>
                     <span className={classes(styles.horizontalFitInnerBlock, props.displayed?"":styles.horizontalFitInnerBlockActive)}>
-                        App
+                        Demo
                     </span>
                 </a>
             </li>
