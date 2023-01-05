@@ -19,7 +19,7 @@ import {
     getRuleDefinitions,
     getBinaryParticipations,
 } from "./DataManagement";
-import AttributionPlot from "./AttributionPlot";
+import AttributionPlot from "./attribution-plot/AttributionPlot";
 import DataTourMenu from "./DataTourMenu";
 
 function AttributionSpace(props:{displayed:boolean, display:() => void}) {
